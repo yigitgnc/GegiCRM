@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.DAL.Abstract
 {
-    public interface IReturnAndFaultDal : IGenericDal<ReturnAndFault>
+    public interface IMaintenanceBillDal:IGenericDal<MaintenanceBill>
     {
     }
 }
