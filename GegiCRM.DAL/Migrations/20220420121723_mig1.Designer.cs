@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GegiCRM.DAL.Migrations
 {
-    [DbContext(typeof(GegiCRM_DBContext))]
+    [DbContext(typeof(Context))]
     [Migration("20220420121723_mig1")]
     partial class mig1
     {

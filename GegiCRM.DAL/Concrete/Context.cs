@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace GegiCRM.DAL.Concrete
 {
-    public partial class GegiCRM_DBContext : DbContext
+    public partial class Context : DbContext
     {
-        public GegiCRM_DBContext()
+        public Context()
         {
         }
 
-        public GegiCRM_DBContext(DbContextOptions<GegiCRM_DBContext> options)
+        public Context(DbContextOptions<Context> options)
             : base(options)
         {
         }
@@ -83,8 +83,9 @@ namespace GegiCRM.DAL.Concrete
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=.;Database=GegiCRM_DB;Trusted_Connection=True;");
+                optionsBuilder.UseLazyLoadingProxies();
             }
         }
 

@@ -13,7 +13,11 @@ namespace GegiCRM.BLL.Abstract
         void DeleteUser(User user);
         void UpdateUser(User user);
         List<User> GetAllUsers();
+        List<User> GetUsersWithAddedOrders();
+        List<User> GetUsersWithModifiedOrders();
         User GetUserById(int id);
+
+
 
     }
 }

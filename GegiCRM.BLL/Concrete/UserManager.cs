@@ -1,4 +1,6 @@
 ﻿using GegiCRM.BLL.Abstract;
+using GegiCRM.DAL.Abstract;
+using GegiCRM.DAL.EntityFramework;
 using GegiCRM.Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,30 +12,46 @@ namespace GegiCRM.BLL.Concrete
 {
     public class UserManager : IUserService
     {
-        //userrepository
+        IUserDal _userDal;
+
+        public UserManager(IUserDal userDal)
+        {
+            _userDal=userDal;
+        }
+
         public void CreateUser(User user)
         {
-            throw new NotImplementedException();
+            _userDal.Insert(user);
         }
 
         public void DeleteUser(User user)
         {
-            throw new NotImplementedException();
+            _userDal.Delete(user);
         }
 
         public List<User> GetAllUsers()
         {
-            throw new NotImplementedException();
+            return _userDal.GetListAll();
         }
 
         public User GetUserById(int id)
         {
-            throw new NotImplementedException();
+            return _userDal.GetByID(id);
+        }
+
+        public List<User> GetUsersWithAddedOrders()
+        {
+            return _userDal.GetUsersWithAddedOrders();
+        }
+
+        public List<User> GetUsersWithModifiedOrders()
+        {
+            return _userDal.GetUsersWithModifiedOrders();
         }
 
         public void UpdateUser(User user)
         {
-            throw new NotImplementedException();
+            _userDal.Update(user);
         }
     }
 }

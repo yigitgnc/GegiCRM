@@ -9,5 +9,7 @@ namespace GegiCRM.DAL.Abstract
 {
     public interface IUserDal:IGenericDal<User>
     {
+        List<User> GetUsersWithAddedOrders();
+        List<User> GetUsersWithModifiedOrders();
     }
 }

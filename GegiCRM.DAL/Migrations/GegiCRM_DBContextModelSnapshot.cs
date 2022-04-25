@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GegiCRM.DAL.Migrations
 {
-    [DbContext(typeof(GegiCRM_DBContext))]
+    [DbContext(typeof(Context))]
     partial class GegiCRM_DBContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

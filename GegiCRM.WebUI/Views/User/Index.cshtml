@@ -1,0 +1,23 @@
+﻿@using GegiCRM.Entities.Concrete
+@{
+    Layout = null;
+}
+@model List<User>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @foreach (var item in Model)
+    {
+        <p>@item.Name</p>
+        <p>@item.OrderAddedByNavigations.FirstOrDefault().Id</p>
+        <p>@item.OrderAddedByNavigations.FirstOrDefault().ModifiedByNavigation.Name</p>
+        @*<p>@item.OrderModifiedByNavigations.FirstOrDefault().Customer.Name</p>*@
+        @*<p>@item.OrderModifiedByNavigations.FirstOrDefault().Customer.Name</p>*@
+    }
+</body>
+</html>
