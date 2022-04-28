@@ -7,13 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSession();
 builder.Services.AddControllersWithViews();
-builder.Services.AddMvc(config =>
-{
-    var policy = new AuthorizationPolicyBuilder()
-    .RequireAuthenticatedUser()
-    .Build();
-    config.Filters.Add(new AuthorizeFilter(policy));
-});
+
 
 var app = builder.Build();
 
@@ -30,8 +24,6 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
-app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
