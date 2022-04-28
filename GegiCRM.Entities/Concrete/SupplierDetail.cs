@@ -1,9 +1,10 @@
-﻿using System;
+﻿using GegiCRM.Entities.Abstract;
+using System;
 using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public partial class SupplierDetail
+    public class SupplierDetail : BaseEntity
     {
         public int Id { get; set; }
         public int SupplierId { get; set; }

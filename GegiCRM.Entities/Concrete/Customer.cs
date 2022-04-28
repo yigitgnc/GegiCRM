@@ -1,9 +1,10 @@
-﻿using System;
+﻿using GegiCRM.Entities.Abstract;
+using System;
 using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public partial class Customer
+    public class Customer: BaseEntity
     {
         public Customer()
         {
@@ -20,10 +21,6 @@ namespace GegiCRM.Entities.Concrete
         }
 
         public int Id { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-        public Guid AddedBy { get; set; }
-        public Guid ModifiedBy { get; set; }
         public bool IsDeleted { get; set; }
         public string? TicariUnvan { get; set; }
         public string? Name { get; set; }
@@ -35,8 +32,6 @@ namespace GegiCRM.Entities.Concrete
         public int TypeId { get; set; }
         public DateTime? LastContactDate { get; set; }
 
-        public virtual User AddedByNavigation { get; set; } = null!;
-        public virtual User ModifiedByNavigation { get; set; } = null!;
         public virtual Sector? Sector { get; set; }
         public virtual Segment Segment { get; set; } = null!;
         public virtual CustomerType Type { get; set; } = null!;

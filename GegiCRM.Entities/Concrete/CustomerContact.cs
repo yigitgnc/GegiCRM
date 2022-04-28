@@ -1,17 +1,13 @@
-﻿using System;
+﻿using GegiCRM.Entities.Abstract;
+using System;
 using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public partial class CustomerContact
+    public class CustomerContact : BaseEntity
     {
         public int Id { get; set; }
         public int? CustomerId { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
-        public Guid AddedBy { get; set; }
-        public Guid ModifiedBy { get; set; }
-        public bool IsDeleted { get; set; }
         public string? ContactName { get; set; }
         public string? ContactSurname { get; set; }
         public string? ContactTitle { get; set; }

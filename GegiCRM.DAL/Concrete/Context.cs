@@ -83,7 +83,7 @@ namespace GegiCRM.DAL.Concrete
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=.;Database=GegiCRM_DB;Trusted_Connection=True;");
                 optionsBuilder.UseLazyLoadingProxies();
             }
@@ -173,6 +173,17 @@ namespace GegiCRM.DAL.Concrete
                     .HasForeignKey(d => d.CompanyId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_BankInformations_UserCompanies");
+
+                entity.HasOne(d => d.AddedByNavigation)
+                    .WithMany(p => p.BankInformationAddedByNavigations)
+                    .HasForeignKey(d => d.AddedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_BankInformations_Users");
+
+                entity.HasOne(d => d.ModifiedByNavigation)
+                    .WithMany(p => p.BankInformationModifiedByNavigations)
+                    .HasForeignKey(d => d.ModifiedBy)
+                    .HasConstraintName("FK_BankInformations_Users1");
             });
 
             modelBuilder.Entity<Birim>(entity =>
@@ -301,6 +312,17 @@ namespace GegiCRM.DAL.Concrete
                     .HasForeignKey(d => d.SupplierId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CollectionReceipts_Suppliers");
+
+                entity.HasOne(d => d.AddedByNavigation)
+                  .WithMany(p => p.CollectionReceiptAddedByNavigations)
+                  .HasForeignKey(d => d.AddedBy)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_CollectionReceipts_Users");
+
+                entity.HasOne(d => d.ModifiedByNavigation)
+                    .WithMany(p => p.CollectionReceiptModifiedByNavigations)
+                    .HasForeignKey(d => d.ModifiedBy)
+                    .HasConstraintName("FK_CollectionReceipts_Users1");
             });
 
             modelBuilder.Entity<Currency>(entity =>
@@ -310,6 +332,17 @@ namespace GegiCRM.DAL.Concrete
                 entity.Property(e => e.Code).HasMaxLength(10);
 
                 entity.Property(e => e.Name).HasMaxLength(50);
+
+                entity.HasOne(d => d.AddedByNavigation)
+                    .WithMany(p => p.CurrencyAddedByNavigations)
+                    .HasForeignKey(d => d.AddedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AddedBy");
+
+                entity.HasOne(d => d.ModifiedByNavigation)
+                    .WithMany(p => p.CurrencyModifiedByNavigations)
+                    .HasForeignKey(d => d.ModifiedBy)
+                    .HasConstraintName("FK_ModifiedBy");
             });
 
             modelBuilder.Entity<Customer>(entity =>
@@ -372,6 +405,7 @@ namespace GegiCRM.DAL.Concrete
                     .HasForeignKey(d => d.TypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Customers_CustomerTypes");
+
             });
 
             modelBuilder.Entity<CustomerAddress>(entity =>

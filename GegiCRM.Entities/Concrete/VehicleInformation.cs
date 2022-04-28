@@ -1,16 +1,12 @@
-﻿using System;
+﻿using GegiCRM.Entities.Abstract;
+using System;
 using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public partial class VehicleInformation
+    public class VehicleInformation : BaseEntity
     {
         public int Id { get; set; }
-        public bool IsDeleted { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-        public Guid AddedBy { get; set; }
-        public Guid ModifiedBy { get; set; }
         public int UserCompanyId { get; set; }
         public string Plaka { get; set; } = null!;
         public short ModelYear { get; set; }

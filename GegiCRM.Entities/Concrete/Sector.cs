@@ -1,9 +1,10 @@
-﻿using System;
+﻿using GegiCRM.Entities.Abstract;
+using System;
 using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public partial class Sector
+    public class Sector : BaseEntity
     {
         public Sector()
         {
@@ -11,11 +12,6 @@ namespace GegiCRM.Entities.Concrete
         }
 
         public int Id { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-        public Guid AddedBy { get; set; }
-        public Guid ModifiedBy { get; set; }
-        public bool IsDeleted { get; set; }
         public string Name { get; set; } = null!;
         public string? Description { get; set; }
 

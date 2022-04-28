@@ -1,16 +1,12 @@
-﻿using System;
+﻿using GegiCRM.Entities.Abstract;
+using System;
 using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public partial class ServiceRecord
+    public class ServiceRecord : BaseEntity
     {
         public int Id { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
-        public Guid AddedBy { get; set; }
-        public Guid? ModifiedBy { get; set; }
-        public bool IsDeleted { get; set; }
         public int CustomerId { get; set; }
         public string? ArizaTanimi { get; set; }
         public Guid ServicePersonalUser { get; set; }
@@ -23,9 +19,7 @@ namespace GegiCRM.Entities.Concrete
         public string? MudahaleEdilenCihaz { get; set; }
         public string? MudahaleEdilenModel { get; set; }
 
-        public virtual User AddedByNavigation { get; set; } = null!;
         public virtual Customer Customer { get; set; } = null!;
-        public virtual User? ModifiedByNavigation { get; set; }
         public virtual User ServicePersonalUserNavigation { get; set; } = null!;
         public virtual ServicePlace ServicePlace { get; set; } = null!;
         public virtual ServiceReason ServiceReason { get; set; } = null!;

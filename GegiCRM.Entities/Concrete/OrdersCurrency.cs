@@ -1,9 +1,10 @@
-﻿using System;
+﻿using GegiCRM.Entities.Abstract;
+using System;
 using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public partial class OrdersCurrency
+    public class OrdersCurrency : BaseEntity
     {
         public int OrderId { get; set; }
         public int CurrencyId { get; set; }

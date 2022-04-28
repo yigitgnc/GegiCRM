@@ -1,9 +1,10 @@
-﻿using System;
+﻿using GegiCRM.Entities.Abstract;
+using System;
 using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public partial class DepartmentsOfUser
+    public class DepartmentsOfUser : BaseEntity
     {
         public Guid UserId { get; set; }
         public int DepartmentId { get; set; }

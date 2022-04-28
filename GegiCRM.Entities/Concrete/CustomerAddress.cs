@@ -1,9 +1,10 @@
-﻿using System;
+﻿using GegiCRM.Entities.Abstract;
+using System;
 using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public partial class CustomerAddress
+    public class CustomerAddress : BaseEntity
     {
         public int Id { get; set; }
         public int? CustomerId { get; set; }
@@ -12,14 +13,8 @@ namespace GegiCRM.Entities.Concrete
         public string? Ilce { get; set; }
         public string? Address { get; set; }
         public bool IsDeliveryAddress { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
-        public Guid AddedBy { get; set; }
-        public Guid? ModifiedBy { get; set; }
         public bool IsDeleted { get; set; }
 
-        public virtual User AddedByNavigation { get; set; } = null!;
         public virtual Customer? Customer { get; set; }
-        public virtual User? ModifiedByNavigation { get; set; }
     }
 }

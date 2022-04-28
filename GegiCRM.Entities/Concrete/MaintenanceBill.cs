@@ -1,16 +1,12 @@
-﻿using System;
+﻿using GegiCRM.Entities.Abstract;
+using System;
 using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public partial class MaintenanceBill
+    public class MaintenanceBill : BaseEntity
     {
         public int Id { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
-        public Guid AddedBy { get; set; }
-        public Guid? ModifiedBy { get; set; }
-        public bool IsDeleted { get; set; }
         public int? CustomerId { get; set; }
         public Guid? SellingRepresentetiveUserId { get; set; }
         public Guid? CustomerRepresentetiveUserId { get; set; }
@@ -23,12 +19,10 @@ namespace GegiCRM.Entities.Concrete
         public DateTime? SozlesmeBitisTarihi { get; set; }
         public string? Note { get; set; }
 
-        public virtual User AddedByNavigation { get; set; } = null!;
         public virtual Currency Currency { get; set; } = null!;
         public virtual Customer? Customer { get; set; }
         public virtual User? CustomerRepresentetiveUser { get; set; }
         public virtual MaintenencePeriod MaintenencePeriod { get; set; } = null!;
-        public virtual User? ModifiedByNavigation { get; set; }
         public virtual ProductGroup ProductGroup { get; set; } = null!;
         public virtual User? SellingRepresentetiveUser { get; set; }
     }

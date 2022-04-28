@@ -11,6 +11,8 @@ namespace GegiCRM.Entities.Concrete
             AuthorizationsRoleModifiedByNavigations = new HashSet<AuthorizationsRole>();
             BankAddedByNavigations = new HashSet<Bank>();
             BankModifiedByNavigations = new HashSet<Bank>();
+            BankInformationAddedByNavigations = new HashSet<BankInformation>();
+            BankInformationModifiedByNavigations = new HashSet<BankInformation>();
             BirimAddedByNavigations = new HashSet<Birim>();
             BirimModifiedByNavigations = new HashSet<Birim>();
             BrandAddedByNavigations = new HashSet<Brand>();
@@ -131,15 +133,27 @@ namespace GegiCRM.Entities.Concrete
         public virtual ICollection<AuthorizationsRole> AuthorizationsRoleModifiedByNavigations { get; set; }
         public virtual ICollection<Bank> BankAddedByNavigations { get; set; }
         public virtual ICollection<Bank> BankModifiedByNavigations { get; set; }
+        public virtual ICollection<BankInformation> BankInformationAddedByNavigations { get; set; }
+        public virtual ICollection<BankInformation> BankInformationModifiedByNavigations { get; set; }
         public virtual ICollection<Birim> BirimAddedByNavigations { get; set; }
         public virtual ICollection<Birim> BirimModifiedByNavigations { get; set; }
         public virtual ICollection<Brand> BrandAddedByNavigations { get; set; }
         public virtual ICollection<Brand> BrandModifiedByNavigations { get; set; }
+        public virtual ICollection<CollectionReceipt> CollectionReceiptAddedByNavigations { get; set; }
+        public virtual ICollection<CollectionReceipt> CollectionReceiptModifiedByNavigations { get; set; }
+        public virtual ICollection<Currency> CurrencyAddedByNavigations { get; set; }
+        public virtual ICollection<Currency> CurrencyModifiedByNavigations { get; set; }
         public virtual ICollection<Customer> CustomerAddedByNavigations { get; set; }
         public virtual ICollection<CustomerAddress> CustomerAddressAddedByNavigations { get; set; }
         public virtual ICollection<CustomerAddress> CustomerAddressModifiedByNavigations { get; set; }
+        public virtual ICollection<CustomerBillingAddress> CustomerBillingAddressAddedByNavigations { get; set; }
+        public virtual ICollection<CustomerBillingAddress> CustomerBillingAddressModifiedByNavigations { get; set; }
         public virtual ICollection<CustomerContact> CustomerContactAddedByNavigations { get; set; }
         public virtual ICollection<CustomerContact> CustomerContactModifiedByNavigations { get; set; }
+        public virtual ICollection<CustomerDetail> CustomerDetailAddedByNavigations { get; set; }
+        public virtual ICollection<CustomerDetail> CustomerDetailModifiedByNavigations { get; set; }
+        public virtual ICollection<CustomerRepresentetiveUser> CustomerRepresentetiveUserAddedByNavigations { get; set; }
+        public virtual ICollection<CustomerRepresentetiveUser> CustomerRepresentetiveUserModifiedByNavigations { get; set; }
         public virtual ICollection<Customer> CustomerModifiedByNavigations { get; set; }
         public virtual ICollection<CustomerRepresentetiveUser> CustomerRepresentetiveUsers { get; set; }
         public virtual ICollection<Department> DepartmentAddedByNavigations { get; set; }
