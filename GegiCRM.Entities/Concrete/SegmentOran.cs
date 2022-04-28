@@ -6,7 +6,7 @@ namespace GegiCRM.Entities.Concrete
 {
     public class SegmentOran : BaseEntity
     {
-        public int Id { get; set; }
+        
         public int? SegmentId { get; set; }
         public decimal? StartPrice { get; set; }
         public decimal? EndPrice { get; set; }

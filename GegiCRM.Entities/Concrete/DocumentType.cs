@@ -11,7 +11,7 @@ namespace GegiCRM.Entities.Concrete
             Documents = new HashSet<Document>();
         }
 
-        public int Id { get; set; }
+        
         public string? TypeName { get; set; }
         public string? Description { get; set; }
 

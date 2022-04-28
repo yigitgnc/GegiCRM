@@ -11,7 +11,7 @@ namespace GegiCRM.Entities.Concrete
             Suppliers = new HashSet<Supplier>();
         }
 
-        public int Id { get; set; }
+        
         public string MarketPlaceName { get; set; } = null!;
         public string MarketPlaceDescription { get; set; } = null!;
 

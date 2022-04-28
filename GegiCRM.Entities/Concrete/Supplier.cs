@@ -18,7 +18,7 @@ namespace GegiCRM.Entities.Concrete
             Products = new HashSet<Product>();
         }
 
-        public int Id { get; set; }
+        
         public string? SupplierName { get; set; }
         public string? OncelikSirasi { get; set; }
         public string? Url { get; set; }

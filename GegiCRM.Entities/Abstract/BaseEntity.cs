@@ -9,10 +9,11 @@ namespace GegiCRM.Entities.Abstract
 {
     public abstract class BaseEntity
     {
+        public int Id { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        public Guid AddedBy { get; set; }
-        public Guid? ModifiedBy { get; set; }
+        public int AddedBy { get; set; }
+        public int? ModifiedBy { get; set; }
         public bool IsDeleted { get; set; }
 
         public virtual User AddedByNavigation { get; set; } = null!;

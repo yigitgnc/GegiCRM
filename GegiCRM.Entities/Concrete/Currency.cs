@@ -19,7 +19,7 @@ namespace GegiCRM.Entities.Concrete
             SupplierDetails = new HashSet<SupplierDetail>();
         }
 
-        public int Id { get; set; }
+        
         public string Code { get; set; } = null!;
         public string? Name { get; set; }
 

@@ -6,7 +6,7 @@ namespace GegiCRM.Entities.Concrete
 {
     public class SellsAndBuysAsset : BaseEntity
     {
-        public int Id { get; set; }
+        
         public int SabcategoryId { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }

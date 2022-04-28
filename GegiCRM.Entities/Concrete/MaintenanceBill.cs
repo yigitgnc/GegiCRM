@@ -6,10 +6,10 @@ namespace GegiCRM.Entities.Concrete
 {
     public class MaintenanceBill : BaseEntity
     {
-        public int Id { get; set; }
+        
         public int? CustomerId { get; set; }
-        public Guid? SellingRepresentetiveUserId { get; set; }
-        public Guid? CustomerRepresentetiveUserId { get; set; }
+        public int? SellingRepresentetiveUserId { get; set; }
+        public int? CustomerRepresentetiveUserId { get; set; }
         public int ProductGroupId { get; set; }
         public int MaintenencePeriodId { get; set; }
         public TimeSpan? MainteneceTime { get; set; }

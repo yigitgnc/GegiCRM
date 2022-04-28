@@ -11,7 +11,7 @@ namespace GegiCRM.Entities.Concrete
             SellsAndBuysAssets = new HashSet<SellsAndBuysAsset>();
         }
 
-        public int Id { get; set; }
+        
         public int? StepCount { get; set; }
         public string? StepName { get; set; }
         public string? StepDescription { get; set; }

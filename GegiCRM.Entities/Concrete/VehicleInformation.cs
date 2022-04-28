@@ -6,7 +6,7 @@ namespace GegiCRM.Entities.Concrete
 {
     public class VehicleInformation : BaseEntity
     {
-        public int Id { get; set; }
+        
         public int UserCompanyId { get; set; }
         public string Plaka { get; set; } = null!;
         public short ModelYear { get; set; }

@@ -12,7 +12,7 @@ namespace GegiCRM.Entities.Concrete
             SellsAndBuysGuideSteps = new HashSet<SellsAndBuysGuideStep>();
         }
 
-        public int Id { get; set; }
+        
         public string CategoryName { get; set; } = null!;
         public string? CategoryDescription { get; set; }
 

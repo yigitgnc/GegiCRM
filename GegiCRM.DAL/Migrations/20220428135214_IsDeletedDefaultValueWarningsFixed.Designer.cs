@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GegiCRM.DAL.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220428090254_BaseEntity_Ekleniyor_1")]
-    partial class BaseEntity_Ekleniyor_1
+    [Migration("20220428135214_IsDeletedDefaultValueWarningsFixed")]
+    partial class IsDeletedDefaultValueWarningsFixed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,6 +24,51 @@ namespace GegiCRM.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("GegiCRM.Entities.Concrete.Announcement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("(getdate())");
+
+                    b.Property<string>("Descirption")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("(getdate())");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddedBy");
+
+                    b.HasIndex("ModifiedBy");
+
+                    b.ToTable("Announcements");
+                });
+
             modelBuilder.Entity("GegiCRM.Entities.Concrete.AuthorizationsRole", b =>
                 {
                     b.Property<int>("Id")
@@ -33,8 +78,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -47,8 +92,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -77,8 +122,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("BankDescirption")
                         .HasColumnType("nvarchar(max)");
@@ -96,8 +141,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -122,11 +167,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AddedByNavigationId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<int>("BankId")
                         .HasColumnType("int")
@@ -148,11 +190,11 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("nvarchar(150)")
                         .HasColumnName("IBAN");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedByNavigationId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -171,13 +213,13 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedByNavigationId");
+                    b.HasIndex("AddedBy");
 
                     b.HasIndex("BankId");
 
                     b.HasIndex("CompanyId");
 
-                    b.HasIndex("ModifiedByNavigationId");
+                    b.HasIndex("ModifiedBy");
 
                     b.ToTable("BankInformations");
                 });
@@ -185,11 +227,14 @@ namespace GegiCRM.DAL.Migrations
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Birim", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ID");
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -199,8 +244,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -233,8 +278,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -247,8 +292,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -278,8 +323,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -304,8 +349,8 @@ namespace GegiCRM.DAL.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -332,9 +377,13 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AddedBy");
+
                     b.HasIndex("CurrencyId");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("ModifiedBy");
 
                     b.HasIndex("PaymentTypeId");
 
@@ -352,16 +401,35 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
                     b.Property<string>("Code")
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AddedBy");
+
+                    b.HasIndex("ModifiedBy");
 
                     b.ToTable("Currencies");
                 });
@@ -375,8 +443,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("CariKodu")
                         .HasMaxLength(50)
@@ -399,8 +467,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<DateTime?>("LastContactDate")
                         .HasColumnType("datetime");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -455,8 +523,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -488,10 +556,10 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeliveryAddress")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -516,6 +584,9 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
                     b.Property<string>("AddressName")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -523,9 +594,21 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<string>("BillingAddress")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("CustomerId")
                         .HasColumnType("int")
                         .HasColumnName("CustomerID");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("VergiDairesi")
                         .HasMaxLength(50)
@@ -537,7 +620,11 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AddedBy");
+
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("ModifiedBy");
 
                     b.ToTable("CustomerBillingAddresses");
                 });
@@ -551,8 +638,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("ContactName")
                         .HasMaxLength(50)
@@ -587,10 +674,10 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -619,6 +706,12 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("CurrencyId")
                         .HasColumnType("int")
                         .HasColumnName("CurrencyID");
@@ -626,6 +719,15 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int")
                         .HasColumnName("CustomerID");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
@@ -639,9 +741,13 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AddedBy");
+
                     b.HasIndex("CurrencyId");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("ModifiedBy");
 
                     b.ToTable("CustomerDetails");
                 });
@@ -655,22 +761,41 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("CustomerId")
                         .HasColumnType("int")
                         .HasColumnName("CustomerID");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
                         .HasColumnName("UserID");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AddedBy");
+
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("ModifiedBy");
 
                     b.HasIndex("UserId");
 
@@ -686,8 +811,29 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AddedByNavigationId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ModifiedByNavigationId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -695,6 +841,10 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AddedByNavigationId");
+
+                    b.HasIndex("ModifiedByNavigationId");
 
                     b.ToTable("CustomerTypes");
                 });
@@ -708,8 +858,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -727,10 +877,10 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -746,20 +896,42 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.DepartmentsOfUser", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
                         .HasColumnName("UserID");
 
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int")
                         .HasColumnName("DepartmentID");
 
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsResponsible")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("UserId", "DepartmentId");
 
+                    b.HasIndex("AddedBy");
+
                     b.HasIndex("DepartmentId");
+
+                    b.HasIndex("ModifiedBy");
 
                     b.ToTable("DepartmentsOfUsers");
                 });
@@ -773,8 +945,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
@@ -811,8 +983,8 @@ namespace GegiCRM.DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -849,8 +1021,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -863,8 +1035,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -893,8 +1065,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -907,8 +1079,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -938,8 +1110,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -970,8 +1142,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -999,8 +1171,8 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("DiscountCuponID");
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("BeginDate")
                         .HasColumnType("datetime");
@@ -1016,11 +1188,14 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<DateTime>("ExpryDate")
                         .HasColumnType("datetime");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -1047,8 +1222,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -1068,8 +1243,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -1100,8 +1275,29 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AddedByNavigationId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ModifiedByNavigationId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("TypeName")
                         .HasMaxLength(50)
@@ -1109,17 +1305,24 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AddedByNavigationId");
+
+                    b.HasIndex("ModifiedByNavigationId");
+
                     b.ToTable("DocumentTypes");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.EmailTemplate", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ID");
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -1141,8 +1344,8 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -1176,8 +1379,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -1190,10 +1393,10 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -1226,8 +1429,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -1242,8 +1445,8 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("CustomerID");
 
-                    b.Property<Guid?>("CustomerRepresentetiveUserId")
-                        .HasColumnType("uniqueidentifier")
+                    b.Property<int?>("CustomerRepresentetiveUserId")
+                        .HasColumnType("int")
                         .HasColumnName("CustomerRepresentetiveUserID");
 
                     b.Property<bool>("IsDeleted")
@@ -1256,10 +1459,10 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("MaintenencePeriodID");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -1271,8 +1474,8 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ProductGroupID");
 
-                    b.Property<Guid?>("SellingRepresentetiveUserId")
-                        .HasColumnType("uniqueidentifier")
+                    b.Property<int?>("SellingRepresentetiveUserId")
+                        .HasColumnType("int")
                         .HasColumnName("SellingRepresentetiveUserID");
 
                     b.Property<DateTime?>("SozlesmeBaslangicTarihi")
@@ -1314,8 +1517,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -1328,10 +1531,10 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -1358,18 +1561,16 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
 
-                    b.Property<bool?>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValueSql("((0))");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("MarketPlaceDescription")
                         .IsRequired()
@@ -1380,8 +1581,8 @@ namespace GegiCRM.DAL.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -1406,8 +1607,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ApprovedDate")
                         .HasColumnType("datetime");
@@ -1427,8 +1628,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsFrequentlyUsed")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -1461,8 +1662,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -1477,8 +1678,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -1509,12 +1710,40 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("CurrencyID");
 
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AddedByNavigationId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<decimal?>("ExchangeRate")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ModifiedByNavigationId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("OrderId", "CurrencyId");
 
+                    b.HasIndex("AddedByNavigationId");
+
                     b.HasIndex("CurrencyId");
+
+                    b.HasIndex("ModifiedByNavigationId");
 
                     b.ToTable("OrdersCurrencies");
                 });
@@ -1535,8 +1764,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<DateTime?>("AbonelikBitis")
                         .HasColumnType("datetime");
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<decimal?>("Adet")
                         .HasColumnType("decimal(18,2)");
@@ -1552,6 +1781,9 @@ namespace GegiCRM.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -1570,8 +1802,8 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("KesinSupplierID");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -1628,11 +1860,14 @@ namespace GegiCRM.DAL.Migrations
             modelBuilder.Entity("GegiCRM.Entities.Concrete.PaymentType", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ID");
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -1646,10 +1881,10 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -1676,8 +1911,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -1692,10 +1927,10 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("float")
                         .HasDefaultValueSql("((18))");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -1735,24 +1970,25 @@ namespace GegiCRM.DAL.Migrations
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ProductCategory", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ID");
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
 
-                    b.Property<bool?>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValueSql("((0))");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -1791,8 +2027,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -1806,13 +2042,11 @@ namespace GegiCRM.DAL.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<bool?>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValueSql("((0))");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -1837,8 +2071,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("Answer")
                         .HasColumnType("nvarchar(max)");
@@ -1851,10 +2085,10 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -1886,8 +2120,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -1908,10 +2142,10 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -1926,8 +2160,8 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ProductID");
 
-                    b.Property<Guid>("RepresentitveUser")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("RepresentitveUser")
+                        .HasColumnType("int");
 
                     b.Property<int>("SupplierId")
                         .HasColumnType("int")
@@ -1955,8 +2189,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -1966,10 +2200,10 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -2001,8 +2235,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -2012,8 +2246,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -2047,8 +2281,11 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AddedByNavigationId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -2062,8 +2299,11 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ModifiedByNavigationId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -2077,6 +2317,10 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AddedByNavigationId");
+
+                    b.HasIndex("ModifiedByNavigationId");
+
                     b.ToTable("Sectors");
                 });
 
@@ -2089,8 +2333,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -2104,8 +2348,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -2135,8 +2379,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -2153,8 +2397,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -2196,8 +2440,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -2217,8 +2461,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsSell")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -2258,8 +2502,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("CategoryDescription")
                         .HasColumnType("nvarchar(max)");
@@ -2277,8 +2521,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -2303,8 +2547,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -2317,8 +2561,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsSell")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -2359,8 +2603,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -2373,10 +2617,10 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -2404,8 +2648,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -2418,10 +2662,10 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -2449,8 +2693,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("ArizaTanimi")
                         .HasColumnType("nvarchar(max)");
@@ -2467,10 +2711,10 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -2487,8 +2731,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<DateTime?>("ServiceEndDate")
                         .HasColumnType("datetime");
 
-                    b.Property<Guid>("ServicePersonalUser")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ServicePersonalUser")
+                        .HasColumnType("int");
 
                     b.Property<int>("ServicePlaceId")
                         .HasColumnType("int")
@@ -2533,8 +2777,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -2547,10 +2791,10 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -2578,12 +2822,33 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AddedByNavigationId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CompanyId")
                         .HasColumnType("int")
                         .HasColumnName("CompanyID");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ModifiedByNavigationId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -2592,7 +2857,11 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AddedByNavigationId");
+
                     b.HasIndex("CompanyId");
+
+                    b.HasIndex("ModifiedByNavigationId");
 
                     b.ToTable("ShippingDeals");
                 });
@@ -2606,8 +2875,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -2618,16 +2887,14 @@ namespace GegiCRM.DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<bool?>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValueSql("((0))");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastContactDate")
                         .HasColumnType("datetime");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -2664,8 +2931,17 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AddedByNavigationId")
+                        .HasColumnType("int");
+
                     b.Property<decimal?>("ArizaKargoUcreti")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("CurrencyId")
                         .HasColumnType("int")
@@ -2694,6 +2970,9 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<decimal>("IadeKargoUcreti")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("IsTel")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -2705,6 +2984,15 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<string>("KargoBedeliSatisSiniri")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ModifiedByNavigationId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("MusteriTemsilcisi")
                         .HasMaxLength(50)
@@ -2742,7 +3030,11 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AddedByNavigationId");
+
                     b.HasIndex("CurrencyId");
+
+                    b.HasIndex("ModifiedByNavigationId");
 
                     b.HasIndex("SupplierId");
 
@@ -2752,11 +3044,14 @@ namespace GegiCRM.DAL.Migrations
             modelBuilder.Entity("GegiCRM.Entities.Concrete.SupplierPaymentState", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ID");
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -2767,13 +3062,11 @@ namespace GegiCRM.DAL.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<bool?>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValueSql("((0))");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -2803,8 +3096,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -2824,8 +3117,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -2835,8 +3128,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<decimal>("OdemeTutari")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("PaymentOfficerUserId")
-                        .HasColumnType("uniqueidentifier")
+                    b.Property<int>("PaymentOfficerUserId")
+                        .HasColumnType("int")
                         .HasColumnName("PaymentOfficerUserID");
 
                     b.Property<int>("StateId")
@@ -2863,14 +3156,15 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.User", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("ID")
-                        .HasDefaultValueSql("(newid())");
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -2885,10 +3179,10 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -2930,8 +3224,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<string>("CompanyDescription")
                         .HasColumnType("nvarchar(max)");
@@ -2965,10 +3259,10 @@ namespace GegiCRM.DAL.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -2992,16 +3286,16 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.UsersAuthorizationRole", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
                         .HasColumnName("UserID");
 
                     b.Property<int>("AuthorizationRoleId")
                         .HasColumnType("int")
                         .HasColumnName("AuthorizationRoleID");
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -3011,11 +3305,14 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -3042,11 +3339,14 @@ namespace GegiCRM.DAL.Migrations
             modelBuilder.Entity("GegiCRM.Entities.Concrete.VehicleInformation", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("ID");
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<int?>("BakimKmperiod")
                         .HasColumnType("int")
@@ -3092,8 +3392,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<short>("ModelYear")
                         .HasColumnType("smallint");
 
-                    b.Property<Guid>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
@@ -3162,8 +3462,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<int>("BrandId")
                         .HasColumnType("int")
@@ -3180,10 +3480,10 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -3216,8 +3516,8 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<Guid>("AddedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ApplicationCalendar")
                         .HasColumnType("datetime");
@@ -3238,10 +3538,10 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
@@ -3342,6 +3642,24 @@ namespace GegiCRM.DAL.Migrations
                     b.ToTable("SuppliersBrands", (string)null);
                 });
 
+            modelBuilder.Entity("GegiCRM.Entities.Concrete.Announcement", b =>
+                {
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "AddedByNavigation")
+                        .WithMany("AnnouncementsAddedByNavigations")
+                        .HasForeignKey("AddedBy")
+                        .IsRequired()
+                        .HasConstraintName("FK_Announcements_Users");
+
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
+                        .WithMany("AnnouncementsModifiedByNavigations")
+                        .HasForeignKey("ModifiedBy")
+                        .HasConstraintName("FK_Announcements_Users1");
+
+                    b.Navigation("AddedByNavigation");
+
+                    b.Navigation("ModifiedByNavigation");
+                });
+
             modelBuilder.Entity("GegiCRM.Entities.Concrete.AuthorizationsRole", b =>
                 {
                     b.HasOne("GegiCRM.Entities.Concrete.User", "AddedByNavigation")
@@ -3381,10 +3699,10 @@ namespace GegiCRM.DAL.Migrations
             modelBuilder.Entity("GegiCRM.Entities.Concrete.BankInformation", b =>
                 {
                     b.HasOne("GegiCRM.Entities.Concrete.User", "AddedByNavigation")
-                        .WithMany()
-                        .HasForeignKey("AddedByNavigationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("BankInformationAddedByNavigations")
+                        .HasForeignKey("AddedBy")
+                        .IsRequired()
+                        .HasConstraintName("FK_BankInformations_Users");
 
                     b.HasOne("GegiCRM.Entities.Concrete.Bank", "Bank")
                         .WithMany("BankInformations")
@@ -3399,8 +3717,9 @@ namespace GegiCRM.DAL.Migrations
                         .HasConstraintName("FK_BankInformations_UserCompanies");
 
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
-                        .WithMany()
-                        .HasForeignKey("ModifiedByNavigationId");
+                        .WithMany("BankInformationModifiedByNavigations")
+                        .HasForeignKey("ModifiedBy")
+                        .HasConstraintName("FK_BankInformations_Users1");
 
                     b.Navigation("AddedByNavigation");
 
@@ -3440,7 +3759,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("BrandModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_Brands_Users1");
 
                     b.Navigation("AddedByNavigation");
@@ -3450,6 +3768,12 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CollectionReceipt", b =>
                 {
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "AddedByNavigation")
+                        .WithMany("CollectionReceiptAddedByNavigations")
+                        .HasForeignKey("AddedBy")
+                        .IsRequired()
+                        .HasConstraintName("FK_CollectionReceipts_Users");
+
                     b.HasOne("GegiCRM.Entities.Concrete.Currency", "Currency")
                         .WithMany("CollectionReceipts")
                         .HasForeignKey("CurrencyId")
@@ -3461,6 +3785,11 @@ namespace GegiCRM.DAL.Migrations
                         .HasForeignKey("CustomerId")
                         .IsRequired()
                         .HasConstraintName("FK_CollectionReceipts_Customers");
+
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
+                        .WithMany("CollectionReceiptModifiedByNavigations")
+                        .HasForeignKey("ModifiedBy")
+                        .HasConstraintName("FK_CollectionReceipts_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.PaymentType", "PaymentType")
                         .WithMany("CollectionReceipts")
@@ -3474,13 +3803,35 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_CollectionReceipts_Suppliers");
 
+                    b.Navigation("AddedByNavigation");
+
                     b.Navigation("Currency");
 
                     b.Navigation("Customer");
 
+                    b.Navigation("ModifiedByNavigation");
+
                     b.Navigation("PaymentType");
 
                     b.Navigation("Supplier");
+                });
+
+            modelBuilder.Entity("GegiCRM.Entities.Concrete.Currency", b =>
+                {
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "AddedByNavigation")
+                        .WithMany("CurrencyAddedByNavigations")
+                        .HasForeignKey("AddedBy")
+                        .IsRequired()
+                        .HasConstraintName("FK_CollectionReceipts_AddedBy");
+
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
+                        .WithMany("CurrencyModifiedByNavigations")
+                        .HasForeignKey("ModifiedBy")
+                        .HasConstraintName("FK_CollectionReceipts_ModifiedBy");
+
+                    b.Navigation("AddedByNavigation");
+
+                    b.Navigation("ModifiedByNavigation");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Customer", b =>
@@ -3494,7 +3845,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("CustomerModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_Customers_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.Sector", "Sector")
@@ -3552,12 +3902,27 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerBillingAddress", b =>
                 {
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "AddedByNavigation")
+                        .WithMany("CustomerBillingAddressAddedByNavigations")
+                        .HasForeignKey("AddedBy")
+                        .IsRequired()
+                        .HasConstraintName("FK_CustomerBillingAddresses_AddedBy");
+
                     b.HasOne("GegiCRM.Entities.Concrete.Customer", "Customer")
                         .WithMany("CustomerBillingAddresses")
                         .HasForeignKey("CustomerId")
                         .HasConstraintName("FK_CustomerBillingAddresses_Customers");
 
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
+                        .WithMany("CustomerBillingAddressModifiedByNavigations")
+                        .HasForeignKey("ModifiedBy")
+                        .HasConstraintName("FK_CustomerBillingAddresses_ModifiedBy");
+
+                    b.Navigation("AddedByNavigation");
+
                     b.Navigation("Customer");
+
+                    b.Navigation("ModifiedByNavigation");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerContact", b =>
@@ -3576,7 +3941,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("CustomerContactModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_CustomerContacts_Users1");
 
                     b.Navigation("AddedByNavigation");
@@ -3588,6 +3952,12 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerDetail", b =>
                 {
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "AddedByNavigation")
+                        .WithMany("CustomerDetailAddedByNavigations")
+                        .HasForeignKey("AddedBy")
+                        .IsRequired()
+                        .HasConstraintName("FK_CustomerDetails_AddedBy");
+
                     b.HasOne("GegiCRM.Entities.Concrete.Currency", "Currency")
                         .WithMany("CustomerDetails")
                         .HasForeignKey("CurrencyId")
@@ -3600,18 +3970,38 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_CustomerDetails_Customers");
 
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
+                        .WithMany("CustomerDetailModifiedByNavigations")
+                        .HasForeignKey("ModifiedBy")
+                        .HasConstraintName("FK_CustomerDetails_ModifiedBy");
+
+                    b.Navigation("AddedByNavigation");
+
                     b.Navigation("Currency");
 
                     b.Navigation("Customer");
+
+                    b.Navigation("ModifiedByNavigation");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerRepresentetiveUser", b =>
                 {
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "AddedByNavigation")
+                        .WithMany("CustomerRepresentetiveUserAddedByNavigations")
+                        .HasForeignKey("AddedBy")
+                        .IsRequired()
+                        .HasConstraintName("FK_CustomerRepresentetiveUsers_AddedBy");
+
                     b.HasOne("GegiCRM.Entities.Concrete.Customer", "Customer")
                         .WithMany("CustomerRepresentetiveUsers")
                         .HasForeignKey("CustomerId")
                         .IsRequired()
                         .HasConstraintName("FK_CustomerRepresentetiveUsers_Customers");
+
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
+                        .WithMany("CustomerRepresentetiveUserModifiedByNavigations")
+                        .HasForeignKey("ModifiedBy")
+                        .HasConstraintName("FK_CustomerRepresentetiveUsers_ModifiedBy");
 
                     b.HasOne("GegiCRM.Entities.Concrete.User", "User")
                         .WithMany("CustomerRepresentetiveUsers")
@@ -3619,9 +4009,30 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_CustomerRepresentetiveUsers_Users");
 
+                    b.Navigation("AddedByNavigation");
+
                     b.Navigation("Customer");
 
+                    b.Navigation("ModifiedByNavigation");
+
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerType", b =>
+                {
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "AddedByNavigation")
+                        .WithMany()
+                        .HasForeignKey("AddedByNavigationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
+                        .WithMany()
+                        .HasForeignKey("ModifiedByNavigationId");
+
+                    b.Navigation("AddedByNavigation");
+
+                    b.Navigation("ModifiedByNavigation");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Department", b =>
@@ -3644,11 +4055,22 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.DepartmentsOfUser", b =>
                 {
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "AddedByNavigation")
+                        .WithMany("DepartmentsOfUsersAddedByNavigations")
+                        .HasForeignKey("AddedBy")
+                        .IsRequired()
+                        .HasConstraintName("FK_DepartmentsOfUsers_AddedBy");
+
                     b.HasOne("GegiCRM.Entities.Concrete.Department", "Department")
                         .WithMany("DepartmentsOfUsers")
                         .HasForeignKey("DepartmentId")
                         .IsRequired()
                         .HasConstraintName("FK_DepartmentsOfUsers_Departments");
+
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
+                        .WithMany("DepartmentsOfUsersModifiedByNavigations")
+                        .HasForeignKey("ModifiedBy")
+                        .HasConstraintName("FK_DepartmentsOfUsers_ModifiedBy");
 
                     b.HasOne("GegiCRM.Entities.Concrete.User", "User")
                         .WithMany("DepartmentsOfUsers")
@@ -3656,7 +4078,11 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_DepartmentsOfUsers_Users");
 
+                    b.Navigation("AddedByNavigation");
+
                     b.Navigation("Department");
+
+                    b.Navigation("ModifiedByNavigation");
 
                     b.Navigation("User");
                 });
@@ -3690,7 +4116,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("DepositModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_Deposits_Users1");
 
                     b.Navigation("AddedByNavigation");
@@ -3715,7 +4140,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("DepositRelationModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_DepositRelations_Users1");
 
                     b.Navigation("AddedByNavigation");
@@ -3734,7 +4158,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("DepositTypeModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_DepositTypes_Users1");
 
                     b.Navigation("AddedByNavigation");
@@ -3759,7 +4182,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("DiscountCuponModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_DiscountCupons_Users1");
 
                     b.Navigation("AddedByNavigation");
@@ -3792,7 +4214,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("DiscountCuponsOfCustomerModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_DiscountCuponsOfCustomers_Users1");
 
                     b.Navigation("AddedByNavigation");
@@ -3815,7 +4236,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("DocumentModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_Documents_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.DocumentType", "Type")
@@ -3828,6 +4248,23 @@ namespace GegiCRM.DAL.Migrations
                     b.Navigation("ModifiedByNavigation");
 
                     b.Navigation("Type");
+                });
+
+            modelBuilder.Entity("GegiCRM.Entities.Concrete.DocumentType", b =>
+                {
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "AddedByNavigation")
+                        .WithMany()
+                        .HasForeignKey("AddedByNavigationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
+                        .WithMany()
+                        .HasForeignKey("ModifiedByNavigationId");
+
+                    b.Navigation("AddedByNavigation");
+
+                    b.Navigation("ModifiedByNavigation");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.EmailTemplate", b =>
@@ -3846,7 +4283,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("EmailTemplateModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_EmailTemplates_Users3");
 
                     b.Navigation("AddedByNavigation");
@@ -3966,7 +4402,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("MarketPlaceModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_MarketPlaces_Users1");
 
                     b.Navigation("AddedByNavigation");
@@ -3991,7 +4426,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("OrderModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_Orders_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.OrderAndProductState", "OrderState")
@@ -4020,7 +4454,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("OrderAndProductStateModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_OrderStates_Users1");
 
                     b.Navigation("AddedByNavigation");
@@ -4030,11 +4463,21 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.OrdersCurrency", b =>
                 {
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "AddedByNavigation")
+                        .WithMany()
+                        .HasForeignKey("AddedByNavigationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("GegiCRM.Entities.Concrete.Currency", "Currency")
                         .WithMany("OrdersCurrencies")
                         .HasForeignKey("CurrencyId")
                         .IsRequired()
                         .HasConstraintName("FK_OrdersCurrencies_Currencies");
+
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
+                        .WithMany()
+                        .HasForeignKey("ModifiedByNavigationId");
 
                     b.HasOne("GegiCRM.Entities.Concrete.Order", "Order")
                         .WithMany("OrdersCurrencies")
@@ -4042,7 +4485,11 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_OrdersCurrencies_Orders");
 
+                    b.Navigation("AddedByNavigation");
+
                     b.Navigation("Currency");
+
+                    b.Navigation("ModifiedByNavigation");
 
                     b.Navigation("Order");
                 });
@@ -4074,7 +4521,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("OrdersProductModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_OrdersProducts_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.Order", "Order")
@@ -4156,7 +4602,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("ProductModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_OurServices_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.Brand", "PorductBrand")
@@ -4190,7 +4635,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("ProductCategoryModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_ProductSubCategories_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.ProductGroup", "ProductGroup")
@@ -4217,7 +4661,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("ProductGroupModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_ProductCategories_Users1");
 
                     b.Navigation("AddedByNavigation");
@@ -4312,8 +4755,24 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("RuleModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_Rules_Users1");
+
+                    b.Navigation("AddedByNavigation");
+
+                    b.Navigation("ModifiedByNavigation");
+                });
+
+            modelBuilder.Entity("GegiCRM.Entities.Concrete.Sector", b =>
+                {
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "AddedByNavigation")
+                        .WithMany()
+                        .HasForeignKey("AddedByNavigationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
+                        .WithMany()
+                        .HasForeignKey("ModifiedByNavigationId");
 
                     b.Navigation("AddedByNavigation");
 
@@ -4331,7 +4790,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("SegmentModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_Segments_Users1");
 
                     b.Navigation("AddedByNavigation");
@@ -4350,7 +4808,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("SegmentOranModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_SegmentOrans_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.Segment", "Segment")
@@ -4381,7 +4838,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("SellsAndBuysAssetModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_SellsAndBuysAssets_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.SellsAndBuysCategory", "Sabcategory")
@@ -4410,7 +4866,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("SellsAndBuysCategoryModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_SellsAndBuysCategories_Users1");
 
                     b.Navigation("AddedByNavigation");
@@ -4429,7 +4884,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("SellsAndBuysGuideStepModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_SellsAndBuysGuideSteps_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.SellsAndBuysCategory", "Sabcategory")
@@ -4559,13 +5013,27 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ShippingDeal", b =>
                 {
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "AddedByNavigation")
+                        .WithMany()
+                        .HasForeignKey("AddedByNavigationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("GegiCRM.Entities.Concrete.UserCompany", "Company")
                         .WithMany("ShippingDeals")
                         .HasForeignKey("CompanyId")
                         .IsRequired()
                         .HasConstraintName("FK_ShippingDeals_UserCompanies");
 
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
+                        .WithMany()
+                        .HasForeignKey("ModifiedByNavigationId");
+
+                    b.Navigation("AddedByNavigation");
+
                     b.Navigation("Company");
+
+                    b.Navigation("ModifiedByNavigation");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Supplier", b =>
@@ -4579,7 +5047,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("SupplierModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_Suppliers_Users1");
 
                     b.Navigation("AddedByNavigation");
@@ -4589,11 +5056,21 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.SupplierDetail", b =>
                 {
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "AddedByNavigation")
+                        .WithMany()
+                        .HasForeignKey("AddedByNavigationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("GegiCRM.Entities.Concrete.Currency", "Currency")
                         .WithMany("SupplierDetails")
                         .HasForeignKey("CurrencyId")
                         .IsRequired()
                         .HasConstraintName("FK_SupplierDetails_Currencies");
+
+                    b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
+                        .WithMany()
+                        .HasForeignKey("ModifiedByNavigationId");
 
                     b.HasOne("GegiCRM.Entities.Concrete.Supplier", "Supplier")
                         .WithMany("SupplierDetails")
@@ -4601,7 +5078,11 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_SupplierDetails_Suppliers1");
 
+                    b.Navigation("AddedByNavigation");
+
                     b.Navigation("Currency");
+
+                    b.Navigation("ModifiedByNavigation");
 
                     b.Navigation("Supplier");
                 });
@@ -4617,7 +5098,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("SupplierPaymentStateModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_SupplierPaymentStates_Users1");
 
                     b.Navigation("AddedByNavigation");
@@ -4636,7 +5116,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("SuppliersPaymentModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_SuppliersPayments_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.SupplierPaymentState", "State")
@@ -4713,7 +5192,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("UsersAuthorizationRoleModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_UsersAuthorizations_Users2");
 
                     b.HasOne("GegiCRM.Entities.Concrete.User", "User")
@@ -4742,7 +5220,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("VehicleInformationModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_VehicleInformations_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.UserCompany", "UserCompany")
@@ -5072,11 +5549,19 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.User", b =>
                 {
+                    b.Navigation("AnnouncementsAddedByNavigations");
+
+                    b.Navigation("AnnouncementsModifiedByNavigations");
+
                     b.Navigation("AuthorizationsRoleAddedByNavigations");
 
                     b.Navigation("AuthorizationsRoleModifiedByNavigations");
 
                     b.Navigation("BankAddedByNavigations");
+
+                    b.Navigation("BankInformationAddedByNavigations");
+
+                    b.Navigation("BankInformationModifiedByNavigations");
 
                     b.Navigation("BankModifiedByNavigations");
 
@@ -5088,17 +5573,37 @@ namespace GegiCRM.DAL.Migrations
 
                     b.Navigation("BrandModifiedByNavigations");
 
+                    b.Navigation("CollectionReceiptAddedByNavigations");
+
+                    b.Navigation("CollectionReceiptModifiedByNavigations");
+
+                    b.Navigation("CurrencyAddedByNavigations");
+
+                    b.Navigation("CurrencyModifiedByNavigations");
+
                     b.Navigation("CustomerAddedByNavigations");
 
                     b.Navigation("CustomerAddressAddedByNavigations");
 
                     b.Navigation("CustomerAddressModifiedByNavigations");
 
+                    b.Navigation("CustomerBillingAddressAddedByNavigations");
+
+                    b.Navigation("CustomerBillingAddressModifiedByNavigations");
+
                     b.Navigation("CustomerContactAddedByNavigations");
 
                     b.Navigation("CustomerContactModifiedByNavigations");
 
+                    b.Navigation("CustomerDetailAddedByNavigations");
+
+                    b.Navigation("CustomerDetailModifiedByNavigations");
+
                     b.Navigation("CustomerModifiedByNavigations");
+
+                    b.Navigation("CustomerRepresentetiveUserAddedByNavigations");
+
+                    b.Navigation("CustomerRepresentetiveUserModifiedByNavigations");
 
                     b.Navigation("CustomerRepresentetiveUsers");
 
@@ -5107,6 +5612,10 @@ namespace GegiCRM.DAL.Migrations
                     b.Navigation("DepartmentModifiedByNavigations");
 
                     b.Navigation("DepartmentsOfUsers");
+
+                    b.Navigation("DepartmentsOfUsersAddedByNavigations");
+
+                    b.Navigation("DepartmentsOfUsersModifiedByNavigations");
 
                     b.Navigation("DepositAddedByNavigations");
 

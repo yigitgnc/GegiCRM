@@ -11,7 +11,7 @@ namespace GegiCRM.Entities.Concrete
             BankInformations = new HashSet<BankInformation>();
         }
 
-        public int Id { get; set; }
+        
         public bool IsDeleted { get; set; }
         public string BankName { get; set; } = null!;
         public string? BankDescirption { get; set; }

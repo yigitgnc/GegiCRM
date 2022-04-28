@@ -11,7 +11,7 @@ namespace GegiCRM.Entities.Concrete
             OrdersProducts = new HashSet<OrdersProduct>();
         }
 
-        public int Id { get; set; }
+        
         public string? Name { get; set; }
         public string? Short { get; set; }
         public bool IsDeleted { get; set; }

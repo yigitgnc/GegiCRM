@@ -6,7 +6,7 @@ namespace GegiCRM.Entities.Concrete
 {
     public class CustomerContact : BaseEntity
     {
-        public int Id { get; set; }
+
         public int? CustomerId { get; set; }
         public string? ContactName { get; set; }
         public string? ContactSurname { get; set; }

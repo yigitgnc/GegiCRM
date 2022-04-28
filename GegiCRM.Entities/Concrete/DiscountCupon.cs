@@ -11,7 +11,7 @@ namespace GegiCRM.Entities.Concrete
             DiscountCuponsOfCustomers = new HashSet<DiscountCuponsOfCustomer>();
         }
 
-        public int Id { get; set; }
+        
         public string CuponCode { get; set; } = null!;
         public int CuponCurrencyId { get; set; }
         public decimal DiscountAmountMoney { get; set; }

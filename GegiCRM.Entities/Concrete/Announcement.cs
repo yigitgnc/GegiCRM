@@ -1,15 +1,16 @@
 ﻿using GegiCRM.Entities.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public  class Expansion : BaseEntity
+    public class Announcement : BaseEntity
     {
         
-        public string ShortCode { get; set; } = null!;
         public string Name { get; set; } = null!;
-        public string? Description { get; set; }
-
+        public string? Descirption { get; set; }
     }
 }

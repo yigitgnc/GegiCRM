@@ -6,7 +6,7 @@ namespace GegiCRM.Entities.Concrete
 {
     public class SupplierDetail : BaseEntity
     {
-        public int Id { get; set; }
+        
         public int SupplierId { get; set; }
         public decimal IadeKargoUcreti { get; set; }
         public decimal? ArizaKargoUcreti { get; set; }

@@ -20,7 +20,7 @@ namespace GegiCRM.Entities.Concrete
             ServiceRecords = new HashSet<ServiceRecord>();
         }
 
-        public int Id { get; set; }
+        
         public bool IsDeleted { get; set; }
         public string? TicariUnvan { get; set; }
         public string? Name { get; set; }

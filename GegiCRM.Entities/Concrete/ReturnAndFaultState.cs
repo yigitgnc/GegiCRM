@@ -11,7 +11,7 @@ namespace GegiCRM.Entities.Concrete
             ReturnAndFaults = new HashSet<ReturnAndFault>();
         }
 
-        public int Id { get; set; }
+        
         public string StatName { get; set; } = null!;
         public string? StatDescription { get; set; }
 

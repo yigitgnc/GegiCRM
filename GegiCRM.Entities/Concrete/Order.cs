@@ -12,7 +12,7 @@ namespace GegiCRM.Entities.Concrete
             OrdersProducts = new HashSet<OrdersProduct>();
         }
 
-        public int Id { get; set; }
+        
         public int CustomerId { get; set; }
         public int OrderStateId { get; set; }
         public DateTime? ApprovedDate { get; set; }

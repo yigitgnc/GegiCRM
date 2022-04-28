@@ -6,7 +6,7 @@ namespace GegiCRM.Entities.Concrete
 {
     public class EmailTemplate : BaseEntity
     {
-        public int Id { get; set; }
+        
         public string Explanation { get; set; } = null!;
         public string Subject { get; set; } = null!;
         public string MailContent { get; set; } = null!;

@@ -6,7 +6,7 @@ namespace GegiCRM.Entities.Concrete
 {
     public class Deposit : BaseEntity
     {
-        public int Id { get; set; }
+        
         public int DepositRelationId { get; set; }
         public int DepositTypeId { get; set; }
         public string KurumAdi { get; set; } = null!;

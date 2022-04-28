@@ -6,7 +6,7 @@ namespace GegiCRM.Entities.Concrete
 {
     public class ProductGroupsFaq : BaseEntity
     {
-        public int Id { get; set; }
+        
         public int? ProductGroupId { get; set; }
         public string? Question { get; set; }
         public string? Answer { get; set; }

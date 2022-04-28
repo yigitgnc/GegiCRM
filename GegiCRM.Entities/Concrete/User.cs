@@ -1,9 +1,10 @@
-﻿using System;
+﻿using GegiCRM.Entities.Abstract;
+using System;
 using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public partial class User
+    public partial class User : BaseEntity
     {
         public User()
         {
@@ -114,21 +115,16 @@ namespace GegiCRM.Entities.Concrete
             WorkStandartModifiedByNavigations = new HashSet<WorkStandart>();
         }
 
-        public Guid Id { get; set; }
+        
         public int UserCompanyId { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
-        public Guid AddedBy { get; set; }
-        public Guid? ModifiedBy { get; set; }
-        public bool IsDeleted { get; set; }
         public string Email { get; set; } = null!;
         public string PassHash { get; set; } = null!;
         public string? Name { get; set; }
         public string? Surname { get; set; }
 
-        public virtual User AddedByNavigation { get; set; } = null!;
-        public virtual User? ModifiedByNavigation { get; set; }
         public virtual UserCompany UserCompany { get; set; } = null!;
+        public virtual ICollection<Announcement> AnnouncementsAddedByNavigations { get; set; }
+        public virtual ICollection<Announcement> AnnouncementsModifiedByNavigations { get; set; }
         public virtual ICollection<AuthorizationsRole> AuthorizationsRoleAddedByNavigations { get; set; }
         public virtual ICollection<AuthorizationsRole> AuthorizationsRoleModifiedByNavigations { get; set; }
         public virtual ICollection<Bank> BankAddedByNavigations { get; set; }
@@ -159,6 +155,8 @@ namespace GegiCRM.Entities.Concrete
         public virtual ICollection<Department> DepartmentAddedByNavigations { get; set; }
         public virtual ICollection<Department> DepartmentModifiedByNavigations { get; set; }
         public virtual ICollection<DepartmentsOfUser> DepartmentsOfUsers { get; set; }
+        public virtual ICollection<DepartmentsOfUser> DepartmentsOfUsersAddedByNavigations { get; set; }
+        public virtual ICollection<DepartmentsOfUser> DepartmentsOfUsersModifiedByNavigations { get; set; }
         public virtual ICollection<Deposit> DepositAddedByNavigations { get; set; }
         public virtual ICollection<Deposit> DepositModifiedByNavigations { get; set; }
         public virtual ICollection<DepositRelation> DepositRelationAddedByNavigations { get; set; }

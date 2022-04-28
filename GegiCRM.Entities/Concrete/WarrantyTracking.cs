@@ -6,7 +6,7 @@ namespace GegiCRM.Entities.Concrete
 {
     public class WarrantyTracking : BaseEntity
     {
-        public int Id { get; set; }
+        
         public int ProductCategoryId { get; set; }
         public int BrandId { get; set; }
         public string? Tel { get; set; }

@@ -6,7 +6,7 @@ namespace GegiCRM.Entities.Concrete
 {
     public class CollectionReceipt : BaseEntity
     {
-        public int Id { get; set; }
+        
         public bool IsDeleted { get; set; }
         public int CustomerId { get; set; }
         public int SupplierId { get; set; }

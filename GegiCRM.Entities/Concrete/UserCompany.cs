@@ -14,7 +14,7 @@ namespace GegiCRM.Entities.Concrete
             VehicleInformations = new HashSet<VehicleInformation>();
         }
 
-        public int Id { get; set; }
+        
         public string CompanyName { get; set; } = null!;
         public string? CompanyDescription { get; set; }
         public string? Tel { get; set; }

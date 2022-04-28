@@ -6,10 +6,10 @@ namespace GegiCRM.Entities.Concrete
 {
     public class ServiceRecord : BaseEntity
     {
-        public int Id { get; set; }
+        
         public int CustomerId { get; set; }
         public string? ArizaTanimi { get; set; }
-        public Guid ServicePersonalUser { get; set; }
+        public int ServicePersonalUser { get; set; }
         public DateTime ServiceBeginDate { get; set; }
         public DateTime? ServiceEndDate { get; set; }
         public string? YapilacakIslem { get; set; }

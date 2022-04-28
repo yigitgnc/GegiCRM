@@ -17,6 +17,7 @@ namespace GegiCRM.DAL.Concrete
         {
         }
 
+        public virtual DbSet<Announcement> Announcements { get; set; } = null!;
         public virtual DbSet<AuthorizationsRole> AuthorizationsRoles { get; set; } = null!;
         public virtual DbSet<Bank> Banks { get; set; } = null!;
         public virtual DbSet<BankInformation> BankInformations { get; set; } = null!;
@@ -91,6 +92,35 @@ namespace GegiCRM.DAL.Concrete
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Seed();
+
+            modelBuilder.Entity<Announcement>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.CreatedDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ModifiedDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Name).HasMaxLength(50);
+
+                entity.HasOne(d => d.AddedByNavigation)
+                    .WithMany(p => p.AnnouncementsAddedByNavigations)
+                    .HasForeignKey(d => d.AddedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Announcements_Users");
+
+                entity.HasOne(d => d.ModifiedByNavigation)
+                    .WithMany(p => p.AnnouncementsModifiedByNavigations)
+                    .HasForeignKey(d => d.ModifiedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Announcements_Users1");
+            });
+
             modelBuilder.Entity<AuthorizationsRole>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -189,7 +219,6 @@ namespace GegiCRM.DAL.Concrete
             modelBuilder.Entity<Birim>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
                     .HasColumnName("ID");
 
                 entity.Property(e => e.CreatedDate)
@@ -337,12 +366,12 @@ namespace GegiCRM.DAL.Concrete
                     .WithMany(p => p.CurrencyAddedByNavigations)
                     .HasForeignKey(d => d.AddedBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_AddedBy");
+                    .HasConstraintName("FK_CollectionReceipts_AddedBy");
 
                 entity.HasOne(d => d.ModifiedByNavigation)
                     .WithMany(p => p.CurrencyModifiedByNavigations)
                     .HasForeignKey(d => d.ModifiedBy)
-                    .HasConstraintName("FK_ModifiedBy");
+                    .HasConstraintName("FK_CollectionReceipts_ModifiedBy");
             });
 
             modelBuilder.Entity<Customer>(entity =>
@@ -461,6 +490,17 @@ namespace GegiCRM.DAL.Concrete
                     .WithMany(p => p.CustomerBillingAddresses)
                     .HasForeignKey(d => d.CustomerId)
                     .HasConstraintName("FK_CustomerBillingAddresses_Customers");
+
+                entity.HasOne(d => d.AddedByNavigation)
+                  .WithMany(p => p.CustomerBillingAddressAddedByNavigations)
+                  .HasForeignKey(d => d.AddedBy)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_CustomerBillingAddresses_AddedBy");
+
+                entity.HasOne(d => d.ModifiedByNavigation)
+                    .WithMany(p => p.CustomerBillingAddressModifiedByNavigations)
+                    .HasForeignKey(d => d.ModifiedBy)
+                    .HasConstraintName("FK_CustomerBillingAddresses_ModifiedBy");
             });
 
             modelBuilder.Entity<CustomerContact>(entity =>
@@ -530,6 +570,17 @@ namespace GegiCRM.DAL.Concrete
                     .HasForeignKey(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CustomerDetails_Customers");
+
+                entity.HasOne(d => d.AddedByNavigation)
+                  .WithMany(p => p.CustomerDetailAddedByNavigations)
+                  .HasForeignKey(d => d.AddedBy)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_CustomerDetails_AddedBy");
+
+                entity.HasOne(d => d.ModifiedByNavigation)
+                    .WithMany(p => p.CustomerDetailModifiedByNavigations)
+                    .HasForeignKey(d => d.ModifiedBy)
+                    .HasConstraintName("FK_CustomerDetails_ModifiedBy");
             });
 
             modelBuilder.Entity<CustomerRepresentetiveUser>(entity =>
@@ -553,6 +604,17 @@ namespace GegiCRM.DAL.Concrete
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CustomerRepresentetiveUsers_Users");
+
+                entity.HasOne(d => d.AddedByNavigation)
+                  .WithMany(p => p.CustomerRepresentetiveUserAddedByNavigations)
+                  .HasForeignKey(d => d.AddedBy)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_CustomerRepresentetiveUsers_AddedBy");
+
+                entity.HasOne(d => d.ModifiedByNavigation)
+                    .WithMany(p => p.CustomerRepresentetiveUserModifiedByNavigations)
+                    .HasForeignKey(d => d.ModifiedBy)
+                    .HasConstraintName("FK_CustomerRepresentetiveUsers_ModifiedBy");
             });
 
             modelBuilder.Entity<CustomerType>(entity =>
@@ -607,6 +669,17 @@ namespace GegiCRM.DAL.Concrete
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DepartmentsOfUsers_Users");
+
+                entity.HasOne(d => d.AddedByNavigation)
+                  .WithMany(p => p.DepartmentsOfUsersAddedByNavigations)
+                  .HasForeignKey(d => d.AddedBy)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_DepartmentsOfUsers_AddedBy");
+
+                entity.HasOne(d => d.ModifiedByNavigation)
+                    .WithMany(p => p.DepartmentsOfUsersModifiedByNavigations)
+                    .HasForeignKey(d => d.ModifiedBy)
+                    .HasConstraintName("FK_DepartmentsOfUsers_ModifiedBy");
             });
 
             modelBuilder.Entity<Deposit>(entity =>
@@ -850,7 +923,6 @@ namespace GegiCRM.DAL.Concrete
             modelBuilder.Entity<EmailTemplate>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
                     .HasColumnName("ID");
 
                 entity.Property(e => e.CreatedDate)
@@ -1018,7 +1090,6 @@ namespace GegiCRM.DAL.Concrete
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.IsDeleted).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.MarketPlaceName).HasMaxLength(250);
 
@@ -1241,7 +1312,6 @@ namespace GegiCRM.DAL.Concrete
             modelBuilder.Entity<PaymentType>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
                     .HasColumnName("ID");
 
                 entity.Property(e => e.CreatedDate)
@@ -1334,14 +1404,12 @@ namespace GegiCRM.DAL.Concrete
             modelBuilder.Entity<ProductCategory>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
                     .HasColumnName("ID");
 
                 entity.Property(e => e.CreatedDate)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.IsDeleted).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.ModifiedDate)
                     .HasColumnType("datetime")
@@ -1380,7 +1448,6 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.GroupName).HasMaxLength(150);
 
-                entity.Property(e => e.IsDeleted).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.ModifiedDate)
                     .HasColumnType("datetime")
@@ -1891,7 +1958,6 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.DealerCode).HasMaxLength(50);
 
-                entity.Property(e => e.IsDeleted).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.LastContactDate).HasColumnType("datetime");
 
@@ -2010,7 +2076,6 @@ namespace GegiCRM.DAL.Concrete
             modelBuilder.Entity<SupplierPaymentState>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
                     .HasColumnName("ID");
 
                 entity.Property(e => e.CreatedDate)
@@ -2019,7 +2084,6 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Description).HasMaxLength(250);
 
-                entity.Property(e => e.IsDeleted).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.ModifiedDate)
                     .HasColumnType("datetime")
@@ -2086,8 +2150,7 @@ namespace GegiCRM.DAL.Concrete
             modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasDefaultValueSql("(newid())");
+                    .HasColumnName("ID");
 
                 entity.Property(e => e.CreatedDate)
                     .HasColumnType("datetime")
@@ -2214,7 +2277,6 @@ namespace GegiCRM.DAL.Concrete
             modelBuilder.Entity<VehicleInformation>(entity =>
             {
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
                     .HasColumnName("ID");
 
                 entity.Property(e => e.BakimKmperiod).HasColumnName("BakimKMPeriod");

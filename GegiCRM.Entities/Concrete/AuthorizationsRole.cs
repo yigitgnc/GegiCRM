@@ -11,7 +11,7 @@ namespace GegiCRM.Entities.Concrete
             UsersAuthorizationRoles = new HashSet<UsersAuthorizationRole>();
         }
 
-        public int Id { get; set; }
+        
         public bool IsDeleted { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }

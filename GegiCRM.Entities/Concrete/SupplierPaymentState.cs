@@ -11,7 +11,7 @@ namespace GegiCRM.Entities.Concrete
             SuppliersPayments = new HashSet<SuppliersPayment>();
         }
 
-        public int Id { get; set; }
+        
         public string Name { get; set; } = null!;
         public string? Description { get; set; }
 

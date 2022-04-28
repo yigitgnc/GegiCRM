@@ -6,7 +6,7 @@ namespace GegiCRM.Entities.Concrete
 {
     public class DepartmentsOfUser : BaseEntity
     {
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
         public int DepartmentId { get; set; }
         public bool IsResponsible { get; set; }
 

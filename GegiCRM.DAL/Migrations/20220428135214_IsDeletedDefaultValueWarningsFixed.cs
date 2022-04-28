@@ -5,69 +5,27 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GegiCRM.DAL.Migrations
 {
-    public partial class mig1 : Migration
+    public partial class IsDeletedDefaultValueWarningsFixed : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Currencies",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Code = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Currencies", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CustomerTypes",
+                name: "Announcements",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CustomerTypes", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DocumentTypes",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TypeName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DocumentTypes", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Sectors",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Descirption = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sectors", x => x.ID);
+                    table.PrimaryKey("PK_Announcements", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -76,13 +34,13 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -101,7 +59,12 @@ namespace GegiCRM.DAL.Migrations
                     HesapNo = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     Sube = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     SubeNo = table.Column<int>(type: "int", nullable: true),
-                    IBAN = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true)
+                    IBAN = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -114,13 +77,13 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     BankName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    BankDescirption = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    BankDescirption = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -131,14 +94,15 @@ namespace GegiCRM.DAL.Migrations
                 name: "Birims",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Short = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -153,11 +117,11 @@ namespace GegiCRM.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -170,10 +134,6 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
                     SupplierID = table.Column<int>(type: "int", nullable: false),
@@ -183,16 +143,34 @@ namespace GegiCRM.DAL.Migrations
                     Taksit = table.Column<short>(type: "smallint", nullable: false),
                     TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     KartinUstundekiIsım = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
-                    NameSurname = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true)
+                    NameSurname = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CollectionReceipts", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_CollectionReceipts_Currencies",
-                        column: x => x.CurrencyID,
-                        principalTable: "Currencies",
-                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Currencies",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Currencies", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -207,11 +185,11 @@ namespace GegiCRM.DAL.Migrations
                     Ilce = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDeliveryAddress = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -228,7 +206,12 @@ namespace GegiCRM.DAL.Migrations
                     AddressName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     VergiNo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     VergiDairesi = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    BillingAddress = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    BillingAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -242,17 +225,17 @@ namespace GegiCRM.DAL.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerID = table.Column<int>(type: "int", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     ContactName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ContactSurname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ContactTitle = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Tel = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     GSM = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
+                    Email = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -269,7 +252,12 @@ namespace GegiCRM.DAL.Migrations
                     Tel = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CurrencyID = table.Column<int>(type: "int", nullable: false),
                     SideSuppliers = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -288,8 +276,13 @@ namespace GegiCRM.DAL.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
-                    UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -302,10 +295,6 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     TicariUnvan = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -315,21 +304,36 @@ namespace GegiCRM.DAL.Migrations
                     SegmentID = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValueSql: "((1))"),
                     TypeID = table.Column<int>(type: "int", nullable: false),
-                    LastContactDate = table.Column<DateTime>(type: "datetime", nullable: true)
+                    LastContactDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Customers_CustomerTypes",
-                        column: x => x.TypeID,
-                        principalTable: "CustomerTypes",
-                        principalColumn: "ID");
-                    table.ForeignKey(
-                        name: "FK_Customers_Sectors",
-                        column: x => x.SectorID,
-                        principalTable: "Sectors",
-                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CustomerTypes",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    AddedByNavigationId = table.Column<int>(type: "int", nullable: false),
+                    ModifiedByNavigationId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CustomerTypes", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -338,13 +342,13 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DepartmentName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    DepartmentDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    DepartmentDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -355,9 +359,15 @@ namespace GegiCRM.DAL.Migrations
                 name: "DepartmentsOfUsers",
                 columns: table => new
                 {
-                    UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: false),
                     DepartmentID = table.Column<int>(type: "int", nullable: false),
-                    IsResponsible = table.Column<bool>(type: "bit", nullable: false)
+                    IsResponsible = table.Column<bool>(type: "bit", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -375,13 +385,13 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -394,11 +404,6 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DepositRelationID = table.Column<int>(type: "int", nullable: false),
                     DepositTypeID = table.Column<int>(type: "int", nullable: false),
                     KurumAdi = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -407,7 +412,12 @@ namespace GegiCRM.DAL.Migrations
                     CurrencyID = table.Column<int>(type: "int", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     BitisSuresi = table.Column<DateTime>(type: "datetime", nullable: true),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -430,13 +440,13 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -449,16 +459,16 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CuponCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CuponCurrencyID = table.Column<int>(type: "int", nullable: false),
                     DiscountAmountMoney = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CuponName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CuponDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CuponDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -476,14 +486,15 @@ namespace GegiCRM.DAL.Migrations
                 {
                     CustomerID = table.Column<int>(type: "int", nullable: false),
                     DiscountCuponID = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BeginDate = table.Column<DateTime>(type: "datetime", nullable: false),
-                    ExpryDate = table.Column<DateTime>(type: "datetime", nullable: false)
+                    ExpryDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -506,41 +517,58 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DocumentName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     DocumentDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DocumentDownloadPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TypeID = table.Column<int>(type: "int", nullable: true)
+                    TypeID = table.Column<int>(type: "int", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Documents", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Documents_DocumentTypes",
-                        column: x => x.TypeID,
-                        principalTable: "DocumentTypes",
-                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DocumentTypes",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TypeName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    AddedByNavigationId = table.Column<int>(type: "int", nullable: false),
+                    ModifiedByNavigationId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DocumentTypes", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "EmailTemplates",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Explanation = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MailContent = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DepartmentID = table.Column<int>(type: "int", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -558,14 +586,14 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     ShortCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -578,14 +606,9 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CustomerID = table.Column<int>(type: "int", nullable: true),
-                    SellingRepresentetiveUserID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    CustomerRepresentetiveUserID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    SellingRepresentetiveUserID = table.Column<int>(type: "int", nullable: true),
+                    CustomerRepresentetiveUserID = table.Column<int>(type: "int", nullable: true),
                     ProductGroupID = table.Column<int>(type: "int", nullable: false),
                     MaintenencePeriodID = table.Column<int>(type: "int", nullable: false),
                     MainteneceTime = table.Column<TimeSpan>(type: "time", nullable: true),
@@ -593,7 +616,12 @@ namespace GegiCRM.DAL.Migrations
                     CurrencyID = table.Column<int>(type: "int", nullable: false),
                     SozlesmeBaslangicTarihi = table.Column<DateTime>(type: "datetime", nullable: true),
                     SozlesmeBitisTarihi = table.Column<DateTime>(type: "datetime", nullable: true),
-                    Note = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -616,13 +644,13 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -635,13 +663,13 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    MarketPlaceName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    MarketPlaceDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
-                    MarketPlaceName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    MarketPlaceDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -671,13 +699,13 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false)
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -690,15 +718,15 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
                     OrderStateID = table.Column<int>(type: "int", nullable: false),
                     ApprovedDate = table.Column<DateTime>(type: "datetime", nullable: true),
-                    IsFrequentlyUsed = table.Column<bool>(type: "bit", nullable: false)
+                    IsFrequentlyUsed = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -721,7 +749,15 @@ namespace GegiCRM.DAL.Migrations
                 {
                     OrderID = table.Column<int>(type: "int", nullable: false),
                     CurrencyID = table.Column<int>(type: "int", nullable: false),
-                    ExchangeRate = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                    ExchangeRate = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    AddedByNavigationId = table.Column<int>(type: "int", nullable: false),
+                    ModifiedByNavigationId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -745,11 +781,6 @@ namespace GegiCRM.DAL.Migrations
                     OrderID = table.Column<int>(type: "int", nullable: false),
                     ProductID = table.Column<int>(type: "int", nullable: false),
                     ReferanceCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     ProductStateID = table.Column<int>(type: "int", nullable: false),
                     KesinCurrencyID = table.Column<int>(type: "int", nullable: true),
                     ReferansCurrencyID = table.Column<int>(type: "int", nullable: true),
@@ -763,7 +794,13 @@ namespace GegiCRM.DAL.Migrations
                     ReferansSupplierID = table.Column<int>(type: "int", nullable: false),
                     AbonelikBaslangic = table.Column<DateTime>(type: "datetime", nullable: true),
                     AbonelikBitis = table.Column<DateTime>(type: "datetime", nullable: true),
-                    KesinSevkTarihi = table.Column<DateTime>(type: "datetime", nullable: true)
+                    KesinSevkTarihi = table.Column<DateTime>(type: "datetime", nullable: true),
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -799,13 +836,14 @@ namespace GegiCRM.DAL.Migrations
                 name: "PaymentTypes",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -817,15 +855,16 @@ namespace GegiCRM.DAL.Migrations
                 name: "ProductCategories",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ProductGroupID = table.Column<int>(type: "int", nullable: false),
                     ProductCategoryName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    ProductCategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ProductCategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -838,13 +877,13 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    GroupName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    GroupDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
-                    GroupName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
-                    GroupDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -857,14 +896,14 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     ProductGroupID = table.Column<int>(type: "int", nullable: true),
                     Question = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Answer = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Answer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -899,17 +938,17 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     ProductName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ProductDescription = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ProductGroupID = table.Column<int>(type: "int", nullable: true),
                     StockCount = table.Column<int>(type: "int", nullable: false),
                     PorductBrandID = table.Column<int>(type: "int", nullable: false),
-                    KdvOrani = table.Column<double>(type: "float", nullable: false, defaultValueSql: "((18))")
+                    KdvOrani = table.Column<double>(type: "float", nullable: false, defaultValueSql: "((18))"),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -949,19 +988,19 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
                     OrderIdIfExist = table.Column<int>(type: "int", nullable: true),
                     ProductID = table.Column<int>(type: "int", nullable: false),
                     SupplierID = table.Column<int>(type: "int", nullable: false),
-                    RepresentitveUser = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RepresentitveUser = table.Column<int>(type: "int", nullable: false),
                     PlannedDeadline = table.Column<DateTime>(type: "datetime", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CurrentStateID = table.Column<int>(type: "int", nullable: true)
+                    CurrentStateID = table.Column<int>(type: "int", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -974,13 +1013,13 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     StatName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    StatDescription = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                    StatDescription = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -993,17 +1032,38 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    RuleName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    RuleDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    RuleName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    RuleDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Rules", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sectors",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    AddedByNavigationId = table.Column<int>(type: "int", nullable: false),
+                    ModifiedByNavigationId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sectors", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -1013,16 +1073,16 @@ namespace GegiCRM.DAL.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SegmentID = table.Column<int>(type: "int", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     StartPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     EndPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     TL_ORAN = table.Column<double>(type: "float", nullable: true),
                     EURO_ORAN = table.Column<double>(type: "float", nullable: true),
-                    USD_ORAN = table.Column<double>(type: "float", nullable: true)
+                    USD_ORAN = table.Column<double>(type: "float", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1035,13 +1095,13 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1054,17 +1114,17 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     SABCategoryID = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsSell = table.Column<bool>(type: "bit", nullable: false),
-                    CurrentStepID = table.Column<int>(type: "int", nullable: true)
+                    CurrentStepID = table.Column<int>(type: "int", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1077,13 +1137,13 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CategoryName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    CategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    CategoryName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1096,16 +1156,16 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     StepCount = table.Column<int>(type: "int", nullable: true),
                     StepName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     StepDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SABCategoryID = table.Column<int>(type: "int", nullable: false),
-                    IsSell = table.Column<bool>(type: "bit", nullable: false)
+                    IsSell = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1123,13 +1183,13 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1142,13 +1202,13 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1161,14 +1221,9 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
                     ArizaTanimi = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ServicePersonalUser = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ServicePersonalUser = table.Column<int>(type: "int", nullable: false),
                     ServiceBeginDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ServiceEndDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     YapilacakIslem = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -1176,7 +1231,12 @@ namespace GegiCRM.DAL.Migrations
                     ServiceTypeID = table.Column<int>(type: "int", nullable: false),
                     ServicePlaceID = table.Column<int>(type: "int", nullable: false),
                     MudahaleEdilenCihaz = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MudahaleEdilenModel = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    MudahaleEdilenModel = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1204,13 +1264,13 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1225,7 +1285,14 @@ namespace GegiCRM.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CompanyID = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    AddedByNavigationId = table.Column<int>(type: "int", nullable: false),
+                    ModifiedByNavigationId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1257,7 +1324,14 @@ namespace GegiCRM.DAL.Migrations
                     KargoBedeli = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CurrencyID = table.Column<int>(type: "int", nullable: false),
                     Vade = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    OdemeSekli = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                    OdemeSekli = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    AddedByNavigationId = table.Column<int>(type: "int", nullable: false),
+                    ModifiedByNavigationId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1273,14 +1347,15 @@ namespace GegiCRM.DAL.Migrations
                 name: "SupplierPaymentStates",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1293,16 +1368,16 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: true, defaultValueSql: "((0))"),
                     SupplierName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     OncelikSirasi = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     URL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DealerCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    LastContactDate = table.Column<DateTime>(type: "datetime", nullable: true)
+                    LastContactDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1337,19 +1412,19 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     SupplierID = table.Column<int>(type: "int", nullable: false),
                     TaksitSayisi = table.Column<int>(type: "int", nullable: true),
                     OdemeTutari = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CurrencyID = table.Column<int>(type: "int", nullable: false),
                     CurrencyAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PaymentOfficerUserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PaymentOfficerUserID = table.Column<int>(type: "int", nullable: false),
                     StateID = table.Column<int>(type: "int", nullable: false),
-                    Descripiton = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Descripiton = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1367,11 +1442,6 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CompanyName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     CompanyDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Tel = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -1379,7 +1449,12 @@ namespace GegiCRM.DAL.Migrations
                     TicaretSicilNo = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     MersisNo = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     FaliyetKodu = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
-                    KepAdresi = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true)
+                    KepAdresi = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1390,17 +1465,18 @@ namespace GegiCRM.DAL.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "(newid())"),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserCompanyID = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     PassHash = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Surname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                    Surname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1426,14 +1502,15 @@ namespace GegiCRM.DAL.Migrations
                 name: "UsersAuthorizationRoles",
                 columns: table => new
                 {
-                    UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: false),
                     AuthorizationRoleID = table.Column<int>(type: "int", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     EndDate = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -1465,12 +1542,8 @@ namespace GegiCRM.DAL.Migrations
                 name: "VehicleInformations",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserCompanyID = table.Column<int>(type: "int", nullable: false),
                     Plaka = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ModelYear = table.Column<short>(type: "smallint", nullable: false),
@@ -1492,7 +1565,12 @@ namespace GegiCRM.DAL.Migrations
                     YazLastigiDegisimTarihi = table.Column<DateTime>(type: "datetime", nullable: true),
                     K2BelgesiBitisTarihi = table.Column<DateTime>(type: "datetime", nullable: true),
                     TakipCihaziYenilemeTarihi = table.Column<DateTime>(type: "datetime", nullable: true),
-                    Note = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1520,15 +1598,15 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     ProductCategoryID = table.Column<int>(type: "int", nullable: false),
                     BrandID = table.Column<int>(type: "int", nullable: false),
                     Tel = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1556,18 +1634,18 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DepartmentID = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Period = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     ApplicationCalendar = table.Column<DateTime>(type: "datetime", nullable: true),
                     AvalibleHours = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     WorkTime = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
-                    WorkDefinition = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    WorkDefinition = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1590,6 +1668,16 @@ namespace GegiCRM.DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Announcements_AddedBy",
+                table: "Announcements",
+                column: "AddedBy");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Announcements_ModifiedBy",
+                table: "Announcements",
+                column: "ModifiedBy");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AuthorizationsRoles_AddedBy",
                 table: "AuthorizationsRoles",
                 column: "AddedBy");
@@ -1600,6 +1688,11 @@ namespace GegiCRM.DAL.Migrations
                 column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
+                name: "IX_BankInformations_AddedBy",
+                table: "BankInformations",
+                column: "AddedBy");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_BankInformations_BankID",
                 table: "BankInformations",
                 column: "BankID");
@@ -1608,6 +1701,11 @@ namespace GegiCRM.DAL.Migrations
                 name: "IX_BankInformations_CompanyID",
                 table: "BankInformations",
                 column: "CompanyID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BankInformations_ModifiedBy",
+                table: "BankInformations",
+                column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Banks_AddedBy",
@@ -1640,6 +1738,11 @@ namespace GegiCRM.DAL.Migrations
                 column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CollectionReceipts_AddedBy",
+                table: "CollectionReceipts",
+                column: "AddedBy");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CollectionReceipts_CurrencyID",
                 table: "CollectionReceipts",
                 column: "CurrencyID");
@@ -1650,6 +1753,11 @@ namespace GegiCRM.DAL.Migrations
                 column: "CustomerID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CollectionReceipts_ModifiedBy",
+                table: "CollectionReceipts",
+                column: "ModifiedBy");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CollectionReceipts_PaymentTypeID",
                 table: "CollectionReceipts",
                 column: "PaymentTypeID");
@@ -1658,6 +1766,16 @@ namespace GegiCRM.DAL.Migrations
                 name: "IX_CollectionReceipts_SupplierID",
                 table: "CollectionReceipts",
                 column: "SupplierID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Currencies_AddedBy",
+                table: "Currencies",
+                column: "AddedBy");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Currencies_ModifiedBy",
+                table: "Currencies",
+                column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CustomerAddresses_AddedBy",
@@ -1675,9 +1793,19 @@ namespace GegiCRM.DAL.Migrations
                 column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CustomerBillingAddresses_AddedBy",
+                table: "CustomerBillingAddresses",
+                column: "AddedBy");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CustomerBillingAddresses_CustomerID",
                 table: "CustomerBillingAddresses",
                 column: "CustomerID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CustomerBillingAddresses_ModifiedBy",
+                table: "CustomerBillingAddresses",
+                column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CustomerContacts_AddedBy",
@@ -1695,6 +1823,11 @@ namespace GegiCRM.DAL.Migrations
                 column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CustomerDetails_AddedBy",
+                table: "CustomerDetails",
+                column: "AddedBy");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CustomerDetails_CurrencyID",
                 table: "CustomerDetails",
                 column: "CurrencyID");
@@ -1705,9 +1838,24 @@ namespace GegiCRM.DAL.Migrations
                 column: "CustomerID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CustomerDetails_ModifiedBy",
+                table: "CustomerDetails",
+                column: "ModifiedBy");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CustomerRepresentetiveUsers_AddedBy",
+                table: "CustomerRepresentetiveUsers",
+                column: "AddedBy");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CustomerRepresentetiveUsers_CustomerID",
                 table: "CustomerRepresentetiveUsers",
                 column: "CustomerID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CustomerRepresentetiveUsers_ModifiedBy",
+                table: "CustomerRepresentetiveUsers",
+                column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CustomerRepresentetiveUsers_UserID",
@@ -1740,6 +1888,16 @@ namespace GegiCRM.DAL.Migrations
                 column: "TypeID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CustomerTypes_AddedByNavigationId",
+                table: "CustomerTypes",
+                column: "AddedByNavigationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CustomerTypes_ModifiedByNavigationId",
+                table: "CustomerTypes",
+                column: "ModifiedByNavigationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Departments_AddedBy",
                 table: "Departments",
                 column: "AddedBy");
@@ -1750,9 +1908,19 @@ namespace GegiCRM.DAL.Migrations
                 column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
+                name: "IX_DepartmentsOfUsers_AddedBy",
+                table: "DepartmentsOfUsers",
+                column: "AddedBy");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_DepartmentsOfUsers_DepartmentID",
                 table: "DepartmentsOfUsers",
                 column: "DepartmentID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DepartmentsOfUsers_ModifiedBy",
+                table: "DepartmentsOfUsers",
+                column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DepositRelations_AddedBy",
@@ -1843,6 +2011,16 @@ namespace GegiCRM.DAL.Migrations
                 name: "IX_Documents_TypeID",
                 table: "Documents",
                 column: "TypeID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DocumentTypes_AddedByNavigationId",
+                table: "DocumentTypes",
+                column: "AddedByNavigationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DocumentTypes_ModifiedByNavigationId",
+                table: "DocumentTypes",
+                column: "ModifiedByNavigationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EmailTemplates_AddedBy",
@@ -1965,9 +2143,19 @@ namespace GegiCRM.DAL.Migrations
                 column: "OrderStateID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrdersCurrencies_AddedByNavigationId",
+                table: "OrdersCurrencies",
+                column: "AddedByNavigationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrdersCurrencies_CurrencyID",
                 table: "OrdersCurrencies",
                 column: "CurrencyID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrdersCurrencies_ModifiedByNavigationId",
+                table: "OrdersCurrencies",
+                column: "ModifiedByNavigationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrdersProducts_AddedBy",
@@ -2135,6 +2323,16 @@ namespace GegiCRM.DAL.Migrations
                 column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Sectors_AddedByNavigationId",
+                table: "Sectors",
+                column: "AddedByNavigationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sectors_ModifiedByNavigationId",
+                table: "Sectors",
+                column: "ModifiedByNavigationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SegmentOrans_AddedBy",
                 table: "SegmentOrans",
                 column: "AddedBy");
@@ -2270,14 +2468,34 @@ namespace GegiCRM.DAL.Migrations
                 column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ShippingDeals_AddedByNavigationId",
+                table: "ShippingDeals",
+                column: "AddedByNavigationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ShippingDeals_CompanyID",
                 table: "ShippingDeals",
                 column: "CompanyID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ShippingDeals_ModifiedByNavigationId",
+                table: "ShippingDeals",
+                column: "ModifiedByNavigationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SupplierDetails_AddedByNavigationId",
+                table: "SupplierDetails",
+                column: "AddedByNavigationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SupplierDetails_CurrencyID",
                 table: "SupplierDetails",
                 column: "CurrencyID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SupplierDetails_ModifiedByNavigationId",
+                table: "SupplierDetails",
+                column: "ModifiedByNavigationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SupplierDetails_SupplierID",
@@ -2410,6 +2628,20 @@ namespace GegiCRM.DAL.Migrations
                 column: "ModifiedBy");
 
             migrationBuilder.AddForeignKey(
+                name: "FK_Announcements_Users",
+                table: "Announcements",
+                column: "AddedBy",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Announcements_Users1",
+                table: "Announcements",
+                column: "ModifiedBy",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_Authorizations_Users",
                 table: "AuthorizationsRoles",
                 column: "AddedBy",
@@ -2435,6 +2667,20 @@ namespace GegiCRM.DAL.Migrations
                 table: "BankInformations",
                 column: "CompanyID",
                 principalTable: "UserCompanies",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_BankInformations_Users",
+                table: "BankInformations",
+                column: "AddedBy",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_BankInformations_Users1",
+                table: "BankInformations",
+                column: "ModifiedBy",
+                principalTable: "Users",
                 principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
@@ -2480,6 +2726,13 @@ namespace GegiCRM.DAL.Migrations
                 principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
+                name: "FK_CollectionReceipts_Currencies",
+                table: "CollectionReceipts",
+                column: "CurrencyID",
+                principalTable: "Currencies",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_CollectionReceipts_Customers",
                 table: "CollectionReceipts",
                 column: "CustomerID",
@@ -2501,6 +2754,34 @@ namespace GegiCRM.DAL.Migrations
                 principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
+                name: "FK_CollectionReceipts_Users",
+                table: "CollectionReceipts",
+                column: "AddedBy",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_CollectionReceipts_Users1",
+                table: "CollectionReceipts",
+                column: "ModifiedBy",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_CollectionReceipts_AddedBy",
+                table: "Currencies",
+                column: "AddedBy",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_CollectionReceipts_ModifiedBy",
+                table: "Currencies",
+                column: "ModifiedBy",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_CustomerAddresses_Customers",
                 table: "CustomerAddresses",
                 column: "CustomerID",
@@ -2517,6 +2798,20 @@ namespace GegiCRM.DAL.Migrations
             migrationBuilder.AddForeignKey(
                 name: "FK_CustomerDeliveryAddresses_Users1",
                 table: "CustomerAddresses",
+                column: "ModifiedBy",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_CustomerBillingAddresses_AddedBy",
+                table: "CustomerBillingAddresses",
+                column: "AddedBy",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_CustomerBillingAddresses_ModifiedBy",
+                table: "CustomerBillingAddresses",
                 column: "ModifiedBy",
                 principalTable: "Users",
                 principalColumn: "ID");
@@ -2550,10 +2845,45 @@ namespace GegiCRM.DAL.Migrations
                 principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
+                name: "FK_CustomerDetails_AddedBy",
+                table: "CustomerDetails",
+                column: "AddedBy",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_CustomerDetails_ModifiedBy",
+                table: "CustomerDetails",
+                column: "ModifiedBy",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_CustomerDetails_Customers",
                 table: "CustomerDetails",
                 column: "CustomerID",
                 principalTable: "Customers",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_CustomerRepresentetiveUsers_AddedBy",
+                table: "CustomerRepresentetiveUsers",
+                column: "AddedBy",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_CustomerRepresentetiveUsers_ModifiedBy",
+                table: "CustomerRepresentetiveUsers",
+                column: "ModifiedBy",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_CustomerRepresentetiveUsers_Users",
+                table: "CustomerRepresentetiveUsers",
+                column: "UserID",
+                principalTable: "Users",
                 principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
@@ -2564,10 +2894,17 @@ namespace GegiCRM.DAL.Migrations
                 principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_CustomerRepresentetiveUsers_Users",
-                table: "CustomerRepresentetiveUsers",
-                column: "UserID",
-                principalTable: "Users",
+                name: "FK_Customers_CustomerTypes",
+                table: "Customers",
+                column: "TypeID",
+                principalTable: "CustomerTypes",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Customers_Sectors",
+                table: "Customers",
+                column: "SectorID",
+                principalTable: "Sectors",
                 principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
@@ -2592,6 +2929,21 @@ namespace GegiCRM.DAL.Migrations
                 principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
+                name: "FK_CustomerTypes_Users_AddedByNavigationId",
+                table: "CustomerTypes",
+                column: "AddedByNavigationId",
+                principalTable: "Users",
+                principalColumn: "ID",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_CustomerTypes_Users_ModifiedByNavigationId",
+                table: "CustomerTypes",
+                column: "ModifiedByNavigationId",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_Departments_Users",
                 table: "Departments",
                 column: "AddedBy",
@@ -2601,6 +2953,20 @@ namespace GegiCRM.DAL.Migrations
             migrationBuilder.AddForeignKey(
                 name: "FK_Departments_Users1",
                 table: "Departments",
+                column: "ModifiedBy",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_DepartmentsOfUsers_AddedBy",
+                table: "DepartmentsOfUsers",
+                column: "AddedBy",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_DepartmentsOfUsers_ModifiedBy",
+                table: "DepartmentsOfUsers",
                 column: "ModifiedBy",
                 principalTable: "Users",
                 principalColumn: "ID");
@@ -2690,6 +3056,13 @@ namespace GegiCRM.DAL.Migrations
                 principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
+                name: "FK_Documents_DocumentTypes",
+                table: "Documents",
+                column: "TypeID",
+                principalTable: "DocumentTypes",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_Documents_Users",
                 table: "Documents",
                 column: "AddedBy",
@@ -2700,6 +3073,21 @@ namespace GegiCRM.DAL.Migrations
                 name: "FK_Documents_Users1",
                 table: "Documents",
                 column: "ModifiedBy",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_DocumentTypes_Users_AddedByNavigationId",
+                table: "DocumentTypes",
+                column: "AddedByNavigationId",
+                principalTable: "Users",
+                principalColumn: "ID",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_DocumentTypes_Users_ModifiedByNavigationId",
+                table: "DocumentTypes",
+                column: "ModifiedByNavigationId",
                 principalTable: "Users",
                 principalColumn: "ID");
 
@@ -2833,6 +3221,21 @@ namespace GegiCRM.DAL.Migrations
                 name: "FK_Orders_Users1",
                 table: "Orders",
                 column: "ModifiedBy",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_OrdersCurrencies_Users_AddedByNavigationId",
+                table: "OrdersCurrencies",
+                column: "AddedByNavigationId",
+                principalTable: "Users",
+                principalColumn: "ID",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_OrdersCurrencies_Users_ModifiedByNavigationId",
+                table: "OrdersCurrencies",
+                column: "ModifiedByNavigationId",
                 principalTable: "Users",
                 principalColumn: "ID");
 
@@ -3019,6 +3422,21 @@ namespace GegiCRM.DAL.Migrations
                 principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
+                name: "FK_Sectors_Users_AddedByNavigationId",
+                table: "Sectors",
+                column: "AddedByNavigationId",
+                principalTable: "Users",
+                principalColumn: "ID",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Sectors_Users_ModifiedByNavigationId",
+                table: "Sectors",
+                column: "ModifiedByNavigationId",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_SegmentOrans_Segments",
                 table: "SegmentOrans",
                 column: "SegmentID",
@@ -3187,10 +3605,40 @@ namespace GegiCRM.DAL.Migrations
                 principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
+                name: "FK_ShippingDeals_Users_AddedByNavigationId",
+                table: "ShippingDeals",
+                column: "AddedByNavigationId",
+                principalTable: "Users",
+                principalColumn: "ID",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_ShippingDeals_Users_ModifiedByNavigationId",
+                table: "ShippingDeals",
+                column: "ModifiedByNavigationId",
+                principalTable: "Users",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_SupplierDetails_Suppliers1",
                 table: "SupplierDetails",
                 column: "SupplierID",
                 principalTable: "Suppliers",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_SupplierDetails_Users_AddedByNavigationId",
+                table: "SupplierDetails",
+                column: "AddedByNavigationId",
+                principalTable: "Users",
+                principalColumn: "ID",
+                onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_SupplierDetails_Users_ModifiedByNavigationId",
+                table: "SupplierDetails",
+                column: "ModifiedByNavigationId",
+                principalTable: "Users",
                 principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
@@ -3259,6 +3707,9 @@ namespace GegiCRM.DAL.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_UserCompanies_Users1",
                 table: "UserCompanies");
+
+            migrationBuilder.DropTable(
+                name: "Announcements");
 
             migrationBuilder.DropTable(
                 name: "BankInformations");
