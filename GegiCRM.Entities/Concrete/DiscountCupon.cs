@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class DiscountCupon : BaseEntity
+    public class DiscountCupon : IBaseEntity
     {
         public DiscountCupon()
         {

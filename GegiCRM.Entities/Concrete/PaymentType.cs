@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class PaymentType : BaseEntity
+    public class PaymentType : IBaseEntity
     {
         public PaymentType()
         {

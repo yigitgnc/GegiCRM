@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class SellsAndBuysGuideStep : BaseEntity
+    public class SellsAndBuysGuideStep : IBaseEntity
     {
         public SellsAndBuysGuideStep()
         {

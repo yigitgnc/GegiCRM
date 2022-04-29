@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.Entities.Abstract
 {
-    public abstract class BaseEntity : IBaseEntity<int>
+    public abstract class IBaseEntity : IBaseEntity<int>
     {
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; }

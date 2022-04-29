@@ -4,6 +4,7 @@ using GegiCRM.DAL.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GegiCRM.DAL.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220429140554_identityUsersRolesAdded")]
+    partial class IdentityUsersRolesAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,7 +66,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("Announcements", (string)null);
+                    b.ToTable("Announcements");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.AuthorizationsRole", b =>
@@ -166,7 +168,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("Banks", (string)null);
+                    b.ToTable("Banks");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.BankInformation", b =>
@@ -232,7 +234,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("BankInformations", (string)null);
+                    b.ToTable("BankInformations");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Birim", b =>
@@ -277,7 +279,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("Birims", (string)null);
+                    b.ToTable("Birims");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Brand", b =>
@@ -322,7 +324,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("Brands", (string)null);
+                    b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CollectionReceipt", b =>
@@ -400,7 +402,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("SupplierId");
 
-                    b.ToTable("CollectionReceipts", (string)null);
+                    b.ToTable("CollectionReceipts");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Currency", b =>
@@ -442,7 +444,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("Currencies", (string)null);
+                    b.ToTable("Currencies");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Customer", b =>
@@ -522,7 +524,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("Customers", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerAddress", b =>
@@ -583,7 +585,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("CustomerAddresses", (string)null);
+                    b.ToTable("CustomerAddresses");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerBillingAddress", b =>
@@ -637,7 +639,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("CustomerBillingAddresses", (string)null);
+                    b.ToTable("CustomerBillingAddresses");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerContact", b =>
@@ -705,7 +707,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("CustomerContacts", (string)null);
+                    b.ToTable("CustomerContacts");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerDetail", b =>
@@ -760,7 +762,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("CustomerDetails", (string)null);
+                    b.ToTable("CustomerDetails");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerRepresentetiveUser", b =>
@@ -810,7 +812,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("CustomerRepresentetiveUsers", (string)null);
+                    b.ToTable("CustomerRepresentetiveUsers");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerType", b =>
@@ -857,7 +859,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedByNavigationId");
 
-                    b.ToTable("CustomerTypes", (string)null);
+                    b.ToTable("CustomerTypes");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Department", b =>
@@ -902,7 +904,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("Departments", (string)null);
+                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.DepartmentsOfUser", b =>
@@ -944,7 +946,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("DepartmentsOfUsers", (string)null);
+                    b.ToTable("DepartmentsOfUsers");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Deposit", b =>
@@ -1020,7 +1022,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("Deposits", (string)null);
+                    b.ToTable("Deposits");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.DepositRelation", b =>
@@ -1064,7 +1066,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("DepositRelations", (string)null);
+                    b.ToTable("DepositRelations");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.DepositType", b =>
@@ -1109,7 +1111,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("DepositTypes", (string)null);
+                    b.ToTable("DepositTypes");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.DiscountCupon", b =>
@@ -1169,7 +1171,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("DiscountCupons", (string)null);
+                    b.ToTable("DiscountCupons");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.DiscountCuponsOfCustomer", b =>
@@ -1221,7 +1223,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("DiscountCuponsOfCustomers", (string)null);
+                    b.ToTable("DiscountCuponsOfCustomers");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Document", b =>
@@ -1274,7 +1276,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("Documents", (string)null);
+                    b.ToTable("Documents");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.DocumentType", b =>
@@ -1320,7 +1322,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedByNavigationId");
 
-                    b.ToTable("DocumentTypes", (string)null);
+                    b.ToTable("DocumentTypes");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.EmailTemplate", b =>
@@ -1378,7 +1380,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("EmailTemplates", (string)null);
+                    b.ToTable("EmailTemplates");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Expansion", b =>
@@ -1428,7 +1430,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("Expansions", (string)null);
+                    b.ToTable("Expansions");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.MaintenanceBill", b =>
@@ -1516,7 +1518,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("SellingRepresentetiveUserId");
 
-                    b.ToTable("MaintenanceBills", (string)null);
+                    b.ToTable("MaintenanceBills");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.MaintenencePeriod", b =>
@@ -1560,7 +1562,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("MaintenencePeriods", (string)null);
+                    b.ToTable("MaintenencePeriods");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.MarketPlace", b =>
@@ -1606,7 +1608,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("MarketPlaces", (string)null);
+                    b.ToTable("MarketPlaces");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Order", b =>
@@ -1661,7 +1663,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("OrderStateId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.OrderAndProductState", b =>
@@ -1708,7 +1710,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("OrderAndProductStates", (string)null);
+                    b.ToTable("OrderAndProductStates");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.OrdersCurrency", b =>
@@ -1756,7 +1758,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedByNavigationId");
 
-                    b.ToTable("OrdersCurrencies", (string)null);
+                    b.ToTable("OrdersCurrencies");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.OrdersProduct", b =>
@@ -1865,7 +1867,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ReferansSupplierId");
 
-                    b.ToTable("OrdersProducts", (string)null);
+                    b.ToTable("OrdersProducts");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.PaymentType", b =>
@@ -1910,7 +1912,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("PaymentTypes", (string)null);
+                    b.ToTable("PaymentTypes");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Product", b =>
@@ -1975,7 +1977,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ProductGroupId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ProductCategory", b =>
@@ -2026,7 +2028,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ProductGroupId");
 
-                    b.ToTable("ProductCategories", (string)null);
+                    b.ToTable("ProductCategories");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ProductGroup", b =>
@@ -2070,7 +2072,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("ProductGroups", (string)null);
+                    b.ToTable("ProductGroups");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ProductGroupsFaq", b =>
@@ -2188,7 +2190,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("RepresentitveUser");
 
-                    b.ToTable("ReturnAndFaults", (string)null);
+                    b.ToTable("ReturnAndFaults");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ReturnAndFaultState", b =>
@@ -2234,7 +2236,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("ReturnAndFaultStates", (string)null);
+                    b.ToTable("ReturnAndFaultStates");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Rule", b =>
@@ -2280,7 +2282,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("Rules", (string)null);
+                    b.ToTable("Rules");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Sector", b =>
@@ -2332,7 +2334,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedByNavigationId");
 
-                    b.ToTable("Sectors", (string)null);
+                    b.ToTable("Sectors");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Segment", b =>
@@ -2378,7 +2380,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("Segments", (string)null);
+                    b.ToTable("Segments");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.SegmentOran", b =>
@@ -2439,7 +2441,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("SegmentId");
 
-                    b.ToTable("SegmentOrans", (string)null);
+                    b.ToTable("SegmentOrans");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.SellsAndBuysAsset", b =>
@@ -2501,7 +2503,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("SabcategoryId");
 
-                    b.ToTable("SellsAndBuysAssets", (string)null);
+                    b.ToTable("SellsAndBuysAssets");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.SellsAndBuysCategory", b =>
@@ -2546,7 +2548,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("SellsAndBuysCategories", (string)null);
+                    b.ToTable("SellsAndBuysCategories");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.SellsAndBuysGuideStep", b =>
@@ -2602,7 +2604,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("SabcategoryId");
 
-                    b.ToTable("SellsAndBuysGuideSteps", (string)null);
+                    b.ToTable("SellsAndBuysGuideSteps");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ServicePlace", b =>
@@ -2647,7 +2649,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("ServicePlaces", (string)null);
+                    b.ToTable("ServicePlaces");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ServiceReason", b =>
@@ -2692,7 +2694,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("ServiceReasons", (string)null);
+                    b.ToTable("ServiceReasons");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ServiceRecord", b =>
@@ -2776,7 +2778,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ServiceTypeId");
 
-                    b.ToTable("ServiceRecords", (string)null);
+                    b.ToTable("ServiceRecords");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ServiceType", b =>
@@ -2821,7 +2823,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("ServiceTypes", (string)null);
+                    b.ToTable("ServiceTypes");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ShippingDeal", b =>
@@ -2874,7 +2876,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedByNavigationId");
 
-                    b.ToTable("ShippingDeals", (string)null);
+                    b.ToTable("ShippingDeals");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Supplier", b =>
@@ -2930,7 +2932,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("Suppliers", (string)null);
+                    b.ToTable("Suppliers");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.SupplierDetail", b =>
@@ -3049,7 +3051,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("SupplierId");
 
-                    b.ToTable("SupplierDetails", (string)null);
+                    b.ToTable("SupplierDetails");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.SupplierPaymentState", b =>
@@ -3095,7 +3097,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("SupplierPaymentStates", (string)null);
+                    b.ToTable("SupplierPaymentStates");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.SuppliersPayment", b =>
@@ -3162,7 +3164,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("StateId");
 
-                    b.ToTable("SuppliersPayments", (string)null);
+                    b.ToTable("SuppliersPayments");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.User", b =>
@@ -3342,7 +3344,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("UserCompanies", (string)null);
+                    b.ToTable("UserCompanies");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.VehicleInformation", b =>
@@ -3459,7 +3461,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("UserCompanyId");
 
-                    b.ToTable("VehicleInformations", (string)null);
+                    b.ToTable("VehicleInformations");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.WarrantyTracking", b =>
@@ -3513,7 +3515,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("WarrantyTrackings", (string)null);
+                    b.ToTable("WarrantyTrackings");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.WorkStandart", b =>
@@ -3579,7 +3581,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.ToTable("WorkStandarts", (string)null);
+                    b.ToTable("WorkStandarts");
                 });
 
             modelBuilder.Entity("MarketPlacesOfSupplier", b =>
@@ -3738,7 +3740,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AutoHistory", (string)null);
+                    b.ToTable("AutoHistory");
                 });
 
             modelBuilder.Entity("ProductGroupsOfSupplier", b =>

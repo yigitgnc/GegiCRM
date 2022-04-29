@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class Announcement : BaseEntity
+    public class Announcement : IBaseEntity
     {
         
         public string Name { get; set; } = null!;

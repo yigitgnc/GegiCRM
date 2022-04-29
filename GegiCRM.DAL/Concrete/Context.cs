@@ -2232,12 +2232,12 @@ namespace GegiCRM.DAL.Concrete
 
             modelBuilder.Entity<UsersAuthorizationRole>(entity =>
             {
-                entity.HasKey(e => new { e.UserId, e.AuthorizationRoleId })
-                    .HasName("PK_UsersAuthorizations");
+                //entity.HasKey(e => new { e.UserId, e.AuthorizationRoleId })
+                //    .HasName("PK_UsersAuthorizations");
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 
-                entity.Property(e => e.AuthorizationRoleId).HasColumnName("AuthorizationRoleID");
+                //entity.Property(e => e.AuthorizationRoleId).HasColumnName("AuthorizationRoleID");
 
                 entity.Property(e => e.CreatedDate)
                     .HasColumnType("datetime")
@@ -2259,11 +2259,11 @@ namespace GegiCRM.DAL.Concrete
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_UsersAuthorizations_Users1");
 
-                entity.HasOne(d => d.AuthorizationRole)
-                    .WithMany(p => p.UsersAuthorizationRoles)
-                    .HasForeignKey(d => d.AuthorizationRoleId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UsersAuthorizations_Authorizations");
+                //entity.HasOne(d => d.AuthorizationRole)
+                //    .WithMany(p => p.UsersAuthorizationRoles)
+                //    .HasForeignKey(d => d.AuthorizationRoleId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_UsersAuthorizations_Authorizations");
 
                 entity.HasOne(d => d.ModifiedByNavigation)
                     .WithMany(p => p.UsersAuthorizationRoleModifiedByNavigations)

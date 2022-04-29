@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class ReturnAndFaultState : BaseEntity
+    public class ReturnAndFaultState : IBaseEntity
     {
         public ReturnAndFaultState()
         {

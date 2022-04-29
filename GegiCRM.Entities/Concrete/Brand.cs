@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class Brand : BaseEntity
+    public class Brand : IBaseEntity
     {
         public Brand()
         {

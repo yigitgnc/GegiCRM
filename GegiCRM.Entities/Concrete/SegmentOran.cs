@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class SegmentOran : BaseEntity
+    public class SegmentOran : IBaseEntity
     {
         
         public int? SegmentId { get; set; }

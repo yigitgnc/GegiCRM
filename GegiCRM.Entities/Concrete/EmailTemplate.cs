@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class EmailTemplate : BaseEntity
+    public class EmailTemplate : IBaseEntity
     {
         
         public string Explanation { get; set; } = null!;
