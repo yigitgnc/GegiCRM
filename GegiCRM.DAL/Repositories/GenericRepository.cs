@@ -11,10 +11,25 @@ namespace GegiCRM.DAL.Repositories
 {
     public class GenericRepository<T> : IGenericDal<T> where T : class
     {
+
+        public void Insert(T t)
+        {
+            using var c = new Context();
+            c.Add(t);
+            c.SaveChanges();
+        }
+
+        public void Update(T t)
+        {
+            using var c = new Context();
+            c.Update(SetLastModifed(t));
+            c.SaveChanges();
+        }
+
         public void Delete(T t)
         {
             using var c = new Context();
-            c.Remove(t);
+            c.Remove(SetLastModifed(t));
             c.SaveChanges();
         }
 
@@ -30,24 +45,25 @@ namespace GegiCRM.DAL.Repositories
             return c.Set<T>().ToList();
         }
 
-        public void Insert(T t)
-        {
-            using var c = new Context();
-            c.Add(t);
-            c.SaveChanges();
-        }
-
         public List<T> ListByFilter(Expression<Func<T, bool>> filter)
         {
             using var c = new Context();
             return c.Set<T>().Where(filter).ToList();
         }
 
-        public void Update(T t)
+
+        private static T SetLastModifed(T tEntity)
         {
-            using var c = new Context();
-            c.Update(t);
-            c.SaveChanges();
+            int id = 1;//todo: identity den Current Userin idsini alcaz burda
+
+            var LastModProp = tEntity.GetType().GetProperty("ModifiedBy");
+            if (LastModProp != null)
+            {
+                tEntity.GetType()
+                    .GetProperty("ModifiedBy")
+                    .SetValue(tEntity, id);
+            }
+            return tEntity;
         }
     }
 }

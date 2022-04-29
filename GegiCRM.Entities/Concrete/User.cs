@@ -1,10 +1,11 @@
 ﻿using GegiCRM.Entities.Abstract;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public partial class User : BaseEntity
+    public partial class User : IdentityUser<int>,IBaseEntity<int>
     {
         public User()
         {
@@ -115,9 +116,9 @@ namespace GegiCRM.Entities.Concrete
             WorkStandartModifiedByNavigations = new HashSet<WorkStandart>();
         }
 
-        
+
         public int UserCompanyId { get; set; }
-        public string Email { get; set; } = null!;
+        //public string Email { get; set; } = null!;
         public string PassHash { get; set; } = null!;
         public string? Name { get; set; }
         public string? Surname { get; set; }
@@ -242,5 +243,12 @@ namespace GegiCRM.Entities.Concrete
         public virtual ICollection<WarrantyTracking> WarrantyTrackingModifiedByNavigations { get; set; }
         public virtual ICollection<WorkStandart> WorkStandartAddedByNavigations { get; set; }
         public virtual ICollection<WorkStandart> WorkStandartModifiedByNavigations { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public int AddedBy { get; set; }
+        public int? ModifiedBy { get; set; }
+        public bool IsDeleted { get; set; }
+        public virtual User AddedByNavigation { get; set; }
+        public virtual User? ModifiedByNavigation { get; set; }
     }
 }

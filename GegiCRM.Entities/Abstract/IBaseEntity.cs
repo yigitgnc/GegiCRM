@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.Entities.Abstract
 {
-    public abstract class BaseEntity : IBaseEntity<int>
+    public interface IBaseEntity<Tkey>
     {
-        public int Id { get; set; }
+        public Tkey Id { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public int AddedBy { get; set; }
         public int? ModifiedBy { get; set; }
         public bool IsDeleted { get; set; }
 
-        public virtual User AddedByNavigation { get; set; } = null!;
-        public virtual User? ModifiedByNavigation { get; set; } = null!;
+        public User AddedByNavigation { get; set; }
+        public User? ModifiedByNavigation { get; set; } 
     }
 }

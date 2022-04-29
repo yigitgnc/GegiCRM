@@ -10,31 +10,36 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.BLL.Concrete
 {
-    public class UserManager : IUserService
+    public class UserManager : IGenericService<User>
     {
-        IUserDal _userDal;
+        readonly IUserDal _userDal;
 
         public UserManager(IUserDal userDal)
         {
-            _userDal=userDal;
+            _userDal = userDal;
         }
 
-        public void CreateUser(User user)
+        public void Create(User t)
         {
-            _userDal.Insert(user);
+            _userDal.Insert(t);
         }
 
-        public void DeleteUser(User user)
+        public void Delete(User t)
         {
-            _userDal.Delete(user);
+            _userDal.Delete(t);
         }
 
-        public List<User> GetAllUsers()
+        public void Update(User t)
+        {
+            _userDal.Update(t);
+        }
+
+        public List<User> GetAll()
         {
             return _userDal.GetListAll();
         }
 
-        public User GetUserById(int id)
+        public User GetById(int id)
         {
             return _userDal.GetByID(id);
         }
@@ -47,11 +52,6 @@ namespace GegiCRM.BLL.Concrete
         public List<User> GetUsersWithModifiedOrders()
         {
             return _userDal.GetUsersWithModifiedOrders();
-        }
-
-        public void UpdateUser(User user)
-        {
-            _userDal.Update(user);
         }
     }
 }

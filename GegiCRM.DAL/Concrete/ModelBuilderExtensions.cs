@@ -13,7 +13,7 @@ namespace GegiCRM.DAL.Concrete
         public static void Seed(this ModelBuilder modelBuilder)
         {
 
-            //User
+            ////User
             //modelBuilder.Entity<User>()
             //    .HasData(
             //       new User
@@ -24,7 +24,7 @@ namespace GegiCRM.DAL.Concrete
             //           AddedBy = 1,
             //           ModifiedBy = 1,
             //           Email = "yigit.genc@gegi.com.tr",
-            //           PassHash ="hash1"                       
+            //           PassHash = "hash1"
             //       }
             //);
         }

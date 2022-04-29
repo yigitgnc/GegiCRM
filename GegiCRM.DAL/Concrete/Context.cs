@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using GegiCRM.Entities.Concrete;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace GegiCRM.DAL.Concrete
 {
-    public partial class Context : DbContext
+    public partial class Context : IdentityDbContext<User,AuthorizationsRole,int>
     {
         public Context()
         {
@@ -17,6 +18,7 @@ namespace GegiCRM.DAL.Concrete
         {
         }
 
+        #region DBSets
         public virtual DbSet<Announcement> Announcements { get; set; } = null!;
         public virtual DbSet<AuthorizationsRole> AuthorizationsRoles { get; set; } = null!;
         public virtual DbSet<Bank> Banks { get; set; } = null!;
@@ -73,13 +75,13 @@ namespace GegiCRM.DAL.Concrete
         public virtual DbSet<SupplierDetail> SupplierDetails { get; set; } = null!;
         public virtual DbSet<SupplierPaymentState> SupplierPaymentStates { get; set; } = null!;
         public virtual DbSet<SuppliersPayment> SuppliersPayments { get; set; } = null!;
-        public virtual DbSet<User> Users { get; set; } = null!;
+        //public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<UserCompany> UserCompanies { get; set; } = null!;
         public virtual DbSet<UsersAuthorizationRole> UsersAuthorizationRoles { get; set; } = null!;
         public virtual DbSet<VehicleInformation> VehicleInformations { get; set; } = null!;
         public virtual DbSet<WarrantyTracking> WarrantyTrackings { get; set; } = null!;
         public virtual DbSet<WorkStandart> WorkStandarts { get; set; } = null!;
-
+        #endregion
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -93,6 +95,8 @@ namespace GegiCRM.DAL.Concrete
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Seed();
+            modelBuilder.EnableAutoHistory();
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Announcement>(entity =>
             {
