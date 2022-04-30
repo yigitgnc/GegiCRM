@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class Rule : IBaseEntity
+    public class Rule : BaseEntity<int>
     {
         
         public string RuleName { get; set; } = null!;

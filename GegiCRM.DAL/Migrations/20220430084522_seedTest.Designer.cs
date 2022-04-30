@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GegiCRM.DAL.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220429140554_identityUsersRolesAdded")]
-    partial class IdentityUsersRolesAdded
+    [Migration("20220430084522_seedTest")]
+    partial class seedTest
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -124,6 +124,21 @@ namespace GegiCRM.DAL.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddedBy = 1,
+                            ConcurrencyStamp = "815266f6-ecb2-4ee4-841b-446fe64f726d",
+                            CreatedDate = new DateTime(2022, 4, 30, 11, 45, 21, 228, DateTimeKind.Local).AddTicks(5304),
+                            Description = "Sistem Admini Full Yetki",
+                            IsDeleted = false,
+                            ModifiedBy = 1,
+                            ModifiedDate = new DateTime(2022, 4, 30, 11, 45, 21, 228, DateTimeKind.Local).AddTicks(5317),
+                            Name = "SysAdmin",
+                            NormalizedName = "Sistem Admini"
+                        });
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Bank", b =>
@@ -3276,6 +3291,28 @@ namespace GegiCRM.DAL.Migrations
                     b.HasIndex("UserCompanyId");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccessFailedCount = 0,
+                            AddedBy = 1,
+                            ConcurrencyStamp = "3d433131-2403-40ea-a911-8819f3632971",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "yigit.genc@gegi.com.tr",
+                            EmailConfirmed = false,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            ModifiedBy = 1,
+                            Name = "Yigit",
+                            PassHash = "hash1",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIpwQ4CUl0iDwd8839yMJP2PV1DOVkjp0l4gngyaeDA5HYZ59J0CD1oKYgoVXn+36w==",
+                            PhoneNumberConfirmed = false,
+                            Surname = "Genc",
+                            TwoFactorEnabled = false,
+                            UserCompanyId = 1
+                        });
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.UserCompany", b =>
@@ -3287,7 +3324,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int?>("AddedBy")
                         .HasColumnType("int");
 
                     b.Property<string>("CompanyDescription")
@@ -3345,6 +3382,15 @@ namespace GegiCRM.DAL.Migrations
                     b.HasIndex("ModifiedBy");
 
                     b.ToTable("UserCompanies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CompanyName = "AdminCompany",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false
+                        });
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.VehicleInformation", b =>
@@ -3802,10 +3848,6 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<int>("AddedBy")
                         .HasColumnType("int");
 
-                    b.Property<int>("AuthorizationRoleId")
-                        .HasColumnType("int")
-                        .HasColumnName("AuthorizationRoleID");
-
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
@@ -3834,8 +3876,6 @@ namespace GegiCRM.DAL.Migrations
                         .HasDefaultValueSql("(getdate())");
 
                     b.HasIndex("AddedBy");
-
-                    b.HasIndex("AuthorizationRoleId");
 
                     b.HasIndex("ModifiedBy");
 
@@ -5362,7 +5402,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasOne("GegiCRM.Entities.Concrete.User", "AddedByNavigation")
                         .WithMany("UserCompanyAddedByNavigations")
                         .HasForeignKey("AddedBy")
-                        .IsRequired()
                         .HasConstraintName("FK_UserCompanies_Users");
 
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
@@ -5566,12 +5605,6 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_UsersAuthorizations_Users1");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AuthorizationsRole", "AuthorizationRole")
-                        .WithMany("UsersAuthorizationRoles")
-                        .HasForeignKey("AuthorizationRoleId")
-                        .IsRequired()
-                        .HasConstraintName("FK_UsersAuthorizations_Authorizations");
-
                     b.HasOne("GegiCRM.Entities.Concrete.User", "ModifiedByNavigation")
                         .WithMany("UsersAuthorizationRoleModifiedByNavigations")
                         .HasForeignKey("ModifiedBy")
@@ -5585,16 +5618,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.Navigation("AddedByNavigation");
 
-                    b.Navigation("AuthorizationRole");
-
                     b.Navigation("ModifiedByNavigation");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("GegiCRM.Entities.Concrete.AuthorizationsRole", b =>
-                {
-                    b.Navigation("UsersAuthorizationRoles");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Bank", b =>

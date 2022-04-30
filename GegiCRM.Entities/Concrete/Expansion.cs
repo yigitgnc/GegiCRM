@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public  class Expansion : IBaseEntity
+    public  class Expansion : BaseEntity<int>
     {
         
         public string ShortCode { get; set; } = null!;

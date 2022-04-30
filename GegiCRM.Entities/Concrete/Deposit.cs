@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class Deposit : IBaseEntity
+    public class Deposit : BaseEntity<int>
     {
         
         public int DepositRelationId { get; set; }

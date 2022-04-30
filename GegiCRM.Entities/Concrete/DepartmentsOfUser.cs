@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class DepartmentsOfUser : IBaseEntity
+    public class DepartmentsOfUser : BaseEntity<int>
     {
         public int UserId { get; set; }
         public int DepartmentId { get; set; }

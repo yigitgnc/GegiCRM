@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class OrdersCurrency : IBaseEntity
+    public class OrdersCurrency : BaseEntity<int>
     {
         public int OrderId { get; set; }
         public int CurrencyId { get; set; }

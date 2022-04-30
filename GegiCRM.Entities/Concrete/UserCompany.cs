@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class UserCompany : IBaseEntity
+    public class UserCompany : BaseEntity<int>        
     {
         public UserCompany()
         {
@@ -13,8 +13,10 @@ namespace GegiCRM.Entities.Concrete
             Users = new HashSet<User>();
             VehicleInformations = new HashSet<VehicleInformation>();
         }
+        public new int? AddedBy { get; set; }
+        public new int? ModifiedBy { get; set; }
 
-        
+
         public string CompanyName { get; set; } = null!;
         public string? CompanyDescription { get; set; }
         public string? Tel { get; set; }
@@ -27,6 +29,8 @@ namespace GegiCRM.Entities.Concrete
         public virtual ICollection<BankInformation> BankInformations { get; set; }
         public virtual ICollection<ShippingDeal> ShippingDeals { get; set; }
         public virtual ICollection<User> Users { get; set; }
-        public virtual ICollection<VehicleInformation> VehicleInformations { get; set; }
+        public virtual ICollection<VehicleInformation> VehicleInformations { get; set; }    
+        public virtual User AddedByNavigation { get; set; }
+        public virtual User? ModifiedByNavigation { get; set; }
     }
 }

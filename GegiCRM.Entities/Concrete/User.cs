@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public partial class User : IdentityUser<int>,IBaseEntity<int>
+    public partial class User : IdentityUser<int>, IBaseEntity<int>
     {
         public User()
         {

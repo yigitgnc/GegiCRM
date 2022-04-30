@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class MaintenencePeriod : IBaseEntity
+    public class MaintenencePeriod : BaseEntity<int>
     {
         public MaintenencePeriod()
         {

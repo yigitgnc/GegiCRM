@@ -13,7 +13,7 @@ namespace GegiCRM.Entities.Concrete
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        public virtual AuthorizationsRole AuthorizationRole { get; set; } = null!;
+        //public virtual AuthorizationsRole AuthorizationRole { get; set; } = null!;
         public virtual User User { get; set; } = null!;
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }

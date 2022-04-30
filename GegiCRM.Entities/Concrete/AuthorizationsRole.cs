@@ -9,7 +9,7 @@ namespace GegiCRM.Entities.Concrete
     {
         public AuthorizationsRole()
         {
-            UsersAuthorizationRoles = new HashSet<UsersAuthorizationRole>();
+            //UsersAuthorizationRoles = new HashSet<UsersAuthorizationRole>();
         }
 
         
@@ -17,7 +17,7 @@ namespace GegiCRM.Entities.Concrete
         public string? Name { get; set; }
         public string? Description { get; set; }
 
-        public virtual ICollection<UsersAuthorizationRole> UsersAuthorizationRoles { get; set; }
+        //public virtual ICollection<UsersAuthorizationRole> UsersAuthorizationRoles { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public int AddedBy { get; set; }

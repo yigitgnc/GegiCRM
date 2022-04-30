@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class CustomerType : IBaseEntity
+    public class CustomerType : BaseEntity<int>
     {
         public CustomerType()
         {

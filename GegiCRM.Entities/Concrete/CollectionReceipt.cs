@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class CollectionReceipt : IBaseEntity
+    public class CollectionReceipt : BaseEntity<int>
     {
         
         public bool IsDeleted { get; set; }

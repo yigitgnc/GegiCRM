@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class ProductCategory : IBaseEntity
+    public class ProductCategory : BaseEntity<int>
     {
         
         public int ProductGroupId { get; set; }

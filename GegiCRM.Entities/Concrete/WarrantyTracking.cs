@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class WarrantyTracking : IBaseEntity
+    public class WarrantyTracking : BaseEntity<int>
     {
         
         public int ProductCategoryId { get; set; }
