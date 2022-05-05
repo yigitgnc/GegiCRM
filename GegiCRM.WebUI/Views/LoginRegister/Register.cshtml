@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "_LayoutLoginRegister";
+    ViewData["title"] = "Kaydol";
+}
+
+<h4 class="mb-2">Kaydol</h4>
+<p class="mb-4 text-muted fw-lighter">Kaydınız Onaylanana Kadar Hesabınız Aktif Olmayacaktır.</p>
+
+<form id="formAuthentication" class="mb-3" method="POST">
+    <div class="mb-3">
+        <label for="username" class="form-label">Kullanıcı Adı</label>
+        <input type="text"
+               class="form-control"
+               id="username"
+               name="username"
+               placeholder="Kullanıcı Adınız"
+               autofocus />
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" id="email" name="email" placeholder="Email Adresiniz" />
+    </div>
+
+    <div class="mb-3 form-password-toggle">
+        <label class="form-label" for="password">Şifre</label>
+        <div class="input-group input-group-merge">
+            <input type="password"
+                   id="password"
+                   class="form-control"
+                   name="password"
+                   placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                   aria-describedby="password" />
+            <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
+            <label class="form-check-label" for="terms-conditions">
+                <a href="javascript:void(0);">Gizlilik Politikası ve Kullanım Koşullarını</a>
+                Kabul Ediyorum.
+            </label>
+        </div>
+    </div>
+    <button class="btn btn-primary d-grid w-100">Kaydol</button>
+</form>
+
+<p class="text-center">
+    <span>Hesabınız var mı ?</span>
+    <a href="/Login">
+        <span>Giriş Yapın</span>
+    </a>
+</p>
+
