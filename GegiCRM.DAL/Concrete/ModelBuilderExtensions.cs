@@ -35,9 +35,8 @@ namespace GegiCRM.DAL.Concrete
                 AddedBy = 1,
                 ModifiedBy = 1,
                 Email = "yigit.genc@gegi.com.tr",
-                PassHash = "hash1",
                 UserCompanyId = 1
-                
+
             };
 
             AuthorizationsRole sysAdminRole = new AuthorizationsRole()
@@ -56,9 +55,7 @@ namespace GegiCRM.DAL.Concrete
 
             var roleRelation = new UsersAuthorizationRole()
             {
-                //ModifiedBy = 1,
-                //CreatedDate = DateTime.Now,
-                //ModifiedDate = DateTime.Now,
+                
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddYears(10),
                 UserId = 1,

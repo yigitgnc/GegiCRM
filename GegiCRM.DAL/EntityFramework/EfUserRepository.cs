@@ -13,6 +13,12 @@ namespace GegiCRM.DAL.EntityFramework
 {
     public class EfUserRepository : GenericRepository<User>, IUserDal
     {
+        public User? GetUserByLoginInformations(string email, string passwordHash)
+        {
+            using var c = new Context();
+            return c.Users.FirstOrDefault(x => x.Email == email && x.PasswordHash == passwordHash);
+        }
+
         public List<User> GetUsersWithAddedOrders()
         {
             using (Context c = new Context())

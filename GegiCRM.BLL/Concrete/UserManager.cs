@@ -53,5 +53,8 @@ namespace GegiCRM.BLL.Concrete
         {
             return _userDal.GetUsersWithModifiedOrders();
         }
+
+        //public User? GetUserBy
+
     }
 }

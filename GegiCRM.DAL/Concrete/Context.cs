@@ -2167,8 +2167,6 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
-                entity.Property(e => e.PassHash).HasMaxLength(250);
-
                 entity.Property(e => e.Surname).HasMaxLength(50);
 
                 entity.Property(e => e.UserCompanyId).HasColumnName("UserCompanyID");

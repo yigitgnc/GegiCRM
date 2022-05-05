@@ -13,7 +13,7 @@ namespace GegiCRM.BLL.ValidationRules
         public UserValidator()
         {
             RuleFor(x => x.Name).NotEmpty().WithMessage("Ad Boş Geçilemez");
-            RuleFor(x => x.PassHash).NotEmpty().WithMessage("Şifre Boş Geçilemez");
+            RuleFor(x => x.PasswordHash).NotEmpty().WithMessage("Şifre Boş Geçilemez");
             RuleFor(x => x.Email).NotEmpty().EmailAddress().WithMessage("Email Boş Geçilemez");
         }
     }

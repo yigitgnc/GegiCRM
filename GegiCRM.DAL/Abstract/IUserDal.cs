@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.DAL.Abstract
 {
-    public interface IUserDal:IGenericDal<User>
+    public interface IUserDal : IGenericDal<User>
     {
         List<User> GetUsersWithAddedOrders();
         List<User> GetUsersWithModifiedOrders();
+
+        User? GetUserByLoginInformations(string email, string passwordHash);
     }
 }

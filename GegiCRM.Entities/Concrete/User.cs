@@ -119,7 +119,6 @@ namespace GegiCRM.Entities.Concrete
 
         public int UserCompanyId { get; set; }
         //public string Email { get; set; } = null!;
-        public string PassHash { get; set; } = null!;
         public string? Name { get; set; }
         public string? Surname { get; set; }
 
