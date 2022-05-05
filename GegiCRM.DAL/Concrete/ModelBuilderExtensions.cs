@@ -20,16 +20,10 @@ namespace GegiCRM.DAL.Concrete
         {
             IPasswordHasher<IdentityUser> _passwordHasher = new PasswordHasher<IdentityUser>();
 
-            var roleRelation = new UsersAuthorizationRole()
+            UserCompany userCompany = new UserCompany
             {
-                AddedBy = 1,
-                ModifiedBy = 1,
-                CreatedDate = DateTime.Now,
-                ModifiedDate = DateTime.Now,
-                StartDate = DateTime.Now,
-                EndDate = DateTime.MaxValue,
-                UserId = 1,
-                RoleId = 1,
+                Id = 1,
+                CompanyName = "AdminCompany"
             };
 
             var admin = new User
@@ -42,28 +36,9 @@ namespace GegiCRM.DAL.Concrete
                 ModifiedBy = 1,
                 Email = "yigit.genc@gegi.com.tr",
                 PassHash = "hash1",
-                UserCompanyId = 1,
-                //UsersAuthorizationRoleUsers = new List<UsersAuthorizationRole>()
-                //{
-                  
-                //},
-                //UserCompany = new UserCompany
-                //{
-                //    Id = 1,
-                //    CompanyName = "AdminCompany",
-                //    AddedBy = 1,
-                //    ModifiedBy = 1
-                //}
-
+                UserCompanyId = 1
+                
             };
-
-            UserCompany userCompany = new UserCompany
-            {
-                Id = 1,
-                CompanyName = "AdminCompany"
-            };
-
-
 
             AuthorizationsRole sysAdminRole = new AuthorizationsRole()
             {
@@ -78,7 +53,18 @@ namespace GegiCRM.DAL.Concrete
 
             };
 
-            modelBuilder.Entity<UserCompany>().HasData(userCompany);
+
+            var roleRelation = new UsersAuthorizationRole()
+            {
+                //ModifiedBy = 1,
+                //CreatedDate = DateTime.Now,
+                //ModifiedDate = DateTime.Now,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddYears(10),
+                UserId = 1,
+                RoleId = 1,
+                //AddedBy = 1,
+            };
 
 
 
@@ -87,13 +73,15 @@ namespace GegiCRM.DAL.Concrete
             {
 
 
+                modelBuilder.Entity<UserCompany>().HasData(userCompany);
+
                 modelBuilder.Entity<User>().HasData(admin);
                 // do the stuff
                 ts.Complete();
 
                 modelBuilder.Entity<AuthorizationsRole>().HasData(sysAdminRole);
 
-                //modelBuilder.Entity<UsersAuthorizationRole>().HasData(roleRelation);
+                modelBuilder.Entity<UsersAuthorizationRole>().HasData(roleRelation);
             }
 
         }

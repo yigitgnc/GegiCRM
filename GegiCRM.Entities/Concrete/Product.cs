@@ -23,7 +23,6 @@ namespace GegiCRM.Entities.Concrete
         public virtual Brand PorductBrand { get; set; } = null!;
         public virtual ProductGroup? ProductGroup { get; set; }
         public virtual ICollection<OrdersProduct> OrdersProducts { get; set; }
-
         public virtual ICollection<Supplier> Suppliers { get; set; }
     }
 }

@@ -90,12 +90,11 @@ namespace GegiCRM.DAL.Concrete
                 optionsBuilder.UseSqlServer("Server=.;Database=GegiCRM_DB;Trusted_Connection=True;");
                 optionsBuilder.UseLazyLoadingProxies();
             }
+            optionsBuilder.EnableSensitiveDataLogging(true);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Seed();
-            modelBuilder.EnableAutoHistory();
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Announcement>(entity =>
@@ -2235,29 +2234,29 @@ namespace GegiCRM.DAL.Concrete
                 //entity.HasKey(e => new { e.UserId, e.AuthorizationRoleId })
                 //    .HasName("PK_UsersAuthorizations");
 
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+                //entity.Property(e => e.UserId).HasColumnName("UserID");
 
                 //entity.Property(e => e.AuthorizationRoleId).HasColumnName("AuthorizationRoleID");
 
-                entity.Property(e => e.CreatedDate)
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
+                //entity.Property(e => e.CreatedDate)
+                //    .HasColumnType("datetime")
+                //    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.EndDate).HasColumnType("datetime");
 
-                entity.Property(e => e.ModifiedDate)
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
+                //entity.Property(e => e.ModifiedDate)
+                //    .HasColumnType("datetime")
+                //    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.StartDate)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.UsersAuthorizationRoleAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UsersAuthorizations_Users1");
+                //entity.HasOne(d => d.AddedByNavigation)
+                //    .WithMany(p => p.UsersAuthorizationRoleAddedByNavigations)
+                //    .HasForeignKey(d => d.AddedBy)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_UsersAuthorizations_Users1");
 
                 //entity.HasOne(d => d.AuthorizationRole)
                 //    .WithMany(p => p.UsersAuthorizationRoles)
@@ -2265,17 +2264,17 @@ namespace GegiCRM.DAL.Concrete
                 //    .OnDelete(DeleteBehavior.ClientSetNull)
                 //    .HasConstraintName("FK_UsersAuthorizations_Authorizations");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.UsersAuthorizationRoleModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UsersAuthorizations_Users2");
+                //entity.HasOne(d => d.ModifiedByNavigation)
+                //    .WithMany(p => p.UsersAuthorizationRoleModifiedByNavigations)
+                //    .HasForeignKey(d => d.ModifiedBy)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_UsersAuthorizations_Users2");
 
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.UsersAuthorizationRoleUsers)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UsersAuthorizations_Users");
+                //entity.HasOne(d => d.User)
+                //    .WithMany(p => p.UsersAuthorizationRoleUsers)
+                //    .HasForeignKey(d => d.UserId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_UsersAuthorizations_Users");
             });
 
             modelBuilder.Entity<VehicleInformation>(entity =>
@@ -2435,6 +2434,10 @@ namespace GegiCRM.DAL.Concrete
             OnModelCreatingPartial(modelBuilder);
         }
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        private void OnModelCreatingPartial(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed();
+            modelBuilder.EnableAutoHistory();
+        }
     }
 }

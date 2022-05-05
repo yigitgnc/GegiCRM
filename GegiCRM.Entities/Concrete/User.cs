@@ -105,9 +105,9 @@ namespace GegiCRM.Entities.Concrete
             SuppliersPaymentModifiedByNavigations = new HashSet<SuppliersPayment>();
             UserCompanyAddedByNavigations = new HashSet<UserCompany>();
             UserCompanyModifiedByNavigations = new HashSet<UserCompany>();
-            UsersAuthorizationRoleAddedByNavigations = new HashSet<UsersAuthorizationRole>();
-            UsersAuthorizationRoleModifiedByNavigations = new HashSet<UsersAuthorizationRole>();
-            UsersAuthorizationRoleUsers = new HashSet<UsersAuthorizationRole>();
+            //UsersAuthorizationRoleAddedByNavigations = new HashSet<UsersAuthorizationRole>();
+            //UsersAuthorizationRoleModifiedByNavigations = new HashSet<UsersAuthorizationRole>();
+            //UsersAuthorizationRoleUsers = new HashSet<UsersAuthorizationRole>();
             VehicleInformationAddedByNavigations = new HashSet<VehicleInformation>();
             VehicleInformationModifiedByNavigations = new HashSet<VehicleInformation>();
             WarrantyTrackingAddedByNavigations = new HashSet<WarrantyTracking>();
@@ -234,9 +234,9 @@ namespace GegiCRM.Entities.Concrete
         public virtual ICollection<SuppliersPayment> SuppliersPaymentModifiedByNavigations { get; set; }
         public virtual ICollection<UserCompany> UserCompanyAddedByNavigations { get; set; }
         public virtual ICollection<UserCompany> UserCompanyModifiedByNavigations { get; set; }
-        public virtual ICollection<UsersAuthorizationRole> UsersAuthorizationRoleAddedByNavigations { get; set; }
-        public virtual ICollection<UsersAuthorizationRole> UsersAuthorizationRoleModifiedByNavigations { get; set; }
-        public virtual ICollection<UsersAuthorizationRole> UsersAuthorizationRoleUsers { get; set; }
+        //public virtual ICollection<UsersAuthorizationRole>? UsersAuthorizationRoleAddedByNavigations { get; set; }
+        //public virtual ICollection<UsersAuthorizationRole> UsersAuthorizationRoleModifiedByNavigations { get; set; }
+        //public virtual ICollection<UsersAuthorizationRole> UsersAuthorizationRoleUsers { get; set; }
         public virtual ICollection<VehicleInformation> VehicleInformationAddedByNavigations { get; set; }
         public virtual ICollection<VehicleInformation> VehicleInformationModifiedByNavigations { get; set; }
         public virtual ICollection<WarrantyTracking> WarrantyTrackingAddedByNavigations { get; set; }

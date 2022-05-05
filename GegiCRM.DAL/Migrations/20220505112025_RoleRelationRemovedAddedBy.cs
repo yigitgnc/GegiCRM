@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GegiCRM.DAL.Migrations
 {
-    public partial class seedTest : Migration
+    public partial class RoleRelationRemovedAddedBy : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -114,21 +114,17 @@ namespace GegiCRM.DAL.Migrations
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserID = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     RoleId = table.Column<int>(type: "int", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Id = table.Column<int>(type: "int", nullable: true),
                     StartDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
                     EndDate = table.Column<DateTime>(type: "datetime", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: true),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserID, x.RoleId });
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
                         column: x => x.RoleId,
@@ -2499,12 +2495,17 @@ namespace GegiCRM.DAL.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "ID", "AccessFailedCount", "AddedBy", "ConcurrencyStamp", "Email", "EmailConfirmed", "IsDeleted", "LockoutEnabled", "LockoutEnd", "ModifiedBy", "Name", "NormalizedEmail", "NormalizedUserName", "PassHash", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserCompanyID", "UserName" },
-                values: new object[] { 1, 0, 1, "3d433131-2403-40ea-a911-8819f3632971", "yigit.genc@gegi.com.tr", false, false, false, null, 1, "Yigit", null, null, "hash1", "AQAAAAEAACcQAAAAEIpwQ4CUl0iDwd8839yMJP2PV1DOVkjp0l4gngyaeDA5HYZ59J0CD1oKYgoVXn+36w==", null, false, null, "Genc", false, 1, null });
+                values: new object[] { 1, 0, 1, "5eb1383e-a305-462b-99b9-e4870e701038", "yigit.genc@gegi.com.tr", false, false, false, null, 1, "Yigit", null, null, "hash1", "AQAAAAEAACcQAAAAEKfGdbCYYnVFF1raH5kmdRgw7TbUfoQD6SmKfcSoBKVuJZS6T2kASbs+xbQJYV/+cg==", null, false, null, "Genc", false, 1, null });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "ID", "AddedBy", "ConcurrencyStamp", "CreatedDate", "Description", "IsDeleted", "ModifiedBy", "ModifiedDate", "Name", "NormalizedName" },
-                values: new object[] { 1, 1, "815266f6-ecb2-4ee4-841b-446fe64f726d", new DateTime(2022, 4, 30, 11, 45, 21, 228, DateTimeKind.Local).AddTicks(5304), "Sistem Admini Full Yetki", false, 1, new DateTime(2022, 4, 30, 11, 45, 21, 228, DateTimeKind.Local).AddTicks(5317), "SysAdmin", "Sistem Admini" });
+                values: new object[] { 1, 1, "44be01ad-d52b-4951-af85-97d5aba11890", new DateTime(2022, 5, 5, 14, 20, 24, 571, DateTimeKind.Local).AddTicks(542), "Sistem Admini Full Yetki", false, 1, new DateTime(2022, 5, 5, 14, 20, 24, 571, DateTimeKind.Local).AddTicks(560), "SysAdmin", "Sistem Admini" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId", "Discriminator", "EndDate", "Id", "IsDeleted", "StartDate" },
+                values: new object[] { 1, 1, "UsersAuthorizationRole", new DateTime(2022, 5, 5, 14, 20, 24, 571, DateTimeKind.Local).AddTicks(571), 0, false, new DateTime(2022, 5, 5, 14, 20, 24, 571, DateTimeKind.Local).AddTicks(570) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Announcements_AddedBy",
@@ -2547,16 +2548,6 @@ namespace GegiCRM.DAL.Migrations
                 name: "IX_AspNetUserLogins_UserId",
                 table: "AspNetUserLogins",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserRoles_AddedBy",
-                table: "AspNetUserRoles",
-                column: "AddedBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserRoles_ModifiedBy",
-                table: "AspNetUserRoles",
-                column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserRoles_RoleId",
@@ -3553,25 +3544,12 @@ namespace GegiCRM.DAL.Migrations
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_UsersAuthorizations_Users",
+                name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                 table: "AspNetUserRoles",
-                column: "UserID",
+                column: "UserId",
                 principalTable: "AspNetUsers",
-                principalColumn: "ID");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_UsersAuthorizations_Users1",
-                table: "AspNetUserRoles",
-                column: "AddedBy",
-                principalTable: "AspNetUsers",
-                principalColumn: "ID");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_UsersAuthorizations_Users2",
-                table: "AspNetUserRoles",
-                column: "ModifiedBy",
-                principalTable: "AspNetUsers",
-                principalColumn: "ID");
+                principalColumn: "ID",
+                onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Users_UserCompanies",
