@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.BLL.ValidationRules
 {
-    public class UserValidator : AbstractValidator<User>
+    public class UserValidator : AbstractValidator<AppUser>
     {
         public UserValidator()
         {

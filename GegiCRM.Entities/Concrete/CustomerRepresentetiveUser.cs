@@ -12,6 +12,6 @@ namespace GegiCRM.Entities.Concrete
         public string Title { get; set; } = null!;
 
         public virtual Customer Customer { get; set; } = null!;
-        public virtual User User { get; set; } = null!;
+        public virtual AppUser User { get; set; } = null!;
     }
 }

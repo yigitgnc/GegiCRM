@@ -1,4 +1,5 @@
-﻿using GegiCRM.DAL.EntityFramework;
+﻿using GegiCRM.BLL.Concrete;
+using GegiCRM.DAL.EntityFramework;
 using GegiCRM.Entities.Concrete;
 using GegiCRM.WebUI.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -11,14 +12,23 @@ namespace GegiCRM.WebUI.Controllers
     public class LoginRegisterController : Controller
     {
 
-        private readonly ILogger<HomeController> _logger;
-        private readonly SignInManager<User> _signInManager;
+        public readonly ILogger<HomeController> _logger;
+        //private readonly SignInManager<AppUser> _signInManager;
+        //private readonly UserManager<AppUser> _userManager;
+        public readonly AppUserManager _appUserManager;
 
-        public LoginRegisterController(ILogger<HomeController> logger)
+        public LoginRegisterController(AppUserManager appUserManager, ILogger<HomeController> logger)
         {
+            _appUserManager = appUserManager;
             _logger = logger;
         }
 
+        //public LoginRegisterController(SignInManager<AppUser> signInManager, ILogger<HomeController> logger, UserManager<AppUser> userManager)
+        //{
+        //    _signInManager = signInManager;
+        //    _logger = logger;
+        //    _userManager = userManager;
+        //}
 
 
         [Route("Login")]
@@ -28,27 +38,32 @@ namespace GegiCRM.WebUI.Controllers
             return View();
         }
 
+        [Route("Login")]
         [HttpPost]
         public async Task<IActionResult> Login(UserLoginViewModel vm)
         {
 
             if (ModelState.IsValid)
             {
-                BLL.Concrete.UserManager manager = new(new EfUserRepository());
+                //AppUserManager manager = new(new EfUserRepository());
+                //AppUserManager appUserManager = new AppUserManager(_userManager, new EfUserRepository());
                 //todo burayı geriye doğru takip et 
-                if (manager.getuserb)
-                {
-
-                }
+                //if (manager.GetUserByCredentials(vm.Email, vm.Password) == null)
+                //{
+                //    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                //    return View();
+                //}
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, 
                 // set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(vm.Email,
-                                   vm.Password, vm.RememberMe, lockoutOnFailure: true);
+                
+                var user = await _appUserManager._userManager.FindByEmailAsync(vm.Email);
+                var result = await _appUserManager._signInManager.PasswordSignInAsync(user, vm.Password, vm.RememberMe, lockoutOnFailure: true);
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToAction("Index","Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 //we do not have 2factor authentication
                 //if (result.RequiresTwoFactor)
@@ -65,28 +80,65 @@ namespace GegiCRM.WebUI.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Hatalı Giriş Yaptınız !");
                     return View();
                 }
             }
 
             // If we got this far, something failed, redisplay form
 
-            return RedirectToAction("Index", "Home");
-        }
-
-
-
-        public async Task<IActionResult> Logout()
-        {
-            //this is where the logout operations gonna go
-            return RedirectToAction("Login");
+            return View();
         }
 
         [Route("Register")]
         public IActionResult Register()
         {
             return View();
+        }
+
+        [Route("Register")]
+        [HttpPost]
+        public async Task<IActionResult> Register(UserRegisterViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                AppUser user = new AppUser()
+                {
+                    UserCompanyId = 1,
+                    Email = vm.Email,
+                    UserName = vm.UserName,
+                    Name = vm.Name,
+                    Surname = vm.Surname,
+                    PhoneNumber = vm.PhoneNumber,
+                    AddedBy = 1,
+
+                };
+                var result = await _appUserManager._userManager.CreateAsync(user, vm.Password);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    foreach (var item in result.Errors)
+                    {
+
+                        ViewData.ModelState.AddModelError(item.Code, item.Description);
+                    }
+                }
+
+            }
+            return View();
+        }
+
+
+        [Route("Logout")]
+        public async Task<IActionResult> Logout()
+        {
+            //this is where the logout operations gonna go
+            await _appUserManager._signInManager.SignOutAsync();
+            return RedirectToAction("Login");
         }
 
         [Route("ForgotPassword")]

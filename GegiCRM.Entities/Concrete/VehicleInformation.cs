@@ -30,8 +30,8 @@ namespace GegiCRM.Entities.Concrete
         public DateTime? TakipCihaziYenilemeTarihi { get; set; }
         public string? Note { get; set; }
 
-        public virtual User AddedByNavigation { get; set; } = null!;
-        public virtual User ModifiedByNavigation { get; set; } = null!;
+        public virtual AppUser AddedByNavigation { get; set; } = null!;
+        public virtual AppUser ModifiedByNavigation { get; set; } = null!;
         public virtual UserCompany UserCompany { get; set; } = null!;
     }
 }

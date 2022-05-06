@@ -18,7 +18,6 @@ namespace GegiCRM.DAL.Concrete
 
         public static void Seed(this ModelBuilder modelBuilder)
         {
-            IPasswordHasher<IdentityUser> _passwordHasher = new PasswordHasher<IdentityUser>();
 
             UserCompany userCompany = new UserCompany
             {
@@ -26,10 +25,9 @@ namespace GegiCRM.DAL.Concrete
                 CompanyName = "AdminCompany"
             };
 
-            var admin = new User
+            var admin = new AppUser
             {
                 Id = 1,
-                PasswordHash = _passwordHasher.HashPassword(null, "123321"),
                 Name = "Yigit",
                 Surname = "Genc",
                 AddedBy = 1,
@@ -38,6 +36,10 @@ namespace GegiCRM.DAL.Concrete
                 UserCompanyId = 1
 
             };
+
+
+            IPasswordHasher<AppUser> _passwordHasher = new PasswordHasher<AppUser>();
+            admin.PasswordHash = _passwordHasher.HashPassword(admin, "123321");
 
             AuthorizationsRole sysAdminRole = new AuthorizationsRole()
             {
@@ -72,7 +74,7 @@ namespace GegiCRM.DAL.Concrete
 
                 modelBuilder.Entity<UserCompany>().HasData(userCompany);
 
-                modelBuilder.Entity<User>().HasData(admin);
+                modelBuilder.Entity<AppUser>().HasData(admin);
                 // do the stuff
                 ts.Complete();
 

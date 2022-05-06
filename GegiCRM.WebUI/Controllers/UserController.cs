@@ -9,7 +9,13 @@ namespace GegiCRM.WebUI.Controllers
 {
     public class UserController : Controller
     {
-        readonly UserManager manager = new(new EfUserRepository());
+        readonly AppUserManager manager;
+
+        public UserController(AppUserManager manager)
+        {
+            this.manager = manager;
+        }
+
         public IActionResult Index()
         {
             var data = manager.GetUsersWithAddedOrders();
@@ -17,7 +23,7 @@ namespace GegiCRM.WebUI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddUser(User user)
+        public IActionResult AddUser(AppUser user)
         {
             UserValidator uw = new();
             ValidationResult result = uw.Validate(user);

@@ -16,7 +16,7 @@ namespace GegiCRM.Entities.Abstract
         public int? ModifiedBy { get; set; }
         public bool IsDeleted { get; set; }
 
-        public virtual User AddedByNavigation { get; set; } = null!;
-        public virtual User? ModifiedByNavigation { get; set; } = null!;
+        public virtual AppUser AddedByNavigation { get; set; } = null!;
+        public virtual AppUser? ModifiedByNavigation { get; set; } = null!;
     }
 }

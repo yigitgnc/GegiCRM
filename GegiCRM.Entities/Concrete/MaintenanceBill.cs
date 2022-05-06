@@ -21,9 +21,9 @@ namespace GegiCRM.Entities.Concrete
 
         public virtual Currency Currency { get; set; } = null!;
         public virtual Customer? Customer { get; set; }
-        public virtual User? CustomerRepresentetiveUser { get; set; }
+        public virtual AppUser? CustomerRepresentetiveUser { get; set; }
         public virtual MaintenencePeriod MaintenencePeriod { get; set; } = null!;
         public virtual ProductGroup ProductGroup { get; set; } = null!;
-        public virtual User? SellingRepresentetiveUser { get; set; }
+        public virtual AppUser? SellingRepresentetiveUser { get; set; }
     }
 }

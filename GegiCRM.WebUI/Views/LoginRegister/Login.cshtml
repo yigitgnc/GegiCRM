@@ -2,18 +2,22 @@
     Layout = "_LayoutLoginRegister";
     ViewData["title"] = "Giriş Yap";
 }
+@model UserLoginViewModel
 
 <div class="text-center">
     <h4 class="mb-2">Giriş Yap</h4>
     <p class="mb-4 text-lighter text-muted">Kaydınız Onaylanana Kadar Hesabınız Aktif Olmayacaktır.</p>
 </div>
+<div id="errorList" class="text-danger" asp-validation-summary=All>
+</div>
 <form id="formAuthentication" class="mb-3" method="POST">
+    @*<span asp-validation-for="Email"></span>*@
     <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="text"
+        <input asp-for="Email" type="text"
                class="form-control"
                id="email"
-               name="email-username"
+               name="email"
                placeholder="Email Adresiniz"
                autofocus />
     </div>
@@ -24,8 +28,9 @@
                 <small>Şifremi Unuttum</small>
             </a>
         </div>
+        @*<span asp-validation-for="Password"></span>*@
         <div class="input-group input-group-merge">
-            <input type="password"
+            <input asp-for="Password" type="password"
                    id="password"
                    class="form-control"
                    name="password"
@@ -34,9 +39,10 @@
             <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
         </div>
     </div>
+    <span asp-validation-for="RememberMe"></span>
     <div class="mb-3">
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="remember-me" />
+            <input asp-for=RememberMe class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" />
             <label class="form-check-label" for="remember-me"> Beni Hatırla </label>
         </div>
     </div>

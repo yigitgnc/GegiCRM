@@ -20,7 +20,7 @@ namespace GegiCRM.Entities.Concrete
         public string? MudahaleEdilenModel { get; set; }
 
         public virtual Customer Customer { get; set; } = null!;
-        public virtual User ServicePersonalUserNavigation { get; set; } = null!;
+        public virtual AppUser ServicePersonalUserNavigation { get; set; } = null!;
         public virtual ServicePlace ServicePlace { get; set; } = null!;
         public virtual ServiceReason ServiceReason { get; set; } = null!;
         public virtual ServiceType ServiceType { get; set; } = null!;

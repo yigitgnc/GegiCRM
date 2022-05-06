@@ -11,15 +11,15 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.DAL.EntityFramework
 {
-    public class EfUserRepository : GenericRepository<User>, IUserDal
+    public class EfUserRepository : GenericRepository<AppUser>, IAppUserDal
     {
-        public User? GetUserByLoginInformations(string email, string passwordHash)
+        public AppUser? GetUserByLoginInformations(string email, string passwordHash)
         {
             using var c = new Context();
             return c.Users.FirstOrDefault(x => x.Email == email && x.PasswordHash == passwordHash);
         }
 
-        public List<User> GetUsersWithAddedOrders()
+        public List<AppUser> GetUsersWithAddedOrders()
         {
             using (Context c = new Context())
             {
@@ -29,7 +29,7 @@ namespace GegiCRM.DAL.EntityFramework
             //return c.Users.ToList();
         }
 
-        public List<User> GetUsersWithModifiedOrders()
+        public List<AppUser> GetUsersWithModifiedOrders()
         {
             throw new NotImplementedException();
         }

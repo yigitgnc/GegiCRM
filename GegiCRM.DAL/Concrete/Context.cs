@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace GegiCRM.DAL.Concrete
 {
-    public partial class Context : IdentityDbContext<User,AuthorizationsRole,int>
+    public partial class Context : IdentityDbContext<AppUser,AuthorizationsRole,int>
     {
         public Context()
         {
@@ -2150,7 +2150,7 @@ namespace GegiCRM.DAL.Concrete
                     .HasConstraintName("FK_SuppliersPayments_SupplierPaymentStatuses");
             });
 
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<AppUser>(entity =>
             {
                 entity.Property(e => e.Id)
                     .HasColumnName("ID");

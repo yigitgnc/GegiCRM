@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public partial class User : IdentityUser<int>, IBaseEntity<int>
+    public partial class AppUser : IdentityUser<int>, IBaseEntity<int>
     {
-        public User()
+        public AppUser()
         {
             AuthorizationsRoleAddedByNavigations = new HashSet<AuthorizationsRole>();
             AuthorizationsRoleModifiedByNavigations = new HashSet<AuthorizationsRole>();
@@ -45,8 +45,8 @@ namespace GegiCRM.Entities.Concrete
             EmailTemplateModifiedByNavigations = new HashSet<EmailTemplate>();
             ExpansionAddedByNavigations = new HashSet<Expansion>();
             ExpansionModifiedByNavigations = new HashSet<Expansion>();
-            InverseAddedByNavigation = new HashSet<User>();
-            InverseModifiedByNavigation = new HashSet<User>();
+            InverseAddedByNavigation = new HashSet<AppUser>();
+            InverseModifiedByNavigation = new HashSet<AppUser>();
             MaintenanceBillAddedByNavigations = new HashSet<MaintenanceBill>();
             MaintenanceBillCustomerRepresentetiveUsers = new HashSet<MaintenanceBill>();
             MaintenanceBillModifiedByNavigations = new HashSet<MaintenanceBill>();
@@ -173,8 +173,8 @@ namespace GegiCRM.Entities.Concrete
         public virtual ICollection<EmailTemplate> EmailTemplateModifiedByNavigations { get; set; }
         public virtual ICollection<Expansion> ExpansionAddedByNavigations { get; set; }
         public virtual ICollection<Expansion> ExpansionModifiedByNavigations { get; set; }
-        public virtual ICollection<User> InverseAddedByNavigation { get; set; }
-        public virtual ICollection<User> InverseModifiedByNavigation { get; set; }
+        public virtual ICollection<AppUser> InverseAddedByNavigation { get; set; }
+        public virtual ICollection<AppUser> InverseModifiedByNavigation { get; set; }
         public virtual ICollection<MaintenanceBill> MaintenanceBillAddedByNavigations { get; set; }
         public virtual ICollection<MaintenanceBill> MaintenanceBillCustomerRepresentetiveUsers { get; set; }
         public virtual ICollection<MaintenanceBill> MaintenanceBillModifiedByNavigations { get; set; }
@@ -247,7 +247,7 @@ namespace GegiCRM.Entities.Concrete
         public int AddedBy { get; set; }
         public int? ModifiedBy { get; set; }
         public bool IsDeleted { get; set; }
-        public virtual User AddedByNavigation { get; set; }
-        public virtual User? ModifiedByNavigation { get; set; }
+        public virtual AppUser AddedByNavigation { get; set; }
+        public virtual AppUser? ModifiedByNavigation { get; set; }
     }
 }

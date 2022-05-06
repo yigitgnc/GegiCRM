@@ -11,6 +11,6 @@ namespace GegiCRM.Entities.Concrete
         public bool IsResponsible { get; set; }
 
         public virtual Department Department { get; set; } = null!;
-        public virtual User User { get; set; } = null!;
+        public virtual AppUser User { get; set; } = null!;
     }
 }

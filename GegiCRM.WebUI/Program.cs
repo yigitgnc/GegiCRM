@@ -1,4 +1,7 @@
+using GegiCRM.BLL.Concrete;
+using GegiCRM.DAL.Abstract;
 using GegiCRM.DAL.Concrete;
+using GegiCRM.DAL.EntityFramework;
 using GegiCRM.Entities.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -11,22 +14,25 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSession();
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Context>();
+builder.Services.AddScoped<IAppUserDal, EfUserRepository>();
+builder.Services.AddScoped <AppUserManager>();
+//builder.Services.AddTransient<IAppUserDal,>();
 
 
 
-builder.Services.AddIdentity<User, AuthorizationsRole>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentity<AppUser, AuthorizationsRole>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<Context>();
 builder.Services.AddRazorPages();
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
     // Password settings.
-    options.Password.RequireDigit = true;
-    options.Password.RequireLowercase = true;
-    options.Password.RequireNonAlphanumeric = true;
-    options.Password.RequireUppercase = true;
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
     options.Password.RequiredLength = 6;
-    options.Password.RequiredUniqueChars = 1;
+    options.Password.RequiredUniqueChars = 0;
 
     // Lockout settings.
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
@@ -34,9 +40,8 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Lockout.AllowedForNewUsers = true;
 
     // User settings.
-    options.User.AllowedUserNameCharacters =
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-    options.User.RequireUniqueEmail = false;
+    //options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+    options.User.RequireUniqueEmail = true;
 });
 
 builder.Services.ConfigureApplicationCookie(options =>
@@ -68,9 +73,10 @@ app.UseStatusCodePagesWithReExecute("/Error/", "?statusCode={0}");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseAuthentication();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

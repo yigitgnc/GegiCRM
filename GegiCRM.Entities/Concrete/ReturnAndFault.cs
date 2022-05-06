@@ -17,6 +17,6 @@ namespace GegiCRM.Entities.Concrete
         public int? CurrentStateId { get; set; }
 
         public virtual ReturnAndFaultState? CurrentState { get; set; }
-        public virtual User RepresentitveUserNavigation { get; set; } = null!;
+        public virtual AppUser RepresentitveUserNavigation { get; set; } = null!;
     }
 }
