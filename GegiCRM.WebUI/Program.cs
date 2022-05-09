@@ -1,8 +1,10 @@
+using AutoMapper;
 using GegiCRM.BLL.Concrete;
 using GegiCRM.DAL.Abstract;
 using GegiCRM.DAL.Concrete;
 using GegiCRM.DAL.EntityFramework;
 using GegiCRM.Entities.Concrete;
+using GegiCRM.WebUI.Mappings;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -16,17 +18,17 @@ builder.Services.AddSession();
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Context>();
 
-//contexten set ettik ubraya çýkarmadýk
-//builder.Services.AddDbContext<Context>(options =>
-//{
-//    options.UseTriggers(triggerOptions => {
-//        triggerOptions.AddAssemblyTriggers();
-//    });
-//});
-
 builder.Services.AddScoped<IAppUserDal, EfUserRepository>();
-builder.Services.AddScoped <AppUserManager>();
-//builder.Services.AddTransient<IAppUserDal,>();
+builder.Services.AddScoped<AppUserManager>();
+
+// Auto Mapper Configurations
+var mapperConfig = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new MappingProfile());
+});
+
+IMapper mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 
 

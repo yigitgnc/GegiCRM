@@ -121,7 +121,14 @@ namespace GegiCRM.Entities.Concrete
         //public string Email { get; set; } = null!;
         public string? Name { get; set; }
         public string? Surname { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public int AddedBy { get; set; }
+        public int? ModifiedBy { get; set; }
+        public bool IsDeleted { get; set; }
+        public string? ProfilePictureUrl { get; set; }
 
+        #region virtuals
         public virtual UserCompany UserCompany { get; set; } = null!;
         public virtual ICollection<Announcement> AnnouncementsAddedByNavigations { get; set; }
         public virtual ICollection<Announcement> AnnouncementsModifiedByNavigations { get; set; }
@@ -242,12 +249,14 @@ namespace GegiCRM.Entities.Concrete
         public virtual ICollection<WarrantyTracking> WarrantyTrackingModifiedByNavigations { get; set; }
         public virtual ICollection<WorkStandart> WorkStandartAddedByNavigations { get; set; }
         public virtual ICollection<WorkStandart> WorkStandartModifiedByNavigations { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime? ModifiedDate { get; set; }
-        public int AddedBy { get; set; }
-        public int? ModifiedBy { get; set; }
-        public bool IsDeleted { get; set; }
         public virtual AppUser AddedByNavigation { get; set; }
         public virtual AppUser? ModifiedByNavigation { get; set; }
+
+        #endregion
+
+        public override string ToString()
+        {
+            return $"({Name} {Surname} <{Email}>)";
+        }
     }
 }

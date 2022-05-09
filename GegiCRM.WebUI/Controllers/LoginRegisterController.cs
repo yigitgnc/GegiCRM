@@ -62,7 +62,7 @@ namespace GegiCRM.WebUI.Controllers
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    _logger.LogInformation($"[{user}] logged in.");
                     return RedirectToAction("Index", "Home");
                 }
                 //we do not have 2factor authentication
@@ -75,7 +75,7 @@ namespace GegiCRM.WebUI.Controllers
                 //}
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
+                    _logger.LogWarning($"[{user}] account locked out.");
                     return RedirectToPage("./Lockout");
                 }
                 else
@@ -137,7 +137,9 @@ namespace GegiCRM.WebUI.Controllers
         public async Task<IActionResult> Logout()
         {
             //this is where the logout operations gonna go
+            AppUser user = await _appUserManager._userManager.GetUserAsync(User);
             await _appUserManager._signInManager.SignOutAsync();
+            _logger.LogWarning($"[{user}] account logged out.");
             return RedirectToAction("Login");
         }
 
