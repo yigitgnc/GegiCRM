@@ -6,6 +6,7 @@ using GegiCRM.Entities.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSession();
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Context>();
+
+//contexten set ettik ubraya çýkarmadýk
+//builder.Services.AddDbContext<Context>(options =>
+//{
+//    options.UseTriggers(triggerOptions => {
+//        triggerOptions.AddAssemblyTriggers();
+//    });
+//});
+
 builder.Services.AddScoped<IAppUserDal, EfUserRepository>();
 builder.Services.AddScoped <AppUserManager>();
 //builder.Services.AddTransient<IAppUserDal,>();

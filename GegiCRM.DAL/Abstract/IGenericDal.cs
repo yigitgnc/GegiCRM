@@ -13,7 +13,7 @@ namespace GegiCRM.DAL.Abstract
         void Delete(T t);
         void Update(T t);
         List<T> GetListAll();
-        T GetByID(int id);
+        T? GetByID(int id);
         List<T> ListByFilter(Expression<Func<T, bool>> filter);
     }
 }

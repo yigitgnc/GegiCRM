@@ -22,14 +22,14 @@ namespace GegiCRM.DAL.Repositories
         public void Update(T t)
         {
             using var c = new Context();
-            c.Update(SetLastModifed(t));
+            c.Update(t);
             c.SaveChanges();
         }
 
         public void Delete(T t)
         {
             using var c = new Context();
-            c.Remove(SetLastModifed(t));
+            c.Remove(t);
             c.SaveChanges();
         }
 
@@ -52,18 +52,5 @@ namespace GegiCRM.DAL.Repositories
         }
 
 
-        private static T SetLastModifed(T tEntity)
-        {
-            int id = 1;//todo: identity den Current Userin idsini alcaz burda
-
-            var LastModProp = tEntity.GetType().GetProperty("ModifiedBy");
-            if (LastModProp != null)
-            {
-                tEntity.GetType()
-                    .GetProperty("ModifiedBy")
-                    .SetValue(tEntity, id);
-            }
-            return tEntity;
-        }
     }
 }

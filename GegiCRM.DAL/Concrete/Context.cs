@@ -90,6 +90,9 @@ namespace GegiCRM.DAL.Concrete
                 optionsBuilder.UseSqlServer("Server=.;Database=GegiCRM_DB;Trusted_Connection=True;");
                 optionsBuilder.UseLazyLoadingProxies();
             }
+            optionsBuilder.UseTriggers(triggerOptions => {
+                triggerOptions.AddAssemblyTriggers();
+            });
             optionsBuilder.EnableSensitiveDataLogging(true);
         }
 

@@ -3,10 +3,12 @@ using GegiCRM.BLL.Concrete;
 using GegiCRM.BLL.ValidationRules;
 using GegiCRM.DAL.EntityFramework;
 using GegiCRM.Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GegiCRM.WebUI.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         readonly AppUserManager manager;
@@ -35,11 +37,20 @@ namespace GegiCRM.WebUI.Controllers
             {
                 foreach (var item in result.Errors)
                 {
-                    ModelState.AddModelError(item.PropertyName,item.ErrorMessage);
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
 
             return View();
+        }
+
+        public IActionResult Test()
+        {
+            var data = manager.GetAll().FirstOrDefault();
+            data.Name = data.Name;
+            manager.Delete(data);
+
+            return null;
         }
     }
 }
