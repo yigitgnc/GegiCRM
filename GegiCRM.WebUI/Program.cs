@@ -32,7 +32,7 @@ builder.Services.AddSingleton(mapper);
 
 
 
-builder.Services.AddIdentity<AppUser, AuthorizationsRole>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentity<AppUser, AppAuthorizationsRole>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<Context>();
 builder.Services.AddRazorPages();
 

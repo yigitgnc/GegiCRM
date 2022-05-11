@@ -11,11 +11,9 @@ namespace GegiCRM.Entities.Concrete
             BankInformations = new HashSet<BankInformation>();
         }
 
-        
         public bool IsDeleted { get; set; }
         public string BankName { get; set; } = null!;
         public string? BankDescirption { get; set; }
-
         public virtual ICollection<BankInformation> BankInformations { get; set; }
     }
 }

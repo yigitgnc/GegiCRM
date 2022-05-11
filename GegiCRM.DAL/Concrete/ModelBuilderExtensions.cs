@@ -43,8 +43,8 @@ namespace GegiCRM.DAL.Concrete
                 Email = "yigit.genc@gegi.com.tr",
                 EmailConfirmed = true,
                 //PasswordHash = "AQAAAAEAACcQAAAAECfiMoHhbnI/neKUjyDEx6fu+DLj1u3PlUAOSXrNffogmOGDopoGhxMzQMqIM0j76g==",
-                SecurityStamp = "VNB3UOQL5J2LFDAPPGL77YP643TINIZA",
-                ConcurrencyStamp = "fb0be773-2b9d-4ad3-93a7-30a8fdf00c8a",
+                //SecurityStamp = "VNB3UOQL5J2LFDAPPGL77YP643TINIZA",
+                //ConcurrencyStamp = "fb0be773-2b9d-4ad3-93a7-30a8fdf00c8a",
                 PhoneNumber = "+905382630008",
                 TwoFactorEnabled = false,
                 LockoutEnd = null,
@@ -55,11 +55,10 @@ namespace GegiCRM.DAL.Concrete
             };
 
             IPasswordHasher<AppUser> _passwordHasher = new PasswordHasher<AppUser>();
-
             admin.PasswordHash = _passwordHasher.HashPassword(admin, "123321");
 
             //_passwordHasher.VerifyHashedPassword()    
-            AuthorizationsRole sysAdminRole = new AuthorizationsRole()
+            AppAuthorizationsRole sysAdminRole = new AppAuthorizationsRole()
             {
                 Id = 1,
                 AddedBy = 1,
@@ -69,18 +68,26 @@ namespace GegiCRM.DAL.Concrete
                 Name = "SysAdmin",
                 Description = "Sistem Admini Full Yetki",
                 NormalizedName = "Sistem Admini",
+                RoleGroupId = 1,
+            };
+
+            AppAuthorizationRoleGroup sysAuthorizationRoleGroup = new AppAuthorizationRoleGroup()
+            {
+                Id = 1,
+                AddedBy = 1,
+                Name = "Admin Role Grubu",
+                Description = "Admin Rollerinin Bulunduğu Grup"
 
             };
 
 
-            var roleRelation = new UsersAuthorizationRole()
+            var roleRelation = new AppUsersAuthorizationRole()
             {
-
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddYears(10),
                 UserId = 1,
                 RoleId = 1,
-                //AddedBy = 1,
+                AddedBy = 1,
             };
 
 
@@ -96,9 +103,10 @@ namespace GegiCRM.DAL.Concrete
                 // do the stuff
                 ts.Complete();
 
-                modelBuilder.Entity<AuthorizationsRole>().HasData(sysAdminRole);
+                modelBuilder.Entity<AppAuthorizationsRole>().HasData(sysAdminRole);
+                modelBuilder.Entity<AppAuthorizationRoleGroup>().HasData(sysAuthorizationRoleGroup);
 
-                modelBuilder.Entity<UsersAuthorizationRole>().HasData(roleRelation);
+                modelBuilder.Entity<AppUsersAuthorizationRole>().HasData(roleRelation);
             }
 
         }

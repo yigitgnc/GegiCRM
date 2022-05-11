@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.DAL.EntityFramework
 {
-    public class EfAuthorizationsRoleRepository : GenericRepository<AuthorizationsRole>, IAuthorizationsRoleDal
+    public class EfAuthorizationsRoleRepository : GenericRepository<AppAuthorizationsRole>, IAuthorizationsRoleDal
     {
     }
 }

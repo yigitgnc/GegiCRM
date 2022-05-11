@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.DAL.Abstract
 {
-    public interface IAuthorizationsRoleDal : IGenericDal<AuthorizationsRole>
+    public interface IAuthorizationsRoleDal : IGenericDal<AppAuthorizationsRole>
     {
     }
 }
