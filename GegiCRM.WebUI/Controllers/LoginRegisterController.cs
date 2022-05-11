@@ -40,49 +40,49 @@ namespace GegiCRM.WebUI.Controllers
 
         [Route("Login")]
         [HttpPost]
-        public async Task<IActionResult> Login(UserLoginViewModel vm)
+        public async Task<IActionResult> Login(UserLoginViewModel vm, string? returnUrl)
         {
 
             if (ModelState.IsValid)
             {
-                //AppUserManager manager = new(new EfUserRepository());
-                //AppUserManager appUserManager = new AppUserManager(_userManager, new EfUserRepository());
-                //todo burayı geriye doğru takip et 
-                //if (manager.GetUserByCredentials(vm.Email, vm.Password) == null)
-                //{
-                //    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                //    return View();
-                //}
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, 
-                // set lockoutOnFailure: true
-                
-                var user = await _appUserManager._userManager.FindByEmailAsync(vm.Email);
-                var result = await _appUserManager._signInManager.PasswordSignInAsync(user, vm.Password, vm.RememberMe, lockoutOnFailure: true);
 
-                if (result.Succeeded)
+                var user = await _appUserManager._userManager.FindByEmailAsync(vm.Email);
+                if (user != null)
                 {
-                    _logger.LogInformation($"[{user}] logged in.");
-                    return RedirectToAction("Index", "Home");
-                }
-                //we do not have 2factor authentication
-                //if (result.RequiresTwoFactor)
-                //{
-                //    return RedirectToPage("./LoginWith2fa", new
-                //    {
-                //        RememberMe = Input.RememberMe
-                //    });
-                //}
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning($"[{user}] account locked out.");
-                    return RedirectToPage("./Lockout");
+                    var result = await _appUserManager._signInManager.PasswordSignInAsync(user, vm.Password, vm.RememberMe, lockoutOnFailure: true);
+
+                    if (result.Succeeded)
+                    {
+                        _logger.LogInformation($"[{user}] logged in.");
+                        if (Url.IsLocalUrl(returnUrl))
+                        {
+                            return Redirect(returnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }
+                    else if (result.IsLockedOut)
+                    {
+                        _logger.LogWarning($"[{user}] account locked out.");
+                        return RedirectToPage("./Lockout");
+
+                    }
+                    else if (result.IsNotAllowed)
+                    {
+
+                        ModelState.AddModelError(string.Empty, "Hesap Aktif Değil !");
+                    }
                 }
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Hatalı Giriş Yaptınız !");
-                    return View();
                 }
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Eksik Veya Hatalı Giriş Yaptınız !");
             }
 
             // If we got this far, something failed, redisplay form

@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GegiCRM.WebUI.ViewComponents.UserTopNav
 {
-    public class UserTopNav : ViewComponent
+    public class TopNavUser : ViewComponent
     {
         readonly AppUserManager _appUserManager; 
         private readonly IMapper _mapper;
 
-        public UserTopNav(AppUserManager appUserManager, IMapper mapper)
+        public TopNavUser(AppUserManager appUserManager, IMapper mapper)
         {
             _appUserManager = appUserManager;
             _mapper = mapper;
@@ -20,7 +20,7 @@ namespace GegiCRM.WebUI.ViewComponents.UserTopNav
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var user = await _appUserManager._userManager.GetUserAsync(HttpContext.User);
-            var model = _mapper.Map<UserDto>(user);
+            var model = _mapper.Map<TopNavUserDto>(user);
             return View(model);
         }
     }

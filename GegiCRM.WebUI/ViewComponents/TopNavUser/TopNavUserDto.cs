@@ -1,6 +1,6 @@
 ﻿namespace GegiCRM.WebUI.ViewComponents.UserTopNav
 {
-    public class UserDto
+    public class TopNavUserDto
     {
         public string Name { get; set; }
         public string Surname { get; set; }

@@ -4,6 +4,7 @@ using GegiCRM.DAL.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GegiCRM.DAL.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220510151636_seedtest2")]
+    partial class seedtest2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -181,20 +183,20 @@ namespace GegiCRM.DAL.Migrations
                             Id = 1,
                             AccessFailedCount = 0,
                             AddedBy = 1,
-                            ConcurrencyStamp = "fb0be773-2b9d-4ad3-93a7-30a8fdf00c8a",
-                            CreatedDate = new DateTime(2022, 5, 10, 18, 31, 15, 63, DateTimeKind.Local).AddTicks(1693),
+                            ConcurrencyStamp = "",
+                            CreatedDate = new DateTime(2022, 5, 10, 18, 16, 34, 885, DateTimeKind.Local).AddTicks(3077),
                             Email = "yigit.genc@gegi.com.tr",
                             EmailConfirmed = true,
                             IsDeleted = false,
                             LockoutEnabled = false,
-                            ModifiedDate = new DateTime(2022, 5, 10, 18, 31, 15, 63, DateTimeKind.Local).AddTicks(1708),
+                            ModifiedDate = new DateTime(2022, 5, 10, 18, 16, 34, 885, DateTimeKind.Local).AddTicks(3093),
                             Name = "Yiğit",
-                            NormalizedEmail = "YIGIT.GENC@GEGI.COM.TR",
+                            NormalizedEmail = "YIGIT.GENC.GEGI.COM.TR",
                             NormalizedUserName = "ADMINYGT",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMgLVazMvF/fnp+CBVafvIcXns9hQyvKN64i/IZgi+vLeaOMjTL2OWKQRCC/U+Wlsg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECEPCJQv58/gxlI1NQ0QvEFT2nCS4ktwWm8GYQN5VDoz69O3LHCxQLF5IXBkw7nvuQ==",
                             PhoneNumber = "+905382630008",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "VNB3UOQL5J2LFDAPPGL77YP643TINIZA",
+                            SecurityStamp = "",
                             Surname = "Genç",
                             TwoFactorEnabled = false,
                             UserCompanyId = 1,
@@ -263,12 +265,12 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 1,
                             AddedBy = 1,
-                            ConcurrencyStamp = "c9549a40-0018-4657-872f-4e7e4d4ba61c",
-                            CreatedDate = new DateTime(2022, 5, 10, 18, 31, 15, 65, DateTimeKind.Local).AddTicks(5356),
+                            ConcurrencyStamp = "46db4753-ca38-4741-a0d9-5acd56a36010",
+                            CreatedDate = new DateTime(2022, 5, 10, 18, 16, 34, 886, DateTimeKind.Local).AddTicks(8872),
                             Description = "Sistem Admini Full Yetki",
                             IsDeleted = false,
                             ModifiedBy = 1,
-                            ModifiedDate = new DateTime(2022, 5, 10, 18, 31, 15, 65, DateTimeKind.Local).AddTicks(5391),
+                            ModifiedDate = new DateTime(2022, 5, 10, 18, 16, 34, 886, DateTimeKind.Local).AddTicks(8874),
                             Name = "SysAdmin",
                             NormalizedName = "Sistem Admini"
                         });
@@ -3862,9 +3864,9 @@ namespace GegiCRM.DAL.Migrations
                         {
                             UserId = 1,
                             RoleId = 1,
-                            EndDate = new DateTime(2032, 5, 10, 18, 31, 15, 65, DateTimeKind.Local).AddTicks(5412),
+                            EndDate = new DateTime(2032, 5, 10, 18, 16, 34, 886, DateTimeKind.Local).AddTicks(8880),
                             IsDeleted = false,
-                            StartDate = new DateTime(2022, 5, 10, 18, 31, 15, 65, DateTimeKind.Local).AddTicks(5411)
+                            StartDate = new DateTime(2022, 5, 10, 18, 16, 34, 886, DateTimeKind.Local).AddTicks(8878)
                         });
                 });
 

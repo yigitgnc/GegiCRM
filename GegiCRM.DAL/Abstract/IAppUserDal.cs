@@ -12,6 +12,6 @@ namespace GegiCRM.DAL.Abstract
         List<AppUser> GetUsersWithAddedOrders();
         List<AppUser> GetUsersWithModifiedOrders();
 
-        AppUser? GetUserByLoginInformations(string email, string passwordHash);
+        AppUser? GetUserByEmail(string email);
     }
 }

@@ -10,7 +10,7 @@ namespace GegiCRM.WebUI.Mappings
         public MappingProfile()
         {
             // Add as many of these lines as you need to map your objects
-            CreateMap<AppUser, UserDto>();
+            CreateMap<AppUser, TopNavUserDto>();
         }
     }
 }

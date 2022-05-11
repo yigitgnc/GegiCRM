@@ -14,10 +14,15 @@ namespace GegiCRM.DAL.EntityFramework
 {
     public class EfUserRepository : GenericRepository<AppUser>, IAppUserDal
     {
-        public AppUser? GetUserByLoginInformations(string email, string passwordHash)
+        public AppUser? GetUserByEmail(string email)
         {
             using var c = new Context();
-            return c.Users.FirstOrDefault(x => x.Email == email && x.PasswordHash == passwordHash);
+            return c.Users.FirstOrDefault(x => x.Email == email);
+        }
+
+        public AppUser? GetUserByEmail(string email, string passwordHash)
+        {
+            throw new NotImplementedException();
         }
 
         public List<AppUser> GetUsersWithAddedOrders()

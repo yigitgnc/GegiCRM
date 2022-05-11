@@ -174,8 +174,4 @@
     <ProjectReference Include="..\GegiCRM.Entities\GegiCRM.Entities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Register\" />
-  </ItemGroup>
-
 </Project>

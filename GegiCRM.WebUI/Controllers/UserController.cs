@@ -4,6 +4,7 @@ using GegiCRM.BLL.ValidationRules;
 using GegiCRM.DAL.EntityFramework;
 using GegiCRM.Entities.Concrete;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GegiCRM.WebUI.Controllers
@@ -12,10 +13,12 @@ namespace GegiCRM.WebUI.Controllers
     public class UserController : Controller
     {
         readonly AppUserManager manager;
+        readonly UserManager<AppUser> userManager;
 
-        public UserController(AppUserManager manager)
+        public UserController(AppUserManager manager, UserManager<AppUser> userManager)
         {
             this.manager = manager;
+            this.userManager = userManager;
         }
 
         public IActionResult Index()
@@ -44,13 +47,18 @@ namespace GegiCRM.WebUI.Controllers
             return View();
         }
 
-        public IActionResult Test()
+        public async Task Test()
         {
-            var data = manager.GetAll().FirstOrDefault();
-            data.Name = data.Name;
-            manager.Delete(data);
+            var user = manager.GetUserByEmail("yigit.genc@gegi.com.tr");
+            var user2 = await userManager.FindByEmailAsync("yigit.genc.gegi.com.tr");
+            var result = await manager._userManager.CreateAsync(user, "123321");
+            if (result.Succeeded)
+            {
 
-            return null;
+            }
+            var can = await manager._signInManager.CanSignInAsync(user);
+
+            //return null;
         }
     }
 }

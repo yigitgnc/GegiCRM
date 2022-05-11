@@ -4,6 +4,7 @@ using GegiCRM.DAL.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GegiCRM.DAL.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220510080002_AppUserSeedTesting")]
+    partial class AppUserSeedTesting
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -181,24 +183,24 @@ namespace GegiCRM.DAL.Migrations
                             Id = 1,
                             AccessFailedCount = 0,
                             AddedBy = 1,
-                            ConcurrencyStamp = "fb0be773-2b9d-4ad3-93a7-30a8fdf00c8a",
-                            CreatedDate = new DateTime(2022, 5, 10, 18, 31, 15, 63, DateTimeKind.Local).AddTicks(1693),
+                            ConcurrencyStamp = "32969d02-9921-48eb-a72b-78b51a63b45f",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "yigit.genc@gegi.com.tr",
                             EmailConfirmed = true,
                             IsDeleted = false,
                             LockoutEnabled = false,
-                            ModifiedDate = new DateTime(2022, 5, 10, 18, 31, 15, 63, DateTimeKind.Local).AddTicks(1708),
-                            Name = "Yiğit",
-                            NormalizedEmail = "YIGIT.GENC@GEGI.COM.TR",
-                            NormalizedUserName = "ADMINYGT",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMgLVazMvF/fnp+CBVafvIcXns9hQyvKN64i/IZgi+vLeaOMjTL2OWKQRCC/U+Wlsg==",
+                            ModifiedBy = 1,
+                            Name = "Yigit",
+                            NormalizedEmail = "ADMINYGT",
+                            NormalizedUserName = "YIGIT.GENC.GEGI.COM.TR",
+                            PasswordHash = "AQAAAAEAACcQAAAAEN2Kx7URYKPkyAY+c918AdmAS4aXJNKLp6tE1cH1A8m5Y+moWamezJEKeOJ0EYj3yQ==",
                             PhoneNumber = "+905382630008",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "VNB3UOQL5J2LFDAPPGL77YP643TINIZA",
-                            Surname = "Genç",
+                            SecurityStamp = "c5693665-3cf2-4806-8e72-3d8f34e102bf",
+                            Surname = "Genc",
                             TwoFactorEnabled = false,
                             UserCompanyId = 1,
-                            UserName = "AdminYigit"
+                            UserName = "adminYgt"
                         });
                 });
 
@@ -263,12 +265,12 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 1,
                             AddedBy = 1,
-                            ConcurrencyStamp = "c9549a40-0018-4657-872f-4e7e4d4ba61c",
-                            CreatedDate = new DateTime(2022, 5, 10, 18, 31, 15, 65, DateTimeKind.Local).AddTicks(5356),
+                            ConcurrencyStamp = "3f6bf77b-dbe3-4a47-9879-b55155e30c48",
+                            CreatedDate = new DateTime(2022, 5, 10, 11, 0, 1, 143, DateTimeKind.Local).AddTicks(2530),
                             Description = "Sistem Admini Full Yetki",
                             IsDeleted = false,
                             ModifiedBy = 1,
-                            ModifiedDate = new DateTime(2022, 5, 10, 18, 31, 15, 65, DateTimeKind.Local).AddTicks(5391),
+                            ModifiedDate = new DateTime(2022, 5, 10, 11, 0, 1, 143, DateTimeKind.Local).AddTicks(2547),
                             Name = "SysAdmin",
                             NormalizedName = "Sistem Admini"
                         });
@@ -3862,9 +3864,9 @@ namespace GegiCRM.DAL.Migrations
                         {
                             UserId = 1,
                             RoleId = 1,
-                            EndDate = new DateTime(2032, 5, 10, 18, 31, 15, 65, DateTimeKind.Local).AddTicks(5412),
+                            EndDate = new DateTime(2032, 5, 10, 11, 0, 1, 143, DateTimeKind.Local).AddTicks(2556),
                             IsDeleted = false,
-                            StartDate = new DateTime(2022, 5, 10, 18, 31, 15, 65, DateTimeKind.Local).AddTicks(5411)
+                            StartDate = new DateTime(2022, 5, 10, 11, 0, 1, 143, DateTimeKind.Local).AddTicks(2555)
                         });
                 });
 

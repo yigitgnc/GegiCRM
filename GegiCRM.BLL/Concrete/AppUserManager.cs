@@ -67,9 +67,9 @@ namespace GegiCRM.BLL.Concrete
             return _userDal.GetUsersWithModifiedOrders();
         }
 
-        public AppUser? GetUserByCredentials(string email, string passhash)
+        public AppUser? GetUserByEmail(string email)
         {
-            return _userDal.GetUserByLoginInformations(email, passhash);
+            return _userDal.GetUserByEmail(email);
         }
 
     }

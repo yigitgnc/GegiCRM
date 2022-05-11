@@ -1,5 +1,7 @@
-﻿using GegiCRM.WebUI.Models;
+﻿using GegiCRM.Entities.Concrete;
+using GegiCRM.WebUI.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -13,6 +15,12 @@ namespace GegiCRM.WebUI.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+        }
+
+
+        public IActionResult _SearchPartial()
+        {
+            return PartialView();
         }
 
         public IActionResult Index()
