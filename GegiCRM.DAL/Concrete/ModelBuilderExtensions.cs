@@ -58,7 +58,7 @@ namespace GegiCRM.DAL.Concrete
             admin.PasswordHash = _passwordHasher.HashPassword(admin, "123321");
 
             //_passwordHasher.VerifyHashedPassword()    
-            AppAuthorizationsRole sysAdminRole = new AppAuthorizationsRole()
+            AppIdentityRole sysAdminRole = new AppIdentityRole()
             {
                 Id = 1,
                 AddedBy = 1,
@@ -81,7 +81,7 @@ namespace GegiCRM.DAL.Concrete
             };
 
 
-            var roleRelation = new AppUsersAuthorizationRole()
+            var roleRelation = new AppRolesOfUsers()
             {
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now.AddYears(10),
@@ -103,10 +103,10 @@ namespace GegiCRM.DAL.Concrete
                 // do the stuff
                 ts.Complete();
 
-                modelBuilder.Entity<AppAuthorizationsRole>().HasData(sysAdminRole);
+                modelBuilder.Entity<AppIdentityRole>().HasData(sysAdminRole);
                 modelBuilder.Entity<AppAuthorizationRoleGroup>().HasData(sysAuthorizationRoleGroup);
 
-                modelBuilder.Entity<AppUsersAuthorizationRole>().HasData(roleRelation);
+                modelBuilder.Entity<AppRolesOfUsers>().HasData(roleRelation);
             }
 
         }

@@ -1,4 +1,6 @@
-﻿namespace GegiCRM.WebUI.ViewComponents.UserTopNav
+﻿using GegiCRM.Entities.Concrete;
+
+namespace GegiCRM.WebUI.ViewComponents.UserTopNav
 {
     public class TopNavUserDto
     {
@@ -6,5 +8,7 @@
         public string Surname { get; set; }
         public string ProfilePictureUrl { get; set; }
 
+        public List<AppAuthorizationRoleGroup> userRoleGroups { get; set; }
+        
     }
 }

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.DAL.EntityFramework
 {
-    public class EfUserRepository : GenericRepository<AppUser>, IAppUserDal
+    public class EfAppUserRepository : GenericRepository<AppUser>, IAppUserDal
     {
         public AppUser? GetUserByEmail(string email)
         {

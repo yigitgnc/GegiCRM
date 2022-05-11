@@ -11,11 +11,11 @@ namespace GegiCRM.Entities.Concrete
     {
         public AppAuthorizationRoleGroup()
         {
-            Roles = new HashSet<AppAuthorizationsRole>();
+            Roles = new HashSet<AppIdentityRole>();
         }
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public virtual ICollection<AppAuthorizationsRole> Roles { get; set; }
+        public virtual ICollection<AppIdentityRole> Roles { get; set; }
     }
 }

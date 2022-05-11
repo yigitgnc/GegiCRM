@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class AppUsersAuthorizationRole : IdentityUserRole<int>, IBaseEntity<int>
+    public class AppRolesOfUsers : IdentityUserRole<int>, IBaseEntity<int>
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

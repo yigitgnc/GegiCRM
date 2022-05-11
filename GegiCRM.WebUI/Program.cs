@@ -18,7 +18,7 @@ builder.Services.AddSession();
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Context>();
 
-builder.Services.AddScoped<IAppUserDal, EfUserRepository>();
+builder.Services.AddScoped<IAppUserDal, EfAppUserRepository>();
 builder.Services.AddScoped<AppUserManager>();
 
 // Auto Mapper Configurations
@@ -32,7 +32,7 @@ builder.Services.AddSingleton(mapper);
 
 
 
-builder.Services.AddIdentity<AppUser, AppAuthorizationsRole>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentity<AppUser, AppIdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<Context>();
 builder.Services.AddRazorPages();
 

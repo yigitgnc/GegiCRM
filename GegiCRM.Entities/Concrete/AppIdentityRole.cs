@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class AppAuthorizationsRole : IdentityRole<int>, IBaseEntity<int>
+    public class AppIdentityRole : IdentityRole<int>, IBaseEntity<int>
     {
 
         public bool IsDeleted { get; set; }

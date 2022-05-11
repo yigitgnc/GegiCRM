@@ -9,11 +9,13 @@ namespace GegiCRM.Entities.Concrete
     {
         public AppUser()
         {
-            AppUsersAuthorizationRoleAddedByNavigations = new HashSet<AppUsersAuthorizationRole>();
-            AppUsersAuthorizationRoleModifiedByNavigations = new HashSet<AppUsersAuthorizationRole>();
+            AppRolesOfUsersAddedByNavigations = new HashSet<AppRolesOfUsers>();
+            AppRolesOfUsersModifiedByNavigations = new HashSet<AppRolesOfUsers>();
+            AppAuthorizationRoleGroupAddedByNavigations = new HashSet<AppAuthorizationRoleGroup>();
+            AppAuthorizationRoleGroupModifiedByNavigations= new HashSet<AppAuthorizationRoleGroup>();
             //AppUsersAuthorizationRoleUsers = new HashSet<AppUsersAuthorizationRole>();
-            AuthorizationsRoleAddedByNavigations = new HashSet<AppAuthorizationsRole>();
-            AuthorizationsRoleModifiedByNavigations = new HashSet<AppAuthorizationsRole>();
+            AuthorizationsRoleAddedByNavigations = new HashSet<AppIdentityRole>();
+            AuthorizationsRoleModifiedByNavigations = new HashSet<AppIdentityRole>();
             BankAddedByNavigations = new HashSet<Bank>();
             BankModifiedByNavigations = new HashSet<Bank>();
             BankInformationAddedByNavigations = new HashSet<BankInformation>();
@@ -132,13 +134,13 @@ namespace GegiCRM.Entities.Concrete
         public virtual UserCompany UserCompany { get; set; } = null!;
         public virtual ICollection<Announcement> AnnouncementsAddedByNavigations { get; set; }
         public virtual ICollection<Announcement> AnnouncementsModifiedByNavigations { get; set; }
-        public virtual ICollection<AppUsersAuthorizationRole>? AppUsersAuthorizationRoleAddedByNavigations { get; set; }
-        public virtual ICollection<AppUsersAuthorizationRole> AppUsersAuthorizationRoleModifiedByNavigations { get; set; }
-        public virtual ICollection<AppAuthorizationRoleGroup>? AuthorizationRoleGroupAddedByNavigations { get; set; }
-        public virtual ICollection<AppAuthorizationRoleGroup> AuthorizationRoleGroupModifiedByNavigations { get; set; }
+        public virtual ICollection<AppRolesOfUsers>? AppRolesOfUsersAddedByNavigations { get; set; }
+        public virtual ICollection<AppRolesOfUsers> AppRolesOfUsersModifiedByNavigations { get; set; }
+        public virtual ICollection<AppAuthorizationRoleGroup>? AppAuthorizationRoleGroupAddedByNavigations { get; set; }
+        public virtual ICollection<AppAuthorizationRoleGroup> AppAuthorizationRoleGroupModifiedByNavigations { get; set; }
         //public virtual ICollection<AppAppUsersAuthorizationRole> AppUsersAuthorizationRoleUsers { get; set; } 
-        public virtual ICollection<AppAuthorizationsRole> AuthorizationsRoleAddedByNavigations { get; set; }
-        public virtual ICollection<AppAuthorizationsRole> AuthorizationsRoleModifiedByNavigations { get; set; }
+        public virtual ICollection<AppIdentityRole> AuthorizationsRoleAddedByNavigations { get; set; }
+        public virtual ICollection<AppIdentityRole> AuthorizationsRoleModifiedByNavigations { get; set; }
         public virtual ICollection<Bank> BankAddedByNavigations { get; set; }
         public virtual ICollection<Bank> BankModifiedByNavigations { get; set; }
         public virtual ICollection<BankInformation> BankInformationAddedByNavigations { get; set; }

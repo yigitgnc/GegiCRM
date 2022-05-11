@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace GegiCRM.DAL.Concrete
 {
-    public partial class Context : IdentityDbContext<AppUser,AppAuthorizationsRole,int>
+    public partial class Context : IdentityDbContext<AppUser,AppIdentityRole,int>
     {
         public Context()
         {
@@ -19,8 +19,9 @@ namespace GegiCRM.DAL.Concrete
         }
 
         #region DBSets
+        public virtual DbSet<AppRolesOfUsers> AppRolesOfUsers { get; set; } = null!;
         public virtual DbSet<Announcement> Announcements { get; set; } = null!;
-        public virtual DbSet<AppAuthorizationsRole> AuthorizationsRoles { get; set; } = null!;
+        public virtual DbSet<AppIdentityRole> AppIdentityRoles { get; set; } = null!;
         public virtual DbSet<AppAuthorizationRoleGroup> AuthorizationsRoleGroups { get; set; } = null!;
         public virtual DbSet<Bank> Banks { get; set; } = null!;
         public virtual DbSet<BankInformation> BankInformations { get; set; } = null!;
@@ -78,7 +79,6 @@ namespace GegiCRM.DAL.Concrete
         public virtual DbSet<SuppliersPayment> SuppliersPayments { get; set; } = null!;
         //public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<UserCompany> UserCompanies { get; set; } = null!;
-        public virtual DbSet<AppUsersAuthorizationRole> UsersAuthorizationRoles { get; set; } = null!;
         public virtual DbSet<VehicleInformation> VehicleInformations { get; set; } = null!;
         public virtual DbSet<WarrantyTracking> WarrantyTrackings { get; set; } = null!;
         public virtual DbSet<WorkStandart> WorkStandarts { get; set; } = null!;
@@ -128,7 +128,7 @@ namespace GegiCRM.DAL.Concrete
                     .HasConstraintName("FK_Announcements_Users1");
             });
 
-            modelBuilder.Entity<AppAuthorizationsRole>(entity =>
+            modelBuilder.Entity<AppIdentityRole>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
 
@@ -169,13 +169,13 @@ namespace GegiCRM.DAL.Concrete
                 entity.Property(e => e.Name).HasMaxLength(50);
 
                 entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.AuthorizationRoleGroupAddedByNavigations)
+                    .WithMany(p => p.AppAuthorizationRoleGroupAddedByNavigations)
                     .HasForeignKey(d => d.AddedBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_AuthorizationRoleGroups_AddedBy");
 
                 entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.AuthorizationRoleGroupModifiedByNavigations)
+                    .WithMany(p => p.AppAuthorizationRoleGroupModifiedByNavigations)
                     .HasForeignKey(d => d.ModifiedBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_AuthorizationRoleGroup_ModifiedBy");
@@ -2257,7 +2257,7 @@ namespace GegiCRM.DAL.Concrete
                     .HasConstraintName("FK_UserCompanies_Users1");
             });
 
-            modelBuilder.Entity<AppUsersAuthorizationRole>(entity =>
+            modelBuilder.Entity<AppRolesOfUsers>(entity =>
             {
 
                 entity.Property(e => e.CreatedDate)
@@ -2275,13 +2275,13 @@ namespace GegiCRM.DAL.Concrete
                     .HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.AppUsersAuthorizationRoleAddedByNavigations)
+                    .WithMany(p => p.AppRolesOfUsersAddedByNavigations)
                     .HasForeignKey(d => d.AddedBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_UsersAuthorizations_AddedBy");
 
                 entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.AppUsersAuthorizationRoleModifiedByNavigations)
+                    .WithMany(p => p.AppRolesOfUsersModifiedByNavigations)
                     .HasForeignKey(d => d.ModifiedBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_UsersAuthorizations_ModifiedBy");
