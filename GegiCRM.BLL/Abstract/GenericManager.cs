@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GegiCRM.DAL.Abstract;
 using GegiCRM.Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -15,30 +16,55 @@ namespace GegiCRM.BLL.Abstract
         public UserManager<AppUser> _userManager;
         public IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<T> _logger;
-        protected GenericManager(UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor,ILogger<T> logger)
+        readonly IGenericDal<T> _genericDal;
+
+        protected GenericManager(UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor, ILogger<T> logger, IGenericDal<T> genericDal)
         {
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
             _logger = logger;
+            _genericDal = genericDal;
+        }
+
+        public void Create(T t)
+        {
+            t = SetAddedBy(t);
+            _genericDal.Insert(t);
+        }
+        public void Update(T t)
+        {
+            t = SetLastModifiedBy(t);
+            _genericDal.Insert(t);
+        }
+
+        public void Delete(T t)
+        {
+            t = SetLastModifiedBy(t);
+            _genericDal.Delete(t);
         }
 
 
-        public abstract void Create(T t);
-        public abstract void Delete(T t);
-        public abstract void Update(T t);
-        public abstract List<T> GetAll();
-        public abstract T GetById(int id);
 
-        public T SetLastModified(T tEntity)
+        public List<T> GetAll()
+        {
+            return _genericDal.GetListAll();
+        }
+
+        public T GetById(int id)
+        {
+            return _genericDal.GetByID(id);
+        }
+
+        private T SetLastModifiedBy(T tEntity)
         {
             return SetAuditingProperty(tEntity, "ModifiedBy");
         }
-        public T SetAddedBy(T tEntity)
+        private T SetAddedBy(T tEntity)
         {
             return SetAuditingProperty(tEntity, "AddedBy");
         }
 
-        private T SetAuditingProperty(T tEntity,string propertyName)
+        private T SetAuditingProperty(T tEntity, string propertyName)
         {
 
             try

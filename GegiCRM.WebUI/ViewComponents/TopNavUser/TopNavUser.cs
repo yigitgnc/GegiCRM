@@ -9,7 +9,8 @@ namespace GegiCRM.WebUI.ViewComponents.UserTopNav
     public class TopNavUser : ViewComponent
     {
         readonly AppUserManager _appUserManager; 
-        private readonly IMapper _mapper;
+        readonly IMapper _mapper;
+        readonly AppAuthorizationRoleGroupManager _authorizationRoleGroupManager;
 
         public TopNavUser(AppUserManager appUserManager, IMapper mapper)
         {
@@ -21,6 +22,7 @@ namespace GegiCRM.WebUI.ViewComponents.UserTopNav
         {
             var user = await _appUserManager._userManager.GetUserAsync(HttpContext.User);
             var model = _mapper.Map<TopNavUserDto>(user);
+            //model.UsersRoleGroups = 
             return View(model);
         }
     }

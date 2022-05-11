@@ -19,43 +19,22 @@ namespace GegiCRM.BLL.Concrete
 
         public readonly SignInManager<AppUser> _signInManager;
 
-
-        //todo: refactor these fucking public implementations these should be done in here not in controller using _appusermanager._signinmanager alike !
-
-        public AppUserManager(UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor, IAppUserDal userDal, SignInManager<AppUser> signInManager, ILogger<AppUser> logger) : base(userManager, httpContextAccessor, logger)
+        public AppUserManager(IAppUserDal userDal,SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor, ILogger<AppUser> logger, IGenericDal<AppUser> genericDal) : base(userManager, httpContextAccessor, logger, genericDal)
         {
             _userDal = userDal;
             _userManager = userManager;
             _signInManager = signInManager;
         }
 
-        public override void Create(AppUser t)
-        {
-            t = SetAddedBy(t);
-            _userDal.Insert(t);
-        }
 
-        public override void Delete(AppUser t)
-        {
-            t = SetLastModified(t);
-            _userDal.Delete(t);
-        }
+        //todo: refactor these fucking public implementations these should be done in here not in controller using _appusermanager._signinmanager alike !
 
-        public override void Update(AppUser t)
-        {
-            t = SetLastModified(t);
-            _userDal.Update(t);
-        }
-
-        public override List<AppUser> GetAll()
-        {
-            return _userDal.GetListAll();
-        }
-
-        public override AppUser GetById(int id)
-        {
-            return _userDal.GetByID(id);
-        }
+        //public AppUserManager(UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor, IAppUserDal userDal, SignInManager<AppUser> signInManager, ILogger<AppUser> logger) : base(userManager, httpContextAccessor, logger)
+        //{
+        //    _userDal = userDal;
+        //    _userManager = userManager;
+        //    _signInManager = signInManager;
+        //}
 
         public List<AppUser> GetUsersWithAddedOrders()
         {

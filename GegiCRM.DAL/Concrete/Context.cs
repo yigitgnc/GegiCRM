@@ -22,7 +22,7 @@ namespace GegiCRM.DAL.Concrete
         public virtual DbSet<AppRolesOfUsers> AppRolesOfUsers { get; set; } = null!;
         public virtual DbSet<Announcement> Announcements { get; set; } = null!;
         public virtual DbSet<AppIdentityRole> AppIdentityRoles { get; set; } = null!;
-        public virtual DbSet<AppAuthorizationRoleGroup> AuthorizationsRoleGroups { get; set; } = null!;
+        public virtual DbSet<AppAuthorizationRoleGroup> AppAuthorizationsRoleGroups { get; set; } = null!;
         public virtual DbSet<Bank> Banks { get; set; } = null!;
         public virtual DbSet<BankInformation> BankInformations { get; set; } = null!;
         public virtual DbSet<Birim> Birims { get; set; } = null!;

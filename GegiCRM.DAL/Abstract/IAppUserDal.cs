@@ -13,5 +13,7 @@ namespace GegiCRM.DAL.Abstract
         List<AppUser> GetUsersWithModifiedOrders();
 
         AppUser? GetUserByEmail(string email);
+
+
     }
 }

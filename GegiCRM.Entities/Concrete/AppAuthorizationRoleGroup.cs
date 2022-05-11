@@ -13,6 +13,8 @@ namespace GegiCRM.Entities.Concrete
         {
             Roles = new HashSet<AppIdentityRole>();
         }
+
+        public int Priority { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
