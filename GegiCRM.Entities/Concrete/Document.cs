@@ -11,7 +11,6 @@ namespace GegiCRM.Entities.Concrete
         public string? DocumentDescription { get; set; }
         public string? DocumentDownloadPath { get; set; }
         public int? TypeId { get; set; }
-
         public virtual DocumentType? Type { get; set; }
     }
 }

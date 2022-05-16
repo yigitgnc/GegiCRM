@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using GegiCRM.DAL.Abstract;
+using GegiCRM.DAL.Repositories;
 using GegiCRM.Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -11,14 +13,19 @@ using Microsoft.Extensions.Logging;
 
 namespace GegiCRM.BLL.Abstract
 {
-    public abstract class GenericManager<T>
+    public abstract class AbstractGenericManager<T> where T : class
     {
-        public UserManager<AppUser> _userManager;
+        private readonly UserManager<AppUser> _userManager;
         public IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<T> _logger;
         readonly IGenericDal<T> _genericDal;
-
-        protected GenericManager(UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor, ILogger<T> logger, IGenericDal<T> genericDal)
+        //GenericRepository<T> _genericDal = new GenericRepository<T>();
+        public AbstractGenericManager(
+            UserManager<AppUser> userManager,
+            IHttpContextAccessor httpContextAccessor,
+            ILogger<T> logger,
+            IGenericDal<T> genericDal
+            )
         {
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
@@ -42,17 +49,18 @@ namespace GegiCRM.BLL.Abstract
             t = SetLastModifiedBy(t);
             _genericDal.Delete(t);
         }
-
-
-
         public List<T> GetAll()
         {
             return _genericDal.GetListAll();
         }
-
         public T GetById(int id)
         {
             return _genericDal.GetByID(id);
+        }
+
+        public List<T> ListByFilter(Expression<Func<T, bool>> filter)
+        {
+            return _genericDal.ListByFilter(filter);
         }
 
         private T SetLastModifiedBy(T tEntity)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.DAL.Abstract
 {
-    public interface IGenericDal<T> 
+    public interface IGenericDal<T> where T : class
     {
         void Insert(T t);
         void Delete(T t);

@@ -20,7 +20,7 @@
                     </div>
                     <div class="flex-grow-1">
                         <span class="fw-semibold d-block">@Model.Name @Model.Surname</span>
-                        @*<small class="text-muted">@Model.UserCompany.CompanyName</small>*@
+                        <small class="text-muted">@Model.UsersRoleGroups.OrderBy(x=>x.Priority).FirstOrDefault().Name</small>
                     </div>
                 </div>
             </a>

@@ -13,20 +13,18 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.BLL.Concrete
 {
-    public class AppUserManager : GenericManager<AppUser>
+    public class AppUserManager : AbstractGenericManager<AppUser>
     {
-        readonly IAppUserDal _userDal;
-
+        private readonly IAppUserDal _userDal;
+        public readonly UserManager<AppUser> _userManager;
         public readonly SignInManager<AppUser> _signInManager;
 
-        public AppUserManager(IAppUserDal userDal,SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor, ILogger<AppUser> logger, IGenericDal<AppUser> genericDal) : base(userManager, httpContextAccessor, logger, genericDal)
+        public AppUserManager(UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor, ILogger<AppUser> logger, IGenericDal<AppUser> genericDal, IAppUserDal userDal, SignInManager<AppUser> signInManager) : base(userManager, httpContextAccessor, logger, genericDal)
         {
             _userDal = userDal;
             _userManager = userManager;
             _signInManager = signInManager;
         }
-
-
         //todo: refactor these fucking public implementations these should be done in here not in controller using _appusermanager._signinmanager alike !
 
         //public AppUserManager(UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor, IAppUserDal userDal, SignInManager<AppUser> signInManager, ILogger<AppUser> logger) : base(userManager, httpContextAccessor, logger)

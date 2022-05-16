@@ -19,7 +19,7 @@ namespace GegiCRM.Entities.Concrete
 
         public int RoleGroupId { get; set; }
 
-        public virtual AppAuthorizationRoleGroup RoleGroup { get; set; }
+        public virtual AppIdentityRoleGroup RoleGroup { get; set; }
         public virtual AppUser AddedByNavigation { get; set; }
         public virtual AppUser? ModifiedByNavigation { get; set; }
 

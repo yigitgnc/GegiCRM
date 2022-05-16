@@ -16,13 +16,6 @@ namespace GegiCRM.WebUI.Controllers
         {
             _logger = logger;
         }
-
-
-        public IActionResult _SearchPartial()
-        {
-            return PartialView();
-        }
-
         public IActionResult Index()
         {
             return View();

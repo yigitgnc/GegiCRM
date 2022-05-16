@@ -11,8 +11,8 @@ namespace GegiCRM.Entities.Concrete
         {
             AppRolesOfUsersAddedByNavigations = new HashSet<AppRolesOfUsers>();
             AppRolesOfUsersModifiedByNavigations = new HashSet<AppRolesOfUsers>();
-            AppAuthorizationRoleGroupAddedByNavigations = new HashSet<AppAuthorizationRoleGroup>();
-            AppAuthorizationRoleGroupModifiedByNavigations= new HashSet<AppAuthorizationRoleGroup>();
+            AppAuthorizationRoleGroupAddedByNavigations = new HashSet<AppIdentityRoleGroup>();
+            AppAuthorizationRoleGroupModifiedByNavigations= new HashSet<AppIdentityRoleGroup>();
             //AppUsersAuthorizationRoleUsers = new HashSet<AppUsersAuthorizationRole>();
             AuthorizationsRoleAddedByNavigations = new HashSet<AppIdentityRole>();
             AuthorizationsRoleModifiedByNavigations = new HashSet<AppIdentityRole>();
@@ -136,8 +136,8 @@ namespace GegiCRM.Entities.Concrete
         public virtual ICollection<Announcement> AnnouncementsModifiedByNavigations { get; set; }
         public virtual ICollection<AppRolesOfUsers>? AppRolesOfUsersAddedByNavigations { get; set; }
         public virtual ICollection<AppRolesOfUsers> AppRolesOfUsersModifiedByNavigations { get; set; }
-        public virtual ICollection<AppAuthorizationRoleGroup>? AppAuthorizationRoleGroupAddedByNavigations { get; set; }
-        public virtual ICollection<AppAuthorizationRoleGroup> AppAuthorizationRoleGroupModifiedByNavigations { get; set; }
+        public virtual ICollection<AppIdentityRoleGroup>? AppAuthorizationRoleGroupAddedByNavigations { get; set; }
+        public virtual ICollection<AppIdentityRoleGroup> AppAuthorizationRoleGroupModifiedByNavigations { get; set; }
         //public virtual ICollection<AppAppUsersAuthorizationRole> AppUsersAuthorizationRoleUsers { get; set; } 
         public virtual ICollection<AppIdentityRole> AuthorizationsRoleAddedByNavigations { get; set; }
         public virtual ICollection<AppIdentityRole> AuthorizationsRoleModifiedByNavigations { get; set; }

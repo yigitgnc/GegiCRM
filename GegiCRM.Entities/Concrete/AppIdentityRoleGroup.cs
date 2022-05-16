@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class AppAuthorizationRoleGroup : BaseEntity<int>
+    public class AppIdentityRoleGroup : BaseEntity<int>
     {
-        public AppAuthorizationRoleGroup()
+        public AppIdentityRoleGroup()
         {
             Roles = new HashSet<AppIdentityRole>();
         }

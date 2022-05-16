@@ -1,8 +1,10 @@
 using AutoMapper;
+using GegiCRM.BLL.Abstract;
 using GegiCRM.BLL.Concrete;
 using GegiCRM.DAL.Abstract;
 using GegiCRM.DAL.Concrete;
 using GegiCRM.DAL.EntityFramework;
+using GegiCRM.DAL.Repositories;
 using GegiCRM.Entities.Concrete;
 using GegiCRM.WebUI.Mappings;
 using Microsoft.AspNetCore.Authorization;
@@ -19,7 +21,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Context>();
 
 builder.Services.AddScoped<IAppUserDal, EfAppUserRepository>();
+builder.Services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<AppUserManager>();
+builder.Services.AddScoped<IAppIdentityRoleDal, EfAppIdentityRoleRepository>();
+builder.Services.AddScoped<AppIdentityRoleManager>();
 
 // Auto Mapper Configurations
 var mapperConfig = new MapperConfiguration(mc =>
@@ -29,8 +34,6 @@ var mapperConfig = new MapperConfiguration(mc =>
 
 IMapper mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
-
-
 
 builder.Services.AddIdentity<AppUser, AppIdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<Context>();
@@ -65,7 +68,6 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath = "/Identity/Account/AccessDenied";
     options.SlidingExpiration = true;
 });
-
 
 var app = builder.Build();
 

@@ -44,6 +44,7 @@ namespace GegiCRM.DAL.Concrete
                 EmailConfirmed = true,
                 //PasswordHash = "AQAAAAEAACcQAAAAECfiMoHhbnI/neKUjyDEx6fu+DLj1u3PlUAOSXrNffogmOGDopoGhxMzQMqIM0j76g==",
                 //SecurityStamp = "VNB3UOQL5J2LFDAPPGL77YP643TINIZA",
+                SecurityStamp = Guid.NewGuid().ToString(),
                 //ConcurrencyStamp = "fb0be773-2b9d-4ad3-93a7-30a8fdf00c8a",
                 PhoneNumber = "+905382630008",
                 TwoFactorEnabled = false,
@@ -71,7 +72,7 @@ namespace GegiCRM.DAL.Concrete
                 RoleGroupId = 1,
             };
 
-            AppAuthorizationRoleGroup sysAuthorizationRoleGroup = new AppAuthorizationRoleGroup()
+            AppIdentityRoleGroup sysAuthorizationRoleGroup = new AppIdentityRoleGroup()
             {
                 Id = 1,
                 AddedBy = 1,
@@ -104,7 +105,7 @@ namespace GegiCRM.DAL.Concrete
                 ts.Complete();
 
                 modelBuilder.Entity<AppIdentityRole>().HasData(sysAdminRole);
-                modelBuilder.Entity<AppAuthorizationRoleGroup>().HasData(sysAuthorizationRoleGroup);
+                modelBuilder.Entity<AppIdentityRoleGroup>().HasData(sysAuthorizationRoleGroup);
 
                 modelBuilder.Entity<AppRolesOfUsers>().HasData(roleRelation);
             }
