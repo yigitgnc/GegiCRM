@@ -1704,6 +1704,8 @@ namespace GegiCRM.DAL.Concrete
 
             modelBuilder.Entity<SegmentOran>(entity =>
             {
+                //entity.HasKey(e => new { e.Id, e.Oran, e.CurrencyID });
+
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.CreatedDate)
@@ -1711,7 +1713,7 @@ namespace GegiCRM.DAL.Concrete
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.EndPrice).HasColumnType("decimal(18, 2)");
-                
+
                 entity.Property(e => e.Oran).HasColumnType("decimal(18, 2)");
 
                 entity.Property(e => e.ModifiedDate)
