@@ -16,7 +16,7 @@ namespace GegiCRM.BLL.Concrete
     {
         private readonly IAppIdentityRoleDal _appIdentityRoleDal;
 
-        public AppIdentityRoleManager(UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor, ILogger<AppIdentityRole> logger, IGenericDal<AppIdentityRole> genericDal, IAppIdentityRoleDal appIdentityRoleDal) : base(userManager, httpContextAccessor, logger, genericDal)
+        public AppIdentityRoleManager(UserManager<AppUser> userManager, IAppIdentityRoleDal appIdentityRoleDal) : base(userManager, appIdentityRoleDal)
         {
             _appIdentityRoleDal = appIdentityRoleDal;
         }

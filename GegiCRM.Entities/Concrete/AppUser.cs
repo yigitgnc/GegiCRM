@@ -24,6 +24,8 @@ namespace GegiCRM.Entities.Concrete
             BirimModifiedByNavigations = new HashSet<Birim>();
             BrandAddedByNavigations = new HashSet<Brand>();
             BrandModifiedByNavigations = new HashSet<Brand>();
+            CustomerTypeAddedByNavigations = new HashSet<CustomerType>();
+            CustomerTypeModifiedByNavigations = new HashSet<CustomerType>();
             CustomerAddedByNavigations = new HashSet<Customer>();
             CustomerAddressAddedByNavigations = new HashSet<CustomerAddress>();
             CustomerAddressModifiedByNavigations = new HashSet<CustomerAddress>();
@@ -85,6 +87,8 @@ namespace GegiCRM.Entities.Concrete
             RuleModifiedByNavigations = new HashSet<Rule>();
             SegmentAddedByNavigations = new HashSet<Segment>();
             SegmentModifiedByNavigations = new HashSet<Segment>();
+            SectorAddedByNavigations = new HashSet<Sector>();
+            SectorModifiedByNavigations = new HashSet<Sector>();
             SegmentOranAddedByNavigations = new HashSet<SegmentOran>();
             SegmentOranModifiedByNavigations = new HashSet<SegmentOran>();
             SellsAndBuysAssetAddedByNavigations = new HashSet<SellsAndBuysAsset>();
@@ -153,6 +157,8 @@ namespace GegiCRM.Entities.Concrete
         public virtual ICollection<CollectionReceipt> CollectionReceiptModifiedByNavigations { get; set; }
         public virtual ICollection<Currency> CurrencyAddedByNavigations { get; set; }
         public virtual ICollection<Currency> CurrencyModifiedByNavigations { get; set; }
+        public virtual ICollection<CustomerType> CustomerTypeAddedByNavigations { get; set; }
+        public virtual ICollection<CustomerType> CustomerTypeModifiedByNavigations { get; set; }
         public virtual ICollection<Customer> CustomerAddedByNavigations { get; set; }
         public virtual ICollection<CustomerAddress> CustomerAddressAddedByNavigations { get; set; }
         public virtual ICollection<CustomerAddress> CustomerAddressModifiedByNavigations { get; set; }
@@ -222,6 +228,8 @@ namespace GegiCRM.Entities.Concrete
         public virtual ICollection<Rule> RuleModifiedByNavigations { get; set; }
         public virtual ICollection<Segment> SegmentAddedByNavigations { get; set; }
         public virtual ICollection<Segment> SegmentModifiedByNavigations { get; set; }
+        public virtual ICollection<Sector> SectorAddedByNavigations { get; set; }
+        public virtual ICollection<Sector> SectorModifiedByNavigations { get; set; }
         public virtual ICollection<SegmentOran> SegmentOranAddedByNavigations { get; set; }
         public virtual ICollection<SegmentOran> SegmentOranModifiedByNavigations { get; set; }
         public virtual ICollection<SellsAndBuysAsset> SellsAndBuysAssetAddedByNavigations { get; set; }

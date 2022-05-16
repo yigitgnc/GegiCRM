@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GegiCRM.DAL.Migrations
 {
-    public partial class RoleRelationRemovedAddedBy : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,6 +46,26 @@ namespace GegiCRM.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AppAuthorizationsRoleGroups",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Priority = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: false),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppAuthorizationsRoleGroups", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -67,18 +87,25 @@ namespace GegiCRM.DAL.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
                     AddedBy = table.Column<int>(type: "int", nullable: false),
                     ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    RoleGroupId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetRoles", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_AspNetRoles_AppAuthorizationsRoleGroups_RoleGroupId",
+                        column: x => x.RoleGroupId,
+                        principalTable: "AppAuthorizationsRoleGroups",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -117,10 +144,14 @@ namespace GegiCRM.DAL.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     RoleId = table.Column<int>(type: "int", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: true),
                     StartDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
                     EndDate = table.Column<DateTime>(type: "datetime", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: true)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
+                    Id = table.Column<int>(type: "int", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedBy = table.Column<int>(type: "int", nullable: true),
+                    ModifiedBy = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -140,7 +171,6 @@ namespace GegiCRM.DAL.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserCompanyID = table.Column<int>(type: "int", nullable: false),
-                    PassHash = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Surname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
@@ -148,6 +178,7 @@ namespace GegiCRM.DAL.Migrations
                     AddedBy = table.Column<int>(type: "int", nullable: false),
                     ModifiedBy = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    ProfilePictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
@@ -326,22 +357,19 @@ namespace GegiCRM.DAL.Migrations
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     AddedBy = table.Column<int>(type: "int", nullable: false),
                     ModifiedBy = table.Column<int>(type: "int", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    AddedByNavigationId = table.Column<int>(type: "int", nullable: false),
-                    ModifiedByNavigationId = table.Column<int>(type: "int", nullable: true)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CustomerTypes", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_CustomerTypes_AspNetUsers_AddedByNavigationId",
-                        column: x => x.AddedByNavigationId,
+                        name: "FK_CustomerType_AddedBy",
+                        column: x => x.AddedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_CustomerTypes_AspNetUsers_ModifiedByNavigationId",
-                        column: x => x.ModifiedByNavigationId,
+                        name: "FK_CustomerType_ModifiedBy",
+                        column: x => x.ModifiedBy,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -710,22 +738,19 @@ namespace GegiCRM.DAL.Migrations
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
                     AddedBy = table.Column<int>(type: "int", nullable: false),
                     ModifiedBy = table.Column<int>(type: "int", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    AddedByNavigationId = table.Column<int>(type: "int", nullable: false),
-                    ModifiedByNavigationId = table.Column<int>(type: "int", nullable: true)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sectors", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Sectors_AspNetUsers_AddedByNavigationId",
-                        column: x => x.AddedByNavigationId,
+                        name: "FK_Sector_AddedBy",
+                        column: x => x.AddedBy,
                         principalTable: "AspNetUsers",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_Sectors_AspNetUsers_ModifiedByNavigationId",
-                        column: x => x.ModifiedByNavigationId,
+                        name: "FK_Sector_ModidfiedBy",
+                        column: x => x.ModifiedBy,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -2494,18 +2519,65 @@ namespace GegiCRM.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "ID", "AccessFailedCount", "AddedBy", "ConcurrencyStamp", "Email", "EmailConfirmed", "IsDeleted", "LockoutEnabled", "LockoutEnd", "ModifiedBy", "Name", "NormalizedEmail", "NormalizedUserName", "PassHash", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserCompanyID", "UserName" },
-                values: new object[] { 1, 0, 1, "5eb1383e-a305-462b-99b9-e4870e701038", "yigit.genc@gegi.com.tr", false, false, false, null, 1, "Yigit", null, null, "hash1", "AQAAAAEAACcQAAAAEKfGdbCYYnVFF1raH5kmdRgw7TbUfoQD6SmKfcSoBKVuJZS6T2kASbs+xbQJYV/+cg==", null, false, null, "Genc", false, 1, null });
+                columns: new[] { "ID", "AccessFailedCount", "AddedBy", "ConcurrencyStamp", "CreatedDate", "Email", "EmailConfirmed", "IsDeleted", "LockoutEnabled", "LockoutEnd", "ModifiedBy", "ModifiedDate", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserCompanyID", "UserName" },
+                values: new object[] { 1, 0, 1, "70a4c440-32ae-4dfc-ac9f-ae8e33270c0d", new DateTime(2022, 5, 16, 16, 11, 50, 807, DateTimeKind.Local).AddTicks(8881), "yigit.genc@gegi.com.tr", true, false, false, null, null, new DateTime(2022, 5, 16, 16, 11, 50, 807, DateTimeKind.Local).AddTicks(8894), "Yiğit", "YIGIT.GENC@GEGI.COM.TR", "ADMINYGT", "AQAAAAEAACcQAAAAEFGVqhNhW4h4fD+L6IGbBuTF65ddFiz7LXEZqHH0qIEHq1PQfZMq4sAd4yfCACyFvw==", "+905382630008", false, null, "bf7f10e4-45c1-456a-b505-609bc3fa6827", "Genç", false, 1, "AdminYigit" });
+
+            migrationBuilder.InsertData(
+                table: "AppAuthorizationsRoleGroups",
+                columns: new[] { "ID", "AddedBy", "Description", "IsDeleted", "ModifiedBy", "Name", "Priority" },
+                values: new object[] { 1, 1, "Admin Rollerinin Bulunduğu Grup", false, null, "Admin Role Grubu", 0 });
+
+            migrationBuilder.InsertData(
+                table: "Currencies",
+                columns: new[] { "ID", "AddedBy", "Code", "CreatedDate", "IsDeleted", "ModifiedBy", "ModifiedDate", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, "TRY", new DateTime(2022, 5, 16, 16, 11, 50, 809, DateTimeKind.Local).AddTicks(6601), false, null, null, "Türk Lirası" },
+                    { 2, 1, "USD", new DateTime(2022, 5, 16, 16, 11, 50, 809, DateTimeKind.Local).AddTicks(6610), false, null, null, "Amerikan Doları" },
+                    { 3, 1, "EUR", new DateTime(2022, 5, 16, 16, 11, 50, 809, DateTimeKind.Local).AddTicks(6611), false, null, null, "EURO" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CustomerTypes",
+                columns: new[] { "ID", "AddedBy", "CreatedDate", "Description", "IsDeleted", "ModifiedBy", "ModifiedDate", "Name" },
+                values: new object[] { 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Bu Müşteri Tipi Tesat Amaçlı Eklenmiştir", false, null, null, "Test Müşteri Tipi" });
+
+            migrationBuilder.InsertData(
+                table: "Sectors",
+                columns: new[] { "ID", "AddedBy", "Description", "IsDeleted", "ModifiedBy", "Name" },
+                values: new object[] { 1, 1, "Test Sektör Açıklaması", false, null, "Test Sektörü" });
+
+            migrationBuilder.InsertData(
+                table: "Segments",
+                columns: new[] { "ID", "AddedBy", "CreatedDate", "Description", "IsDeleted", "ModifiedBy", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTime(2022, 5, 16, 16, 11, 50, 809, DateTimeKind.Local).AddTicks(6659), "Segment 1 Açıklaması", false, null, "Segment 1" },
+                    { 2, 1, new DateTime(2022, 5, 16, 16, 11, 50, 809, DateTimeKind.Local).AddTicks(6664), "Segment 2 Açıklaması", false, null, "Segment 2" },
+                    { 3, 1, new DateTime(2022, 5, 16, 16, 11, 50, 809, DateTimeKind.Local).AddTicks(6666), "Segment 3 Açıklaması", false, null, "Segment 3" },
+                    { 4, 1, new DateTime(2022, 5, 16, 16, 11, 50, 809, DateTimeKind.Local).AddTicks(6668), "Segment 4 Açıklaması", false, null, "Segment 4" },
+                    { 5, 1, new DateTime(2022, 5, 16, 16, 11, 50, 809, DateTimeKind.Local).AddTicks(6670), "Segment 5 Açıklaması", false, null, "Segment 5" },
+                    { 6, 1, new DateTime(2022, 5, 16, 16, 11, 50, 809, DateTimeKind.Local).AddTicks(6677), "Segment 6 Açıklaması", false, null, "Segment 6" },
+                    { 7, 1, new DateTime(2022, 5, 16, 16, 11, 50, 809, DateTimeKind.Local).AddTicks(6678), "Segment 7 Açıklaması", false, null, "Segment 7" },
+                    { 8, 1, new DateTime(2022, 5, 16, 16, 11, 50, 809, DateTimeKind.Local).AddTicks(6680), "Segment 8 Açıklaması", false, null, "Segment 8" },
+                    { 9, 1, new DateTime(2022, 5, 16, 16, 11, 50, 809, DateTimeKind.Local).AddTicks(6682), "Segment 9 Açıklaması", false, null, "Segment 9" },
+                    { 10, 1, new DateTime(2022, 5, 16, 16, 11, 50, 809, DateTimeKind.Local).AddTicks(6694), "Segment 10 Açıklaması", false, null, "Segment 10" }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
-                columns: new[] { "ID", "AddedBy", "ConcurrencyStamp", "CreatedDate", "Description", "IsDeleted", "ModifiedBy", "ModifiedDate", "Name", "NormalizedName" },
-                values: new object[] { 1, 1, "44be01ad-d52b-4951-af85-97d5aba11890", new DateTime(2022, 5, 5, 14, 20, 24, 571, DateTimeKind.Local).AddTicks(542), "Sistem Admini Full Yetki", false, 1, new DateTime(2022, 5, 5, 14, 20, 24, 571, DateTimeKind.Local).AddTicks(560), "SysAdmin", "Sistem Admini" });
+                columns: new[] { "ID", "AddedBy", "ConcurrencyStamp", "CreatedDate", "Description", "IsDeleted", "ModifiedBy", "ModifiedDate", "Name", "NormalizedName", "RoleGroupId" },
+                values: new object[] { 1, 1, "dd75c814-dec7-4432-8241-88d73c1d1126", new DateTime(2022, 5, 16, 16, 11, 50, 809, DateTimeKind.Local).AddTicks(6542), "Sistem Admini Full Yetki", false, 1, new DateTime(2022, 5, 16, 16, 11, 50, 809, DateTimeKind.Local).AddTicks(6547), "SysAdmin", "Sistem Admini", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Customers",
+                columns: new[] { "ID", "AddedBy", "CariKodu", "IsActive", "IsDeleted", "LastContactDate", "ModifiedBy", "Name", "SectorID", "SegmentID", "Surname", "TicariUnvan", "TypeID" },
+                values: new object[] { 1, 1, "123", true, false, null, null, "Test Müşterisi", 1, 1, "Soyad", "Test Ticari Ünvanı", 1 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
-                columns: new[] { "RoleId", "UserId", "Discriminator", "EndDate", "Id", "IsDeleted", "StartDate" },
-                values: new object[] { 1, 1, "UsersAuthorizationRole", new DateTime(2022, 5, 5, 14, 20, 24, 571, DateTimeKind.Local).AddTicks(571), 0, false, new DateTime(2022, 5, 5, 14, 20, 24, 571, DateTimeKind.Local).AddTicks(570) });
+                columns: new[] { "RoleId", "UserId", "AddedBy", "Discriminator", "EndDate", "Id", "IsDeleted", "ModifiedBy", "StartDate" },
+                values: new object[] { 1, 1, 1, "AppRolesOfUsers", new DateTime(2032, 5, 16, 16, 11, 50, 809, DateTimeKind.Local).AddTicks(6563), 0, false, null, new DateTime(2022, 5, 16, 16, 11, 50, 809, DateTimeKind.Local).AddTicks(6562) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Announcements_AddedBy",
@@ -2515,6 +2587,16 @@ namespace GegiCRM.DAL.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Announcements_ModifiedBy",
                 table: "Announcements",
+                column: "ModifiedBy");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppAuthorizationsRoleGroups_AddedBy",
+                table: "AppAuthorizationsRoleGroups",
+                column: "AddedBy");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppAuthorizationsRoleGroups_ModifiedBy",
+                table: "AppAuthorizationsRoleGroups",
                 column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
@@ -2533,6 +2615,11 @@ namespace GegiCRM.DAL.Migrations
                 column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetRoles_RoleGroupId",
+                table: "AspNetRoles",
+                column: "RoleGroupId");
+
+            migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
                 table: "AspNetRoles",
                 column: "NormalizedName",
@@ -2548,6 +2635,16 @@ namespace GegiCRM.DAL.Migrations
                 name: "IX_AspNetUserLogins_UserId",
                 table: "AspNetUserLogins",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_AddedBy",
+                table: "AspNetUserRoles",
+                column: "AddedBy");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_ModifiedBy",
+                table: "AspNetUserRoles",
+                column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserRoles_RoleId",
@@ -2782,14 +2879,14 @@ namespace GegiCRM.DAL.Migrations
                 column: "TypeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerTypes_AddedByNavigationId",
+                name: "IX_CustomerTypes_AddedBy",
                 table: "CustomerTypes",
-                column: "AddedByNavigationId");
+                column: "AddedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerTypes_ModifiedByNavigationId",
+                name: "IX_CustomerTypes_ModifiedBy",
                 table: "CustomerTypes",
-                column: "ModifiedByNavigationId");
+                column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Departments_AddedBy",
@@ -3217,14 +3314,14 @@ namespace GegiCRM.DAL.Migrations
                 column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sectors_AddedByNavigationId",
+                name: "IX_Sectors_AddedBy",
                 table: "Sectors",
-                column: "AddedByNavigationId");
+                column: "AddedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sectors_ModifiedByNavigationId",
+                name: "IX_Sectors_ModifiedBy",
                 table: "Sectors",
-                column: "ModifiedByNavigationId");
+                column: "ModifiedBy");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SegmentOrans_AddedBy",
@@ -3506,6 +3603,20 @@ namespace GegiCRM.DAL.Migrations
                 principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
+                name: "FK_AuthorizationRoleGroup_ModifiedBy",
+                table: "AppAuthorizationsRoleGroups",
+                column: "ModifiedBy",
+                principalTable: "AspNetUsers",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_AuthorizationRoleGroups_AddedBy",
+                table: "AppAuthorizationsRoleGroups",
+                column: "AddedBy",
+                principalTable: "AspNetUsers",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                 table: "AspNetRoleClaims",
                 column: "RoleId",
@@ -3550,6 +3661,20 @@ namespace GegiCRM.DAL.Migrations
                 principalTable: "AspNetUsers",
                 principalColumn: "ID",
                 onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_UsersAuthorizations_AddedBy",
+                table: "AspNetUserRoles",
+                column: "AddedBy",
+                principalTable: "AspNetUsers",
+                principalColumn: "ID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_UsersAuthorizations_ModifiedBy",
+                table: "AspNetUserRoles",
+                column: "ModifiedBy",
+                principalTable: "AspNetUsers",
+                principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Users_UserCompanies",
@@ -3748,6 +3873,9 @@ namespace GegiCRM.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Departments");
+
+            migrationBuilder.DropTable(
+                name: "AppAuthorizationsRoleGroups");
 
             migrationBuilder.DropTable(
                 name: "Currencies");

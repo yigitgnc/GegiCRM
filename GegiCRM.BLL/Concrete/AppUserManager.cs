@@ -19,7 +19,7 @@ namespace GegiCRM.BLL.Concrete
         public readonly UserManager<AppUser> _userManager;
         public readonly SignInManager<AppUser> _signInManager;
 
-        public AppUserManager(UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor, ILogger<AppUser> logger, IGenericDal<AppUser> genericDal, IAppUserDal userDal, SignInManager<AppUser> signInManager) : base(userManager, httpContextAccessor, logger, genericDal)
+        public AppUserManager(UserManager<AppUser> userManager, IAppUserDal userDal, SignInManager<AppUser> signInManager) : base(userManager, userDal)
         {
             _userDal = userDal;
             _userManager = userManager;

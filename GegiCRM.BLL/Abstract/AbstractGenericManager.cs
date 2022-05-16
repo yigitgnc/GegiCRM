@@ -22,14 +22,14 @@ namespace GegiCRM.BLL.Abstract
         //GenericRepository<T> _genericDal = new GenericRepository<T>();
         public AbstractGenericManager(
             UserManager<AppUser> userManager,
-            IHttpContextAccessor httpContextAccessor,
-            ILogger<T> logger,
+            //IHttpContextAccessor httpContextAccessor,
+            //ILogger<T> logger,
             IGenericDal<T> genericDal
             )
         {
             _userManager = userManager;
-            _httpContextAccessor = httpContextAccessor;
-            _logger = logger;
+            _httpContextAccessor = new HttpContextAccessor();
+            _logger = new Logger<T>(new LoggerFactory());
             _genericDal = genericDal;
         }
 

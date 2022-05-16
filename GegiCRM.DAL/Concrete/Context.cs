@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace GegiCRM.DAL.Concrete
 {
-    public partial class Context : IdentityDbContext<AppUser,AppIdentityRole,int>
+    public partial class Context : IdentityDbContext<AppUser, AppIdentityRole, int>
     {
         public Context()
         {
@@ -91,7 +91,8 @@ namespace GegiCRM.DAL.Concrete
                 optionsBuilder.UseSqlServer("Server=.;Database=GegiCRM_DB;Trusted_Connection=True;");
                 optionsBuilder.UseLazyLoadingProxies();
             }
-            optionsBuilder.UseTriggers(triggerOptions => {
+            optionsBuilder.UseTriggers(triggerOptions =>
+            {
                 triggerOptions.AddAssemblyTriggers();
             });
             optionsBuilder.EnableSensitiveDataLogging(true);
@@ -655,6 +656,18 @@ namespace GegiCRM.DAL.Concrete
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Name).HasMaxLength(50);
+
+
+                entity.HasOne(d => d.AddedByNavigation)
+                  .WithMany(p => p.CustomerTypeAddedByNavigations)
+                  .HasForeignKey(d => d.AddedBy)
+                  .OnDelete(DeleteBehavior.ClientSetNull)
+                  .HasConstraintName("FK_CustomerType_AddedBy");
+
+                entity.HasOne(d => d.ModifiedByNavigation)
+                    .WithMany(p => p.CustomerTypeModifiedByNavigations)
+                    .HasForeignKey(d => d.ModifiedBy)
+                    .HasConstraintName("FK_CustomerType_ModifiedBy");
             });
 
             modelBuilder.Entity<Department>(entity =>
@@ -1647,6 +1660,19 @@ namespace GegiCRM.DAL.Concrete
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Name).HasMaxLength(250);
+
+
+                entity.HasOne(d => d.AddedByNavigation)
+                    .WithMany(p => p.SectorAddedByNavigations)
+                    .HasForeignKey(d => d.AddedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Sector_AddedBy");
+
+                entity.HasOne(d => d.ModifiedByNavigation)
+                    .WithMany(p => p.SectorModifiedByNavigations)
+                    .HasForeignKey(d => d.ModifiedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Sector_ModidfiedBy");
             });
 
             modelBuilder.Entity<Segment>(entity =>
@@ -1685,8 +1711,8 @@ namespace GegiCRM.DAL.Concrete
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.EndPrice).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.EuroOran).HasColumnName("EURO_ORAN");
+                
+                entity.Property(e => e.Oran).HasColumnType("decimal(18, 2)");
 
                 entity.Property(e => e.ModifiedDate)
                     .HasColumnType("datetime")
@@ -1695,10 +1721,6 @@ namespace GegiCRM.DAL.Concrete
                 entity.Property(e => e.SegmentId).HasColumnName("SegmentID");
 
                 entity.Property(e => e.StartPrice).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.TlOran).HasColumnName("TL_ORAN");
-
-                entity.Property(e => e.UsdOran).HasColumnName("USD_ORAN");
 
                 entity.HasOne(d => d.AddedByNavigation)
                     .WithMany(p => p.SegmentOranAddedByNavigations)

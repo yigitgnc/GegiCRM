@@ -81,7 +81,6 @@ namespace GegiCRM.DAL.Concrete
 
             };
 
-
             var roleRelation = new AppRolesOfUsers()
             {
                 StartDate = DateTime.Now,
@@ -91,24 +90,95 @@ namespace GegiCRM.DAL.Concrete
                 AddedBy = 1,
             };
 
-
-
-
-            using (var ts = new TransactionScope())
+            Sector sector = new Sector()
             {
+                Id = 1,
+                AddedBy = 1,
+                Name = "Test Sektörü",
+                Description = "Test Sektör Açıklaması",
+            };
+
+            CustomerType customerType = new CustomerType()
+            {
+                Id = 1,
+                AddedBy = 1,
+                Name = "Test Müşteri Tipi",
+                Description = "Bu Müşteri Tipi Tesat Amaçlı Eklenmiştir",
+            };
+
+            List<Currency> currencies = new List<Currency>() 
+            { 
+              new Currency()
+              {
+                  Id = 1,
+                  AddedBy = 1,
+                  Code = "TRY",
+                  Name = "Türk Lirası",
+                  CreatedDate = DateTime.Now,
+              },
+              new Currency()
+              {
+                  Id = 2,
+                  AddedBy = 1,
+                  Code = "USD",
+                  Name = "Amerikan Doları",
+                  CreatedDate = DateTime.Now,
+              },
+              new Currency()
+              {
+                  Id = 3,
+                  AddedBy = 1,
+                  Code = "EUR",
+                  Name = "EURO",
+                  CreatedDate = DateTime.Now,
+              }
+            };
+
+            List<Segment> segments = new List<Segment>();
+            for (int i = 1; i <= 10; i++)
+            {
+                segments.Add(new Segment()
+                {
+                    AddedBy = 1,
+                    Id = i,
+                    Name = $"Segment {i}",
+                    Description = $"Segment {i} Açıklaması",
+                    CreatedDate = DateTime.Now,
+                });
+            };
 
 
-                modelBuilder.Entity<UserCompany>().HasData(userCompany);
 
-                modelBuilder.Entity<AppUser>().HasData(admin);
-                // do the stuff
-                ts.Complete();
 
-                modelBuilder.Entity<AppIdentityRole>().HasData(sysAdminRole);
-                modelBuilder.Entity<AppIdentityRoleGroup>().HasData(sysAuthorizationRoleGroup);
+            Customer customer = new Customer()
+            {
+                Id = 1,
+                AddedBy = 1,
+                TypeId = 1,
+                Name = "Test Müşterisi",
+                Surname = "Soyad",
+                TicariUnvan = "Test Ticari Ünvanı",
+                CariKodu = "123",
+                IsActive = true,
+                SectorId = 1,
+                SegmentId = 1,
+            };
 
-                modelBuilder.Entity<AppRolesOfUsers>().HasData(roleRelation);
-            }
+
+
+
+            //add entities
+            modelBuilder.Entity<UserCompany>().HasData(userCompany);
+            modelBuilder.Entity<AppUser>().HasData(admin);
+            modelBuilder.Entity<AppIdentityRole>().HasData(sysAdminRole);
+            modelBuilder.Entity<AppIdentityRoleGroup>().HasData(sysAuthorizationRoleGroup);
+            modelBuilder.Entity<AppRolesOfUsers>().HasData(roleRelation);
+            modelBuilder.Entity<Sector>().HasData(sector);
+            modelBuilder.Entity<CustomerType>().HasData(customerType);
+            modelBuilder.Entity<Segment>().HasData(segments);
+            modelBuilder.Entity<Currency>().HasData(currencies);
+            modelBuilder.Entity<Customer>().HasData(customer);
+
 
         }
     }
