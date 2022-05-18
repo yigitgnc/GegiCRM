@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\lib\node_modules\**" />
+    <Content Remove="wwwroot\lib\node_modules\**" />
+    <EmbeddedResource Remove="wwwroot\lib\node_modules\**" />
+    <None Remove="wwwroot\lib\node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\sneat-1.0.0\.browserslistrc" />
     <None Include="wwwroot\sneat-1.0.0\.eslintignore" />
     <None Include="wwwroot\sneat-1.0.0\.github\workflows\handle-new-issue-comment.yml" />

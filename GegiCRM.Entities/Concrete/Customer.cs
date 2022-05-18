@@ -12,7 +12,7 @@ namespace GegiCRM.Entities.Concrete
             CustomerAddresses = new HashSet<CustomerAddress>();
             CustomerBillingAddresses = new HashSet<CustomerBillingAddress>();
             CustomerContacts = new HashSet<CustomerContact>();
-            CustomerDetails = new HashSet<CustomerDetail>();
+            //CustomerDetails = new HashSet<CustomerDetail>();
             CustomerRepresentetiveUsers = new HashSet<CustomerRepresentetiveUser>();
             DiscountCuponsOfCustomers = new HashSet<DiscountCuponsOfCustomer>();
             MaintenanceBills = new HashSet<MaintenanceBill>();
@@ -32,6 +32,14 @@ namespace GegiCRM.Entities.Concrete
         public int TypeId { get; set; }
         public DateTime? LastContactDate { get; set; }
 
+        public string? Tel { get; set; }
+        public int CurrencyId { get; set; }
+        public string? SideSuppliers { get; set; }
+        public string? Notes { get; set; }
+
+        public int? PreferredCurrencyId { get; set; }
+        public virtual Currency? PreferredCurrency { get; set; } = null!;
+
         public virtual Sector? Sector { get; set; }
         public virtual Segment Segment { get; set; } = null!;
         public virtual CustomerType Type { get; set; } = null!;
@@ -39,7 +47,7 @@ namespace GegiCRM.Entities.Concrete
         public virtual ICollection<CustomerAddress> CustomerAddresses { get; set; }
         public virtual ICollection<CustomerBillingAddress> CustomerBillingAddresses { get; set; }
         public virtual ICollection<CustomerContact> CustomerContacts { get; set; }
-        public virtual ICollection<CustomerDetail> CustomerDetails { get; set; }
+        //public virtual ICollection<CustomerDetail> CustomerDetails { get; set; }
         public virtual ICollection<CustomerRepresentetiveUser> CustomerRepresentetiveUsers { get; set; }
         public virtual ICollection<DiscountCuponsOfCustomer> DiscountCuponsOfCustomers { get; set; }
         public virtual ICollection<MaintenanceBill> MaintenanceBills { get; set; }

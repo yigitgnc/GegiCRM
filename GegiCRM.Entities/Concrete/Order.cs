@@ -15,8 +15,11 @@ namespace GegiCRM.Entities.Concrete
         
         public int CustomerId { get; set; }
         public int OrderStateId { get; set; }
-        public DateTime? ApprovedDate { get; set; }
         public bool IsFrequentlyUsed { get; set; }
+        public bool IsOfferApproved { get; set; }
+        public DateTime? OfferApprovedDate { get; set; }
+        public bool IsOrderApproved { get; set; }
+        public DateTime? OrderApprovedDate { get; set; }
 
         public virtual Customer Customer { get; set; } = null!;
         public virtual OrderAndProductState OrderState { get; set; } = null!;

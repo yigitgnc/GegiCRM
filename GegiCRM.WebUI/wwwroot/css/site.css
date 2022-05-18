@@ -1,18 +1,67 @@
-html {
-  font-size: 14px;
+#fullScreenButton {
+    margin-right: 10px;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    #fullScreenButton:hover {
+        color: #a5a6ff;
+        transform: scale3d(1.3, 1.3, 1.3);
+    }
+
+.table > tbody > tr {
+    cursor: pointer;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+
+.btn:hover, .btn:focus {
+    background-position: 0 !important;
 }
 
-body {
-  margin-bottom: 60px;
+
+/*datatable begin*/
+.dataTables_length > label {
+    display: inline-flex;
+    line-height: 30px;
 }
+
+    .dataTables_length > label .select {
+        padding: 0px 5px 0px 5px;
+    }
+
+.dataTables_filter > label > input {
+    height: 30px;
+    min-height: 30px;
+    padding: 0 0 0 5px;
+    margin: 0;
+}
+/*datatable end*/
+
+/*scrollbar begin*/
+/* width */
+::-webkit-scrollbar {
+    width: 0.55rem;
+    height: 0.55rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 3px gray;
+    border-radius: 6px;
+    transition: background-color 0.2s linear, opacity 0.2s linear;
+    -webkit-transition: background-color 0.2s linear, opacity 0.2s linear;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: #c3c4dd;
+    border-radius: 6px;
+    transition: background-color 0.2s linear, width 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s linear, width 0.2s ease-in-out;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(67, 89, 113, 0.7);
+    }
+/*scrollbar end*/

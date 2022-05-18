@@ -33,7 +33,7 @@ namespace GegiCRM.DAL.Concrete
         public virtual DbSet<CustomerAddress> CustomerAddresses { get; set; } = null!;
         public virtual DbSet<CustomerBillingAddress> CustomerBillingAddresses { get; set; } = null!;
         public virtual DbSet<CustomerContact> CustomerContacts { get; set; } = null!;
-        public virtual DbSet<CustomerDetail> CustomerDetails { get; set; } = null!;
+        //public virtual DbSet<CustomerDetail> CustomerDetails { get; set; } = null!;
         public virtual DbSet<CustomerRepresentetiveUser> CustomerRepresentetiveUsers { get; set; } = null!;
         public virtual DbSet<CustomerType> CustomerTypes { get; set; } = null!;
         public virtual DbSet<Department> Departments { get; set; } = null!;
@@ -583,39 +583,39 @@ namespace GegiCRM.DAL.Concrete
                     .HasConstraintName("FK_CustomerContacts_Users1");
             });
 
-            modelBuilder.Entity<CustomerDetail>(entity =>
-            {
-                entity.Property(e => e.Id).HasColumnName("ID");
+            //modelBuilder.Entity<CustomerDetail>(entity =>
+            //{
+            //    entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.CurrencyId).HasColumnName("CurrencyID");
+            //    entity.Property(e => e.CurrencyId).HasColumnName("CurrencyID");
 
-                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+            //    entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
 
-                entity.Property(e => e.Tel).HasMaxLength(50);
+            //    entity.Property(e => e.Tel).HasMaxLength(50);
 
-                entity.HasOne(d => d.Currency)
-                    .WithMany(p => p.CustomerDetails)
-                    .HasForeignKey(d => d.CurrencyId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CustomerDetails_Currencies");
+            //    entity.HasOne(d => d.Currency)
+            //        .WithMany(p => p.CustomerDetails)
+            //        .HasForeignKey(d => d.CurrencyId)
+            //        .OnDelete(DeleteBehavior.ClientSetNull)
+            //        .HasConstraintName("FK_CustomerDetails_Currencies");
 
-                entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.CustomerDetails)
-                    .HasForeignKey(d => d.CustomerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CustomerDetails_Customers");
+            //    entity.HasOne(d => d.Customer)
+            //        .WithMany(p => p.CustomerDetails)
+            //        .HasForeignKey(d => d.CustomerId)
+            //        .OnDelete(DeleteBehavior.ClientSetNull)
+            //        .HasConstraintName("FK_CustomerDetails_Customers");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                  .WithMany(p => p.CustomerDetailAddedByNavigations)
-                  .HasForeignKey(d => d.AddedBy)
-                  .OnDelete(DeleteBehavior.ClientSetNull)
-                  .HasConstraintName("FK_CustomerDetails_AddedBy");
+            //    entity.HasOne(d => d.AddedByNavigation)
+            //      .WithMany(p => p.CustomerDetailAddedByNavigations)
+            //      .HasForeignKey(d => d.AddedBy)
+            //      .OnDelete(DeleteBehavior.ClientSetNull)
+            //      .HasConstraintName("FK_CustomerDetails_AddedBy");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.CustomerDetailModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
-                    .HasConstraintName("FK_CustomerDetails_ModifiedBy");
-            });
+            //    entity.HasOne(d => d.ModifiedByNavigation)
+            //        .WithMany(p => p.CustomerDetailModifiedByNavigations)
+            //        .HasForeignKey(d => d.ModifiedBy)
+            //        .HasConstraintName("FK_CustomerDetails_ModifiedBy");
+            //});
 
             modelBuilder.Entity<CustomerRepresentetiveUser>(entity =>
             {
@@ -1160,7 +1160,8 @@ namespace GegiCRM.DAL.Concrete
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.ApprovedDate).HasColumnType("datetime");
+                entity.Property(e => e.OfferApprovedDate).HasColumnType("datetime");
+                entity.Property(e => e.OrderApprovedDate).HasColumnType("datetime");
 
                 entity.Property(e => e.CreatedDate)
                     .HasColumnType("datetime")

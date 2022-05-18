@@ -1,3 +1,105 @@
-﻿@{
-  ViewData["title"] = "Giriş Yap";
+﻿@using GegiCRM.Entities.Concrete
+@{
+    ViewData["title"] = "Teklif Takip [TT]";
+}
+@model List<Order>
+
+<!-- Basic Bootstrap Table -->
+<div class="card">
+    <h5 class="card-header">Teklifler</h5>
+    <div class="card-body">
+        <div class="table-responsive text-nowrap pt-2 pb-4" style="overflow-x:hidden">
+            <table id="Orders" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Ticari Ünvanı</th>
+                        <th>Teklif Tutarı</th>
+                        <th>Temsilci</th>
+                        <th>Kayıt Tarihi</th>
+                        <th>Durumu</th>
+                        <th>Teklif Onay</th>
+                        <th>Teklif Tarihi</th>
+                        <th>Sipariş Onay</th>
+                        <th>Sipariş Tarihi</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (Order item in Model)
+                    {
+
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Customer.Name</td>
+                            <td>@item.OrdersProducts.Sum(x=>x.Adet*x.BirimFiyat)</td>
+                            <td>
+                                <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                                    @foreach (CustomerRepresentetiveUser cru in item.Customer.CustomerRepresentetiveUsers)
+                                    {
+                                        var user = cru.User;
+
+                                        <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="@cru.Title: @user.NameSurname">
+                                            <img src="@user.ProfilePictureUrl" alt="@user.NameSurname Avatar" class="rounded-circle" />
+                                        </li>
+                                    }
+                                </ul>
+                            </td>
+                            <td>@item.CreatedDate</td>
+                            <td>@item.OrderState.Name</td>
+                            <td>
+                                @item.IsOfferApproved
+                                @*<span class="badge bg-label-success me-1">Onaylandı</span>*@
+                            </td>
+                            <td>@item.OfferApprovedDate</td>
+                            <td>
+                                @item.IsOrderApproved
+                                @*<span class="badge bg-label-success me-1">Onaylandı</span>*@
+                            </td>
+                            <td>@item.OrderApprovedDate</td>
+
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>Düzenle</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Sil</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+                <tfoot class="table-border-bottom-0">
+                    <tr>
+                        <th>#</th>
+                        <th>Ticari Ünvanı</th>
+                        <th>Teklif Tutarı</th>
+                        <th>Temsilci</th>
+                        <th>Kayıt Tarihi</th>
+                        <th>Durumu</th>
+                        <th>Teklif Onay</th>
+                        <th>Teklif Tarihi</th>
+                        <th>Sipariş Onay</th>
+                        <th>Sipariş Tarihi</th>
+                        <th>İşlem</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<!--/ Basic Bootstrap Table -->
+
+<hr class="my-5" />
+
+
+
+
+
+@section Scripts{
 }

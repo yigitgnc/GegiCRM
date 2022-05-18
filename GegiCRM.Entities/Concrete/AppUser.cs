@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GegiCRM.Entities.Concrete
 {
@@ -12,7 +13,7 @@ namespace GegiCRM.Entities.Concrete
             AppRolesOfUsersAddedByNavigations = new HashSet<AppRolesOfUsers>();
             AppRolesOfUsersModifiedByNavigations = new HashSet<AppRolesOfUsers>();
             AppAuthorizationRoleGroupAddedByNavigations = new HashSet<AppIdentityRoleGroup>();
-            AppAuthorizationRoleGroupModifiedByNavigations= new HashSet<AppIdentityRoleGroup>();
+            AppAuthorizationRoleGroupModifiedByNavigations = new HashSet<AppIdentityRoleGroup>();
             //AppUsersAuthorizationRoleUsers = new HashSet<AppUsersAuthorizationRole>();
             AuthorizationsRoleAddedByNavigations = new HashSet<AppIdentityRole>();
             AuthorizationsRoleModifiedByNavigations = new HashSet<AppIdentityRole>();
@@ -125,8 +126,8 @@ namespace GegiCRM.Entities.Concrete
 
         public int UserCompanyId { get; set; }
         //public string Email { get; set; } = null!;
-        public string? Name { get; set; }
-        public string? Surname { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public int AddedBy { get; set; }
@@ -166,8 +167,8 @@ namespace GegiCRM.Entities.Concrete
         public virtual ICollection<CustomerBillingAddress> CustomerBillingAddressModifiedByNavigations { get; set; }
         public virtual ICollection<CustomerContact> CustomerContactAddedByNavigations { get; set; }
         public virtual ICollection<CustomerContact> CustomerContactModifiedByNavigations { get; set; }
-        public virtual ICollection<CustomerDetail> CustomerDetailAddedByNavigations { get; set; }
-        public virtual ICollection<CustomerDetail> CustomerDetailModifiedByNavigations { get; set; }
+        //public virtual ICollection<CustomerDetail> CustomerDetailAddedByNavigations { get; set; }
+        //public virtual ICollection<CustomerDetail> CustomerDetailModifiedByNavigations { get; set; }
         public virtual ICollection<CustomerRepresentetiveUser> CustomerRepresentetiveUserAddedByNavigations { get; set; }
         public virtual ICollection<CustomerRepresentetiveUser> CustomerRepresentetiveUserModifiedByNavigations { get; set; }
         public virtual ICollection<Customer> CustomerModifiedByNavigations { get; set; }
@@ -264,6 +265,14 @@ namespace GegiCRM.Entities.Concrete
         public virtual AppUser AddedByNavigation { get; set; }
         public virtual AppUser? ModifiedByNavigation { get; set; }
 
+        [NotMapped]
+        public string NameSurname
+        {
+            get
+            {
+                return $"{Name} {Surname.ToUpper()}";
+            }
+        }
         #endregion
 
         public override string ToString()

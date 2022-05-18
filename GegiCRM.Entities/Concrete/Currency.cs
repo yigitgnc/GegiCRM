@@ -9,7 +9,7 @@ namespace GegiCRM.Entities.Concrete
         public Currency()
         {
             CollectionReceipts = new HashSet<CollectionReceipt>();
-            CustomerDetails = new HashSet<CustomerDetail>();
+            PreferringCustomers = new HashSet<Customer>();
             Deposits = new HashSet<Deposit>();
             DiscountCupons = new HashSet<DiscountCupon>();
             MaintenanceBills = new HashSet<MaintenanceBill>();
@@ -24,7 +24,7 @@ namespace GegiCRM.Entities.Concrete
         public string? Name { get; set; }
 
         public virtual ICollection<CollectionReceipt> CollectionReceipts { get; set; }
-        public virtual ICollection<CustomerDetail> CustomerDetails { get; set; }
+        public virtual ICollection<Customer> PreferringCustomers { get; set; }
         public virtual ICollection<Deposit> Deposits { get; set; }
         public virtual ICollection<DiscountCupon> DiscountCupons { get; set; }
         public virtual ICollection<MaintenanceBill> MaintenanceBills { get; set; }
