@@ -640,12 +640,12 @@ new SegmentOran{ AddedBy = 1, SegmentId = 10, StartPrice = 1000000.00m, EndPrice
 
                 #endregion
             };
-
             for (int i = 0; i < segmentOrans.Count; i++)
             {
                 segmentOrans[i].Id = i + 1;
             }
 
+            List<OrderAndProductState> orders = new List<OrderAndProductState>();
 
 
 
