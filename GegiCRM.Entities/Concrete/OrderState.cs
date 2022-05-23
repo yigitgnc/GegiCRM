@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public  class OrderAndProductState : BaseEntity<int>
+    public  class OrderState : BaseEntity<int>
     {
-        public OrderAndProductState()
+        public OrderState()
         {
             Orders = new HashSet<Order>();
             OrdersProducts = new HashSet<OrdersProduct>();

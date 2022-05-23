@@ -53,7 +53,7 @@ namespace GegiCRM.BLL.Abstract
         {
             return _genericDal.GetListAll();
         }
-        public T GetById(int id)
+        public T? GetById(int id)
         {
             return _genericDal.GetByID(id);
         }

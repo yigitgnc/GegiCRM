@@ -21,14 +21,15 @@ namespace GegiCRM.WebUI.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<Order> model = _teklifTakipManager.GetAll();
+            return View(model);
         }
 
         public async Task<IActionResult> Test()
         {
             _teklifTakipManager.Create(new Order
             {
-              CustomerId = 1,
+                CustomerId = 1,
 
             });
 

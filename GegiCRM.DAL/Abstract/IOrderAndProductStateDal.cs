@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.DAL.Abstract
 {
-    public interface IOrderAndProductStateDal : IGenericDal<OrderAndProductState>
+    public interface IOrderAndProductStateDal : IGenericDal<OrderState>
     {
     }
 }

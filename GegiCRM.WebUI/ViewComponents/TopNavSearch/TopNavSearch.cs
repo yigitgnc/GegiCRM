@@ -7,8 +7,8 @@ namespace GegiCRM.WebUI.ViewComponents.TopNavSearch
     {
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            
-            return View();
+            var data = new SearchResultsModel();
+            return View<SearchResultsModel>(data);
         }
 
     }

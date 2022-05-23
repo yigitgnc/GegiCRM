@@ -51,7 +51,7 @@ namespace GegiCRM.DAL.Concrete
         public virtual DbSet<MaintenencePeriod> MaintenencePeriods { get; set; } = null!;
         public virtual DbSet<MarketPlace> MarketPlaces { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
-        public virtual DbSet<OrderAndProductState> OrderAndProductStates { get; set; } = null!;
+        public virtual DbSet<OrderState> OrderAndProductStates { get; set; } = null!;
         public virtual DbSet<OrdersCurrency> OrdersCurrencies { get; set; } = null!;
         public virtual DbSet<OrdersProduct> OrdersProducts { get; set; } = null!;
         public virtual DbSet<PaymentType> PaymentTypes { get; set; } = null!;
@@ -1200,7 +1200,7 @@ namespace GegiCRM.DAL.Concrete
                     .HasConstraintName("FK_Orders_OrderStates");
             });
 
-            modelBuilder.Entity<OrderAndProductState>(entity =>
+            modelBuilder.Entity<OrderState>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
 

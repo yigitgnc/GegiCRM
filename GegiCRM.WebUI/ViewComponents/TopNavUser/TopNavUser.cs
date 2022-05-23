@@ -32,7 +32,7 @@ namespace GegiCRM.WebUI.ViewComponents.UserTopNav
             {
                 model.UsersRoleGroups.Add(new AppIdentityRoleGroup { Name = "Rol Grubu Yok !"});
             }
-            return View(model);
+            return View<TopNavUserDto>(model);
         }
     }
 }

@@ -645,10 +645,6 @@ new SegmentOran{ AddedBy = 1, SegmentId = 10, StartPrice = 1000000.00m, EndPrice
                 segmentOrans[i].Id = i + 1;
             }
 
-            List<OrderAndProductState> orders = new List<OrderAndProductState>();
-
-
-
             Customer customer = new Customer()
             {
                 Id = 1,
@@ -661,6 +657,129 @@ new SegmentOran{ AddedBy = 1, SegmentId = 10, StartPrice = 1000000.00m, EndPrice
                 IsActive = true,
                 SectorId = 1,
                 SegmentId = 1,
+            };
+
+
+            List<OrderState> orderStates = new List<OrderState>()
+            {
+                new OrderState
+                {
+                   Id = 1,
+                   Description = "Test Açıklama",
+                   Name = "Dönüş Bekleniyor ( Satın Alma )",
+                   AddedBy = 1,
+                },
+                new OrderState
+                {
+                   Id = 2,
+                   Description = "Test Açıklama",
+                   Name = "Olumsuz ( Satış )",
+                   AddedBy = 1,
+                },
+                new OrderState
+                {
+                   Id = 3,
+                   Description = "Test Açıklama",
+                   Name = "İptal / İade",
+                   AddedBy = 1,
+                },
+                new OrderState
+                {
+                   Id = 4,
+                   Description = "Test Açıklama",
+                   Name = "Onaylandı ( Teknik )",
+                   AddedBy = 1,
+                },
+                new OrderState
+                {
+                   Id = 5,
+                   Description = "Test Açıklama",
+                   Name = "Teklif Verildi ( Satışçı )",
+                   AddedBy = 1,
+                },
+                new OrderState
+                {
+                   Id = 6,
+                   Description = "Test Açıklama",
+                   Name = "Sipariş Verildi ( Satın Alma )",
+                   AddedBy = 1,
+                },
+                new OrderState
+                {
+                   Id = 7,
+                   Description = "Test Açıklama",
+                   Name = "Fatura Düzenlendi ( Muhasebe )",
+                   AddedBy = 1,
+                },
+                new OrderState
+                {
+                   Id = 8,
+                   Description = "Test Açıklama",
+                   Name = "Kargo / Sevkiyatta ( Depo )",
+                   AddedBy = 1,
+                },
+                new OrderState
+                {
+                   Id = 9,
+                   Description = "Test Açıklama",
+                   Name = "Onaylandı ( Satış )",
+                   AddedBy = 1,
+                },
+                new OrderState
+                {
+                   Id = 10,
+                   Description = "Test Açıklama",
+                   Name = "Fiyat Araştırılıyor ( Satın Alma )",
+                   AddedBy = 1,
+                },
+            };
+
+            
+
+            List<Supplier> suppliers = new List<Supplier>()
+            {
+                new Supplier
+                {
+                    Id=1,
+                    SupplierName = "Test Tedarikçisi",
+                    DealerCode = "123",
+                    AddedBy= 1,
+                    
+                    Brands = new List<Brand>()
+                    {
+                        new Brand
+                        {
+                            Id=1,
+                            Name="Lenovo",
+                            Description="Dünyaın En Büyük Üreticisi",
+                            AddedBy=1,
+                        }
+                    },
+                    MarketPlaces = new List<MarketPlace>()
+                    {
+                        new MarketPlace
+                        {
+                            Id= 1,
+                            MarketPlaceName ="Trendyol",
+                            MarketPlaceDescription = "Pazar Yeri Açıklaması",
+                            AddedBy = 1,
+                        }
+                    },
+                    Products = new List<Product>()
+                    {
+                        new Product
+                        {
+                            Id=1,
+                            ProductName ="Test Ürünü",
+                            AddedBy = 1,
+                        }
+                    }
+                }
+            };
+
+            List<Order> orders = new List<Order>()
+            {
+
             };
 
 
@@ -678,6 +797,8 @@ new SegmentOran{ AddedBy = 1, SegmentId = 10, StartPrice = 1000000.00m, EndPrice
             modelBuilder.Entity<SegmentOran>().HasData(segmentOrans);
             modelBuilder.Entity<Currency>().HasData(currencies);
             modelBuilder.Entity<Customer>().HasData(customer);
+            modelBuilder.Entity<OrderState>().HasData(orderStates);
+            modelBuilder.Entity<Supplier>().HasData(suppliers);
 
 
         }

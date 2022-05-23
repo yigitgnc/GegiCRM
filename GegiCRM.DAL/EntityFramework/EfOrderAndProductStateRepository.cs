@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.DAL.EntityFramework
 {
-    public class EfOrderAndProductStateRepository : GenericRepository<OrderAndProductState>, IOrderAndProductStateDal
+    public class EfOrderAndProductStateRepository : GenericRepository<OrderState>, IOrderAndProductStateDal
     {
     }
 }

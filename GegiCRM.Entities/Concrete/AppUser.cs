@@ -64,8 +64,8 @@ namespace GegiCRM.Entities.Concrete
             MarketPlaceAddedByNavigations = new HashSet<MarketPlace>();
             MarketPlaceModifiedByNavigations = new HashSet<MarketPlace>();
             OrderAddedByNavigations = new HashSet<Order>();
-            OrderAndProductStateAddedByNavigations = new HashSet<OrderAndProductState>();
-            OrderAndProductStateModifiedByNavigations = new HashSet<OrderAndProductState>();
+            OrderAndProductStateAddedByNavigations = new HashSet<OrderState>();
+            OrderAndProductStateModifiedByNavigations = new HashSet<OrderState>();
             OrderModifiedByNavigations = new HashSet<Order>();
             OrdersProductAddedByNavigations = new HashSet<OrdersProduct>();
             OrdersProductModifiedByNavigations = new HashSet<OrdersProduct>();
@@ -205,8 +205,8 @@ namespace GegiCRM.Entities.Concrete
         public virtual ICollection<MarketPlace> MarketPlaceAddedByNavigations { get; set; }
         public virtual ICollection<MarketPlace> MarketPlaceModifiedByNavigations { get; set; }
         public virtual ICollection<Order> OrderAddedByNavigations { get; set; }
-        public virtual ICollection<OrderAndProductState> OrderAndProductStateAddedByNavigations { get; set; }
-        public virtual ICollection<OrderAndProductState> OrderAndProductStateModifiedByNavigations { get; set; }
+        public virtual ICollection<OrderState> OrderAndProductStateAddedByNavigations { get; set; }
+        public virtual ICollection<OrderState> OrderAndProductStateModifiedByNavigations { get; set; }
         public virtual ICollection<Order> OrderModifiedByNavigations { get; set; }
         public virtual ICollection<OrdersProduct> OrdersProductAddedByNavigations { get; set; }
         public virtual ICollection<OrdersProduct> OrdersProductModifiedByNavigations { get; set; }

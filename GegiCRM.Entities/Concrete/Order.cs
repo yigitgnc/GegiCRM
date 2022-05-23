@@ -20,9 +20,13 @@ namespace GegiCRM.Entities.Concrete
         public DateTime? OfferApprovedDate { get; set; }
         public bool IsOrderApproved { get; set; }
         public DateTime? OrderApprovedDate { get; set; }
+        public bool IsCancelled { get; set; }
+        public DateTime? CancelledDate { get; set; }
+        public bool IsDeneied { get; set; }
+        public DateTime? DeniedDate { get; set; }
 
         public virtual Customer Customer { get; set; } = null!;
-        public virtual OrderAndProductState OrderState { get; set; } = null!;
+        public virtual OrderState OrderState { get; set; } = null!;
         public virtual ICollection<OrdersCurrency> OrdersCurrencies { get; set; }
         public virtual ICollection<OrdersProduct> OrdersProducts { get; set; }
     }

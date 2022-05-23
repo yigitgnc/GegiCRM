@@ -6,7 +6,11 @@
 
 <!-- Basic Bootstrap Table -->
 <div class="card">
-    <h5 class="card-header">Teklifler</h5>
+    <div class="card-header d-flex justify-content-between">
+        <h5> Teklifler</h5>
+        <a class="btn btn-outline-primary" href="/TeklifTakip/YeniTeklif">Yeni Teklif</a>
+
+    </div>
     <div class="card-body">
         <div class="table-responsive text-nowrap pt-2 pb-4" style="overflow-x:hidden">
             <table id="Orders" class="table table-striped table-hover">
@@ -28,7 +32,6 @@
                 <tbody class="table-border-bottom-0">
                     @foreach (Order item in Model)
                     {
-
                         <tr>
                             <td>@item.Id</td>
                             <td>@item.Customer.Name</td>
