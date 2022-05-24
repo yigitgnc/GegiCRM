@@ -28,6 +28,12 @@ builder.Services.AddScoped<AppIdentityRoleManager>();
 builder.Services.AddScoped(typeof(GenericManager<>));
 builder.Services.AddScoped<GenericManager<Customer>>();
 
+using (var context = new Context())
+{
+    context.Database.Migrate();
+}
+
+
 // Auto Mapper Configurations
 var mapperConfig = new MapperConfiguration(mc =>
 {
@@ -37,8 +43,7 @@ var mapperConfig = new MapperConfiguration(mc =>
 IMapper mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
-builder.Services.AddIdentity<AppUser, AppIdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<Context>();
+builder.Services.AddIdentity<AppUser, AppIdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<Context>();
 builder.Services.AddRazorPages();
 
 builder.Services.Configure<IdentityOptions>(options =>

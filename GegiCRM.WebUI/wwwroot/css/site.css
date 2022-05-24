@@ -68,9 +68,31 @@
 
 
 /*topnavsearch begin*/
-#topNavSearch{
-    font-size:14px;
-    margin-bottom:0px;
+#topNavSearch {
+    font-size: 14px;
+    margin-bottom: 0px;
 }
+
+#topNavSearchResults {
+    position: absolute;
+    top: 33px;
+    width: 85%;
+    left: 6%;
+    border-color: #a5a6ff
+}
+
+    #topNavSearchResults > .list-group {
+        background: whitesmoke;
+        /*border: 0px solid #a5a6ff;*/
+    }
+
+        #topNavSearchResults > .list-group > .list-group-item {
+            border: 0.1rem solid #a5a6ff;
+        }
+
+            #topNavSearchResults > .list-group > .list-group-item:hover {
+                background: #a5a6ff;
+                color: white;
+            }
 /*topnavsearch end*/
 
