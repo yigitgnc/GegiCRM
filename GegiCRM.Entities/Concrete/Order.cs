@@ -1,10 +1,11 @@
 ﻿using GegiCRM.Entities.Abstract;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class Order : BaseEntity<int>
+    public partial class Order : BaseEntity<int>
     {
         public Order()
         {
@@ -12,7 +13,7 @@ namespace GegiCRM.Entities.Concrete
             OrdersProducts = new HashSet<OrdersProduct>();
         }
 
-        
+
         public int CustomerId { get; set; }
         public int OrderStateId { get; set; }
         public bool IsFrequentlyUsed { get; set; }
@@ -25,9 +26,53 @@ namespace GegiCRM.Entities.Concrete
         public bool IsDeneied { get; set; }
         public DateTime? DeniedDate { get; set; }
 
+        public int RepresentetiveUserId { get; set; }
+
+        public virtual AppUser RepresentetiveUser { get; set; } = null!;
         public virtual Customer Customer { get; set; } = null!;
         public virtual OrderState OrderState { get; set; } = null!;
         public virtual ICollection<OrdersCurrency> OrdersCurrencies { get; set; }
         public virtual ICollection<OrdersProduct> OrdersProducts { get; set; }
+
+
+    }
+
+    public partial class Order
+    {
+
+        [NotMapped]
+        public string SiparisOnayFormatted => FormatNullDate(OrderApprovedDate);
+        [NotMapped]
+        public string TeklifOnayFormatted => FormatNullDate(OrderApprovedDate);
+
+        public string CreateHtmlBadge(bool property)
+        {
+            string badge = "<span class=\"badge bg-label-gray me-1\">Beklemede</span>";
+            if (IsCancelled)
+            {
+                badge = "<span class=\"badge bg-label-danger me-1\">İptal</span>";
+            }
+            else if (property)
+            {
+                badge = "<span class=\"badge bg-label-success me-1\">Onaylandı</span>";
+            }
+            return badge;
+        }
+
+        private string FormatNullDate(DateTime? date)
+        {
+            string value = "";
+            if (date == null)
+            {
+                value = "Beklemede";
+            }
+            else
+            {
+                value = date.ToString();
+            }
+
+            return value;
+
+        }
     }
 }

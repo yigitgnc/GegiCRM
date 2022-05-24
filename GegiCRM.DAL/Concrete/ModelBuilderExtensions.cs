@@ -745,35 +745,36 @@ new SegmentOran{ AddedBy = 1, SegmentId = 10, StartPrice = 1000000.00m, EndPrice
                     DealerCode = "123",
                     AddedBy= 1,
                     
-                    Brands = new List<Brand>()
-                    {
-                        new Brand
-                        {
-                            Id=1,
-                            Name="Lenovo",
-                            Description="Dünyaın En Büyük Üreticisi",
-                            AddedBy=1,
-                        }
-                    },
-                    MarketPlaces = new List<MarketPlace>()
-                    {
-                        new MarketPlace
-                        {
-                            Id= 1,
-                            MarketPlaceName ="Trendyol",
-                            MarketPlaceDescription = "Pazar Yeri Açıklaması",
-                            AddedBy = 1,
-                        }
-                    },
-                    Products = new List<Product>()
-                    {
-                        new Product
-                        {
-                            Id=1,
-                            ProductName ="Test Ürünü",
-                            AddedBy = 1,
-                        }
-                    }
+                    //Brands = new List<Brand>()
+                    //{
+                    //    new Brand
+                    //    {
+                    //        Suppliers
+                    //        Id=1,
+                    //        Name="Lenovo",
+                    //        Description="Dünyaın En Büyük Üreticisi",
+                    //        AddedBy=1,
+                    //    }
+                    //},
+                    //MarketPlaces = new List<MarketPlace>()
+                    //{
+                    //    new MarketPlace
+                    //    {
+                    //        Id= 1,
+                    //        MarketPlaceName ="Trendyol",
+                    //        MarketPlaceDescription = "Pazar Yeri Açıklaması",
+                    //        AddedBy = 1,
+                    //    }
+                    //},
+                    //Products = new List<Product>()
+                    //{
+                    //    new Product
+                    //    {
+                    //        Id=1,
+                    //        ProductName ="Test Ürünü",
+                    //        AddedBy = 1,
+                    //    }
+                    //}
                 }
             };
 

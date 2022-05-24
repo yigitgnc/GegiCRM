@@ -30,6 +30,7 @@ namespace GegiCRM.DAL.Concrete
         public virtual DbSet<CollectionReceipt> CollectionReceipts { get; set; } = null!;
         public virtual DbSet<Currency> Currencies { get; set; } = null!;
         public virtual DbSet<Customer> Customers { get; set; } = null!;
+        public virtual DbSet<CustomerActivityLog> CustomerActivityLogs { get; set; } = null!;
         public virtual DbSet<CustomerAddress> CustomerAddresses { get; set; } = null!;
         public virtual DbSet<CustomerBillingAddress> CustomerBillingAddresses { get; set; } = null!;
         public virtual DbSet<CustomerContact> CustomerContacts { get; set; } = null!;
@@ -51,7 +52,7 @@ namespace GegiCRM.DAL.Concrete
         public virtual DbSet<MaintenencePeriod> MaintenencePeriods { get; set; } = null!;
         public virtual DbSet<MarketPlace> MarketPlaces { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
-        public virtual DbSet<OrderState> OrderAndProductStates { get; set; } = null!;
+        public virtual DbSet<OrderState> OrderStates { get; set; } = null!;
         public virtual DbSet<OrdersCurrency> OrdersCurrencies { get; set; } = null!;
         public virtual DbSet<OrdersProduct> OrdersProducts { get; set; } = null!;
         public virtual DbSet<PaymentType> PaymentTypes { get; set; } = null!;
@@ -471,6 +472,31 @@ namespace GegiCRM.DAL.Concrete
 
             });
 
+            modelBuilder.Entity<CustomerActivityLog>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.CreatedDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ModifiedDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.HasOne(d => d.AddedByNavigation)
+                    .WithMany(p => p.CustomerActivityLogAddedByNavigations)
+                    .HasForeignKey(d => d.AddedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CustomersActivityLog_AddedBy");
+
+                entity.HasOne(d => d.ModifiedByNavigation)
+                    .WithMany(p => p.CustomerActivityLogModifiedByNavigations)
+                    .HasForeignKey(d => d.ModifiedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CustomersActivityLog_ModifiedBy");
+            });
+
             modelBuilder.Entity<CustomerAddress>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -583,39 +609,6 @@ namespace GegiCRM.DAL.Concrete
                     .HasConstraintName("FK_CustomerContacts_Users1");
             });
 
-            //modelBuilder.Entity<CustomerDetail>(entity =>
-            //{
-            //    entity.Property(e => e.Id).HasColumnName("ID");
-
-            //    entity.Property(e => e.CurrencyId).HasColumnName("CurrencyID");
-
-            //    entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
-
-            //    entity.Property(e => e.Tel).HasMaxLength(50);
-
-            //    entity.HasOne(d => d.Currency)
-            //        .WithMany(p => p.CustomerDetails)
-            //        .HasForeignKey(d => d.CurrencyId)
-            //        .OnDelete(DeleteBehavior.ClientSetNull)
-            //        .HasConstraintName("FK_CustomerDetails_Currencies");
-
-            //    entity.HasOne(d => d.Customer)
-            //        .WithMany(p => p.CustomerDetails)
-            //        .HasForeignKey(d => d.CustomerId)
-            //        .OnDelete(DeleteBehavior.ClientSetNull)
-            //        .HasConstraintName("FK_CustomerDetails_Customers");
-
-            //    entity.HasOne(d => d.AddedByNavigation)
-            //      .WithMany(p => p.CustomerDetailAddedByNavigations)
-            //      .HasForeignKey(d => d.AddedBy)
-            //      .OnDelete(DeleteBehavior.ClientSetNull)
-            //      .HasConstraintName("FK_CustomerDetails_AddedBy");
-
-            //    entity.HasOne(d => d.ModifiedByNavigation)
-            //        .WithMany(p => p.CustomerDetailModifiedByNavigations)
-            //        .HasForeignKey(d => d.ModifiedBy)
-            //        .HasConstraintName("FK_CustomerDetails_ModifiedBy");
-            //});
 
             modelBuilder.Entity<CustomerRepresentetiveUser>(entity =>
             {
@@ -1198,6 +1191,12 @@ namespace GegiCRM.DAL.Concrete
                     .HasForeignKey(d => d.OrderStateId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Orders_OrderStates");
+
+                entity.HasOne(d => d.RepresentetiveUser)
+                    .WithMany(p => p.OrderRepresentetiveUserNavigations)
+                    .HasForeignKey(d => d.RepresentetiveUserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_OrdersRepresentetiveUsers");
             });
 
             modelBuilder.Entity<OrderState>(entity =>
@@ -1337,12 +1336,6 @@ namespace GegiCRM.DAL.Concrete
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OrdersProducts_Products");
-
-                entity.HasOne(d => d.ProductState)
-                    .WithMany(p => p.OrdersProducts)
-                    .HasForeignKey(d => d.ProductStateId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_OrdersProducts_OrderAndProductStates");
 
                 entity.HasOne(d => d.ReferansCurrency)
                     .WithMany(p => p.OrdersProductReferansCurrencies)

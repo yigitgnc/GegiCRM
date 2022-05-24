@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using GegiCRM.BLL.Abstract;
 using GegiCRM.DAL.Abstract;
 using GegiCRM.DAL.Repositories;
 using GegiCRM.Entities.Concrete;
@@ -11,16 +12,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
-namespace GegiCRM.BLL.Abstract
+namespace GegiCRM.BLL.Concrete
 {
-    public abstract class AbstractGenericManager<T> where T : class
+    public class GenericManager<T> : IGenericManager<T> where T : class
     {
         private readonly UserManager<AppUser> _userManager;
         public IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<T> _logger;
         readonly IGenericDal<T> _genericDal;
         //GenericRepository<T> _genericDal = new GenericRepository<T>();
-        public AbstractGenericManager(
+        public GenericManager(
             UserManager<AppUser> userManager,
             //IHttpContextAccessor httpContextAccessor,
             //ILogger<T> logger,

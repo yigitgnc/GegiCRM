@@ -15,8 +15,6 @@ namespace GegiCRM.Entities.Concrete
         public string? Gsm { get; set; }
         public string? Email { get; set; }
 
-        public virtual AppUser AddedByNavigation { get; set; } = null!;
         public virtual Customer? Customer { get; set; }
-        public virtual AppUser ModifiedByNavigation { get; set; } = null!;
     }
 }

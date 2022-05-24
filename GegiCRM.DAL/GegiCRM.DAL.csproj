@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GegiCRM.Core\GegiCRM.Core.csproj" />
     <ProjectReference Include="..\GegiCRM.Entities\GegiCRM.Entities.csproj" />
   </ItemGroup>
 

@@ -14,13 +14,20 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.BLL.Concrete
 {
-    public class TeklifTakipManager : AbstractGenericManager<Order>
+    public class TeklifTakipManager : GenericManager<Order>
     {
         private readonly IOrderDal _orderDal;
 
         public TeklifTakipManager(UserManager<AppUser> userManager, IOrderDal orderDal) : base(userManager, orderDal)
         {
             _orderDal = orderDal;
+        }
+
+        public new Order Create(Order order)
+        {
+            order.OrderStateId = 5;
+            base.Create(order);
+            return order;
         }
     }
 }

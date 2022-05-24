@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.BLL.Concrete
 {
-    public class AppIdentityRoleManager : AbstractGenericManager<AppIdentityRole>
+    public class AppIdentityRoleManager : GenericManager<AppIdentityRole>
     {
         private readonly IAppIdentityRoleDal _appIdentityRoleDal;
 

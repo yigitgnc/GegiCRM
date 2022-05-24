@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GegiCRM.DAL.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220516151913_SegmentOranlarEklendi2")]
-    partial class SegmentOranlarEklendi2
+    [Migration("20220524121848_CustomerActivityLogsAndOrderRepresentetiveUser")]
+    partial class CustomerActivityLogsAndOrderRepresentetiveUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -135,12 +135,12 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 1,
                             AddedBy = 1,
-                            ConcurrencyStamp = "2333022b-8b6e-4046-9f3d-d8296835f2f5",
-                            CreatedDate = new DateTime(2022, 5, 16, 18, 19, 11, 113, DateTimeKind.Local).AddTicks(8063),
+                            ConcurrencyStamp = "b6b93b33-244d-40fc-bf95-b76e7973174b",
+                            CreatedDate = new DateTime(2022, 5, 24, 15, 18, 46, 682, DateTimeKind.Local).AddTicks(4435),
                             Description = "Sistem Admini Full Yetki",
                             IsDeleted = false,
                             ModifiedBy = 1,
-                            ModifiedDate = new DateTime(2022, 5, 16, 18, 19, 11, 113, DateTimeKind.Local).AddTicks(8075),
+                            ModifiedDate = new DateTime(2022, 5, 24, 15, 18, 46, 682, DateTimeKind.Local).AddTicks(4438),
                             Name = "SysAdmin",
                             NormalizedName = "Sistem Admini",
                             RoleGroupId = 1
@@ -257,6 +257,7 @@ namespace GegiCRM.DAL.Migrations
                         .HasDefaultValueSql("(getdate())");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -284,6 +285,7 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -322,20 +324,20 @@ namespace GegiCRM.DAL.Migrations
                             Id = 1,
                             AccessFailedCount = 0,
                             AddedBy = 1,
-                            ConcurrencyStamp = "c1b77e7f-115c-4954-a528-da265732c5d8",
-                            CreatedDate = new DateTime(2022, 5, 16, 18, 19, 11, 111, DateTimeKind.Local).AddTicks(6179),
+                            ConcurrencyStamp = "79b00af3-ba74-4747-8112-b4b18f2442b0",
+                            CreatedDate = new DateTime(2022, 5, 24, 15, 18, 46, 680, DateTimeKind.Local).AddTicks(7927),
                             Email = "yigit.genc@gegi.com.tr",
                             EmailConfirmed = true,
                             IsDeleted = false,
                             LockoutEnabled = false,
-                            ModifiedDate = new DateTime(2022, 5, 16, 18, 19, 11, 111, DateTimeKind.Local).AddTicks(6194),
+                            ModifiedDate = new DateTime(2022, 5, 24, 15, 18, 46, 680, DateTimeKind.Local).AddTicks(7942),
                             Name = "Yiğit",
                             NormalizedEmail = "YIGIT.GENC@GEGI.COM.TR",
                             NormalizedUserName = "ADMINYGT",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJOl42vYFkZbo/zNFideKZW9xEdmqWvpVbK5Xv2uin8y56xsOD3eP8p797Edoj8u3Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGq2kQPYWEhYG3IpQKaCpCNaJCxzKzkmSyfI77bUzUCNUMJ1NAOKJMbW/39tMhyfAA==",
                             PhoneNumber = "+905382630008",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8bc1ede8-59c1-48c9-ba9e-ac19ab3641c8",
+                            SecurityStamp = "75065bfc-ad8c-4c50-955e-362ed7d4f601",
                             Surname = "Genç",
                             TwoFactorEnabled = false,
                             UserCompanyId = 1,
@@ -669,7 +671,7 @@ namespace GegiCRM.DAL.Migrations
                             Id = 1,
                             AddedBy = 1,
                             Code = "TRY",
-                            CreatedDate = new DateTime(2022, 5, 16, 18, 19, 11, 113, DateTimeKind.Local).AddTicks(8266),
+                            CreatedDate = new DateTime(2022, 5, 24, 15, 18, 46, 682, DateTimeKind.Local).AddTicks(4484),
                             IsDeleted = false,
                             Name = "Türk Lirası"
                         },
@@ -678,7 +680,7 @@ namespace GegiCRM.DAL.Migrations
                             Id = 2,
                             AddedBy = 1,
                             Code = "USD",
-                            CreatedDate = new DateTime(2022, 5, 16, 18, 19, 11, 113, DateTimeKind.Local).AddTicks(8306),
+                            CreatedDate = new DateTime(2022, 5, 24, 15, 18, 46, 682, DateTimeKind.Local).AddTicks(4499),
                             IsDeleted = false,
                             Name = "Amerikan Doları"
                         },
@@ -687,7 +689,7 @@ namespace GegiCRM.DAL.Migrations
                             Id = 3,
                             AddedBy = 1,
                             Code = "EUR",
-                            CreatedDate = new DateTime(2022, 5, 16, 18, 19, 11, 113, DateTimeKind.Local).AddTicks(8312),
+                            CreatedDate = new DateTime(2022, 5, 24, 15, 18, 46, 682, DateTimeKind.Local).AddTicks(4501),
                             IsDeleted = false,
                             Name = "EURO"
                         });
@@ -714,6 +716,9 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
 
+                    b.Property<int>("CurrencyId")
+                        .HasColumnType("int");
+
                     b.Property<bool?>("IsActive")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
@@ -738,6 +743,12 @@ namespace GegiCRM.DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PreferredCurrencyId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("SectorId")
                         .HasColumnType("int")
                         .HasColumnName("SectorID");
@@ -746,9 +757,15 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("SegmentID");
 
+                    b.Property<string>("SideSuppliers")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Surname")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Tel")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TicariUnvan")
                         .HasMaxLength(250)
@@ -763,6 +780,8 @@ namespace GegiCRM.DAL.Migrations
                     b.HasIndex("AddedBy");
 
                     b.HasIndex("ModifiedBy");
+
+                    b.HasIndex("PreferredCurrencyId");
 
                     b.HasIndex("SectorId");
 
@@ -779,6 +798,7 @@ namespace GegiCRM.DAL.Migrations
                             AddedBy = 1,
                             CariKodu = "123",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CurrencyId = 0,
                             IsActive = true,
                             IsDeleted = false,
                             Name = "Test Müşterisi",
@@ -788,6 +808,51 @@ namespace GegiCRM.DAL.Migrations
                             TicariUnvan = "Test Ticari Ünvanı",
                             TypeId = 1
                         });
+                });
+
+            modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerActivityLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("(getdate())");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("(getdate())");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddedBy");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("ModifiedBy");
+
+                    b.ToTable("CustomerActivityLogs");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerAddress", b =>
@@ -971,61 +1036,6 @@ namespace GegiCRM.DAL.Migrations
                     b.HasIndex("ModifiedBy");
 
                     b.ToTable("CustomerContacts");
-                });
-
-            modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("ID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("AddedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("CurrencyId")
-                        .HasColumnType("int")
-                        .HasColumnName("CurrencyID");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int")
-                        .HasColumnName("CustomerID");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("ModifiedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SideSuppliers")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Tel")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AddedBy");
-
-                    b.HasIndex("CurrencyId");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("ModifiedBy");
-
-                    b.ToTable("CustomerDetails");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerRepresentetiveUser", b =>
@@ -1891,8 +1901,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<int>("AddedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("ApprovedDate")
-                        .HasColumnType("datetime");
+                    b.Property<DateTime?>("CancelledDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
@@ -1903,10 +1913,25 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("CustomerID");
 
+                    b.Property<DateTime?>("DeniedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsCancelled")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeneied")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsFrequentlyUsed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsOfferApproved")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsOrderApproved")
                         .HasColumnType("bit");
 
                     b.Property<int?>("ModifiedBy")
@@ -1917,9 +1942,18 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
 
+                    b.Property<DateTime?>("OfferApprovedDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("OrderApprovedDate")
+                        .HasColumnType("datetime");
+
                     b.Property<int>("OrderStateId")
                         .HasColumnType("int")
                         .HasColumnName("OrderStateID");
+
+                    b.Property<int>("RepresentetiveUserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -1931,54 +1965,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("OrderStateId");
 
+                    b.HasIndex("RepresentetiveUserId");
+
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("GegiCRM.Entities.Concrete.OrderAndProductState", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("ID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("AddedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("(getdate())");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("ModifiedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("(getdate())");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AddedBy");
-
-                    b.HasIndex("ModifiedBy");
-
-                    b.ToTable("OrderAndProductStates");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.OrdersCurrency", b =>
@@ -2094,6 +2083,9 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("OrderStateId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductStateId")
                         .HasColumnType("int")
                         .HasColumnName("ProductStateID");
@@ -2127,15 +2119,154 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("ModifiedBy");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("OrderStateId");
 
-                    b.HasIndex("ProductStateId");
+                    b.HasIndex("ProductId");
 
                     b.HasIndex("ReferansCurrencyId");
 
                     b.HasIndex("ReferansSupplierId");
 
                     b.ToTable("OrdersProducts");
+                });
+
+            modelBuilder.Entity("GegiCRM.Entities.Concrete.OrderState", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("(getdate())");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("(getdate())");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddedBy");
+
+                    b.HasIndex("ModifiedBy");
+
+                    b.ToTable("OrderStates");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddedBy = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Test Açıklama",
+                            IsDeleted = false,
+                            Name = "Dönüş Bekleniyor ( Satın Alma )"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AddedBy = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Test Açıklama",
+                            IsDeleted = false,
+                            Name = "Olumsuz ( Satış )"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AddedBy = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Test Açıklama",
+                            IsDeleted = false,
+                            Name = "İptal / İade"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AddedBy = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Test Açıklama",
+                            IsDeleted = false,
+                            Name = "Onaylandı ( Teknik )"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AddedBy = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Test Açıklama",
+                            IsDeleted = false,
+                            Name = "Teklif Verildi ( Satışçı )"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AddedBy = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Test Açıklama",
+                            IsDeleted = false,
+                            Name = "Sipariş Verildi ( Satın Alma )"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AddedBy = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Test Açıklama",
+                            IsDeleted = false,
+                            Name = "Fatura Düzenlendi ( Muhasebe )"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AddedBy = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Test Açıklama",
+                            IsDeleted = false,
+                            Name = "Kargo / Sevkiyatta ( Depo )"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AddedBy = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Test Açıklama",
+                            IsDeleted = false,
+                            Name = "Onaylandı ( Satış )"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AddedBy = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Test Açıklama",
+                            IsDeleted = false,
+                            Name = "Fiyat Araştırılıyor ( Satın Alma )"
+                        });
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.PaymentType", b =>
@@ -2660,7 +2791,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 1,
                             AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 16, 18, 19, 11, 113, DateTimeKind.Local).AddTicks(8386),
+                            CreatedDate = new DateTime(2022, 5, 24, 15, 18, 46, 682, DateTimeKind.Local).AddTicks(4565),
                             Description = "Segment 1 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 1"
@@ -2669,7 +2800,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 2,
                             AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 16, 18, 19, 11, 113, DateTimeKind.Local).AddTicks(8402),
+                            CreatedDate = new DateTime(2022, 5, 24, 15, 18, 46, 682, DateTimeKind.Local).AddTicks(4570),
                             Description = "Segment 2 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 2"
@@ -2678,7 +2809,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 3,
                             AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 16, 18, 19, 11, 113, DateTimeKind.Local).AddTicks(8428),
+                            CreatedDate = new DateTime(2022, 5, 24, 15, 18, 46, 682, DateTimeKind.Local).AddTicks(4583),
                             Description = "Segment 3 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 3"
@@ -2687,7 +2818,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 4,
                             AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 16, 18, 19, 11, 113, DateTimeKind.Local).AddTicks(8437),
+                            CreatedDate = new DateTime(2022, 5, 24, 15, 18, 46, 682, DateTimeKind.Local).AddTicks(4595),
                             Description = "Segment 4 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 4"
@@ -2696,7 +2827,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 5,
                             AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 16, 18, 19, 11, 113, DateTimeKind.Local).AddTicks(8450),
+                            CreatedDate = new DateTime(2022, 5, 24, 15, 18, 46, 682, DateTimeKind.Local).AddTicks(4605),
                             Description = "Segment 5 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 5"
@@ -2705,7 +2836,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 6,
                             AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 16, 18, 19, 11, 113, DateTimeKind.Local).AddTicks(8456),
+                            CreatedDate = new DateTime(2022, 5, 24, 15, 18, 46, 682, DateTimeKind.Local).AddTicks(4610),
                             Description = "Segment 6 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 6"
@@ -2714,7 +2845,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 7,
                             AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 16, 18, 19, 11, 113, DateTimeKind.Local).AddTicks(8460),
+                            CreatedDate = new DateTime(2022, 5, 24, 15, 18, 46, 682, DateTimeKind.Local).AddTicks(4612),
                             Description = "Segment 7 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 7"
@@ -2723,7 +2854,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 8,
                             AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 16, 18, 19, 11, 113, DateTimeKind.Local).AddTicks(8464),
+                            CreatedDate = new DateTime(2022, 5, 24, 15, 18, 46, 682, DateTimeKind.Local).AddTicks(4615),
                             Description = "Segment 8 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 8"
@@ -2732,7 +2863,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 9,
                             AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 16, 18, 19, 11, 113, DateTimeKind.Local).AddTicks(8479),
+                            CreatedDate = new DateTime(2022, 5, 24, 15, 18, 46, 682, DateTimeKind.Local).AddTicks(4617),
                             Description = "Segment 9 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 9"
@@ -2741,7 +2872,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 10,
                             AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 16, 18, 19, 11, 113, DateTimeKind.Local).AddTicks(8487),
+                            CreatedDate = new DateTime(2022, 5, 24, 15, 18, 46, 682, DateTimeKind.Local).AddTicks(4623),
                             Description = "Segment 10 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 10"
@@ -9056,6 +9187,17 @@ namespace GegiCRM.DAL.Migrations
                     b.HasIndex("ModifiedBy");
 
                     b.ToTable("Suppliers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddedBy = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DealerCode = "123",
+                            IsDeleted = false,
+                            SupplierName = "Test Tedarikçisi"
+                        });
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.SupplierDetail", b =>
@@ -9862,10 +10004,10 @@ namespace GegiCRM.DAL.Migrations
                             RoleId = 1,
                             AddedBy = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EndDate = new DateTime(2032, 5, 16, 18, 19, 11, 113, DateTimeKind.Local).AddTicks(8096),
+                            EndDate = new DateTime(2032, 5, 24, 15, 18, 46, 682, DateTimeKind.Local).AddTicks(4450),
                             Id = 0,
                             IsDeleted = false,
-                            StartDate = new DateTime(2022, 5, 16, 18, 19, 11, 113, DateTimeKind.Local).AddTicks(8095)
+                            StartDate = new DateTime(2022, 5, 24, 15, 18, 46, 682, DateTimeKind.Local).AddTicks(4449)
                         });
                 });
 
@@ -10126,6 +10268,10 @@ namespace GegiCRM.DAL.Migrations
                         .HasForeignKey("ModifiedBy")
                         .HasConstraintName("FK_Customers_Users1");
 
+                    b.HasOne("GegiCRM.Entities.Concrete.Currency", "PreferredCurrency")
+                        .WithMany("PreferringCustomers")
+                        .HasForeignKey("PreferredCurrencyId");
+
                     b.HasOne("GegiCRM.Entities.Concrete.Sector", "Sector")
                         .WithMany("Customers")
                         .HasForeignKey("SectorId")
@@ -10147,11 +10293,39 @@ namespace GegiCRM.DAL.Migrations
 
                     b.Navigation("ModifiedByNavigation");
 
+                    b.Navigation("PreferredCurrency");
+
                     b.Navigation("Sector");
 
                     b.Navigation("Segment");
 
                     b.Navigation("Type");
+                });
+
+            modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerActivityLog", b =>
+                {
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
+                        .WithMany("CustomerActivityLogAddedByNavigations")
+                        .HasForeignKey("AddedBy")
+                        .IsRequired()
+                        .HasConstraintName("FK_CustomersActivityLog_AddedBy");
+
+                    b.HasOne("GegiCRM.Entities.Concrete.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
+                        .WithMany("CustomerActivityLogModifiedByNavigations")
+                        .HasForeignKey("ModifiedBy")
+                        .HasConstraintName("FK_CustomersActivityLog_ModifiedBy");
+
+                    b.Navigation("AddedByNavigation");
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("ModifiedByNavigation");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerAddress", b =>
@@ -10223,40 +10397,6 @@ namespace GegiCRM.DAL.Migrations
                         .HasConstraintName("FK_CustomerContacts_Users1");
 
                     b.Navigation("AddedByNavigation");
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("ModifiedByNavigation");
-                });
-
-            modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerDetail", b =>
-                {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("CustomerDetailAddedByNavigations")
-                        .HasForeignKey("AddedBy")
-                        .IsRequired()
-                        .HasConstraintName("FK_CustomerDetails_AddedBy");
-
-                    b.HasOne("GegiCRM.Entities.Concrete.Currency", "Currency")
-                        .WithMany("CustomerDetails")
-                        .HasForeignKey("CurrencyId")
-                        .IsRequired()
-                        .HasConstraintName("FK_CustomerDetails_Currencies");
-
-                    b.HasOne("GegiCRM.Entities.Concrete.Customer", "Customer")
-                        .WithMany("CustomerDetails")
-                        .HasForeignKey("CustomerId")
-                        .IsRequired()
-                        .HasConstraintName("FK_CustomerDetails_Customers");
-
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("CustomerDetailModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
-                        .HasConstraintName("FK_CustomerDetails_ModifiedBy");
-
-                    b.Navigation("AddedByNavigation");
-
-                    b.Navigation("Currency");
 
                     b.Navigation("Customer");
 
@@ -10708,11 +10848,17 @@ namespace GegiCRM.DAL.Migrations
                         .HasForeignKey("ModifiedBy")
                         .HasConstraintName("FK_Orders_Users1");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.OrderAndProductState", "OrderState")
+                    b.HasOne("GegiCRM.Entities.Concrete.OrderState", "OrderState")
                         .WithMany("Orders")
                         .HasForeignKey("OrderStateId")
                         .IsRequired()
                         .HasConstraintName("FK_Orders_OrderStates");
+
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "RepresentetiveUser")
+                        .WithMany("OrderRepresentetiveUserNavigations")
+                        .HasForeignKey("RepresentetiveUserId")
+                        .IsRequired()
+                        .HasConstraintName("FK_OrdersRepresentetiveUsers");
 
                     b.Navigation("AddedByNavigation");
 
@@ -10721,24 +10867,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Navigation("ModifiedByNavigation");
 
                     b.Navigation("OrderState");
-                });
 
-            modelBuilder.Entity("GegiCRM.Entities.Concrete.OrderAndProductState", b =>
-                {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("OrderAndProductStateAddedByNavigations")
-                        .HasForeignKey("AddedBy")
-                        .IsRequired()
-                        .HasConstraintName("FK_OrderStates_Users");
-
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("OrderAndProductStateModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
-                        .HasConstraintName("FK_OrderStates_Users1");
-
-                    b.Navigation("AddedByNavigation");
-
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("RepresentetiveUser");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.OrdersCurrency", b =>
@@ -10809,17 +10939,15 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_OrdersProducts_Orders");
 
+                    b.HasOne("GegiCRM.Entities.Concrete.OrderState", null)
+                        .WithMany("OrdersProducts")
+                        .HasForeignKey("OrderStateId");
+
                     b.HasOne("GegiCRM.Entities.Concrete.Product", "Product")
                         .WithMany("OrdersProducts")
                         .HasForeignKey("ProductId")
                         .IsRequired()
                         .HasConstraintName("FK_OrdersProducts_Products");
-
-                    b.HasOne("GegiCRM.Entities.Concrete.OrderAndProductState", "ProductState")
-                        .WithMany("OrdersProducts")
-                        .HasForeignKey("ProductStateId")
-                        .IsRequired()
-                        .HasConstraintName("FK_OrdersProducts_OrderAndProductStates");
 
                     b.HasOne("GegiCRM.Entities.Concrete.Currency", "ReferansCurrency")
                         .WithMany("OrdersProductReferansCurrencies")
@@ -10846,11 +10974,27 @@ namespace GegiCRM.DAL.Migrations
 
                     b.Navigation("Product");
 
-                    b.Navigation("ProductState");
-
                     b.Navigation("ReferansCurrency");
 
                     b.Navigation("ReferansSupplier");
+                });
+
+            modelBuilder.Entity("GegiCRM.Entities.Concrete.OrderState", b =>
+                {
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
+                        .WithMany("OrderAndProductStateAddedByNavigations")
+                        .HasForeignKey("AddedBy")
+                        .IsRequired()
+                        .HasConstraintName("FK_OrderStates_Users");
+
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
+                        .WithMany("OrderAndProductStateModifiedByNavigations")
+                        .HasForeignKey("ModifiedBy")
+                        .HasConstraintName("FK_OrderStates_Users1");
+
+                    b.Navigation("AddedByNavigation");
+
+                    b.Navigation("ModifiedByNavigation");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.PaymentType", b =>
@@ -11693,6 +11837,10 @@ namespace GegiCRM.DAL.Migrations
 
                     b.Navigation("CurrencyModifiedByNavigations");
 
+                    b.Navigation("CustomerActivityLogAddedByNavigations");
+
+                    b.Navigation("CustomerActivityLogModifiedByNavigations");
+
                     b.Navigation("CustomerAddedByNavigations");
 
                     b.Navigation("CustomerAddressAddedByNavigations");
@@ -11706,10 +11854,6 @@ namespace GegiCRM.DAL.Migrations
                     b.Navigation("CustomerContactAddedByNavigations");
 
                     b.Navigation("CustomerContactModifiedByNavigations");
-
-                    b.Navigation("CustomerDetailAddedByNavigations");
-
-                    b.Navigation("CustomerDetailModifiedByNavigations");
 
                     b.Navigation("CustomerModifiedByNavigations");
 
@@ -11792,6 +11936,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Navigation("OrderAndProductStateModifiedByNavigations");
 
                     b.Navigation("OrderModifiedByNavigations");
+
+                    b.Navigation("OrderRepresentetiveUserNavigations");
 
                     b.Navigation("OrdersProductAddedByNavigations");
 
@@ -11923,8 +12069,6 @@ namespace GegiCRM.DAL.Migrations
                 {
                     b.Navigation("CollectionReceipts");
 
-                    b.Navigation("CustomerDetails");
-
                     b.Navigation("Deposits");
 
                     b.Navigation("DiscountCupons");
@@ -11936,6 +12080,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Navigation("OrdersProductKesinCurrencies");
 
                     b.Navigation("OrdersProductReferansCurrencies");
+
+                    b.Navigation("PreferringCustomers");
 
                     b.Navigation("SupplierDetails");
                 });
@@ -11949,8 +12095,6 @@ namespace GegiCRM.DAL.Migrations
                     b.Navigation("CustomerBillingAddresses");
 
                     b.Navigation("CustomerContacts");
-
-                    b.Navigation("CustomerDetails");
 
                     b.Navigation("CustomerRepresentetiveUsers");
 
@@ -12009,7 +12153,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Navigation("OrdersProducts");
                 });
 
-            modelBuilder.Entity("GegiCRM.Entities.Concrete.OrderAndProductState", b =>
+            modelBuilder.Entity("GegiCRM.Entities.Concrete.OrderState", b =>
                 {
                     b.Navigation("Orders");
 

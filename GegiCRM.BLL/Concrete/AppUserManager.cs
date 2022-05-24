@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.BLL.Concrete
 {
-    public class AppUserManager : AbstractGenericManager<AppUser>
+    public class AppUserManager : GenericManager<AppUser>
     {
         private readonly IAppUserDal _userDal;
         public readonly UserManager<AppUser> _userManager;

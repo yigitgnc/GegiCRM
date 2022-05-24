@@ -28,11 +28,14 @@ namespace GegiCRM.Entities.Concrete
             CustomerTypeAddedByNavigations = new HashSet<CustomerType>();
             CustomerTypeModifiedByNavigations = new HashSet<CustomerType>();
             CustomerAddedByNavigations = new HashSet<Customer>();
+            CustomerModifiedByNavigations = new HashSet<Customer>();
+            OrderRepresentetiveUserNavigations = new HashSet<Order>();
+            CustomerActivityLogAddedByNavigations = new HashSet<CustomerActivityLog>();
+            CustomerActivityLogModifiedByNavigations = new HashSet<CustomerActivityLog>();
             CustomerAddressAddedByNavigations = new HashSet<CustomerAddress>();
             CustomerAddressModifiedByNavigations = new HashSet<CustomerAddress>();
             CustomerContactAddedByNavigations = new HashSet<CustomerContact>();
             CustomerContactModifiedByNavigations = new HashSet<CustomerContact>();
-            CustomerModifiedByNavigations = new HashSet<Customer>();
             CustomerRepresentetiveUsers = new HashSet<CustomerRepresentetiveUser>();
             DepartmentAddedByNavigations = new HashSet<Department>();
             DepartmentModifiedByNavigations = new HashSet<Department>();
@@ -161,6 +164,10 @@ namespace GegiCRM.Entities.Concrete
         public virtual ICollection<CustomerType> CustomerTypeAddedByNavigations { get; set; }
         public virtual ICollection<CustomerType> CustomerTypeModifiedByNavigations { get; set; }
         public virtual ICollection<Customer> CustomerAddedByNavigations { get; set; }
+        public virtual ICollection<Customer> CustomerModifiedByNavigations { get; set; }
+        public virtual ICollection<Order> OrderRepresentetiveUserNavigations { get; set; }
+        public virtual ICollection<CustomerActivityLog> CustomerActivityLogAddedByNavigations { get; set; }
+        public virtual ICollection<CustomerActivityLog> CustomerActivityLogModifiedByNavigations { get; set; }
         public virtual ICollection<CustomerAddress> CustomerAddressAddedByNavigations { get; set; }
         public virtual ICollection<CustomerAddress> CustomerAddressModifiedByNavigations { get; set; }
         public virtual ICollection<CustomerBillingAddress> CustomerBillingAddressAddedByNavigations { get; set; }
@@ -171,7 +178,6 @@ namespace GegiCRM.Entities.Concrete
         //public virtual ICollection<CustomerDetail> CustomerDetailModifiedByNavigations { get; set; }
         public virtual ICollection<CustomerRepresentetiveUser> CustomerRepresentetiveUserAddedByNavigations { get; set; }
         public virtual ICollection<CustomerRepresentetiveUser> CustomerRepresentetiveUserModifiedByNavigations { get; set; }
-        public virtual ICollection<Customer> CustomerModifiedByNavigations { get; set; }
         public virtual ICollection<CustomerRepresentetiveUser> CustomerRepresentetiveUsers { get; set; }
         public virtual ICollection<Department> DepartmentAddedByNavigations { get; set; }
         public virtual ICollection<Department> DepartmentModifiedByNavigations { get; set; }

@@ -32,9 +32,10 @@ $("#fullScreenButton").on("click", function () {
 });
 
 
-//$(document).ready(function () {
-//    //var a = new PerfectScrollbar("html");
-//    console.log(a);
+$(document).ready(function () {
+    $(function () {
+        $('.selectpicker').selectpicker();
+    });
 
-//});
+});
 

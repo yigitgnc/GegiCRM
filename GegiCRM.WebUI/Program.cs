@@ -25,6 +25,8 @@ builder.Services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<AppUserManager>();
 builder.Services.AddScoped<IAppIdentityRoleDal, EfAppIdentityRoleRepository>();
 builder.Services.AddScoped<AppIdentityRoleManager>();
+builder.Services.AddScoped(typeof(GenericManager<>));
+builder.Services.AddScoped<GenericManager<Customer>>();
 
 // Auto Mapper Configurations
 var mapperConfig = new MapperConfiguration(mc =>
