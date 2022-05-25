@@ -64,13 +64,15 @@ builder.Services.Configure<IdentityOptions>(options =>
     // User settings.
     //options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
     options.User.RequireUniqueEmail = true;
+    
 });
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
     // Cookie settings
     options.Cookie.HttpOnly = true;
-    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+    options.Cookie.Expiration = TimeSpan.FromDays(5);
+    options.ExpireTimeSpan = TimeSpan.FromDays(5);
     options.LoginPath = "/Login";
     options.AccessDeniedPath = "/Identity/Account/AccessDenied";
     options.SlidingExpiration = true;

@@ -133,12 +133,12 @@
             "method": "GET",
             success: function (data) {
                  $("#newOrderContent").html(data);
-                 $("#waitNewOrder").hide();
+                 //$("#waitNewOrder").hide();
             },
             error: function (err) {
-                    console.log(err);
-                    $("#newOrderContent").html("Bir Hata Oluştu !");
-                     $("#waitNewOrder").hide();
+                console.log(err);
+                $("#newOrderContent").html("Bir Hata Oluştu !");
+                //$("#waitNewOrder").hide();
             }
         })
     };
