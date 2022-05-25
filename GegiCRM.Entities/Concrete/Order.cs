@@ -47,7 +47,7 @@ namespace GegiCRM.Entities.Concrete
 
         public string CreateHtmlBadge(bool property)
         {
-            string badge = "<span class=\"badge bg-label-gray me-1\">Beklemede</span>";
+            string badge = "<span class=\"badge bg-label-dark me-1\">Beklemede</span>";
             if (IsCancelled)
             {
                 badge = "<span class=\"badge bg-label-danger me-1\">İptal</span>";

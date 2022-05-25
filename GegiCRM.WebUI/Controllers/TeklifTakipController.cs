@@ -38,11 +38,8 @@ namespace GegiCRM.WebUI.Controllers
         [HttpPost]
         public IActionResult CreateNewOrder(string customer_Id, string rUser_Id)
         {
-            Order order = new Order();
-            order.AddedBy = Convert.ToInt32(rUser_Id);
-            order.CustomerId = Convert.ToInt32(customer_Id);
-            _teklifTakipManager.Create(order);
-            return RedirectToAction("TeklifOlustur", new { order.Id });
+            var createdOrder = _teklifTakipManager.Create(customer_Id, rUser_Id);
+            return RedirectToAction("TeklifOlustur", new { createdOrder.Id });
         }
 
         public IActionResult TeklifOlustur(int id)

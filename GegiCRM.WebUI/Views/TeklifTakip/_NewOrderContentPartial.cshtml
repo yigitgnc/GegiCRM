@@ -11,11 +11,10 @@
         </div>
 
         <div class="row">
-
             <form action="/TeklifTakip/CreateNewOrder" method="post">
                 <div class="mb-3 mt-5">
                     <label for="select-Customer" class="col-sm-2 form-control-label">Müşteri</label>
-                    <div class="col-sm-12">
+                    <div class="col-12">
                         <select name="customer_Id" class="form-control selectpicker" id="select-Customer" data-live-search="true" aria-describedby="customerHelpd" data-container="body">
                             @foreach (Customer item in ViewBag.Customers)
                             {
@@ -28,7 +27,7 @@
                 </div>
                 <div class="mb-5">
                     <label for="select-RepresentetiveUser" class="col-sm-2 form-control-label">Temsilci</label>
-                    <div class="col-sm-12">
+                    <div class="col-12">
                         <select name="rUser_Id" class="form-control selectpicker" id="select-RepresentetiveUser" data-live-search="true" aria-describedby="representetiveUserHelp" data-container="body">
                             @foreach (AppUser item in ViewBag.Users)
                             {

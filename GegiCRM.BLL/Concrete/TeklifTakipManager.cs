@@ -29,5 +29,14 @@ namespace GegiCRM.BLL.Concrete
             base.Create(order);
             return order;
         }
+        public new Order Create(string customerId, string rUserId)
+        {
+            Order order = new Order();
+            order.RepresentetiveUserId = Convert.ToInt32(rUserId);
+            order.CustomerId = Convert.ToInt32(customerId);
+            order.OrderStateId = 5;
+            base.Create(order);
+            return order;
+        }
     }
 }

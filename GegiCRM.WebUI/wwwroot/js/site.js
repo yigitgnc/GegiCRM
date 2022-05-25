@@ -1,7 +1,4 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-//fullscreen
+﻿//fullscreen
 function toggleFullScreen() {
     if (!document.fullscreenElement &&    // alternative standard method
         !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) // current working methods
@@ -54,16 +51,9 @@ $('#topNavSearchContainer').click(function (event) {
     event.stopPropagation();
 });
 
-//$("#topNavSearch").on("focusout", function () {
-//    //setTimeout(function () {
-//        $("#topNavSearchResults").fadeOut(110);
-//    //},100);
-//});
-
 $("#topNavSearch").on("focusin", function () {
     $("#topNavSearchResults").fadeIn("fast");
 });
-
 
 function SearchInDataSet(value) {
     $("#topNavSearchResults .list-group").html("");
@@ -97,10 +87,20 @@ function SearchInDataSet(value) {
 }
 
 //selectPicker (bootstrap-select)
-$(document).ready(function () {
+$(document).on("ready ajaxSuccess", function () {
     $(function () {
-        $('.selectpicker').selectpicker();
+        $('.selectpicker').select2(
+            {
+                language: "tr"
+            });
+
+
+        //$('.selectpicker').selectpicker();
     });
 
 });
 
+//menu active
+$(document).ready(function() {
+
+});

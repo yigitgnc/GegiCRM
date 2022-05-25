@@ -19,7 +19,8 @@
 }
 
 #menuUl {
-    padding-bottom: 130px !important;
+    padding-bottom: 150px !important;
+    overflow-x: hidden !important;
 }
 
 /*datatable begin*/
@@ -83,17 +84,20 @@
     width: inherit;
     left: 3rem;
     /*border-color: #a5a6ff;*/
+    max-height: 360px;
+    overflow: auto;
+    border: 1px solid #e7e7ff;
+    border-radius: 0 0 0px 10px;
 }
 
     #topNavSearchResults > .list-group {
         background: #ffffffdb;
-        border: 0px solid #a5a6ff;
-        border-radius: 0 0 10px 10px;
     }
 
         #topNavSearchResults > .list-group > .list-group-item {
-            border: 0.1rem solid #e7e7ff;
+            border: 1px solid #e7e7ff;
             overflow-x: hidden;
+            border-radius: 0;
         }
         #topNavSearchResults > .list-group > .list-group-item :first-child{
             border-top: 0px solid black;
@@ -105,3 +109,6 @@
             }
 /*topnavsearch end*/
 
+.select2-search__field {
+    height: 26px !important;
+}
