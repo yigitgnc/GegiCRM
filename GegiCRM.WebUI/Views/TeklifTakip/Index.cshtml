@@ -20,7 +20,7 @@
         </div>
 
         <div class="collapse mt-3" id="newOrderCollapse">
-            <div class="col-12 d-flex justify-content-center"> 
+            <div class="col-12 d-flex justify-content-center">
                 <div id="waitNewOrder" class="spinner-border spinner-border-lg text-primary" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
@@ -58,11 +58,18 @@
                                 <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                                     <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Kaydeden: @item.AddedByNavigation.NameSurname">
                                         <img src="/assets/img/avatars/1.png" alt="Kaydeden: @item.AddedByNavigation.NameSurname" class="rounded-circle" />
-                                        @*<i>Kaydeden: @item.AddedByNavigation.NameSurname</i>*@
                                     </li>
+
+                                    <li style="display: none">
+                                        <i> Kaydeden @item.AddedByNavigation.NameSurname</i>
+                                    </li>
+
                                     <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Temsilci: @item.AddedByNavigation.NameSurname">
                                         <img src="/assets/img/avatars/1.png" alt="Temsilci: @item.RepresentetiveUser.NameSurname" class="rounded-circle" />
-                                        <i style="opacity: 0">Temsilci: @item.RepresentetiveUser.NameSurname</i>
+                                    </li>
+
+                                    <li style="display: none">
+                                        <i> Temsilci @item.RepresentetiveUser.NameSurname</i>
                                     </li>
                                 </ul>
                             </td>
@@ -70,7 +77,7 @@
                             <td>@item.OrderState.Name</td>
                             <td>
                                 @*@item.IsOfferApproved*@
-                               @Html.Raw(item.CreateHtmlBadge(item.IsOfferApproved))
+                                @Html.Raw(item.CreateHtmlBadge(item.IsOfferApproved))
                             </td>
                             <td>@item.TeklifOnayFormatted</td>
                             <td>
@@ -111,33 +118,33 @@
 
 @section Scripts{
 
-<script>
-    var firstTime = true;
-    $("#newOrderButton").click(function() {
+    <script>
+        var firstTime = true;
+        $("#newOrderButton").click(function() {
 
-        if (firstTime) {
-            getNewOrderPage();
-            firstTime = false;
-        }
-    });
-
-    function getNewOrderPage(){
-        $("#waitNewOrder").show();
-
-        $.ajax({
-            "url": "/TeklifTakip/_NewOrderContentPartial",
-            "method": "GET",
-            success: function(data) {
-                $("#newOrderContent").html(data);
-            },
-            error: function(err) {
-                console.log(err);
-                $("#newOrderContent").html("Bir Hata Oluştu !");
+            if (firstTime) {
+                getNewOrderPage();
+                firstTime = false;
             }
-        }).done(function() {
-            $("#waitNewOrder").hide();
         });
 
-    };
-</script>
+        function getNewOrderPage() {
+            $("#waitNewOrder").show();
+
+            $.ajax({
+                "url": "/TeklifTakip/_NewOrderContentPartial",
+                "method": "GET",
+                success: function(data) {
+                    $("#newOrderContent").html(data);
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#newOrderContent").html("Bir Hata Oluştu !");
+                }
+            }).done(function() {
+                $("#waitNewOrder").hide();
+            });
+
+        };
+    </script>
 }

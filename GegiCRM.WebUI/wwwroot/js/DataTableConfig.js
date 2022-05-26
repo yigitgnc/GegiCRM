@@ -42,7 +42,7 @@
         "fnInitComplete": function () {
             //$('.dataTables_scrollBody').perfectScrollbar();
             //const ps = new PerfectScrollbar('.dataTables_scrollBody');
-            $("thead tr").clone().appendTo($("tfoot"));
+            //$("thead tr").clone().appendTo($("tfoot"));
         },
         //on paginition page 2,3.. often scroll shown, so reset it and assign it again
         "fnDrawCallback": function (oSettings) {

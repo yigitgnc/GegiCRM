@@ -87,7 +87,7 @@
     max-height: 360px;
     overflow: auto;
     border: 1px solid #e7e7ff;
-    border-radius: 0 0 0px 10px;
+    border-radius: 0 0 10px 10px;
 }
 
     #topNavSearchResults > .list-group {
