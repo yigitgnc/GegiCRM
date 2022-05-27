@@ -30,6 +30,7 @@ namespace GegiCRM.DAL.Concrete
         public virtual DbSet<CollectionReceipt> CollectionReceipts { get; set; } = null!;
         public virtual DbSet<Currency> Currencies { get; set; } = null!;
         public virtual DbSet<Customer> Customers { get; set; } = null!;
+        public virtual DbSet<CustomerMainCompany> CustomerMainCompanies { get; set; } = null!;
         public virtual DbSet<CustomerActivityLog> CustomerActivityLogs { get; set; } = null!;
         public virtual DbSet<CustomerAddress> CustomerAddresses { get; set; } = null!;
         public virtual DbSet<CustomerBillingAddress> CustomerBillingAddresses { get; set; } = null!;
@@ -469,6 +470,35 @@ namespace GegiCRM.DAL.Concrete
                     .HasForeignKey(d => d.TypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Customers_CustomerTypes");
+
+            });
+
+            modelBuilder.Entity<CustomerMainCompany>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.CreatedDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.ModifiedDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Name).HasMaxLength(250);
+                
+
+                entity.HasOne(d => d.AddedByNavigation)
+                    .WithMany(p => p.CustomerMainCompanyAddedByNavigations)
+                    .HasForeignKey(d => d.AddedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CustomerMainCompany_AddedBy");
+
+                entity.HasOne(d => d.ModifiedByNavigation)
+                    .WithMany(p => p.CustomerMainCompanyModifiedByNavigations)
+                    .HasForeignKey(d => d.ModifiedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CustomerMainCompany_ModifiedBy");
 
             });
 

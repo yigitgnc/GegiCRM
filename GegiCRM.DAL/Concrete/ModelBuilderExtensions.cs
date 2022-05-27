@@ -645,6 +645,14 @@ new SegmentOran{ AddedBy = 1, SegmentId = 10, StartPrice = 1000000.00m, EndPrice
                 segmentOrans[i].Id = i + 1;
             }
 
+            CustomerMainCompany mainCompany = new CustomerMainCompany()
+            {
+                Id = 1,
+                AddedBy = 1,
+                Name = "Test Ana Müşterisi",
+                Description = "Test Müşterisinin Ana Müşterisi (çatı firma)",
+            };
+
             Customer customer = new Customer()
             {
                 Id = 1,
@@ -657,6 +665,7 @@ new SegmentOran{ AddedBy = 1, SegmentId = 10, StartPrice = 1000000.00m, EndPrice
                 IsActive = true,
                 SectorId = 1,
                 SegmentId = 1,
+                CustomerMainCompanyId = 1,
             };
 
 
@@ -797,6 +806,7 @@ new SegmentOran{ AddedBy = 1, SegmentId = 10, StartPrice = 1000000.00m, EndPrice
             modelBuilder.Entity<Segment>().HasData(segments);
             modelBuilder.Entity<SegmentOran>().HasData(segmentOrans);
             modelBuilder.Entity<Currency>().HasData(currencies);
+            modelBuilder.Entity<CustomerMainCompany>().HasData(mainCompany);
             modelBuilder.Entity<Customer>().HasData(customer);
             modelBuilder.Entity<OrderState>().HasData(orderStates);
             modelBuilder.Entity<Supplier>().HasData(suppliers);
