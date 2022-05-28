@@ -21,12 +21,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Context>();
 
 builder.Services.AddScoped<IAppUserDal, EfAppUserRepository>();
-builder.Services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<AppUserManager>();
-builder.Services.AddScoped<IAppIdentityRoleDal, EfAppIdentityRoleRepository>();
-builder.Services.AddScoped<AppIdentityRoleManager>();
+
+//builder.Services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(GenericManager<>));
-builder.Services.AddScoped<GenericManager<Customer>>();
+//builder.Services.AddScoped<IAppIdentityRoleDal, EfAppIdentityRoleRepository>();
+//builder.Services.AddScoped<AppIdentityRoleManager>();
+//builder.Services.AddScoped<GenericManager<Customer>>();
 
 using (var context = new Context())
 {

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GegiCRM.BLL.Concrete;
+using GegiCRM.DAL.EntityFramework;
 using GegiCRM.Entities.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +13,11 @@ namespace GegiCRM.WebUI.ViewComponents.UserTopNav
         readonly AppIdentityRoleManager _roleManager;
         readonly IMapper _mapper;
 
-        public TopNavUser(AppUserManager appUserManager, IMapper mapper, AppIdentityRoleManager roleManager)
+        public TopNavUser(AppUserManager appUserManager, IMapper mapper)
         {
             _appUserManager = appUserManager;
             _mapper = mapper;
-            _roleManager = roleManager;
+            _roleManager =  new AppIdentityRoleManager(appUserManager._userManager,new EfAppIdentityRoleRepository());
         }
 
         public async Task<IViewComponentResult> InvokeAsync()

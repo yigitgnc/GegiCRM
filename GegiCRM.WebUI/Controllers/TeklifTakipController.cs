@@ -14,7 +14,7 @@ namespace GegiCRM.WebUI.Controllers
         //readonly GenericManager<AppUser> _userman;
         TeklifTakipManager _teklifTakipManager;
         GenericManager<Customer> _customerManager;
-        public TeklifTakipController(UserManager<AppUser> userManager, GenericManager<Customer> customerManager)
+        public TeklifTakipController(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
             _teklifTakipManager = new TeklifTakipManager(userManager, new EfOrderRepository()); ;
