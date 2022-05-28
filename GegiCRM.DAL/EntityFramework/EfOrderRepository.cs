@@ -16,7 +16,8 @@ namespace GegiCRM.DAL.EntityFramework
         public override List<Order> GetListAll()
         {
             var context = new Context();
-            var orders = context.Orders.Include(a=>a.AddedByNavigation).Include(x=>x.OrdersProducts).Include(x=>x.Customer.CustomerRepresentetiveUsers).ToList();
+            var orders = context.Orders.Include(x => x.Customer.CustomerRepresentetiveUsers).Include(x => x.OrdersProducts).ThenInclude(a => a.AddedByNavigation)
+                .ToList();
 
             return orders;
         }
