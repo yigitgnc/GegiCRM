@@ -40,14 +40,14 @@
         //scrollCollapse: true
         //scrollY: false
         "fnInitComplete": function () {
-            //$('.dataTables_scrollBody').perfectScrollbar();
-            //const ps = new PerfectScrollbar('.dataTables_scrollBody');
+            $('.dataTables_scrollBody').perfectScrollbar();
+            ps = new PerfectScrollbar('.dataTables_scrollBody');
             //$("thead tr").clone().appendTo($("tfoot"));
         },
         //on paginition page 2,3.. often scroll shown, so reset it and assign it again
         "fnDrawCallback": function (oSettings) {
-            //$('.dataTables_scrollBody').perfectScrollbar('destroy').perfectScrollbar();
-            //ps.update();
+            $('.dataTables_scrollBody').perfectScrollbar('destroy').perfectScrollbar();
+            ps.update();
             //const ps = new PerfectScrollbar('.dataTables_scrollBody');
         }
     });

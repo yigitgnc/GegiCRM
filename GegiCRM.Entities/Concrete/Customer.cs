@@ -30,7 +30,6 @@ namespace GegiCRM.Entities.Concrete
         public int SegmentId { get; set; }
         public bool? IsActive { get; set; }
         public int TypeId { get; set; }
-        public DateTime? LastContactDate { get; set; }
 
         public string? Tel { get; set; }
         public int CurrencyId { get; set; }

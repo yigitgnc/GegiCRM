@@ -423,8 +423,7 @@ namespace GegiCRM.DAL.Concrete
                 entity.Property(e => e.IsActive)
                     .IsRequired()
                     .HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.LastContactDate).HasColumnType("datetime");
+                
 
                 entity.Property(e => e.ModifiedDate)
                     .HasColumnType("datetime")

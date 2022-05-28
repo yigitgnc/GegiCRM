@@ -23,8 +23,10 @@ builder.Services.AddDbContext<Context>();
 builder.Services.AddScoped<IAppUserDal, EfAppUserRepository>();
 builder.Services.AddScoped<AppUserManager>();
 
-//builder.Services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(GenericManager<>));
+
+
+//builder.Services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));
 //builder.Services.AddScoped<IAppIdentityRoleDal, EfAppIdentityRoleRepository>();
 //builder.Services.AddScoped<AppIdentityRoleManager>();
 //builder.Services.AddScoped<GenericManager<Customer>>();
