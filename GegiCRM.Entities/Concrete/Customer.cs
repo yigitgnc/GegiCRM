@@ -18,10 +18,10 @@ namespace GegiCRM.Entities.Concrete
             MaintenanceBills = new HashSet<MaintenanceBill>();
             Orders = new HashSet<Order>();
             ServiceRecords = new HashSet<ServiceRecord>();
+            ActivityLogs = new HashSet<CustomerActivityLog>();
         }
 
-
-        public bool IsDeleted { get; set; }
+        
         public string? TicariUnvan { get; set; }
         public string? Name { get; set; }
         public string? Surname { get; set; }
@@ -43,6 +43,7 @@ namespace GegiCRM.Entities.Concrete
         public virtual Sector? Sector { get; set; }
         public virtual Segment Segment { get; set; } = null!;
         public virtual CustomerType Type { get; set; } = null!;
+        public virtual ICollection<CustomerActivityLog> ActivityLogs { get; set; }
         public virtual ICollection<CollectionReceipt> CollectionReceipts { get; set; }
         public virtual ICollection<CustomerAddress> CustomerAddresses { get; set; }
         public virtual ICollection<CustomerBillingAddress> CustomerBillingAddresses { get; set; }

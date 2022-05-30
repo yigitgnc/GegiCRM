@@ -23,6 +23,11 @@ namespace GegiCRM.BLL.Concrete
             _orderDal = orderDal;
         }
 
+        public List<Order> GetListAllWithNavigations()
+        {
+            return _orderDal.GetListAllWithNavigations();
+        }
+
         public new Order Create(Order order)
         {
             order.OrderStateId = 5;

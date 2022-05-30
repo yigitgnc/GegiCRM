@@ -13,10 +13,10 @@ namespace GegiCRM.DAL.EntityFramework
 {
     public class EfOrderRepository : GenericRepository<Order>, IOrderDal
     {
-        public override List<Order> GetListAll()
+        public List<Order> GetListAllWithNavigations()
         {
             var context = new Context();
-            var orders = context.Orders.Include(x => x.Customer.CustomerRepresentetiveUsers).Include(x => x.OrdersProducts).ThenInclude(a => a.AddedByNavigation)
+            var orders = context.Orders.Include(x => x.Customer).Include(x=>x.Customer.CustomerMainCompany).Include(x => x.Customer.CustomerRepresentetiveUsers).Include(x => x.OrdersProducts).ThenInclude(a => a.AddedByNavigation)
                 .ToList();
 
             return orders;

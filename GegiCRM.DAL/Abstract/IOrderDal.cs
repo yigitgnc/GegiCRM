@@ -9,5 +9,6 @@ namespace GegiCRM.DAL.Abstract
 {
     public interface IOrderDal : IGenericDal<Order>
     {
+        public List<Order> GetListAllWithNavigations();
     }
 }

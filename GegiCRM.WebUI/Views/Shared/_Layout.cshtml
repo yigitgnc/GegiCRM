@@ -16,7 +16,7 @@
       class="light-style layout-menu-fixed"
       dir="ltr"
       data-theme="theme-default"
-      data-assets-path="../assets/"
+      data-assets-path="/assets/"
       data-template="vertical-menu-template-free">
 <head>
     <meta charset="utf-8" />
@@ -27,7 +27,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/favicon.ico" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,29 +36,29 @@
           rel="stylesheet" />
 
     <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="/assets/vendor/fonts/boxicons.css" />
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="../assets/css/demo.css" />
+    <link rel="stylesheet" href="/assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="/assets/css/demo.css" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
-    <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="/assets/vendor/libs/apex-charts/apex-charts.css" />
 
     <!-- Page CSS -->
     <!-- Helpers -->
-    <script src="../assets/vendor/js/helpers.js"></script>
+    <script src="/assets/vendor/js/helpers.js"></script>
     <link rel="stylesheet" href="~/css/site.css" />
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="../assets/js/config.js"></script>
+    <script src="/assets/js/config.js"></script>
 
     <!-- jQuery -->
-    @*<script src="../assets/vendor/libs/jquery/jquery.js"></script>*@
+    @*<script src="/assets/vendor/libs/jquery/jquery.js"></script>*@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!-- jsCookie -->
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js" integrity="sha256-0H3Nuz3aug3afVbUlsu12Puxva3CP4EhJtPExqs54Vg=" crossorigin="anonymous"></script>
@@ -94,7 +94,7 @@
                 <div class="app-brand demo">
                     <a href="index.html" class="app-brand-link">
                         <span class="app-brand-logo demo">
-                            <img src="../assets/img/favicon/favicon.ico" alt="Gegi CRM Logo" />
+                            <img src="/assets/img/favicon/favicon.ico" alt="Gegi CRM Logo" />
                         </span>
                         <span class="demo menu-text fw-bolder ms-2">GegiCRM</span>
                     </a>
@@ -298,8 +298,8 @@
                     </li>
 
                     @*        <li class="menu-header small text-uppercase">
-                        <span class="menu-header-text">Seperator</span>
-                        </li>*@
+                    <span class="menu-header-text">Seperator</span>
+                    </li>*@
 
 
                     <li class="menu-item d-none">
@@ -342,13 +342,13 @@
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
                             <!-- Place this tag where you want the button to render. -->
                             @*  <li class="nav-item lh-1 me-3">
-                                <a class="github-button"
-                                href="https://github.com/themeselection/sneat-html-admin-template-free"
-                                data-icon="octicon-star"
-                                data-size="large"
-                                data-show-count="true"
-                                aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
-                                </li>*@
+                            <a class="github-button"
+                            href="https://github.com/themeselection/sneat-html-admin-template-free"
+                            data-icon="octicon-star"
+                            data-size="large"
+                            data-show-count="true"
+                            aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
+                            </li>*@
                             <!-- User -->
                             <li id="fullScreenButton" class="bx bx-fullscreen"></li>
                             @await Component.InvokeAsync("TopNavUser")
@@ -363,6 +363,9 @@
                     <!-- Content -->
 
                     <div class="container-fluid flex-grow-1 container-p-y">
+                        <h4 class="fw-bold py-3 mb-4">
+                            <span class="text-muted fw-light">GegiCRM / </span> @ViewData["title"]
+                        </h4>
                         @RenderBody()
                     </div>
                     <!-- / Content -->
@@ -377,9 +380,10 @@
                                 <a href="https://www.gegi.com.tr/" target="_blank" class="footer-link fw-bolder">GEGİ Bilgi Teknolojileri A.Ş.</a>
                             </div>
                             <div>
-                                @*  <a href="" class="footer-link me-4" target="_blank">Sorun Bldir</a>
-                                    <a href="" class="footer-link" target="_blank">Kullanım Kılavuzu</a>
-                                *@
+                                <a href="" class="footer-link me-4" target="_blank">Sorun Bldir</a>
+                                <a href="" class="footer-link" target="_blank">Kullanım Kılavuzu</a>
+                                <a href="/sneat-1.0.0/html/index.html" class="footer-link" target="_blank">Tema</a>
+
                             </div>
                         </div>
                     </footer>
@@ -397,30 +401,30 @@
     </div>
     <!-- / Layout wrapper -->
     @*    <div class="buy-now">
-        <a
-        href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
-        target="_blank"
-        class="btn btn-danger btn-buy-now"
-        >Upgrade to Pro</a
-        >
-        </div>*@
+    <a
+    href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
+    target="_blank"
+    class="btn btn-danger btn-buy-now"
+    >Upgrade to Pro</a
+    >
+    </div>*@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../assets/vendor/js/bootstrap.js"></script>
-    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="/assets/vendor/libs/popper/popper.js"></script>
+    <script src="/assets/vendor/js/bootstrap.js"></script>
+    <script src="/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="../assets/vendor/js/menu.js"></script>
+    <script src="/assets/vendor/js/menu.js"></script>
     <!-- endbuild -->
     <!-- Vendors JS -->
-    <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    <script src="/assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
     <!-- Main JS -->
-    <script src="../assets/js/main.js"></script>
+    <script src="/assets/js/main.js"></script>
 
     <!-- Page JS -->
-    <script src="../assets/js/dashboards-analytics.js"></script>
+    <script src="/assets/js/dashboards-analytics.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -432,7 +436,7 @@
 
     <!-- bootstrap-select (selectPicker)-->
     @*    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/js/i18n/defaults-tr_TR.min.js"></script>*@
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/js/i18n/defaults-tr_TR.min.js"></script>*@
 
     <!-- select2 -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>

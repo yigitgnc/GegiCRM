@@ -1,0 +1,109 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+@using GegiCRM.Entities.Concrete
+@model int
+
+<div id="waitCurrencies" class="spinner-border spinner-border-sm text-secondary" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+
+<div id="currencies">
+</div>
+
+
+<dib class="col-12">
+    <a class="btn btn-primary me-1 collapsed mt-3" data-bs-toggle="collapse" href="#collapseKurEkle" role="button" aria-expanded="false" aria-controls="collapseKurEkle">
+        Kur Ekle
+    </a>
+    <div class="collapse mt-2 border card" id="collapseKurEkle" style="">
+
+        <div class="col-12 card-body">
+
+            <form class="row" id="addNewCurrencyForm" action="/TeklifTakip/AddCurrencyToOrder">
+                <input type="hidden" name="orderId" value="@Model" />
+                <div class="mb-3 col-12">
+                    <label class="form-label" for="currencyId">Eklenecek Kur :</label>
+
+                    <select id="currencyId" name="currencyId" class="form-control selectpicker" id="select-ordersCurrency" data-live-search="true" aria-describedby="representetiveUserHelp" data-container="body">
+                        @foreach (Currency item in ViewBag.Currencies)
+                        {
+                            <option value="@item.Id" data-value="@item.CurrentValue">[@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)</option>
+                        }
+                    </select>
+                </div>
+
+
+                <div class="mb-3 col-12">
+                    <label class="form-label" for="currencyValue">Kur Değeri</label>
+                    <input id="currencyValue" name="currencyValue" type="number" class="form-control currency" min="0.01" max="2500.00" value="00.00" />
+                </div>
+
+                <div class="mb-3">
+                    <input class="btn btn-outline-primary" type="submit" value="Ekle" />
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</dib>
+
+<div class="mb-3">
+</div>
+
+
+<script>
+    $('#currencyId').on('change', function() {
+        $("#currencyValue").val($(this).attr("data-value"));
+    });
+
+    // this is the id of the form
+    $("#addNewCurrencyForm").submit(function(e) {
+        e.preventDefault();
+
+        var form = $(this);
+        var actionUrl = form.attr('action');
+
+        $.ajax({
+            type: "POST",
+            url: actionUrl,
+            data: form.serialize(),
+            success: function(data) {
+                if (data === "ok") {
+                    getNewOrdersCurrencies();
+                }
+            },
+            error: function(err) {
+                alert(err);
+            }
+        });
+
+    });
+
+
+    function getNewOrdersCurrencies() {
+        $("#waitCurrencies").show();
+
+        $.ajax({
+            "url": "/TeklifTakip/_GetOrdersCurrenciesPartial/@Model",
+            "method": "GET",
+            success: function(data) {
+                $("#currencies").html(data);
+            },
+            error: function(err) {
+                console.log(err);
+                $("#currencies").html("Bir Hata Oluştu !");
+            }
+        }).done(function() {
+            $("#waitCurrencies").hide();
+        });
+
+    };
+
+    getNewOrdersCurrencies();
+</script>

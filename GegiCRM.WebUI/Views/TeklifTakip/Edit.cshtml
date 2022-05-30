@@ -1,0 +1,161 @@
+﻿@using GegiCRM.Entities.Concrete
+@{
+    ViewData["title"] = "Teklif Düzenle";
+}
+
+@model Order
+<div class="col-12 mb-2 d-flex justify-content-md-end">
+    <button class="btn btn-success m-1">Kaydet</button>
+    <button class="btn btn-secondary  m-1">Yazdır</button>
+    <button class="btn btn-info m-1">Müşteri Bİlgisi</button>
+    <button class="btn btn-danger m-1">Sil</button>
+</div>
+<div class="col-12">
+
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Teklif Bilgisi</h5>
+            <small class="d-none d-md-block text-muted float-end">Teklif Durumu</small>
+        </div>
+        <div class="card-body">
+            <div class="row d-flex justify-content-between">
+                <div class="col-12 col-md-6">
+                    <div class="card">
+                        <div class="card-body m-1">
+
+                            <div class="mb-3">
+                                <h6>
+                                    ID:
+                                    <i class="text-muted">@Model.Id</i>
+                                </h6>
+                            </div>
+
+                            <div class="mb-3">
+                                <h6>
+                                    Kayıt Tarihi:
+                                    <i class="text-muted">@Model.CreatedDate</i>
+                                </h6>
+                            </div>
+
+                            <div class="mb-3">
+                                <h6>
+                                    Kaydeden:
+                                    <i class="text-muted">@Model.AddedBy</i>
+                                </h6>
+                            </div>
+
+                            <div class="mb-3">
+                                <h6>
+                                    Ana Müşteri:
+                                    <i class="text-muted"></i>
+                                </h6>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="select-Customer" class="col-sm-2 form-control-label">Müşteri</label>
+                                <div class="col-12">
+                                    <select name="customer_Id" class="form-control selectpicker" id="select-Customer" data-live-search="true" aria-describedby="customerHelpd" data-container="body">
+                                        @foreach (Customer item in ViewBag.Customers)
+                                        {
+                                            if (item.Id == Model.CustomerId)
+                                            {
+                                                <option value="@item.Id" data-tokens="@item.Name" selected="selected">@item.Name</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Id" data-tokens="@item.Name">@item.Name</option>
+                                            }
+                                        }
+                                    </select>
+
+                                    @*<div id="customerHelp" class="form-text">Teklif Verilecek Müşteriyi Seçin</div>*@
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="select-RepresentetiveUser" class="col-sm-2 form-control-label">Temsilci</label>
+                                <div class="col-12">
+                                    <select name="rUser_Id" class="form-control selectpicker" id="select-RepresentetiveUser" data-live-search="true" aria-describedby="representetiveUserHelp" data-container="body">
+                                        @foreach (AppUser item in ViewBag.Users)
+                                        {
+                                            if (item.Id == Model.RepresentetiveUserId)
+                                            {
+                                                <option value="@item.Id" data-tokens="@item" selected="selected">@item.NameSurname</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Id" data-tokens="@item">@item.NameSurname</option>
+                                            }
+                                        }
+                                    </select>
+
+                                    @*<div id="representetiveUserHelp" class="form-text">Temsilci Seçin</div>*@
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="mb-3">
+                                <span>Sipraiş Kurları</span>
+                                <div id="waitCurrency" class="spinner-border spinner-border-sm text-secondary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <div id="OrdersCurrencies">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 col-md-6">
+
+                    <div class="card col-12 m-1">
+                        <div class="card-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label class="form-label" for="basic-default-fullname">Full Name</label>
+                                    <input type="text" class="form-control" id="basic-default-fullname" placeholder="John Doe">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="basic-default-company">Company</label>
+                                    <input type="text" class="form-control" id="basic-default-company" placeholder="ACME Inc.">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+
+        function getNewOrdersCurrencies() {
+            $("#waitCurrency").show();
+
+            $.ajax({
+                "url": "/TeklifTakip/_GetOrdersCurrenciesWithEditing/@Model.Id",
+                "method": "GET",
+                success: function(data) {
+                    $("#OrdersCurrencies").html(data);
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#OrdersCurrencies").html("Bir Hata Oluştu !");
+                }
+            }).done(function() {
+                $("#waitCurrency").hide();
+            });
+
+        };
+
+        getNewOrdersCurrencies();
+    </script>
+}

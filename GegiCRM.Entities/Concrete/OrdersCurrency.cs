@@ -8,7 +8,7 @@ namespace GegiCRM.Entities.Concrete
     {
         public int OrderId { get; set; }
         public int CurrencyId { get; set; }
-        public decimal? ExchangeRate { get; set; }
+        public decimal? Value { get; set; }
 
         public virtual Currency Currency { get; set; } = null!;
         public virtual Order Order { get; set; } = null!;

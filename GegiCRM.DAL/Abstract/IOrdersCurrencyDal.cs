@@ -9,5 +9,6 @@ namespace GegiCRM.DAL.Abstract
 {
     public interface IOrdersCurrencyDal : IGenericDal<OrdersCurrency>
     {
+        public List<OrdersCurrency> GetListOrdersCurrencies(int orderId);
     }
 }

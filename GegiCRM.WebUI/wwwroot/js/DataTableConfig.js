@@ -37,7 +37,7 @@
         },
         scrollX: true,
         scrollY: "57.54vh",
-        scrollCollapse: true,
+        //scrollCollapse: true,
         //scrollY: false
         "fnInitComplete": function () {
             //$('.dataTables_scrollBody').perfectScrollbar();

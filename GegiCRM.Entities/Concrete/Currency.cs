@@ -22,6 +22,7 @@ namespace GegiCRM.Entities.Concrete
         
         public string Code { get; set; } = null!;
         public string? Name { get; set; }
+        public decimal? CurrentValue { get; set; }
 
         public virtual ICollection<CollectionReceipt> CollectionReceipts { get; set; }
         public virtual ICollection<Customer> PreferringCustomers { get; set; }

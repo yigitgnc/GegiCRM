@@ -1,0 +1,20 @@
+﻿@using GegiCRM.Entities.Concrete;
+@{
+    Layout = null;
+}
+@model List<OrdersCurrency>
+
+<div class="mt-3">
+    @if (!Model.Any())
+    {
+        <span>Siparişe Ait Kur Bilgisi Mevcut Değil</span>
+    }
+    @foreach (var item in Model)
+    {
+        <i>@item.Currency.Name</i>
+        <i>@item.Currency.Code</i>
+        <i>@item.Value</i>
+    }
+</div>
+
+

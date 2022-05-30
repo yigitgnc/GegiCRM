@@ -1265,7 +1265,7 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.CurrencyId).HasColumnName("CurrencyID");
 
-                entity.Property(e => e.ExchangeRate).HasColumnType("decimal(18, 2)");
+                entity.Property(e => e.Value).HasColumnType("decimal(18, 2)");
 
                 entity.HasOne(d => d.Currency)
                     .WithMany(p => p.OrdersCurrencies)

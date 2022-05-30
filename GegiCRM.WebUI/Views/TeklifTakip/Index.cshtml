@@ -35,9 +35,10 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>TİCARİ ÜNVANI</th>
+                        <th>ÇATI FİRMA</th>
+                        <th>MÜŞTERİ T.Ü</th>
                         <th>TEKLİF TUTARI</th>
-                        <th>TEMSİLCİ</th>
+                        <th>ETKİLEŞİM</th>
                         <th>KAYIT TARİHİ</th>
                         <th>DURUMU</th>
                         <th>TEKLİF ONAY</th>
@@ -50,26 +51,22 @@
                 <tbody class="table-border-bottom-0">
                     @foreach (Order item in Model)
                     {
-                        <tr>
+                        <tr data-id="@item.Id" class="clickableTr">
                             <td>@item.Id</td>
+                            <td>@item.Customer.CustomerMainCompany.Name</td>
                             <td>@item.Customer.Name</td>
                             <td>@item.OrdersProducts.Sum(x=>x.Adet*x.BirimFiyat)</td>
                             <td>
-                                <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Kaydeden: @item.AddedByNavigation.NameSurname">
-                                        <img src="/assets/img/avatars/1.png" alt="Kaydeden: @item.AddedByNavigation.NameSurname" class="rounded-circle" />
-                                    </li>
+                                <ul class="list-unstyled users-list m-0 avatar-group">
+                                    <li>
+                                        <img data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="rounded-circle avatar avatar-xs pull-up" title="Kaydeden: @item.AddedByNavigation.NameSurname" src="/assets/img/avatars/1.png" alt="Kaydeden: @item.AddedByNavigation.NameSurname" />
 
-                                    <li style="display: none">
-                                        <i> Kaydeden @item.AddedByNavigation.NameSurname</i>
+                                        Kaydeden: @item.AddedByNavigation.NameSurname
                                     </li>
+                                    <li>
+                                        <img data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="rounded-circle avatar avatar-xs pull-up" title="Temsilci: @item.AddedByNavigation.NameSurname" src="/assets/img/avatars/1.png" alt="Temsilci: @item.RepresentetiveUser.NameSurname" />
 
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Temsilci: @item.AddedByNavigation.NameSurname">
-                                        <img src="/assets/img/avatars/1.png" alt="Temsilci: @item.RepresentetiveUser.NameSurname" class="rounded-circle" />
-                                    </li>
-
-                                    <li style="display: none">
-                                        <i> Temsilci @item.RepresentetiveUser.NameSurname</i>
+                                        Temsilci: @item.RepresentetiveUser.NameSurname
                                     </li>
                                 </ul>
                             </td>
@@ -87,13 +84,16 @@
                             <td>@item.SiparisOnayFormatted</td>
 
                             <td>
-                                <div class="dropdown">
+                                <div class="dropdown blockNavigate">
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>Düzenle</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Sil</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-check-double me-1 bg-label-success"></i>Tüm Kalemler ile Onayla</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-check me-1 text-success"></i>Onaylı Kalemler ile Onayla</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-x me-1 bg-label-danger"></i>İptal Et</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1 text-danger"></i>Sil</a>
                                     </div>
                                 </div>
                             </td>
@@ -146,5 +146,17 @@
             });
 
         };
+
+        $(".clickableTr").on("click", function() {
+            var id = $(this).attr("data-id");
+            console.log(id);
+            window.location.href = "/TeklifTakip/Edit/" + id;
+        });
+
+        $(".blockNavigate").on("click", function(e) {
+            e.stopPropagation();
+        });
+
+
     </script>
 }
