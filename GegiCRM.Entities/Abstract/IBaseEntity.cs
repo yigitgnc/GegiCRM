@@ -14,11 +14,11 @@ namespace GegiCRM.Entities.Abstract
         public Tkey Id { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        public int AddedBy { get; set; }
-        public int? ModifiedBy { get; set; }
+        public int AddedById { get; set; }
+        public int? ModifiedById { get; set; }
         public bool IsDeleted { get; set; }
 
-        public AppUser AddedByNavigation { get; set; }
-        public AppUser? ModifiedByNavigation { get; set; } 
+        public AppUser AddedBy { get; set; }
+        public AppUser? ModifiedBy { get; set; } 
     }
 }

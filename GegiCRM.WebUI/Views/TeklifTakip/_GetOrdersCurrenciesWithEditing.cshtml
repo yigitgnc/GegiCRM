@@ -39,11 +39,11 @@
 
                 <div class="mb-3 col-12">
                     <label class="form-label" for="currencyValue">Kur Değeri</label>
-                    <input id="currencyValue" name="currencyValue" type="number" class="form-control currency" min="0.01" max="2500.00" value="00.00" />
+                    <input id="currencyValue" name="currencyValue" type="number" class="form-control currency" value="10.00" step="any"/>
                 </div>
 
                 <div class="mb-3">
-                    <input class="btn btn-outline-primary" type="submit" value="Ekle" />
+                    <input class="btn btn-outline-primary" type="submit" value="Ekle / Güncelle" />
                 </div>
 
             </form>
@@ -61,8 +61,7 @@
     $('#currencyId').on('change', function() {
         $("#currencyValue").val($(this).attr("data-value"));
     });
-
-    // this is the id of the form
+    
     $("#addNewCurrencyForm").submit(function(e) {
         e.preventDefault();
 
@@ -79,7 +78,7 @@
                 }
             },
             error: function(err) {
-                alert(err);
+                alert("" + err);
             }
         });
 

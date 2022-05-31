@@ -42,7 +42,7 @@ namespace GegiCRM.BLL.Concrete
         public void Update(T t)
         {
             t = SetLastModifiedBy(t);
-            _genericDal.Insert(t);
+            _genericDal.Update(t);
         }
 
         public void Delete(T t)
@@ -66,11 +66,11 @@ namespace GegiCRM.BLL.Concrete
 
         private T SetLastModifiedBy(T tEntity)
         {
-            return SetAuditingProperty(tEntity, "ModifiedBy");
+            return SetAuditingProperty(tEntity, "ModifiedById");
         }
         private T SetAddedBy(T tEntity)
         {
-            return SetAuditingProperty(tEntity, "AddedBy");
+            return SetAuditingProperty(tEntity, "AddedById");
         }
 
         private T SetAuditingProperty(T tEntity, string propertyName)

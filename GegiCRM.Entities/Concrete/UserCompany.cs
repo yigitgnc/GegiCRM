@@ -13,9 +13,8 @@ namespace GegiCRM.Entities.Concrete
             Users = new HashSet<AppUser>();
             VehicleInformations = new HashSet<VehicleInformation>();
         }
-        public new int? AddedBy { get; set; }
-        public new int? ModifiedBy { get; set; }
-
+        public new int? AddedById { get; set; }
+        public new int? ModifiedById { get; set; }
 
         public string CompanyName { get; set; } = null!;
         public string? CompanyDescription { get; set; }
@@ -28,9 +27,7 @@ namespace GegiCRM.Entities.Concrete
 
         public virtual ICollection<BankInformation> BankInformations { get; set; }
         public virtual ICollection<ShippingDeal> ShippingDeals { get; set; }
-        public virtual ICollection<AppUser> Users { get; set; }
-        public virtual ICollection<VehicleInformation> VehicleInformations { get; set; }    
-        public virtual AppUser AddedByNavigation { get; set; }
-        public virtual AppUser? ModifiedByNavigation { get; set; }
+        public new virtual ICollection<AppUser> Users { get; set; }
+        public new virtual ICollection<VehicleInformation> VehicleInformations { get; set; }    
     }
 }

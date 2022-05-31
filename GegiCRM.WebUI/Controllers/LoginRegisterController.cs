@@ -110,7 +110,7 @@ namespace GegiCRM.WebUI.Controllers
                     Name = vm.Name,
                     Surname = vm.Surname,
                     PhoneNumber = vm.PhoneNumber,
-                    AddedBy = 1,
+                    AddedById = 1,
 
                 };
                 var result = await _appUserManager._userManager.CreateAsync(user, vm.Password);

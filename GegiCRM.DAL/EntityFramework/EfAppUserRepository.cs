@@ -29,7 +29,7 @@ namespace GegiCRM.DAL.EntityFramework
         {
             using (Context c = new Context())
             {
-                return c.Users.Include(x => x.OrderAddedByNavigations).ToList();
+                return c.Users.Include(x => x.OrderAddedBy).ToList();
             }
             //Context c = new Context();
             //return c.Users.ToList();

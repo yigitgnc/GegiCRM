@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GegiCRM.DAL.Migrations
 {
-    public partial class v1 : Migration
+    public partial class IdAutoIncrement : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -36,8 +36,8 @@ namespace GegiCRM.DAL.Migrations
                     Descirption = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -56,8 +56,8 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -90,8 +90,8 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     RoleGroupId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -150,8 +150,8 @@ namespace GegiCRM.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: true),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true)
+                    AddedById = table.Column<int>(type: "int", nullable: true),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -175,8 +175,8 @@ namespace GegiCRM.DAL.Migrations
                     Surname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     ProfilePictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -199,12 +199,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_AspNetUsers", x => x.ID);
                     table.ForeignKey(
                         name: "FK_Users_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Users_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -240,20 +240,20 @@ namespace GegiCRM.DAL.Migrations
                     BankDescirption = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true)
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Banks", x => x.ID);
                     table.ForeignKey(
                         name: "FK_Banks_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Banks_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -269,20 +269,20 @@ namespace GegiCRM.DAL.Migrations
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true)
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Birims", x => x.ID);
                     table.ForeignKey(
                         name: "FK_Birims_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Birims_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -297,8 +297,8 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -306,12 +306,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_Brands", x => x.ID);
                     table.ForeignKey(
                         name: "FK_Brands_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Brands_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -324,10 +324,11 @@ namespace GegiCRM.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Code = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    CurrentValue = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -335,12 +336,41 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_Currencies", x => x.ID);
                     table.ForeignKey(
                         name: "FK_CollectionReceipts_AddedBy",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_CollectionReceipts_ModifiedBy",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CustomerMainCompanies",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CustomerMainCompanies", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_CustomerMainCompany_AddedBy",
+                        column: x => x.AddedById,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_CustomerMainCompany_ModifiedBy",
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -355,8 +385,8 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -364,12 +394,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_CustomerTypes", x => x.ID);
                     table.ForeignKey(
                         name: "FK_CustomerType_AddedBy",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_CustomerType_ModifiedBy",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -384,8 +414,8 @@ namespace GegiCRM.DAL.Migrations
                     DepartmentDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -393,12 +423,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_Departments", x => x.ID);
                     table.ForeignKey(
                         name: "FK_Departments_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Departments_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -413,8 +443,8 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -422,12 +452,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_DepositRelations", x => x.ID);
                     table.ForeignKey(
                         name: "FK_DepositRelations_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_DepositRelations_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -442,8 +472,8 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -451,12 +481,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_DepositTypes", x => x.ID);
                     table.ForeignKey(
                         name: "FK_DepositTypes_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_DepositTypes_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -471,24 +501,22 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    AddedByNavigationId = table.Column<int>(type: "int", nullable: false),
-                    ModifiedByNavigationId = table.Column<int>(type: "int", nullable: true)
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DocumentTypes", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_DocumentTypes_AspNetUsers_AddedByNavigationId",
-                        column: x => x.AddedByNavigationId,
+                        name: "FK_DocumentTypes_AspNetUsers_AddedById",
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DocumentTypes_AspNetUsers_ModifiedByNavigationId",
-                        column: x => x.ModifiedByNavigationId,
+                        name: "FK_DocumentTypes_AspNetUsers_ModifiedById",
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -504,8 +532,8 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -513,12 +541,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_Expansions", x => x.ID);
                     table.ForeignKey(
                         name: "FK_Acilimlar_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Acilimlar_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -533,8 +561,8 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -542,12 +570,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_MaintenencePeriods", x => x.ID);
                     table.ForeignKey(
                         name: "FK_MaintenencePeriods_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_MaintenencePeriods_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -562,8 +590,8 @@ namespace GegiCRM.DAL.Migrations
                     MarketPlaceDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -571,12 +599,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_MarketPlaces", x => x.ID);
                     table.ForeignKey(
                         name: "FK_MarketPlaces_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_MarketPlaces_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -591,8 +619,8 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -600,12 +628,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_OrderStates", x => x.ID);
                     table.ForeignKey(
                         name: "FK_OrderStates_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_OrderStates_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -620,8 +648,8 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -629,12 +657,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_PaymentTypes", x => x.ID);
                     table.ForeignKey(
                         name: "FK_PaymentTypes_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_PaymentTypes_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -649,8 +677,8 @@ namespace GegiCRM.DAL.Migrations
                     GroupDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -658,12 +686,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_ProductGroups", x => x.ID);
                     table.ForeignKey(
                         name: "FK_ProductCategories_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_ProductCategories_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -678,8 +706,8 @@ namespace GegiCRM.DAL.Migrations
                     StatDescription = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -687,12 +715,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_ReturnAndFaultStates", x => x.ID);
                     table.ForeignKey(
                         name: "FK_ReturnAndFaultStates_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_ReturnAndFaultStates_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -707,8 +735,8 @@ namespace GegiCRM.DAL.Migrations
                     RuleDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -716,12 +744,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_Rules", x => x.ID);
                     table.ForeignKey(
                         name: "FK_Rules_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Rules_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -736,8 +764,8 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -745,12 +773,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_Sectors", x => x.ID);
                     table.ForeignKey(
                         name: "FK_Sector_AddedBy",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Sector_ModidfiedBy",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -765,8 +793,8 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -774,12 +802,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_Segments", x => x.ID);
                     table.ForeignKey(
                         name: "FK_Segments_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Segments_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -794,8 +822,8 @@ namespace GegiCRM.DAL.Migrations
                     CategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -803,12 +831,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_SellsAndBuysCategories", x => x.ID);
                     table.ForeignKey(
                         name: "FK_SellsAndBuysCategories_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_SellsAndBuysCategories_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -823,8 +851,8 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -832,12 +860,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_ServicePlaces", x => x.ID);
                     table.ForeignKey(
                         name: "FK_ServicePlaces_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_ServicePlaces_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -852,8 +880,8 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -861,12 +889,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_ServiceReasons", x => x.ID);
                     table.ForeignKey(
                         name: "FK_ServiceReasons_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_ServiceReasons_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -881,8 +909,8 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -890,12 +918,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_ServiceTypes", x => x.ID);
                     table.ForeignKey(
                         name: "FK_ServiceTypes_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_ServiceTypes_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -910,8 +938,8 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -919,12 +947,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_SupplierPaymentStates", x => x.ID);
                     table.ForeignKey(
                         name: "FK_SupplierPaymentStates_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_SupplierPaymentStates_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -942,8 +970,8 @@ namespace GegiCRM.DAL.Migrations
                     LastContactDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -951,12 +979,12 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_Suppliers", x => x.ID);
                     table.ForeignKey(
                         name: "FK_Suppliers_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Suppliers_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -967,8 +995,8 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AddedBy = table.Column<int>(type: "int", nullable: true),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: true),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     CompanyName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     CompanyDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Tel = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -985,13 +1013,13 @@ namespace GegiCRM.DAL.Migrations
                 {
                     table.PrimaryKey("PK_UserCompanies", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_UserCompanies_Users",
-                        column: x => x.AddedBy,
+                        name: "FK_UserCompanies_AddedBy",
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_UserCompanies_Users1",
-                        column: x => x.ModifiedBy,
+                        name: "FK_UserCompanies_ModifiedBy",
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -1008,8 +1036,8 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -1022,12 +1050,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_WarrantyTrackings_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_WarrantyTrackings_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -1045,8 +1073,8 @@ namespace GegiCRM.DAL.Migrations
                     CuponDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -1059,12 +1087,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_DiscountCupons_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_DiscountCupons_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -1073,22 +1101,23 @@ namespace GegiCRM.DAL.Migrations
                 name: "DepartmentsOfUsers",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserID = table.Column<int>(type: "int", nullable: false),
                     DepartmentID = table.Column<int>(type: "int", nullable: false),
                     IsResponsible = table.Column<bool>(type: "bit", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DepartmentsOfUsers", x => new { x.UserID, x.DepartmentID });
+                    table.PrimaryKey("PK_DepartmentsOfUsers", x => new { x.Id, x.UserID, x.DepartmentID });
                     table.ForeignKey(
                         name: "FK_DepartmentsOfUsers_AddedBy",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
@@ -1098,7 +1127,7 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_DepartmentsOfUsers_ModifiedBy",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
@@ -1121,8 +1150,8 @@ namespace GegiCRM.DAL.Migrations
                     DepartmentID = table.Column<int>(type: "int", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -1135,12 +1164,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_EmailTemplates_Users2",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_EmailTemplates_Users3",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -1160,8 +1189,8 @@ namespace GegiCRM.DAL.Migrations
                     WorkDefinition = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -1174,12 +1203,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_WorkStandarts_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_WorkStandarts_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -1201,8 +1230,8 @@ namespace GegiCRM.DAL.Migrations
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -1225,12 +1254,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Deposits_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Deposits_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -1247,8 +1276,8 @@ namespace GegiCRM.DAL.Migrations
                     TypeID = table.Column<int>(type: "int", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -1261,12 +1290,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Documents_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Documents_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -1282,8 +1311,8 @@ namespace GegiCRM.DAL.Migrations
                     ProductCategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -1296,12 +1325,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_ProductSubCategories_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_ProductSubCategories_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -1317,8 +1346,8 @@ namespace GegiCRM.DAL.Migrations
                     Answer = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -1331,12 +1360,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_ProductCategoriesFAQs_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_ProductCategoriesFAQs_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -1355,8 +1384,8 @@ namespace GegiCRM.DAL.Migrations
                     KdvOrani = table.Column<double>(type: "float", nullable: false, defaultValueSql: "((18))"),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -1369,12 +1398,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_OurServices_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_OurServices_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
@@ -1400,8 +1429,8 @@ namespace GegiCRM.DAL.Migrations
                     CurrentStateID = table.Column<int>(type: "int", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -1414,12 +1443,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_ReturnAndFaults_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_ReturnAndFaults_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
@@ -1435,7 +1464,6 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     TicariUnvan = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Surname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -1444,16 +1472,17 @@ namespace GegiCRM.DAL.Migrations
                     SegmentID = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValueSql: "((1))"),
                     TypeID = table.Column<int>(type: "int", nullable: false),
-                    LastContactDate = table.Column<DateTime>(type: "datetime", nullable: true),
                     Tel = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CurrencyId = table.Column<int>(type: "int", nullable: false),
                     SideSuppliers = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PreferredCurrencyId = table.Column<int>(type: "int", nullable: true),
+                    CustomerMainCompanyId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true)
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1463,6 +1492,12 @@ namespace GegiCRM.DAL.Migrations
                         column: x => x.PreferredCurrencyId,
                         principalTable: "Currencies",
                         principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Customers_CustomerMainCompanies_CustomerMainCompanyId",
+                        column: x => x.CustomerMainCompanyId,
+                        principalTable: "CustomerMainCompanies",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Customers_CustomerTypes",
                         column: x => x.TypeID,
@@ -1480,12 +1515,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Customers_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Customers_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -1496,20 +1531,20 @@ namespace GegiCRM.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StartPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    EndPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Oran = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CurrencyID = table.Column<int>(type: "int", nullable: false),
+                    StartPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    EndPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SegmentID = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SegmentOrans", x => x.ID);
+                    table.PrimaryKey("PK_SegmentOrans", x => new { x.ID, x.Oran, x.CurrencyID });
                     table.ForeignKey(
                         name: "FK_SegmentOrans_Currencies_CurrencyID",
                         column: x => x.CurrencyID,
@@ -1524,12 +1559,12 @@ namespace GegiCRM.DAL.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_SegmentOrans_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_SegmentOrans_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -1547,8 +1582,8 @@ namespace GegiCRM.DAL.Migrations
                     IsSell = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -1561,12 +1596,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_SellsAndBuysGuideSteps_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_SellsAndBuysGuideSteps_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -1587,8 +1622,8 @@ namespace GegiCRM.DAL.Migrations
                     Descripiton = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -1601,12 +1636,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_SuppliersPayments_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_SuppliersPayments_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -1683,24 +1718,22 @@ namespace GegiCRM.DAL.Migrations
                     OdemeSekli = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    AddedByNavigationId = table.Column<int>(type: "int", nullable: false),
-                    ModifiedByNavigationId = table.Column<int>(type: "int", nullable: true)
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SupplierDetails", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_SupplierDetails_AspNetUsers_AddedByNavigationId",
-                        column: x => x.AddedByNavigationId,
+                        name: "FK_SupplierDetails_AspNetUsers_AddedById",
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SupplierDetails_AspNetUsers_ModifiedByNavigationId",
-                        column: x => x.ModifiedByNavigationId,
+                        name: "FK_SupplierDetails_AspNetUsers_ModifiedById",
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
@@ -1752,8 +1785,8 @@ namespace GegiCRM.DAL.Migrations
                     IBAN = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -1771,12 +1804,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_BankInformations_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_BankInformations_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -1792,24 +1825,22 @@ namespace GegiCRM.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    AddedByNavigationId = table.Column<int>(type: "int", nullable: false),
-                    ModifiedByNavigationId = table.Column<int>(type: "int", nullable: true)
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ShippingDeals", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_ShippingDeals_AspNetUsers_AddedByNavigationId",
-                        column: x => x.AddedByNavigationId,
+                        name: "FK_ShippingDeals_AspNetUsers_AddedById",
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ShippingDeals_AspNetUsers_ModifiedByNavigationId",
-                        column: x => x.ModifiedByNavigationId,
+                        name: "FK_ShippingDeals_AspNetUsers_ModifiedById",
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
@@ -1849,8 +1880,8 @@ namespace GegiCRM.DAL.Migrations
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -1863,12 +1894,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_VehicleInformations_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_VehicleInformations_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -1913,8 +1944,8 @@ namespace GegiCRM.DAL.Migrations
                     NameSurname = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true)
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1941,12 +1972,47 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_CollectionReceipts_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_CollectionReceipts_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CustomerActivityLogs",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CustomerActivityLogs", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_CustomerActivityLogs_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CustomersActivityLog_AddedBy",
+                        column: x => x.AddedById,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_CustomersActivityLog_ModifiedBy",
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -1966,8 +2032,8 @@ namespace GegiCRM.DAL.Migrations
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true)
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1979,12 +2045,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_CustomerDeliveryAddresses_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_CustomerDeliveryAddresses_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -2002,8 +2068,8 @@ namespace GegiCRM.DAL.Migrations
                     BillingAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -2011,7 +2077,7 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_CustomerBillingAddresses", x => x.ID);
                     table.ForeignKey(
                         name: "FK_CustomerBillingAddresses_AddedBy",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
@@ -2021,7 +2087,7 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_CustomerBillingAddresses_ModifiedBy",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -2041,8 +2107,8 @@ namespace GegiCRM.DAL.Migrations
                     Email = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -2055,12 +2121,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_CustomerContacts_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_CustomerContacts_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -2076,8 +2142,8 @@ namespace GegiCRM.DAL.Migrations
                     Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -2085,7 +2151,7 @@ namespace GegiCRM.DAL.Migrations
                     table.PrimaryKey("PK_CustomerRepresentetiveUsers", x => x.ID);
                     table.ForeignKey(
                         name: "FK_CustomerRepresentetiveUsers_AddedBy",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
@@ -2095,7 +2161,7 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_CustomerRepresentetiveUsers_ModifiedBy",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
@@ -2109,21 +2175,22 @@ namespace GegiCRM.DAL.Migrations
                 name: "DiscountCuponsOfCustomers",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
                     DiscountCuponID = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BeginDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ExpryDate = table.Column<DateTime>(type: "datetime", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DiscountCuponsOfCustomers", x => new { x.CustomerID, x.DiscountCuponID });
+                    table.PrimaryKey("PK_DiscountCuponsOfCustomers", x => new { x.Id, x.CustomerID, x.DiscountCuponID });
                     table.ForeignKey(
                         name: "FK_DiscountCuponsOfCustomers_Customers",
                         column: x => x.CustomerID,
@@ -2136,12 +2203,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_DiscountCuponsOfCustomers_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_DiscountCuponsOfCustomers_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -2165,8 +2232,8 @@ namespace GegiCRM.DAL.Migrations
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -2194,12 +2261,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_MaintenanceBills_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_MaintenanceBills_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
@@ -2231,10 +2298,11 @@ namespace GegiCRM.DAL.Migrations
                     CancelledDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeneied = table.Column<bool>(type: "bit", nullable: false),
                     DeniedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    RepresentetiveUserId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -2252,12 +2320,17 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Orders_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Orders_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_OrdersRepresentetiveUsers",
+                        column: x => x.RepresentetiveUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -2281,8 +2354,8 @@ namespace GegiCRM.DAL.Migrations
                     MudahaleEdilenModel = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -2310,12 +2383,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_ServiceRecords_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_ServiceRecords_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
@@ -2339,8 +2412,8 @@ namespace GegiCRM.DAL.Migrations
                     CurrentStepID = table.Column<int>(type: "int", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -2358,12 +2431,12 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_SellsAndBuysAssets_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_SellsAndBuysAssets_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -2372,30 +2445,29 @@ namespace GegiCRM.DAL.Migrations
                 name: "OrdersCurrencies",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     OrderID = table.Column<int>(type: "int", nullable: false),
                     CurrencyID = table.Column<int>(type: "int", nullable: false),
-                    ExchangeRate = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Value = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    AddedByNavigationId = table.Column<int>(type: "int", nullable: false),
-                    ModifiedByNavigationId = table.Column<int>(type: "int", nullable: true)
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrdersCurrencies", x => new { x.OrderID, x.CurrencyID });
+                    table.PrimaryKey("PK_OrdersCurrencies", x => new { x.Id, x.OrderID, x.CurrencyID });
                     table.ForeignKey(
-                        name: "FK_OrdersCurrencies_AspNetUsers_AddedByNavigationId",
-                        column: x => x.AddedByNavigationId,
+                        name: "FK_OrdersCurrencies_AspNetUsers_AddedById",
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrdersCurrencies_AspNetUsers_ModifiedByNavigationId",
-                        column: x => x.ModifiedByNavigationId,
+                        name: "FK_OrdersCurrencies_AspNetUsers_ModifiedById",
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
@@ -2414,6 +2486,8 @@ namespace GegiCRM.DAL.Migrations
                 name: "OrdersProducts",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     OrderID = table.Column<int>(type: "int", nullable: false),
                     ProductID = table.Column<int>(type: "int", nullable: false),
                     ReferanceCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -2432,16 +2506,15 @@ namespace GegiCRM.DAL.Migrations
                     AbonelikBitis = table.Column<DateTime>(type: "datetime", nullable: true),
                     KesinSevkTarihi = table.Column<DateTime>(type: "datetime", nullable: true),
                     OrderStateId = table.Column<int>(type: "int", nullable: true),
-                    Id = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedBy = table.Column<int>(type: "int", nullable: false),
-                    ModifiedBy = table.Column<int>(type: "int", nullable: true),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrdersProducts", x => new { x.OrderID, x.ProductID });
+                    table.PrimaryKey("PK_OrdersProducts", x => new { x.Id, x.OrderID, x.ProductID });
                     table.ForeignKey(
                         name: "FK_OrdersProducts_Birims",
                         column: x => x.BirimID,
@@ -2484,49 +2557,54 @@ namespace GegiCRM.DAL.Migrations
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_OrdersProducts_Users",
-                        column: x => x.AddedBy,
+                        column: x => x.AddedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_OrdersProducts_Users1",
-                        column: x => x.ModifiedBy,
+                        column: x => x.ModifiedById,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
 
             migrationBuilder.InsertData(
                 table: "UserCompanies",
-                columns: new[] { "ID", "AddedBy", "CompanyDescription", "CompanyName", "FaliyetKodu", "Fatura", "IsDeleted", "KepAdresi", "MersisNo", "ModifiedBy", "Tel", "TicaretSicilNo" },
+                columns: new[] { "ID", "AddedById", "CompanyDescription", "CompanyName", "FaliyetKodu", "Fatura", "IsDeleted", "KepAdresi", "MersisNo", "ModifiedById", "Tel", "TicaretSicilNo" },
                 values: new object[] { 1, null, null, "AdminCompany", null, null, false, null, null, null, null, null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "ID", "AccessFailedCount", "AddedBy", "ConcurrencyStamp", "CreatedDate", "Email", "EmailConfirmed", "IsDeleted", "LockoutEnabled", "LockoutEnd", "ModifiedBy", "ModifiedDate", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserCompanyID", "UserName" },
-                values: new object[] { 1, 0, 1, "5a29b979-6125-4a92-8bae-3e6ee1171f88", new DateTime(2022, 5, 24, 12, 20, 27, 730, DateTimeKind.Local).AddTicks(6862), "yigit.genc@gegi.com.tr", true, false, false, null, null, new DateTime(2022, 5, 24, 12, 20, 27, 730, DateTimeKind.Local).AddTicks(6876), "Yiğit", "YIGIT.GENC@GEGI.COM.TR", "ADMINYGT", "AQAAAAEAACcQAAAAEN0GpBHDb6obtrA2HTneRYiYZFD5uaVCko4ihAzDYvi4as3jhO3D6bPOChhNpibGog==", "+905382630008", false, null, "ef7b1e4d-d442-4b4c-990f-49ab27b389d0", "Genç", false, 1, "AdminYigit" });
+                columns: new[] { "ID", "AccessFailedCount", "AddedById", "ConcurrencyStamp", "CreatedDate", "Email", "EmailConfirmed", "IsDeleted", "LockoutEnabled", "LockoutEnd", "ModifiedById", "ModifiedDate", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserCompanyID", "UserName" },
+                values: new object[] { 1, 0, 1, "a075532d-8aaf-489c-9903-5b498bb6fa6f", new DateTime(2022, 5, 31, 3, 30, 2, 370, DateTimeKind.Local).AddTicks(1314), "yigit.genc@gegi.com.tr", true, false, false, null, null, new DateTime(2022, 5, 31, 3, 30, 2, 370, DateTimeKind.Local).AddTicks(1334), "Yiğit", "YIGIT.GENC@GEGI.COM.TR", "ADMINYGT", "AQAAAAEAACcQAAAAEKiGijO86SQkwfqd30+u8kzaMHXTq1+Jr1p51gMk/j64zsq3wzO+sUB+xT0hJnsxaA==", "+905382630008", false, null, "929ecce8-3bf5-47a9-906d-bd5b7cf08871", "Genç", false, 1, "AdminYigit" });
 
             migrationBuilder.InsertData(
                 table: "AppAuthorizationsRoleGroups",
-                columns: new[] { "ID", "AddedBy", "Description", "IsDeleted", "ModifiedBy", "Name", "Priority" },
+                columns: new[] { "ID", "AddedById", "Description", "IsDeleted", "ModifiedById", "Name", "Priority" },
                 values: new object[] { 1, 1, "Admin Rollerinin Bulunduğu Grup", false, null, "Admin Role Grubu", 0 });
 
             migrationBuilder.InsertData(
                 table: "Currencies",
-                columns: new[] { "ID", "AddedBy", "Code", "CreatedDate", "IsDeleted", "ModifiedBy", "ModifiedDate", "Name" },
+                columns: new[] { "ID", "AddedById", "Code", "CreatedDate", "CurrentValue", "IsDeleted", "ModifiedById", "ModifiedDate", "Name" },
                 values: new object[,]
                 {
-                    { 1, 1, "TRY", new DateTime(2022, 5, 24, 12, 20, 27, 732, DateTimeKind.Local).AddTicks(2549), false, null, null, "Türk Lirası" },
-                    { 2, 1, "USD", new DateTime(2022, 5, 24, 12, 20, 27, 732, DateTimeKind.Local).AddTicks(2577), false, null, null, "Amerikan Doları" },
-                    { 3, 1, "EUR", new DateTime(2022, 5, 24, 12, 20, 27, 732, DateTimeKind.Local).AddTicks(2579), false, null, null, "EURO" }
+                    { 1, 1, "TRY", new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1695), null, false, null, null, "Türk Lirası" },
+                    { 2, 1, "USD", new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1722), null, false, null, null, "Amerikan Doları" },
+                    { 3, 1, "EUR", new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1725), null, false, null, null, "EURO" }
                 });
 
             migrationBuilder.InsertData(
+                table: "CustomerMainCompanies",
+                columns: new[] { "ID", "AddedById", "Description", "IsDeleted", "ModifiedById", "Name" },
+                values: new object[] { 1, 1, "Test Müşterisinin Ana Müşterisi (çatı firma)", false, null, "Test Ana Müşterisi" });
+
+            migrationBuilder.InsertData(
                 table: "CustomerTypes",
-                columns: new[] { "ID", "AddedBy", "CreatedDate", "Description", "IsDeleted", "ModifiedBy", "ModifiedDate", "Name" },
+                columns: new[] { "ID", "AddedById", "CreatedDate", "Description", "IsDeleted", "ModifiedById", "ModifiedDate", "Name" },
                 values: new object[] { 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Bu Müşteri Tipi Tesat Amaçlı Eklenmiştir", false, null, null, "Test Müşteri Tipi" });
 
             migrationBuilder.InsertData(
                 table: "OrderStates",
-                columns: new[] { "ID", "AddedBy", "Description", "IsDeleted", "ModifiedBy", "Name" },
+                columns: new[] { "ID", "AddedById", "Description", "IsDeleted", "ModifiedById", "Name" },
                 values: new object[,]
                 {
                     { 1, 1, "Test Açıklama", false, null, "Dönüş Bekleniyor ( Satın Alma )" },
@@ -2543,629 +2621,629 @@ namespace GegiCRM.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Sectors",
-                columns: new[] { "ID", "AddedBy", "Description", "IsDeleted", "ModifiedBy", "Name" },
+                columns: new[] { "ID", "AddedById", "Description", "IsDeleted", "ModifiedById", "Name" },
                 values: new object[] { 1, 1, "Test Sektör Açıklaması", false, null, "Test Sektörü" });
 
             migrationBuilder.InsertData(
                 table: "Segments",
-                columns: new[] { "ID", "AddedBy", "CreatedDate", "Description", "IsDeleted", "ModifiedBy", "Name" },
+                columns: new[] { "ID", "AddedById", "CreatedDate", "Description", "IsDeleted", "ModifiedById", "Name" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 5, 24, 12, 20, 27, 732, DateTimeKind.Local).AddTicks(2626), "Segment 1 Açıklaması", false, null, "Segment 1" },
-                    { 2, 1, new DateTime(2022, 5, 24, 12, 20, 27, 732, DateTimeKind.Local).AddTicks(2640), "Segment 2 Açıklaması", false, null, "Segment 2" },
-                    { 3, 1, new DateTime(2022, 5, 24, 12, 20, 27, 732, DateTimeKind.Local).AddTicks(2659), "Segment 3 Açıklaması", false, null, "Segment 3" },
-                    { 4, 1, new DateTime(2022, 5, 24, 12, 20, 27, 732, DateTimeKind.Local).AddTicks(2683), "Segment 4 Açıklaması", false, null, "Segment 4" },
-                    { 5, 1, new DateTime(2022, 5, 24, 12, 20, 27, 732, DateTimeKind.Local).AddTicks(2696), "Segment 5 Açıklaması", false, null, "Segment 5" },
-                    { 6, 1, new DateTime(2022, 5, 24, 12, 20, 27, 732, DateTimeKind.Local).AddTicks(2703), "Segment 6 Açıklaması", false, null, "Segment 6" },
-                    { 7, 1, new DateTime(2022, 5, 24, 12, 20, 27, 732, DateTimeKind.Local).AddTicks(2706), "Segment 7 Açıklaması", false, null, "Segment 7" },
-                    { 8, 1, new DateTime(2022, 5, 24, 12, 20, 27, 732, DateTimeKind.Local).AddTicks(2709), "Segment 8 Açıklaması", false, null, "Segment 8" },
-                    { 9, 1, new DateTime(2022, 5, 24, 12, 20, 27, 732, DateTimeKind.Local).AddTicks(2712), "Segment 9 Açıklaması", false, null, "Segment 9" },
-                    { 10, 1, new DateTime(2022, 5, 24, 12, 20, 27, 732, DateTimeKind.Local).AddTicks(2720), "Segment 10 Açıklaması", false, null, "Segment 10" }
+                    { 1, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1782), "Segment 1 Açıklaması", false, null, "Segment 1" },
+                    { 2, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1796), "Segment 2 Açıklaması", false, null, "Segment 2" },
+                    { 3, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1809), "Segment 3 Açıklaması", false, null, "Segment 3" },
+                    { 4, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1811), "Segment 4 Açıklaması", false, null, "Segment 4" },
+                    { 5, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1821), "Segment 5 Açıklaması", false, null, "Segment 5" },
+                    { 6, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1824), "Segment 6 Açıklaması", false, null, "Segment 6" },
+                    { 7, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1826), "Segment 7 Açıklaması", false, null, "Segment 7" },
+                    { 8, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1828), "Segment 8 Açıklaması", false, null, "Segment 8" },
+                    { 9, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1829), "Segment 9 Açıklaması", false, null, "Segment 9" },
+                    { 10, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1832), "Segment 10 Açıklaması", false, null, "Segment 10" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Suppliers",
-                columns: new[] { "ID", "AddedBy", "DealerCode", "IsDeleted", "LastContactDate", "ModifiedBy", "OncelikSirasi", "SupplierName", "URL" },
+                columns: new[] { "ID", "AddedById", "DealerCode", "IsDeleted", "LastContactDate", "ModifiedById", "OncelikSirasi", "SupplierName", "URL" },
                 values: new object[] { 1, 1, "123", false, null, null, null, "Test Tedarikçisi", null });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
-                columns: new[] { "ID", "AddedBy", "ConcurrencyStamp", "CreatedDate", "Description", "IsDeleted", "ModifiedBy", "ModifiedDate", "Name", "NormalizedName", "RoleGroupId" },
-                values: new object[] { 1, 1, "881b1bdb-e039-4444-965f-270285db481b", new DateTime(2022, 5, 24, 12, 20, 27, 732, DateTimeKind.Local).AddTicks(2453), "Sistem Admini Full Yetki", false, 1, new DateTime(2022, 5, 24, 12, 20, 27, 732, DateTimeKind.Local).AddTicks(2453), "SysAdmin", "Sistem Admini", 1 });
+                columns: new[] { "ID", "AddedById", "ConcurrencyStamp", "CreatedDate", "Description", "IsDeleted", "ModifiedById", "ModifiedDate", "Name", "NormalizedName", "RoleGroupId" },
+                values: new object[] { 1, 1, "689ebe17-aa3c-4a7e-b6b4-0cda58d43f3f", new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1629), "Sistem Admini Full Yetki", false, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1631), "SysAdmin", "Sistem Admini", 1 });
 
             migrationBuilder.InsertData(
                 table: "Customers",
-                columns: new[] { "ID", "AddedBy", "CariKodu", "CurrencyId", "IsActive", "IsDeleted", "LastContactDate", "ModifiedBy", "Name", "Notes", "PreferredCurrencyId", "SectorID", "SegmentID", "SideSuppliers", "Surname", "Tel", "TicariUnvan", "TypeID" },
-                values: new object[] { 1, 1, "123", 0, true, false, null, null, "Test Müşterisi", null, null, 1, 1, null, "Soyad", null, "Test Ticari Ünvanı", 1 });
+                columns: new[] { "ID", "AddedById", "CariKodu", "CurrencyId", "CustomerMainCompanyId", "IsActive", "IsDeleted", "ModifiedById", "Name", "Notes", "PreferredCurrencyId", "SectorID", "SegmentID", "SideSuppliers", "Surname", "Tel", "TicariUnvan", "TypeID" },
+                values: new object[] { 1, 1, "123", 0, 1, true, false, null, "Test Müşterisi", null, null, 1, 1, null, "Soyad", null, "Test Ticari Ünvanı", 1 });
 
             migrationBuilder.InsertData(
                 table: "SegmentOrans",
-                columns: new[] { "ID", "AddedBy", "CurrencyID", "EndPrice", "IsDeleted", "ModifiedBy", "Oran", "SegmentID", "StartPrice" },
+                columns: new[] { "CurrencyID", "ID", "Oran", "AddedById", "EndPrice", "IsDeleted", "ModifiedById", "SegmentID", "StartPrice" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, 49.99m, false, null, 22.5m, 1, 0.00m },
-                    { 2, 1, 1, 199.99m, false, null, 13.5m, 1, 50.00m },
-                    { 3, 1, 1, 499.99m, false, null, 11m, 1, 200.00m },
-                    { 4, 1, 1, 999.99m, false, null, 7.5m, 1, 500.00m },
-                    { 5, 1, 1, 2499.99m, false, null, 6m, 1, 1000.00m },
-                    { 6, 1, 1, 4999.99m, false, null, 5.25m, 1, 2500.00m },
-                    { 7, 1, 1, 9999.99m, false, null, 5m, 1, 5000.00m },
-                    { 8, 1, 1, 19999.99m, false, null, 4.5m, 1, 10000.00m },
-                    { 9, 1, 1, 39999.99m, false, null, 4m, 1, 20000.00m },
-                    { 10, 1, 1, 74999.99m, false, null, 3.38m, 1, 40000.00m },
-                    { 11, 1, 1, 99999.99m, false, null, 3m, 1, 75000.00m },
-                    { 12, 1, 1, 149999.99m, false, null, 3m, 1, 100000.00m },
-                    { 13, 1, 1, 249999.99m, false, null, 2m, 1, 150000.00m },
-                    { 14, 1, 1, 499999.99m, false, null, 1.88m, 1, 250000.00m },
-                    { 15, 1, 1, 999999.99m, false, null, 2m, 1, 500000.00m },
-                    { 16, 1, 1, 99999999.99m, false, null, 1.5m, 1, 1000000.00m },
-                    { 17, 1, 1, 49.99m, false, null, 27m, 2, 0.00m },
-                    { 18, 1, 1, 199.99m, false, null, 16.2m, 2, 50.00m },
-                    { 19, 1, 1, 499.99m, false, null, 126.6m, 2, 200.00m },
-                    { 20, 1, 1, 999.99m, false, null, 9m, 2, 500.00m },
-                    { 21, 1, 1, 2499.99m, false, null, 7.2m, 2, 1000.00m },
-                    { 22, 1, 1, 4999.99m, false, null, 6.3m, 2, 2500.00m },
-                    { 23, 1, 1, 9999.99m, false, null, 5.85m, 2, 5000.00m },
-                    { 24, 1, 1, 19999.99m, false, null, 5.4m, 2, 10000.00m },
-                    { 25, 1, 1, 39999.99m, false, null, 4.5m, 2, 20000.00m },
-                    { 26, 1, 1, 74999.99m, false, null, 4.05m, 2, 40000.00m },
-                    { 27, 1, 1, 99999.99m, false, null, 3.78m, 2, 75000.00m },
-                    { 28, 1, 1, 149999.99m, false, null, 3.6m, 2, 100000.00m },
-                    { 29, 1, 1, 249999.99m, false, null, 2.7m, 2, 150000.00m },
-                    { 30, 1, 1, 499999.99m, false, null, 2.25m, 2, 250000.00m },
-                    { 31, 1, 1, 999999.99m, false, null, 1.98m, 2, 500000.00m },
-                    { 32, 1, 1, 99999999.99m, false, null, 1.8m, 2, 1000000.00m },
-                    { 33, 1, 1, 49.99m, false, null, 32.4m, 3, 0.00m },
-                    { 34, 1, 1, 199.99m, false, null, 19.44m, 3, 50.00m },
-                    { 35, 1, 1, 499.99m, false, null, 15.12m, 3, 200.00m },
-                    { 36, 1, 1, 999.99m, false, null, 10.8m, 3, 500.00m },
-                    { 37, 1, 1, 2499.99m, false, null, 8.64m, 3, 1000.00m },
-                    { 38, 1, 1, 4999.99m, false, null, 7.56m, 3, 2500.00m },
-                    { 39, 1, 1, 9999.99m, false, null, 7.02m, 3, 5000.00m },
-                    { 40, 1, 1, 19999.99m, false, null, 6.48m, 3, 10000.00m }
+                    { 1, 1, 22.5m, 1, 49.99m, false, null, 1, 0.00m },
+                    { 1, 2, 13.5m, 1, 199.99m, false, null, 1, 50.00m },
+                    { 1, 3, 11m, 1, 499.99m, false, null, 1, 200.00m },
+                    { 1, 4, 7.5m, 1, 999.99m, false, null, 1, 500.00m },
+                    { 1, 5, 6m, 1, 2499.99m, false, null, 1, 1000.00m },
+                    { 1, 6, 5.25m, 1, 4999.99m, false, null, 1, 2500.00m },
+                    { 1, 7, 5m, 1, 9999.99m, false, null, 1, 5000.00m },
+                    { 1, 8, 4.5m, 1, 19999.99m, false, null, 1, 10000.00m },
+                    { 1, 9, 4m, 1, 39999.99m, false, null, 1, 20000.00m },
+                    { 1, 10, 3.38m, 1, 74999.99m, false, null, 1, 40000.00m },
+                    { 1, 11, 3m, 1, 99999.99m, false, null, 1, 75000.00m },
+                    { 1, 12, 3m, 1, 149999.99m, false, null, 1, 100000.00m },
+                    { 1, 13, 2m, 1, 249999.99m, false, null, 1, 150000.00m },
+                    { 1, 14, 1.88m, 1, 499999.99m, false, null, 1, 250000.00m },
+                    { 1, 15, 2m, 1, 999999.99m, false, null, 1, 500000.00m },
+                    { 1, 16, 1.5m, 1, 99999999.99m, false, null, 1, 1000000.00m },
+                    { 1, 17, 27m, 1, 49.99m, false, null, 2, 0.00m },
+                    { 1, 18, 16.2m, 1, 199.99m, false, null, 2, 50.00m },
+                    { 1, 19, 126.6m, 1, 499.99m, false, null, 2, 200.00m },
+                    { 1, 20, 9m, 1, 999.99m, false, null, 2, 500.00m },
+                    { 1, 21, 7.2m, 1, 2499.99m, false, null, 2, 1000.00m },
+                    { 1, 22, 6.3m, 1, 4999.99m, false, null, 2, 2500.00m },
+                    { 1, 23, 5.85m, 1, 9999.99m, false, null, 2, 5000.00m },
+                    { 1, 24, 5.4m, 1, 19999.99m, false, null, 2, 10000.00m },
+                    { 1, 25, 4.5m, 1, 39999.99m, false, null, 2, 20000.00m },
+                    { 1, 26, 4.05m, 1, 74999.99m, false, null, 2, 40000.00m },
+                    { 1, 27, 3.78m, 1, 99999.99m, false, null, 2, 75000.00m },
+                    { 1, 28, 3.6m, 1, 149999.99m, false, null, 2, 100000.00m },
+                    { 1, 29, 2.7m, 1, 249999.99m, false, null, 2, 150000.00m },
+                    { 1, 30, 2.25m, 1, 499999.99m, false, null, 2, 250000.00m },
+                    { 1, 31, 1.98m, 1, 999999.99m, false, null, 2, 500000.00m },
+                    { 1, 32, 1.8m, 1, 99999999.99m, false, null, 2, 1000000.00m },
+                    { 1, 33, 32.4m, 1, 49.99m, false, null, 3, 0.00m },
+                    { 1, 34, 19.44m, 1, 199.99m, false, null, 3, 50.00m },
+                    { 1, 35, 15.12m, 1, 499.99m, false, null, 3, 200.00m },
+                    { 1, 36, 10.8m, 1, 999.99m, false, null, 3, 500.00m },
+                    { 1, 37, 8.64m, 1, 2499.99m, false, null, 3, 1000.00m },
+                    { 1, 38, 7.56m, 1, 4999.99m, false, null, 3, 2500.00m },
+                    { 1, 39, 7.02m, 1, 9999.99m, false, null, 3, 5000.00m },
+                    { 1, 40, 6.48m, 1, 19999.99m, false, null, 3, 10000.00m }
                 });
 
             migrationBuilder.InsertData(
                 table: "SegmentOrans",
-                columns: new[] { "ID", "AddedBy", "CurrencyID", "EndPrice", "IsDeleted", "ModifiedBy", "Oran", "SegmentID", "StartPrice" },
+                columns: new[] { "CurrencyID", "ID", "Oran", "AddedById", "EndPrice", "IsDeleted", "ModifiedById", "SegmentID", "StartPrice" },
                 values: new object[,]
                 {
-                    { 41, 1, 1, 39999.99m, false, null, 5.4m, 3, 20000.00m },
-                    { 42, 1, 1, 74999.99m, false, null, 4.86m, 3, 40000.00m },
-                    { 43, 1, 1, 99999.99m, false, null, 4.54m, 3, 75000.00m },
-                    { 44, 1, 1, 149999.99m, false, null, 4.32m, 3, 100000.00m },
-                    { 45, 1, 1, 249999.99m, false, null, 3.24m, 3, 150000.00m },
-                    { 46, 1, 1, 499999.99m, false, null, 2.7m, 3, 250000.00m },
-                    { 47, 1, 1, 999999.99m, false, null, 2.38m, 3, 500000.00m },
-                    { 48, 1, 1, 99999999.99m, false, null, 2.16m, 3, 1000000.00m },
-                    { 49, 1, 1, 49.99m, false, null, 38.88m, 4, 0.00m },
-                    { 50, 1, 1, 199.99m, false, null, 23.33m, 4, 50.00m },
-                    { 51, 1, 1, 499.99m, false, null, 18.14m, 4, 200.00m },
-                    { 52, 1, 1, 999.99m, false, null, 12.96m, 4, 500.00m },
-                    { 53, 1, 1, 2499.99m, false, null, 10.37m, 4, 1000.00m },
-                    { 54, 1, 1, 4999.99m, false, null, 9.07m, 4, 2500.00m },
-                    { 55, 1, 1, 9999.99m, false, null, 8.42m, 4, 5000.00m },
-                    { 56, 1, 1, 19999.99m, false, null, 7.78m, 4, 10000.00m },
-                    { 57, 1, 1, 39999.99m, false, null, 6.48m, 4, 20000.00m },
-                    { 58, 1, 1, 74999.99m, false, null, 5.83m, 4, 40000.00m },
-                    { 59, 1, 1, 99999.99m, false, null, 5.44m, 4, 75000.00m },
-                    { 60, 1, 1, 149999.99m, false, null, 5.18m, 4, 100000.00m },
-                    { 61, 1, 1, 249999.99m, false, null, 3.89m, 4, 150000.00m },
-                    { 62, 1, 1, 499999.99m, false, null, 3.24m, 4, 250000.00m },
-                    { 63, 1, 1, 999999.99m, false, null, 2.85m, 4, 500000.00m },
-                    { 64, 1, 1, 99999999.99m, false, null, 2.59m, 4, 1000000.00m },
-                    { 65, 1, 1, 49.99m, false, null, 46.66m, 5, 0.00m },
-                    { 66, 1, 1, 199.99m, false, null, 27.99m, 5, 50.00m },
-                    { 67, 1, 1, 499.99m, false, null, 21.77m, 5, 200.00m },
-                    { 68, 1, 1, 999.99m, false, null, 15.55m, 5, 500.00m },
-                    { 69, 1, 1, 2499.99m, false, null, 12.44m, 5, 1000.00m },
-                    { 70, 1, 1, 4999.99m, false, null, 10.89m, 5, 2500.00m },
-                    { 71, 1, 1, 9999.99m, false, null, 10.11m, 5, 5000.00m },
-                    { 72, 1, 1, 19999.99m, false, null, 9.33m, 5, 10000.00m },
-                    { 73, 1, 1, 39999.99m, false, null, 7.78m, 5, 20000.00m },
-                    { 74, 1, 1, 74999.99m, false, null, 7m, 5, 40000.00m },
-                    { 75, 1, 1, 99999.99m, false, null, 6.53m, 5, 75000.00m },
-                    { 76, 1, 1, 149999.99m, false, null, 6.22m, 5, 100000.00m },
-                    { 77, 1, 1, 249999.99m, false, null, 4.67m, 5, 150000.00m },
-                    { 78, 1, 1, 499999.99m, false, null, 3.89m, 5, 250000.00m },
-                    { 79, 1, 1, 999999.99m, false, null, 3.42m, 5, 500000.00m },
-                    { 80, 1, 1, 99999999.99m, false, null, 3.11m, 5, 1000000.00m },
-                    { 81, 1, 1, 49.99m, false, null, 55.99m, 6, 0.00m },
-                    { 82, 1, 1, 199.99m, false, null, 33.59m, 6, 50.00m }
+                    { 1, 41, 5.4m, 1, 39999.99m, false, null, 3, 20000.00m },
+                    { 1, 42, 4.86m, 1, 74999.99m, false, null, 3, 40000.00m },
+                    { 1, 43, 4.54m, 1, 99999.99m, false, null, 3, 75000.00m },
+                    { 1, 44, 4.32m, 1, 149999.99m, false, null, 3, 100000.00m },
+                    { 1, 45, 3.24m, 1, 249999.99m, false, null, 3, 150000.00m },
+                    { 1, 46, 2.7m, 1, 499999.99m, false, null, 3, 250000.00m },
+                    { 1, 47, 2.38m, 1, 999999.99m, false, null, 3, 500000.00m },
+                    { 1, 48, 2.16m, 1, 99999999.99m, false, null, 3, 1000000.00m },
+                    { 1, 49, 38.88m, 1, 49.99m, false, null, 4, 0.00m },
+                    { 1, 50, 23.33m, 1, 199.99m, false, null, 4, 50.00m },
+                    { 1, 51, 18.14m, 1, 499.99m, false, null, 4, 200.00m },
+                    { 1, 52, 12.96m, 1, 999.99m, false, null, 4, 500.00m },
+                    { 1, 53, 10.37m, 1, 2499.99m, false, null, 4, 1000.00m },
+                    { 1, 54, 9.07m, 1, 4999.99m, false, null, 4, 2500.00m },
+                    { 1, 55, 8.42m, 1, 9999.99m, false, null, 4, 5000.00m },
+                    { 1, 56, 7.78m, 1, 19999.99m, false, null, 4, 10000.00m },
+                    { 1, 57, 6.48m, 1, 39999.99m, false, null, 4, 20000.00m },
+                    { 1, 58, 5.83m, 1, 74999.99m, false, null, 4, 40000.00m },
+                    { 1, 59, 5.44m, 1, 99999.99m, false, null, 4, 75000.00m },
+                    { 1, 60, 5.18m, 1, 149999.99m, false, null, 4, 100000.00m },
+                    { 1, 61, 3.89m, 1, 249999.99m, false, null, 4, 150000.00m },
+                    { 1, 62, 3.24m, 1, 499999.99m, false, null, 4, 250000.00m },
+                    { 1, 63, 2.85m, 1, 999999.99m, false, null, 4, 500000.00m },
+                    { 1, 64, 2.59m, 1, 99999999.99m, false, null, 4, 1000000.00m },
+                    { 1, 65, 46.66m, 1, 49.99m, false, null, 5, 0.00m },
+                    { 1, 66, 27.99m, 1, 199.99m, false, null, 5, 50.00m },
+                    { 1, 67, 21.77m, 1, 499.99m, false, null, 5, 200.00m },
+                    { 1, 68, 15.55m, 1, 999.99m, false, null, 5, 500.00m },
+                    { 1, 69, 12.44m, 1, 2499.99m, false, null, 5, 1000.00m },
+                    { 1, 70, 10.89m, 1, 4999.99m, false, null, 5, 2500.00m },
+                    { 1, 71, 10.11m, 1, 9999.99m, false, null, 5, 5000.00m },
+                    { 1, 72, 9.33m, 1, 19999.99m, false, null, 5, 10000.00m },
+                    { 1, 73, 7.78m, 1, 39999.99m, false, null, 5, 20000.00m },
+                    { 1, 74, 7m, 1, 74999.99m, false, null, 5, 40000.00m },
+                    { 1, 75, 6.53m, 1, 99999.99m, false, null, 5, 75000.00m },
+                    { 1, 76, 6.22m, 1, 149999.99m, false, null, 5, 100000.00m },
+                    { 1, 77, 4.67m, 1, 249999.99m, false, null, 5, 150000.00m },
+                    { 1, 78, 3.89m, 1, 499999.99m, false, null, 5, 250000.00m },
+                    { 1, 79, 3.42m, 1, 999999.99m, false, null, 5, 500000.00m },
+                    { 1, 80, 3.11m, 1, 99999999.99m, false, null, 5, 1000000.00m },
+                    { 1, 81, 55.99m, 1, 49.99m, false, null, 6, 0.00m },
+                    { 1, 82, 33.59m, 1, 199.99m, false, null, 6, 50.00m }
                 });
 
             migrationBuilder.InsertData(
                 table: "SegmentOrans",
-                columns: new[] { "ID", "AddedBy", "CurrencyID", "EndPrice", "IsDeleted", "ModifiedBy", "Oran", "SegmentID", "StartPrice" },
+                columns: new[] { "CurrencyID", "ID", "Oran", "AddedById", "EndPrice", "IsDeleted", "ModifiedById", "SegmentID", "StartPrice" },
                 values: new object[,]
                 {
-                    { 83, 1, 1, 499.99m, false, null, 26.13m, 6, 200.00m },
-                    { 84, 1, 1, 999.99m, false, null, 18.66m, 6, 500.00m },
-                    { 85, 1, 1, 2499.99m, false, null, 14.93m, 6, 1000.00m },
-                    { 86, 1, 1, 4999.99m, false, null, 13.06m, 6, 2500.00m },
-                    { 87, 1, 1, 9999.99m, false, null, 12.13m, 6, 5000.00m },
-                    { 88, 1, 1, 19999.99m, false, null, 11.2m, 6, 10000.00m },
-                    { 89, 1, 1, 39999.99m, false, null, 9.33m, 6, 20000.00m },
-                    { 90, 1, 1, 74999.99m, false, null, 8.4m, 6, 40000.00m },
-                    { 91, 1, 1, 99999.99m, false, null, 7.84m, 6, 75000.00m },
-                    { 92, 1, 1, 149999.99m, false, null, 7.46m, 6, 100000.00m },
-                    { 93, 1, 1, 249999.99m, false, null, 5.6m, 6, 150000.00m },
-                    { 94, 1, 1, 499999.99m, false, null, 4.67m, 6, 250000.00m },
-                    { 95, 1, 1, 999999.99m, false, null, 4.11m, 6, 500000.00m },
-                    { 96, 1, 1, 99999999.99m, false, null, 3.73m, 6, 1000000.00m },
-                    { 97, 1, 1, 49.99m, false, null, 67.18m, 7, 0.00m },
-                    { 98, 1, 1, 199.99m, false, null, 40.31m, 7, 50.00m },
-                    { 99, 1, 1, 499.99m, false, null, 31.35m, 7, 200.00m },
-                    { 100, 1, 1, 999.99m, false, null, 22.39m, 7, 500.00m },
-                    { 101, 1, 1, 2499.99m, false, null, 17.92m, 7, 1000.00m },
-                    { 102, 1, 1, 4999.99m, false, null, 15.68m, 7, 2500.00m },
-                    { 103, 1, 1, 9999.99m, false, null, 14.56m, 7, 5000.00m },
-                    { 104, 1, 1, 19999.99m, false, null, 13.44m, 7, 10000.00m },
-                    { 105, 1, 1, 39999.99m, false, null, 11.2m, 7, 20000.00m },
-                    { 106, 1, 1, 74999.99m, false, null, 10.08m, 7, 40000.00m },
-                    { 107, 1, 1, 99999.99m, false, null, 9.41m, 7, 75000.00m },
-                    { 108, 1, 1, 149999.99m, false, null, 8.96m, 7, 100000.00m },
-                    { 109, 1, 1, 249999.99m, false, null, 6.72m, 7, 150000.00m },
-                    { 110, 1, 1, 499999.99m, false, null, 5.6m, 7, 250000.00m },
-                    { 111, 1, 1, 999999.99m, false, null, 4.93m, 7, 500000.00m },
-                    { 112, 1, 1, 99999999.99m, false, null, 4.48m, 7, 1000000.00m },
-                    { 113, 1, 1, 49.99m, false, null, 80.62m, 8, 0.00m },
-                    { 114, 1, 1, 199.99m, false, null, 48.37m, 8, 50.00m },
-                    { 115, 1, 1, 499.99m, false, null, 37.62m, 8, 200.00m },
-                    { 116, 1, 1, 999.99m, false, null, 26.87m, 8, 500.00m },
-                    { 117, 1, 1, 2499.99m, false, null, 21.5m, 8, 1000.00m },
-                    { 118, 1, 1, 4999.99m, false, null, 18.81m, 8, 2500.00m },
-                    { 119, 1, 1, 9999.99m, false, null, 17.47m, 8, 5000.00m },
-                    { 120, 1, 1, 19999.99m, false, null, 16.12m, 8, 10000.00m },
-                    { 121, 1, 1, 39999.99m, false, null, 13.44m, 8, 20000.00m },
-                    { 122, 1, 1, 74999.99m, false, null, 12.09m, 8, 40000.00m },
-                    { 123, 1, 1, 99999.99m, false, null, 11.29m, 8, 75000.00m },
-                    { 124, 1, 1, 149999.99m, false, null, 10.75m, 8, 100000.00m }
+                    { 1, 83, 26.13m, 1, 499.99m, false, null, 6, 200.00m },
+                    { 1, 84, 18.66m, 1, 999.99m, false, null, 6, 500.00m },
+                    { 1, 85, 14.93m, 1, 2499.99m, false, null, 6, 1000.00m },
+                    { 1, 86, 13.06m, 1, 4999.99m, false, null, 6, 2500.00m },
+                    { 1, 87, 12.13m, 1, 9999.99m, false, null, 6, 5000.00m },
+                    { 1, 88, 11.2m, 1, 19999.99m, false, null, 6, 10000.00m },
+                    { 1, 89, 9.33m, 1, 39999.99m, false, null, 6, 20000.00m },
+                    { 1, 90, 8.4m, 1, 74999.99m, false, null, 6, 40000.00m },
+                    { 1, 91, 7.84m, 1, 99999.99m, false, null, 6, 75000.00m },
+                    { 1, 92, 7.46m, 1, 149999.99m, false, null, 6, 100000.00m },
+                    { 1, 93, 5.6m, 1, 249999.99m, false, null, 6, 150000.00m },
+                    { 1, 94, 4.67m, 1, 499999.99m, false, null, 6, 250000.00m },
+                    { 1, 95, 4.11m, 1, 999999.99m, false, null, 6, 500000.00m },
+                    { 1, 96, 3.73m, 1, 99999999.99m, false, null, 6, 1000000.00m },
+                    { 1, 97, 67.18m, 1, 49.99m, false, null, 7, 0.00m },
+                    { 1, 98, 40.31m, 1, 199.99m, false, null, 7, 50.00m },
+                    { 1, 99, 31.35m, 1, 499.99m, false, null, 7, 200.00m },
+                    { 1, 100, 22.39m, 1, 999.99m, false, null, 7, 500.00m },
+                    { 1, 101, 17.92m, 1, 2499.99m, false, null, 7, 1000.00m },
+                    { 1, 102, 15.68m, 1, 4999.99m, false, null, 7, 2500.00m },
+                    { 1, 103, 14.56m, 1, 9999.99m, false, null, 7, 5000.00m },
+                    { 1, 104, 13.44m, 1, 19999.99m, false, null, 7, 10000.00m },
+                    { 1, 105, 11.2m, 1, 39999.99m, false, null, 7, 20000.00m },
+                    { 1, 106, 10.08m, 1, 74999.99m, false, null, 7, 40000.00m },
+                    { 1, 107, 9.41m, 1, 99999.99m, false, null, 7, 75000.00m },
+                    { 1, 108, 8.96m, 1, 149999.99m, false, null, 7, 100000.00m },
+                    { 1, 109, 6.72m, 1, 249999.99m, false, null, 7, 150000.00m },
+                    { 1, 110, 5.6m, 1, 499999.99m, false, null, 7, 250000.00m },
+                    { 1, 111, 4.93m, 1, 999999.99m, false, null, 7, 500000.00m },
+                    { 1, 112, 4.48m, 1, 99999999.99m, false, null, 7, 1000000.00m },
+                    { 1, 113, 80.62m, 1, 49.99m, false, null, 8, 0.00m },
+                    { 1, 114, 48.37m, 1, 199.99m, false, null, 8, 50.00m },
+                    { 1, 115, 37.62m, 1, 499.99m, false, null, 8, 200.00m },
+                    { 1, 116, 26.87m, 1, 999.99m, false, null, 8, 500.00m },
+                    { 1, 117, 21.5m, 1, 2499.99m, false, null, 8, 1000.00m },
+                    { 1, 118, 18.81m, 1, 4999.99m, false, null, 8, 2500.00m },
+                    { 1, 119, 17.47m, 1, 9999.99m, false, null, 8, 5000.00m },
+                    { 1, 120, 16.12m, 1, 19999.99m, false, null, 8, 10000.00m },
+                    { 1, 121, 13.44m, 1, 39999.99m, false, null, 8, 20000.00m },
+                    { 1, 122, 12.09m, 1, 74999.99m, false, null, 8, 40000.00m },
+                    { 1, 123, 11.29m, 1, 99999.99m, false, null, 8, 75000.00m },
+                    { 1, 124, 10.75m, 1, 149999.99m, false, null, 8, 100000.00m }
                 });
 
             migrationBuilder.InsertData(
                 table: "SegmentOrans",
-                columns: new[] { "ID", "AddedBy", "CurrencyID", "EndPrice", "IsDeleted", "ModifiedBy", "Oran", "SegmentID", "StartPrice" },
+                columns: new[] { "CurrencyID", "ID", "Oran", "AddedById", "EndPrice", "IsDeleted", "ModifiedById", "SegmentID", "StartPrice" },
                 values: new object[,]
                 {
-                    { 125, 1, 1, 249999.99m, false, null, 8.06m, 8, 150000.00m },
-                    { 126, 1, 1, 499999.99m, false, null, 6.72m, 8, 250000.00m },
-                    { 127, 1, 1, 999999.99m, false, null, 5.91m, 8, 500000.00m },
-                    { 128, 1, 1, 99999999.99m, false, null, 5.37m, 8, 1000000.00m },
-                    { 129, 1, 1, 49.99m, false, null, 96.75m, 9, 0.00m },
-                    { 130, 1, 1, 199.99m, false, null, 58.05m, 9, 50.00m },
-                    { 131, 1, 1, 499.99m, false, null, 45.15m, 9, 200.00m },
-                    { 132, 1, 1, 999.99m, false, null, 32.25m, 9, 500.00m },
-                    { 133, 1, 1, 2499.99m, false, null, 25.8m, 9, 1000.00m },
-                    { 134, 1, 1, 4999.99m, false, null, 22.57m, 9, 2500.00m },
-                    { 135, 1, 1, 9999.99m, false, null, 20.96m, 9, 5000.00m },
-                    { 136, 1, 1, 19999.99m, false, null, 19.35m, 9, 10000.00m },
-                    { 137, 1, 1, 39999.99m, false, null, 16.12m, 9, 20000.00m },
-                    { 138, 1, 1, 74999.99m, false, null, 14.51m, 9, 40000.00m },
-                    { 139, 1, 1, 99999.99m, false, null, 13.54m, 9, 75000.00m },
-                    { 140, 1, 1, 149999.99m, false, null, 12.9m, 9, 100000.00m },
-                    { 141, 1, 1, 249999.99m, false, null, 9.67m, 9, 150000.00m },
-                    { 142, 1, 1, 499999.99m, false, null, 8.06m, 9, 250000.00m },
-                    { 143, 1, 1, 999999.99m, false, null, 7m, 9, 500000.00m },
-                    { 144, 1, 1, 99999999.99m, false, null, 6.45m, 9, 1000000.00m },
-                    { 145, 1, 1, 49.99m, false, null, 116.1m, 10, 0.00m },
-                    { 146, 1, 1, 199.99m, false, null, 72.56m, 10, 50.00m },
-                    { 147, 1, 1, 499.99m, false, null, 58.69m, 10, 200.00m },
-                    { 148, 1, 1, 999.99m, false, null, 43.54m, 10, 500.00m },
-                    { 149, 1, 1, 2499.99m, false, null, 36.12m, 10, 1000.00m },
-                    { 150, 1, 1, 4999.99m, false, null, 32.73m, 10, 2500.00m },
-                    { 151, 1, 1, 9999.99m, false, null, 31.44m, 10, 5000.00m },
-                    { 152, 1, 1, 19999.99m, false, null, 29.99m, 10, 10000.00m },
-                    { 153, 1, 1, 39999.99m, false, null, 25.8m, 10, 20000.00m },
-                    { 154, 1, 1, 74999.99m, false, null, 23.94m, 10, 40000.00m },
-                    { 155, 1, 1, 99999.99m, false, null, 23.03m, 10, 75000.00m },
-                    { 156, 1, 1, 149999.99m, false, null, 22.57m, 10, 100000.00m },
-                    { 157, 1, 1, 249999.99m, false, null, 17.41m, 10, 150000.00m },
-                    { 158, 1, 1, 499999.99m, false, null, 14.91m, 10, 250000.00m },
-                    { 159, 1, 1, 999999.99m, false, null, 13.48m, 10, 500000.00m },
-                    { 160, 1, 1, 99999999.99m, false, null, 12.58m, 10, 1000000.00m },
-                    { 161, 1, 2, 49.99m, false, null, 15m, 1, 0.00m },
-                    { 162, 1, 2, 199.99m, false, null, 9m, 1, 50.00m },
-                    { 163, 1, 2, 499.99m, false, null, 7m, 1, 200.00m },
-                    { 164, 1, 2, 999.99m, false, null, 5m, 1, 500.00m },
-                    { 165, 1, 2, 2499.99m, false, null, 4m, 1, 1000.00m },
-                    { 166, 1, 2, 4999.99m, false, null, 3.5m, 1, 2500.00m }
+                    { 1, 125, 8.06m, 1, 249999.99m, false, null, 8, 150000.00m },
+                    { 1, 126, 6.72m, 1, 499999.99m, false, null, 8, 250000.00m },
+                    { 1, 127, 5.91m, 1, 999999.99m, false, null, 8, 500000.00m },
+                    { 1, 128, 5.37m, 1, 99999999.99m, false, null, 8, 1000000.00m },
+                    { 1, 129, 96.75m, 1, 49.99m, false, null, 9, 0.00m },
+                    { 1, 130, 58.05m, 1, 199.99m, false, null, 9, 50.00m },
+                    { 1, 131, 45.15m, 1, 499.99m, false, null, 9, 200.00m },
+                    { 1, 132, 32.25m, 1, 999.99m, false, null, 9, 500.00m },
+                    { 1, 133, 25.8m, 1, 2499.99m, false, null, 9, 1000.00m },
+                    { 1, 134, 22.57m, 1, 4999.99m, false, null, 9, 2500.00m },
+                    { 1, 135, 20.96m, 1, 9999.99m, false, null, 9, 5000.00m },
+                    { 1, 136, 19.35m, 1, 19999.99m, false, null, 9, 10000.00m },
+                    { 1, 137, 16.12m, 1, 39999.99m, false, null, 9, 20000.00m },
+                    { 1, 138, 14.51m, 1, 74999.99m, false, null, 9, 40000.00m },
+                    { 1, 139, 13.54m, 1, 99999.99m, false, null, 9, 75000.00m },
+                    { 1, 140, 12.9m, 1, 149999.99m, false, null, 9, 100000.00m },
+                    { 1, 141, 9.67m, 1, 249999.99m, false, null, 9, 150000.00m },
+                    { 1, 142, 8.06m, 1, 499999.99m, false, null, 9, 250000.00m },
+                    { 1, 143, 7m, 1, 999999.99m, false, null, 9, 500000.00m },
+                    { 1, 144, 6.45m, 1, 99999999.99m, false, null, 9, 1000000.00m },
+                    { 1, 145, 116.1m, 1, 49.99m, false, null, 10, 0.00m },
+                    { 1, 146, 72.56m, 1, 199.99m, false, null, 10, 50.00m },
+                    { 1, 147, 58.69m, 1, 499.99m, false, null, 10, 200.00m },
+                    { 1, 148, 43.54m, 1, 999.99m, false, null, 10, 500.00m },
+                    { 1, 149, 36.12m, 1, 2499.99m, false, null, 10, 1000.00m },
+                    { 1, 150, 32.73m, 1, 4999.99m, false, null, 10, 2500.00m },
+                    { 1, 151, 31.44m, 1, 9999.99m, false, null, 10, 5000.00m },
+                    { 1, 152, 29.99m, 1, 19999.99m, false, null, 10, 10000.00m },
+                    { 1, 153, 25.8m, 1, 39999.99m, false, null, 10, 20000.00m },
+                    { 1, 154, 23.94m, 1, 74999.99m, false, null, 10, 40000.00m },
+                    { 1, 155, 23.03m, 1, 99999.99m, false, null, 10, 75000.00m },
+                    { 1, 156, 22.57m, 1, 149999.99m, false, null, 10, 100000.00m },
+                    { 1, 157, 17.41m, 1, 249999.99m, false, null, 10, 150000.00m },
+                    { 1, 158, 14.91m, 1, 499999.99m, false, null, 10, 250000.00m },
+                    { 1, 159, 13.48m, 1, 999999.99m, false, null, 10, 500000.00m },
+                    { 1, 160, 12.58m, 1, 99999999.99m, false, null, 10, 1000000.00m },
+                    { 2, 161, 15m, 1, 49.99m, false, null, 1, 0.00m },
+                    { 2, 162, 9m, 1, 199.99m, false, null, 1, 50.00m },
+                    { 2, 163, 7m, 1, 499.99m, false, null, 1, 200.00m },
+                    { 2, 164, 5m, 1, 999.99m, false, null, 1, 500.00m },
+                    { 2, 165, 4m, 1, 2499.99m, false, null, 1, 1000.00m },
+                    { 2, 166, 3.5m, 1, 4999.99m, false, null, 1, 2500.00m }
                 });
 
             migrationBuilder.InsertData(
                 table: "SegmentOrans",
-                columns: new[] { "ID", "AddedBy", "CurrencyID", "EndPrice", "IsDeleted", "ModifiedBy", "Oran", "SegmentID", "StartPrice" },
+                columns: new[] { "CurrencyID", "ID", "Oran", "AddedById", "EndPrice", "IsDeleted", "ModifiedById", "SegmentID", "StartPrice" },
                 values: new object[,]
                 {
-                    { 167, 1, 2, 9999.99m, false, null, 3.25m, 1, 5000.00m },
-                    { 168, 1, 2, 19999.99m, false, null, 3m, 1, 10000.00m },
-                    { 169, 1, 2, 39999.99m, false, null, 2.5m, 1, 20000.00m },
-                    { 170, 1, 2, 74999.99m, false, null, 2.25m, 1, 40000.00m },
-                    { 171, 1, 2, 99999.99m, false, null, 2.1m, 1, 75000.00m },
-                    { 172, 1, 2, 149999.99m, false, null, 2m, 1, 100000.00m },
-                    { 173, 1, 2, 249999.99m, false, null, 1.5m, 1, 150000.00m },
-                    { 174, 1, 2, 499999.99m, false, null, 1.25m, 1, 250000.00m },
-                    { 175, 1, 2, 999999.99m, false, null, 1.1m, 1, 500000.00m },
-                    { 176, 1, 2, 99999999.99m, false, null, 1m, 1, 1000000.00m },
-                    { 177, 1, 2, 49.99m, false, null, 18m, 2, 0.00m },
-                    { 178, 1, 2, 199.99m, false, null, 10.8m, 2, 50.00m },
-                    { 179, 1, 2, 499.99m, false, null, 8.4m, 2, 200.00m },
-                    { 180, 1, 2, 999.99m, false, null, 6m, 2, 500.00m },
-                    { 181, 1, 2, 2499.99m, false, null, 4.8m, 2, 1000.00m },
-                    { 182, 1, 2, 4999.99m, false, null, 4.2m, 2, 2500.00m },
-                    { 183, 1, 2, 9999.99m, false, null, 3.9m, 2, 5000.00m },
-                    { 184, 1, 2, 19999.99m, false, null, 3.6m, 2, 10000.00m },
-                    { 185, 1, 2, 39999.99m, false, null, 3m, 2, 20000.00m },
-                    { 186, 1, 2, 74999.99m, false, null, 2.7m, 2, 40000.00m },
-                    { 187, 1, 2, 99999.99m, false, null, 2.52m, 2, 75000.00m },
-                    { 188, 1, 2, 149999.99m, false, null, 2.4m, 2, 100000.00m },
-                    { 189, 1, 2, 249999.99m, false, null, 1.8m, 2, 150000.00m },
-                    { 190, 1, 2, 499999.99m, false, null, 1.5m, 2, 250000.00m },
-                    { 191, 1, 2, 999999.99m, false, null, 1.32m, 2, 500000.00m },
-                    { 192, 1, 2, 99999999.99m, false, null, 1.2m, 2, 1000000.00m },
-                    { 193, 1, 2, 49.99m, false, null, 21.6m, 3, 0.00m },
-                    { 194, 1, 2, 199.99m, false, null, 12.96m, 3, 50.00m },
-                    { 195, 1, 2, 499.99m, false, null, 10.08m, 3, 200.00m },
-                    { 196, 1, 2, 999.99m, false, null, 7.2m, 3, 500.00m },
-                    { 197, 1, 2, 2499.99m, false, null, 5.76m, 3, 1000.00m },
-                    { 198, 1, 2, 4999.99m, false, null, 5.04m, 3, 2500.00m },
-                    { 199, 1, 2, 9999.99m, false, null, 4.68m, 3, 5000.00m },
-                    { 200, 1, 2, 19999.99m, false, null, 4.32m, 3, 10000.00m },
-                    { 201, 1, 2, 39999.99m, false, null, 3.6m, 3, 20000.00m },
-                    { 202, 1, 2, 74999.99m, false, null, 3.24m, 3, 40000.00m },
-                    { 203, 1, 2, 99999.99m, false, null, 3.02m, 3, 75000.00m },
-                    { 204, 1, 2, 149999.99m, false, null, 2.88m, 3, 100000.00m },
-                    { 205, 1, 2, 249999.99m, false, null, 2.16m, 3, 150000.00m },
-                    { 206, 1, 2, 499999.99m, false, null, 1.8m, 3, 250000.00m },
-                    { 207, 1, 2, 999999.99m, false, null, 1.58m, 3, 500000.00m },
-                    { 208, 1, 2, 99999999.99m, false, null, 1.44m, 3, 1000000.00m }
+                    { 2, 167, 3.25m, 1, 9999.99m, false, null, 1, 5000.00m },
+                    { 2, 168, 3m, 1, 19999.99m, false, null, 1, 10000.00m },
+                    { 2, 169, 2.5m, 1, 39999.99m, false, null, 1, 20000.00m },
+                    { 2, 170, 2.25m, 1, 74999.99m, false, null, 1, 40000.00m },
+                    { 2, 171, 2.1m, 1, 99999.99m, false, null, 1, 75000.00m },
+                    { 2, 172, 2m, 1, 149999.99m, false, null, 1, 100000.00m },
+                    { 2, 173, 1.5m, 1, 249999.99m, false, null, 1, 150000.00m },
+                    { 2, 174, 1.25m, 1, 499999.99m, false, null, 1, 250000.00m },
+                    { 2, 175, 1.1m, 1, 999999.99m, false, null, 1, 500000.00m },
+                    { 2, 176, 1m, 1, 99999999.99m, false, null, 1, 1000000.00m },
+                    { 2, 177, 18m, 1, 49.99m, false, null, 2, 0.00m },
+                    { 2, 178, 10.8m, 1, 199.99m, false, null, 2, 50.00m },
+                    { 2, 179, 8.4m, 1, 499.99m, false, null, 2, 200.00m },
+                    { 2, 180, 6m, 1, 999.99m, false, null, 2, 500.00m },
+                    { 2, 181, 4.8m, 1, 2499.99m, false, null, 2, 1000.00m },
+                    { 2, 182, 4.2m, 1, 4999.99m, false, null, 2, 2500.00m },
+                    { 2, 183, 3.9m, 1, 9999.99m, false, null, 2, 5000.00m },
+                    { 2, 184, 3.6m, 1, 19999.99m, false, null, 2, 10000.00m },
+                    { 2, 185, 3m, 1, 39999.99m, false, null, 2, 20000.00m },
+                    { 2, 186, 2.7m, 1, 74999.99m, false, null, 2, 40000.00m },
+                    { 2, 187, 2.52m, 1, 99999.99m, false, null, 2, 75000.00m },
+                    { 2, 188, 2.4m, 1, 149999.99m, false, null, 2, 100000.00m },
+                    { 2, 189, 1.8m, 1, 249999.99m, false, null, 2, 150000.00m },
+                    { 2, 190, 1.5m, 1, 499999.99m, false, null, 2, 250000.00m },
+                    { 2, 191, 1.32m, 1, 999999.99m, false, null, 2, 500000.00m },
+                    { 2, 192, 1.2m, 1, 99999999.99m, false, null, 2, 1000000.00m },
+                    { 2, 193, 21.6m, 1, 49.99m, false, null, 3, 0.00m },
+                    { 2, 194, 12.96m, 1, 199.99m, false, null, 3, 50.00m },
+                    { 2, 195, 10.08m, 1, 499.99m, false, null, 3, 200.00m },
+                    { 2, 196, 7.2m, 1, 999.99m, false, null, 3, 500.00m },
+                    { 2, 197, 5.76m, 1, 2499.99m, false, null, 3, 1000.00m },
+                    { 2, 198, 5.04m, 1, 4999.99m, false, null, 3, 2500.00m },
+                    { 2, 199, 4.68m, 1, 9999.99m, false, null, 3, 5000.00m },
+                    { 2, 200, 4.32m, 1, 19999.99m, false, null, 3, 10000.00m },
+                    { 2, 201, 3.6m, 1, 39999.99m, false, null, 3, 20000.00m },
+                    { 2, 202, 3.24m, 1, 74999.99m, false, null, 3, 40000.00m },
+                    { 2, 203, 3.02m, 1, 99999.99m, false, null, 3, 75000.00m },
+                    { 2, 204, 2.88m, 1, 149999.99m, false, null, 3, 100000.00m },
+                    { 2, 205, 2.16m, 1, 249999.99m, false, null, 3, 150000.00m },
+                    { 2, 206, 1.8m, 1, 499999.99m, false, null, 3, 250000.00m },
+                    { 2, 207, 1.58m, 1, 999999.99m, false, null, 3, 500000.00m },
+                    { 2, 208, 1.44m, 1, 99999999.99m, false, null, 3, 1000000.00m }
                 });
 
             migrationBuilder.InsertData(
                 table: "SegmentOrans",
-                columns: new[] { "ID", "AddedBy", "CurrencyID", "EndPrice", "IsDeleted", "ModifiedBy", "Oran", "SegmentID", "StartPrice" },
+                columns: new[] { "CurrencyID", "ID", "Oran", "AddedById", "EndPrice", "IsDeleted", "ModifiedById", "SegmentID", "StartPrice" },
                 values: new object[,]
                 {
-                    { 209, 1, 2, 49.99m, false, null, 25.92m, 4, 0.00m },
-                    { 210, 1, 2, 199.99m, false, null, 15.55m, 4, 50.00m },
-                    { 211, 1, 2, 499.99m, false, null, 12.1m, 4, 200.00m },
-                    { 212, 1, 2, 999.99m, false, null, 8.64m, 4, 500.00m },
-                    { 213, 1, 2, 2499.99m, false, null, 6.91m, 4, 1000.00m },
-                    { 214, 1, 2, 4999.99m, false, null, 6.05m, 4, 2500.00m },
-                    { 215, 1, 2, 9999.99m, false, null, 5.62m, 4, 5000.00m },
-                    { 216, 1, 2, 19999.99m, false, null, 5.18m, 4, 10000.00m },
-                    { 217, 1, 2, 39999.99m, false, null, 4.32m, 4, 20000.00m },
-                    { 218, 1, 2, 74999.99m, false, null, 3.89m, 4, 40000.00m },
-                    { 219, 1, 2, 99999.99m, false, null, 3.63m, 4, 75000.00m },
-                    { 220, 1, 2, 149999.99m, false, null, 3.46m, 4, 100000.00m },
-                    { 221, 1, 2, 249999.99m, false, null, 2.59m, 4, 150000.00m },
-                    { 222, 1, 2, 499999.99m, false, null, 2.16m, 4, 250000.00m },
-                    { 223, 1, 2, 999999.99m, false, null, 1.9m, 4, 500000.00m },
-                    { 224, 1, 2, 99999999.99m, false, null, 1.73m, 4, 1000000.00m },
-                    { 225, 1, 2, 49.99m, false, null, 31.1m, 5, 0.00m },
-                    { 226, 1, 2, 199.99m, false, null, 18.66m, 5, 50.00m },
-                    { 227, 1, 2, 499.99m, false, null, 14.52m, 5, 200.00m },
-                    { 228, 1, 2, 999.99m, false, null, 10.37m, 5, 500.00m },
-                    { 229, 1, 2, 2499.99m, false, null, 8.29m, 5, 1000.00m },
-                    { 230, 1, 2, 4999.99m, false, null, 7.26m, 5, 2500.00m },
-                    { 231, 1, 2, 9999.99m, false, null, 6.74m, 5, 5000.00m },
-                    { 232, 1, 2, 19999.99m, false, null, 6.22m, 5, 10000.00m },
-                    { 233, 1, 2, 39999.99m, false, null, 5.18m, 5, 20000.00m },
-                    { 234, 1, 2, 74999.99m, false, null, 4.67m, 5, 40000.00m },
-                    { 235, 1, 2, 99999.99m, false, null, 4.35m, 5, 75000.00m },
-                    { 236, 1, 2, 149999.99m, false, null, 4.15m, 5, 100000.00m },
-                    { 237, 1, 2, 249999.99m, false, null, 3.11m, 5, 150000.00m },
-                    { 238, 1, 2, 499999.99m, false, null, 2.59m, 5, 250000.00m },
-                    { 239, 1, 2, 999999.99m, false, null, 2.28m, 5, 500000.00m },
-                    { 240, 1, 2, 99999999.99m, false, null, 2.07m, 5, 1000000.00m },
-                    { 241, 1, 2, 49.99m, false, null, 37.32m, 6, 0.00m },
-                    { 242, 1, 2, 199.99m, false, null, 22.39m, 6, 50.00m },
-                    { 243, 1, 2, 499.99m, false, null, 17.42m, 6, 200.00m },
-                    { 244, 1, 2, 999.99m, false, null, 12.44m, 6, 500.00m },
-                    { 245, 1, 2, 2499.99m, false, null, 9.95m, 6, 1000.00m },
-                    { 246, 1, 2, 4999.99m, false, null, 8.71m, 6, 2500.00m },
-                    { 247, 1, 2, 9999.99m, false, null, 8.09m, 6, 5000.00m },
-                    { 248, 1, 2, 19999.99m, false, null, 7.46m, 6, 10000.00m },
-                    { 249, 1, 2, 39999.99m, false, null, 6.22m, 6, 20000.00m },
-                    { 250, 1, 2, 74999.99m, false, null, 5.6m, 6, 40000.00m }
+                    { 2, 209, 25.92m, 1, 49.99m, false, null, 4, 0.00m },
+                    { 2, 210, 15.55m, 1, 199.99m, false, null, 4, 50.00m },
+                    { 2, 211, 12.1m, 1, 499.99m, false, null, 4, 200.00m },
+                    { 2, 212, 8.64m, 1, 999.99m, false, null, 4, 500.00m },
+                    { 2, 213, 6.91m, 1, 2499.99m, false, null, 4, 1000.00m },
+                    { 2, 214, 6.05m, 1, 4999.99m, false, null, 4, 2500.00m },
+                    { 2, 215, 5.62m, 1, 9999.99m, false, null, 4, 5000.00m },
+                    { 2, 216, 5.18m, 1, 19999.99m, false, null, 4, 10000.00m },
+                    { 2, 217, 4.32m, 1, 39999.99m, false, null, 4, 20000.00m },
+                    { 2, 218, 3.89m, 1, 74999.99m, false, null, 4, 40000.00m },
+                    { 2, 219, 3.63m, 1, 99999.99m, false, null, 4, 75000.00m },
+                    { 2, 220, 3.46m, 1, 149999.99m, false, null, 4, 100000.00m },
+                    { 2, 221, 2.59m, 1, 249999.99m, false, null, 4, 150000.00m },
+                    { 2, 222, 2.16m, 1, 499999.99m, false, null, 4, 250000.00m },
+                    { 2, 223, 1.9m, 1, 999999.99m, false, null, 4, 500000.00m },
+                    { 2, 224, 1.73m, 1, 99999999.99m, false, null, 4, 1000000.00m },
+                    { 2, 225, 31.1m, 1, 49.99m, false, null, 5, 0.00m },
+                    { 2, 226, 18.66m, 1, 199.99m, false, null, 5, 50.00m },
+                    { 2, 227, 14.52m, 1, 499.99m, false, null, 5, 200.00m },
+                    { 2, 228, 10.37m, 1, 999.99m, false, null, 5, 500.00m },
+                    { 2, 229, 8.29m, 1, 2499.99m, false, null, 5, 1000.00m },
+                    { 2, 230, 7.26m, 1, 4999.99m, false, null, 5, 2500.00m },
+                    { 2, 231, 6.74m, 1, 9999.99m, false, null, 5, 5000.00m },
+                    { 2, 232, 6.22m, 1, 19999.99m, false, null, 5, 10000.00m },
+                    { 2, 233, 5.18m, 1, 39999.99m, false, null, 5, 20000.00m },
+                    { 2, 234, 4.67m, 1, 74999.99m, false, null, 5, 40000.00m },
+                    { 2, 235, 4.35m, 1, 99999.99m, false, null, 5, 75000.00m },
+                    { 2, 236, 4.15m, 1, 149999.99m, false, null, 5, 100000.00m },
+                    { 2, 237, 3.11m, 1, 249999.99m, false, null, 5, 150000.00m },
+                    { 2, 238, 2.59m, 1, 499999.99m, false, null, 5, 250000.00m },
+                    { 2, 239, 2.28m, 1, 999999.99m, false, null, 5, 500000.00m },
+                    { 2, 240, 2.07m, 1, 99999999.99m, false, null, 5, 1000000.00m },
+                    { 2, 241, 37.32m, 1, 49.99m, false, null, 6, 0.00m },
+                    { 2, 242, 22.39m, 1, 199.99m, false, null, 6, 50.00m },
+                    { 2, 243, 17.42m, 1, 499.99m, false, null, 6, 200.00m },
+                    { 2, 244, 12.44m, 1, 999.99m, false, null, 6, 500.00m },
+                    { 2, 245, 9.95m, 1, 2499.99m, false, null, 6, 1000.00m },
+                    { 2, 246, 8.71m, 1, 4999.99m, false, null, 6, 2500.00m },
+                    { 2, 247, 8.09m, 1, 9999.99m, false, null, 6, 5000.00m },
+                    { 2, 248, 7.46m, 1, 19999.99m, false, null, 6, 10000.00m },
+                    { 2, 249, 6.22m, 1, 39999.99m, false, null, 6, 20000.00m },
+                    { 2, 250, 5.6m, 1, 74999.99m, false, null, 6, 40000.00m }
                 });
 
             migrationBuilder.InsertData(
                 table: "SegmentOrans",
-                columns: new[] { "ID", "AddedBy", "CurrencyID", "EndPrice", "IsDeleted", "ModifiedBy", "Oran", "SegmentID", "StartPrice" },
+                columns: new[] { "CurrencyID", "ID", "Oran", "AddedById", "EndPrice", "IsDeleted", "ModifiedById", "SegmentID", "StartPrice" },
                 values: new object[,]
                 {
-                    { 251, 1, 2, 99999.99m, false, null, 5.23m, 6, 75000.00m },
-                    { 252, 1, 2, 149999.99m, false, null, 4.98m, 6, 100000.00m },
-                    { 253, 1, 2, 249999.99m, false, null, 3.73m, 6, 150000.00m },
-                    { 254, 1, 2, 499999.99m, false, null, 3.11m, 6, 250000.00m },
-                    { 255, 1, 2, 999999.99m, false, null, 2.74m, 6, 500000.00m },
-                    { 256, 1, 2, 99999999.99m, false, null, 2.49m, 6, 1000000.00m },
-                    { 257, 1, 2, 49.99m, false, null, 44.79m, 7, 0.00m },
-                    { 258, 1, 2, 199.99m, false, null, 26.87m, 7, 50.00m },
-                    { 259, 1, 2, 499.99m, false, null, 20.9m, 7, 200.00m },
-                    { 260, 1, 2, 999.99m, false, null, 14.93m, 7, 500.00m },
-                    { 261, 1, 2, 2499.99m, false, null, 11.94m, 7, 1000.00m },
-                    { 262, 1, 2, 4999.99m, false, null, 10.45m, 7, 2500.00m },
-                    { 263, 1, 2, 9999.99m, false, null, 9.7m, 7, 5000.00m },
-                    { 264, 1, 2, 19999.99m, false, null, 8.96m, 7, 10000.00m },
-                    { 265, 1, 2, 39999.99m, false, null, 7.46m, 7, 20000.00m },
-                    { 266, 1, 2, 74999.99m, false, null, 6.72m, 7, 40000.00m },
-                    { 267, 1, 2, 99999.99m, false, null, 6.27m, 7, 75000.00m },
-                    { 268, 1, 2, 149999.99m, false, null, 5.97m, 7, 100000.00m },
-                    { 269, 1, 2, 249999.99m, false, null, 4.48m, 7, 150000.00m },
-                    { 270, 1, 2, 499999.99m, false, null, 3.73m, 7, 250000.00m },
-                    { 271, 1, 2, 999999.99m, false, null, 3.28m, 7, 500000.00m },
-                    { 272, 1, 2, 99999999.99m, false, null, 2.99m, 7, 1000000.00m },
-                    { 273, 1, 2, 49.99m, false, null, 53.75m, 8, 0.00m },
-                    { 274, 1, 2, 199.99m, false, null, 32.25m, 8, 50.00m },
-                    { 275, 1, 2, 499.99m, false, null, 25.08m, 8, 200.00m },
-                    { 276, 1, 2, 999.99m, false, null, 17.92m, 8, 500.00m },
-                    { 277, 1, 2, 2499.99m, false, null, 14.33m, 8, 1000.00m },
-                    { 278, 1, 2, 4999.99m, false, null, 12.54m, 8, 2500.00m },
-                    { 279, 1, 2, 9999.99m, false, null, 11.65m, 8, 5000.00m },
-                    { 280, 1, 2, 19999.99m, false, null, 10.75m, 8, 10000.00m },
-                    { 281, 1, 2, 39999.99m, false, null, 8.96m, 8, 20000.00m },
-                    { 282, 1, 2, 74999.99m, false, null, 8.06m, 8, 40000.00m },
-                    { 283, 1, 2, 99999.99m, false, null, 7.52m, 8, 75000.00m },
-                    { 284, 1, 2, 149999.99m, false, null, 7.17m, 8, 100000.00m },
-                    { 285, 1, 2, 249999.99m, false, null, 5.37m, 8, 150000.00m },
-                    { 286, 1, 2, 499999.99m, false, null, 4.48m, 8, 250000.00m },
-                    { 287, 1, 2, 999999.99m, false, null, 3.94m, 8, 500000.00m },
-                    { 288, 1, 2, 99999999.99m, false, null, 3.58m, 8, 1000000.00m },
-                    { 289, 1, 2, 49.99m, false, null, 64.5m, 9, 0.00m },
-                    { 290, 1, 2, 199.99m, false, null, 38.7m, 9, 50.00m },
-                    { 291, 1, 2, 499.99m, false, null, 30.1m, 9, 200.00m },
-                    { 292, 1, 2, 999.99m, false, null, 21.5m, 9, 500.00m }
+                    { 2, 251, 5.23m, 1, 99999.99m, false, null, 6, 75000.00m },
+                    { 2, 252, 4.98m, 1, 149999.99m, false, null, 6, 100000.00m },
+                    { 2, 253, 3.73m, 1, 249999.99m, false, null, 6, 150000.00m },
+                    { 2, 254, 3.11m, 1, 499999.99m, false, null, 6, 250000.00m },
+                    { 2, 255, 2.74m, 1, 999999.99m, false, null, 6, 500000.00m },
+                    { 2, 256, 2.49m, 1, 99999999.99m, false, null, 6, 1000000.00m },
+                    { 2, 257, 44.79m, 1, 49.99m, false, null, 7, 0.00m },
+                    { 2, 258, 26.87m, 1, 199.99m, false, null, 7, 50.00m },
+                    { 2, 259, 20.9m, 1, 499.99m, false, null, 7, 200.00m },
+                    { 2, 260, 14.93m, 1, 999.99m, false, null, 7, 500.00m },
+                    { 2, 261, 11.94m, 1, 2499.99m, false, null, 7, 1000.00m },
+                    { 2, 262, 10.45m, 1, 4999.99m, false, null, 7, 2500.00m },
+                    { 2, 263, 9.7m, 1, 9999.99m, false, null, 7, 5000.00m },
+                    { 2, 264, 8.96m, 1, 19999.99m, false, null, 7, 10000.00m },
+                    { 2, 265, 7.46m, 1, 39999.99m, false, null, 7, 20000.00m },
+                    { 2, 266, 6.72m, 1, 74999.99m, false, null, 7, 40000.00m },
+                    { 2, 267, 6.27m, 1, 99999.99m, false, null, 7, 75000.00m },
+                    { 2, 268, 5.97m, 1, 149999.99m, false, null, 7, 100000.00m },
+                    { 2, 269, 4.48m, 1, 249999.99m, false, null, 7, 150000.00m },
+                    { 2, 270, 3.73m, 1, 499999.99m, false, null, 7, 250000.00m },
+                    { 2, 271, 3.28m, 1, 999999.99m, false, null, 7, 500000.00m },
+                    { 2, 272, 2.99m, 1, 99999999.99m, false, null, 7, 1000000.00m },
+                    { 2, 273, 53.75m, 1, 49.99m, false, null, 8, 0.00m },
+                    { 2, 274, 32.25m, 1, 199.99m, false, null, 8, 50.00m },
+                    { 2, 275, 25.08m, 1, 499.99m, false, null, 8, 200.00m },
+                    { 2, 276, 17.92m, 1, 999.99m, false, null, 8, 500.00m },
+                    { 2, 277, 14.33m, 1, 2499.99m, false, null, 8, 1000.00m },
+                    { 2, 278, 12.54m, 1, 4999.99m, false, null, 8, 2500.00m },
+                    { 2, 279, 11.65m, 1, 9999.99m, false, null, 8, 5000.00m },
+                    { 2, 280, 10.75m, 1, 19999.99m, false, null, 8, 10000.00m },
+                    { 2, 281, 8.96m, 1, 39999.99m, false, null, 8, 20000.00m },
+                    { 2, 282, 8.06m, 1, 74999.99m, false, null, 8, 40000.00m },
+                    { 2, 283, 7.52m, 1, 99999.99m, false, null, 8, 75000.00m },
+                    { 2, 284, 7.17m, 1, 149999.99m, false, null, 8, 100000.00m },
+                    { 2, 285, 5.37m, 1, 249999.99m, false, null, 8, 150000.00m },
+                    { 2, 286, 4.48m, 1, 499999.99m, false, null, 8, 250000.00m },
+                    { 2, 287, 3.94m, 1, 999999.99m, false, null, 8, 500000.00m },
+                    { 2, 288, 3.58m, 1, 99999999.99m, false, null, 8, 1000000.00m },
+                    { 2, 289, 64.5m, 1, 49.99m, false, null, 9, 0.00m },
+                    { 2, 290, 38.7m, 1, 199.99m, false, null, 9, 50.00m },
+                    { 2, 291, 30.1m, 1, 499.99m, false, null, 9, 200.00m },
+                    { 2, 292, 21.5m, 1, 999.99m, false, null, 9, 500.00m }
                 });
 
             migrationBuilder.InsertData(
                 table: "SegmentOrans",
-                columns: new[] { "ID", "AddedBy", "CurrencyID", "EndPrice", "IsDeleted", "ModifiedBy", "Oran", "SegmentID", "StartPrice" },
+                columns: new[] { "CurrencyID", "ID", "Oran", "AddedById", "EndPrice", "IsDeleted", "ModifiedById", "SegmentID", "StartPrice" },
                 values: new object[,]
                 {
-                    { 293, 1, 2, 2499.99m, false, null, 17.2m, 9, 1000.00m },
-                    { 294, 1, 2, 4999.99m, false, null, 15.05m, 9, 2500.00m },
-                    { 295, 1, 2, 9999.99m, false, null, 13.97m, 9, 5000.00m },
-                    { 296, 1, 2, 19999.99m, false, null, 12.9m, 9, 10000.00m },
-                    { 297, 1, 2, 39999.99m, false, null, 10.75m, 9, 20000.00m },
-                    { 298, 1, 2, 74999.99m, false, null, 9.67m, 9, 40000.00m },
-                    { 299, 1, 2, 99999.99m, false, null, 9.03m, 9, 75000.00m },
-                    { 300, 1, 2, 149999.99m, false, null, 8.6m, 9, 100000.00m },
-                    { 301, 1, 2, 249999.99m, false, null, 6.45m, 9, 150000.00m },
-                    { 302, 1, 2, 499999.99m, false, null, 5.37m, 9, 250000.00m },
-                    { 303, 1, 2, 999999.99m, false, null, 4.73m, 9, 500000.00m },
-                    { 304, 1, 2, 99999999.99m, false, null, 4.3m, 9, 1000000.00m },
-                    { 305, 1, 2, 49.99m, false, null, 77.4m, 10, 0.00m },
-                    { 306, 1, 2, 199.99m, false, null, 48.37m, 10, 50.00m },
-                    { 307, 1, 2, 499.99m, false, null, 39.13m, 10, 200.00m },
-                    { 308, 1, 2, 999.99m, false, null, 29.02m, 10, 500.00m },
-                    { 309, 1, 2, 2499.99m, false, null, 24.08m, 10, 1000.00m },
-                    { 310, 1, 2, 4999.99m, false, null, 21.82m, 10, 2500.00m },
-                    { 311, 1, 2, 9999.99m, false, null, 20.96m, 10, 5000.00m },
-                    { 312, 1, 2, 19999.99m, false, null, 19.99m, 10, 10000.00m },
-                    { 313, 1, 2, 39999.99m, false, null, 17.2m, 10, 20000.00m },
-                    { 314, 1, 2, 74999.99m, false, null, 15.96m, 10, 40000.00m },
-                    { 315, 1, 2, 99999.99m, false, null, 15.35m, 10, 75000.00m },
-                    { 316, 1, 2, 149999.99m, false, null, 15.05m, 10, 100000.00m },
-                    { 317, 1, 2, 249999.99m, false, null, 11.61m, 10, 150000.00m },
-                    { 318, 1, 2, 499999.99m, false, null, 9.94m, 10, 250000.00m },
-                    { 319, 1, 2, 999999.99m, false, null, 8.99m, 10, 500000.00m },
-                    { 320, 1, 2, 99999999.99m, false, null, 5.96m, 10, 1000000.00m },
-                    { 321, 1, 3, 49.99m, false, null, 13.5m, 1, 0.00m },
-                    { 322, 1, 3, 199.99m, false, null, 8.1m, 1, 50.00m },
-                    { 323, 1, 3, 499.99m, false, null, 6.3m, 1, 200.00m },
-                    { 324, 1, 3, 999.99m, false, null, 4.5m, 1, 500.00m },
-                    { 325, 1, 3, 2499.99m, false, null, 3.6m, 1, 1000.00m },
-                    { 326, 1, 3, 4999.99m, false, null, 3.15m, 1, 2500.00m },
-                    { 327, 1, 3, 9999.99m, false, null, 2.93m, 1, 5000.00m },
-                    { 328, 1, 3, 19999.99m, false, null, 2.7m, 1, 10000.00m },
-                    { 329, 1, 3, 39999.99m, false, null, 2.25m, 1, 20000.00m },
-                    { 330, 1, 3, 74999.99m, false, null, 2.03m, 1, 40000.00m },
-                    { 331, 1, 3, 99999.99m, false, null, 1.89m, 1, 75000.00m },
-                    { 332, 1, 3, 149999.99m, false, null, 1.8m, 1, 100000.00m },
-                    { 333, 1, 3, 249999.99m, false, null, 1.35m, 1, 150000.00m },
-                    { 334, 1, 3, 499999.99m, false, null, 1.13m, 1, 250000.00m }
+                    { 2, 293, 17.2m, 1, 2499.99m, false, null, 9, 1000.00m },
+                    { 2, 294, 15.05m, 1, 4999.99m, false, null, 9, 2500.00m },
+                    { 2, 295, 13.97m, 1, 9999.99m, false, null, 9, 5000.00m },
+                    { 2, 296, 12.9m, 1, 19999.99m, false, null, 9, 10000.00m },
+                    { 2, 297, 10.75m, 1, 39999.99m, false, null, 9, 20000.00m },
+                    { 2, 298, 9.67m, 1, 74999.99m, false, null, 9, 40000.00m },
+                    { 2, 299, 9.03m, 1, 99999.99m, false, null, 9, 75000.00m },
+                    { 2, 300, 8.6m, 1, 149999.99m, false, null, 9, 100000.00m },
+                    { 2, 301, 6.45m, 1, 249999.99m, false, null, 9, 150000.00m },
+                    { 2, 302, 5.37m, 1, 499999.99m, false, null, 9, 250000.00m },
+                    { 2, 303, 4.73m, 1, 999999.99m, false, null, 9, 500000.00m },
+                    { 2, 304, 4.3m, 1, 99999999.99m, false, null, 9, 1000000.00m },
+                    { 2, 305, 77.4m, 1, 49.99m, false, null, 10, 0.00m },
+                    { 2, 306, 48.37m, 1, 199.99m, false, null, 10, 50.00m },
+                    { 2, 307, 39.13m, 1, 499.99m, false, null, 10, 200.00m },
+                    { 2, 308, 29.02m, 1, 999.99m, false, null, 10, 500.00m },
+                    { 2, 309, 24.08m, 1, 2499.99m, false, null, 10, 1000.00m },
+                    { 2, 310, 21.82m, 1, 4999.99m, false, null, 10, 2500.00m },
+                    { 2, 311, 20.96m, 1, 9999.99m, false, null, 10, 5000.00m },
+                    { 2, 312, 19.99m, 1, 19999.99m, false, null, 10, 10000.00m },
+                    { 2, 313, 17.2m, 1, 39999.99m, false, null, 10, 20000.00m },
+                    { 2, 314, 15.96m, 1, 74999.99m, false, null, 10, 40000.00m },
+                    { 2, 315, 15.35m, 1, 99999.99m, false, null, 10, 75000.00m },
+                    { 2, 316, 15.05m, 1, 149999.99m, false, null, 10, 100000.00m },
+                    { 2, 317, 11.61m, 1, 249999.99m, false, null, 10, 150000.00m },
+                    { 2, 318, 9.94m, 1, 499999.99m, false, null, 10, 250000.00m },
+                    { 2, 319, 8.99m, 1, 999999.99m, false, null, 10, 500000.00m },
+                    { 2, 320, 5.96m, 1, 99999999.99m, false, null, 10, 1000000.00m },
+                    { 3, 321, 13.5m, 1, 49.99m, false, null, 1, 0.00m },
+                    { 3, 322, 8.1m, 1, 199.99m, false, null, 1, 50.00m },
+                    { 3, 323, 6.3m, 1, 499.99m, false, null, 1, 200.00m },
+                    { 3, 324, 4.5m, 1, 999.99m, false, null, 1, 500.00m },
+                    { 3, 325, 3.6m, 1, 2499.99m, false, null, 1, 1000.00m },
+                    { 3, 326, 3.15m, 1, 4999.99m, false, null, 1, 2500.00m },
+                    { 3, 327, 2.93m, 1, 9999.99m, false, null, 1, 5000.00m },
+                    { 3, 328, 2.7m, 1, 19999.99m, false, null, 1, 10000.00m },
+                    { 3, 329, 2.25m, 1, 39999.99m, false, null, 1, 20000.00m },
+                    { 3, 330, 2.03m, 1, 74999.99m, false, null, 1, 40000.00m },
+                    { 3, 331, 1.89m, 1, 99999.99m, false, null, 1, 75000.00m },
+                    { 3, 332, 1.8m, 1, 149999.99m, false, null, 1, 100000.00m },
+                    { 3, 333, 1.35m, 1, 249999.99m, false, null, 1, 150000.00m },
+                    { 3, 334, 1.13m, 1, 499999.99m, false, null, 1, 250000.00m }
                 });
 
             migrationBuilder.InsertData(
                 table: "SegmentOrans",
-                columns: new[] { "ID", "AddedBy", "CurrencyID", "EndPrice", "IsDeleted", "ModifiedBy", "Oran", "SegmentID", "StartPrice" },
+                columns: new[] { "CurrencyID", "ID", "Oran", "AddedById", "EndPrice", "IsDeleted", "ModifiedById", "SegmentID", "StartPrice" },
                 values: new object[,]
                 {
-                    { 335, 1, 3, 999999.99m, false, null, 0.99m, 1, 500000.00m },
-                    { 336, 1, 3, 99999999.99m, false, null, 0.9m, 1, 1000000.00m },
-                    { 337, 1, 3, 49.99m, false, null, 16.2m, 2, 0.00m },
-                    { 338, 1, 3, 199.99m, false, null, 9.72m, 2, 50.00m },
-                    { 339, 1, 3, 499.99m, false, null, 7.56m, 2, 200.00m },
-                    { 340, 1, 3, 999.99m, false, null, 5.4m, 2, 500.00m },
-                    { 341, 1, 3, 2499.99m, false, null, 4.32m, 2, 1000.00m },
-                    { 342, 1, 3, 4999.99m, false, null, 3.78m, 2, 2500.00m },
-                    { 343, 1, 3, 9999.99m, false, null, 3.51m, 2, 5000.00m },
-                    { 344, 1, 3, 19999.99m, false, null, 3.24m, 2, 10000.00m },
-                    { 345, 1, 3, 39999.99m, false, null, 2.7m, 2, 20000.00m },
-                    { 346, 1, 3, 74999.99m, false, null, 2.43m, 2, 40000.00m },
-                    { 347, 1, 3, 99999.99m, false, null, 2.27m, 2, 75000.00m },
-                    { 348, 1, 3, 149999.99m, false, null, 2.16m, 2, 100000.00m },
-                    { 349, 1, 3, 249999.99m, false, null, 1.62m, 2, 150000.00m },
-                    { 350, 1, 3, 499999.99m, false, null, 1.35m, 2, 250000.00m },
-                    { 351, 1, 3, 999999.99m, false, null, 1.19m, 2, 500000.00m },
-                    { 352, 1, 3, 99999999.99m, false, null, 1.08m, 2, 1000000.00m },
-                    { 353, 1, 3, 49.99m, false, null, 19.44m, 3, 0.00m },
-                    { 354, 1, 3, 199.99m, false, null, 11.66m, 3, 50.00m },
-                    { 355, 1, 3, 499.99m, false, null, 9.07m, 3, 200.00m },
-                    { 356, 1, 3, 999.99m, false, null, 6.48m, 3, 500.00m },
-                    { 357, 1, 3, 2499.99m, false, null, 5.18m, 3, 1000.00m },
-                    { 358, 1, 3, 4999.99m, false, null, 4.54m, 3, 2500.00m },
-                    { 359, 1, 3, 9999.99m, false, null, 4.21m, 3, 5000.00m },
-                    { 360, 1, 3, 19999.99m, false, null, 3.89m, 3, 10000.00m },
-                    { 361, 1, 3, 39999.99m, false, null, 3.24m, 3, 20000.00m },
-                    { 362, 1, 3, 74999.99m, false, null, 2.92m, 3, 40000.00m },
-                    { 363, 1, 3, 99999.99m, false, null, 2.72m, 3, 75000.00m },
-                    { 364, 1, 3, 149999.99m, false, null, 2.59m, 3, 100000.00m },
-                    { 365, 1, 3, 249999.99m, false, null, 1.94m, 3, 150000.00m },
-                    { 366, 1, 3, 499999.99m, false, null, 1.62m, 3, 250000.00m },
-                    { 367, 1, 3, 999999.99m, false, null, 1.43m, 3, 500000.00m },
-                    { 368, 1, 3, 99999999.99m, false, null, 1.3m, 3, 1000000.00m },
-                    { 369, 1, 3, 49.99m, false, null, 23.33m, 4, 0.00m },
-                    { 370, 1, 3, 199.99m, false, null, 14m, 4, 50.00m },
-                    { 371, 1, 3, 499.99m, false, null, 10.89m, 4, 200.00m },
-                    { 372, 1, 3, 999.99m, false, null, 7.78m, 4, 500.00m },
-                    { 373, 1, 3, 2499.99m, false, null, 6.22m, 4, 1000.00m },
-                    { 374, 1, 3, 4999.99m, false, null, 5.44m, 4, 2500.00m },
-                    { 375, 1, 3, 9999.99m, false, null, 5.05m, 4, 5000.00m },
-                    { 376, 1, 3, 19999.99m, false, null, 4.67m, 4, 10000.00m }
+                    { 3, 335, 0.99m, 1, 999999.99m, false, null, 1, 500000.00m },
+                    { 3, 336, 0.9m, 1, 99999999.99m, false, null, 1, 1000000.00m },
+                    { 3, 337, 16.2m, 1, 49.99m, false, null, 2, 0.00m },
+                    { 3, 338, 9.72m, 1, 199.99m, false, null, 2, 50.00m },
+                    { 3, 339, 7.56m, 1, 499.99m, false, null, 2, 200.00m },
+                    { 3, 340, 5.4m, 1, 999.99m, false, null, 2, 500.00m },
+                    { 3, 341, 4.32m, 1, 2499.99m, false, null, 2, 1000.00m },
+                    { 3, 342, 3.78m, 1, 4999.99m, false, null, 2, 2500.00m },
+                    { 3, 343, 3.51m, 1, 9999.99m, false, null, 2, 5000.00m },
+                    { 3, 344, 3.24m, 1, 19999.99m, false, null, 2, 10000.00m },
+                    { 3, 345, 2.7m, 1, 39999.99m, false, null, 2, 20000.00m },
+                    { 3, 346, 2.43m, 1, 74999.99m, false, null, 2, 40000.00m },
+                    { 3, 347, 2.27m, 1, 99999.99m, false, null, 2, 75000.00m },
+                    { 3, 348, 2.16m, 1, 149999.99m, false, null, 2, 100000.00m },
+                    { 3, 349, 1.62m, 1, 249999.99m, false, null, 2, 150000.00m },
+                    { 3, 350, 1.35m, 1, 499999.99m, false, null, 2, 250000.00m },
+                    { 3, 351, 1.19m, 1, 999999.99m, false, null, 2, 500000.00m },
+                    { 3, 352, 1.08m, 1, 99999999.99m, false, null, 2, 1000000.00m },
+                    { 3, 353, 19.44m, 1, 49.99m, false, null, 3, 0.00m },
+                    { 3, 354, 11.66m, 1, 199.99m, false, null, 3, 50.00m },
+                    { 3, 355, 9.07m, 1, 499.99m, false, null, 3, 200.00m },
+                    { 3, 356, 6.48m, 1, 999.99m, false, null, 3, 500.00m },
+                    { 3, 357, 5.18m, 1, 2499.99m, false, null, 3, 1000.00m },
+                    { 3, 358, 4.54m, 1, 4999.99m, false, null, 3, 2500.00m },
+                    { 3, 359, 4.21m, 1, 9999.99m, false, null, 3, 5000.00m },
+                    { 3, 360, 3.89m, 1, 19999.99m, false, null, 3, 10000.00m },
+                    { 3, 361, 3.24m, 1, 39999.99m, false, null, 3, 20000.00m },
+                    { 3, 362, 2.92m, 1, 74999.99m, false, null, 3, 40000.00m },
+                    { 3, 363, 2.72m, 1, 99999.99m, false, null, 3, 75000.00m },
+                    { 3, 364, 2.59m, 1, 149999.99m, false, null, 3, 100000.00m },
+                    { 3, 365, 1.94m, 1, 249999.99m, false, null, 3, 150000.00m },
+                    { 3, 366, 1.62m, 1, 499999.99m, false, null, 3, 250000.00m },
+                    { 3, 367, 1.43m, 1, 999999.99m, false, null, 3, 500000.00m },
+                    { 3, 368, 1.3m, 1, 99999999.99m, false, null, 3, 1000000.00m },
+                    { 3, 369, 23.33m, 1, 49.99m, false, null, 4, 0.00m },
+                    { 3, 370, 14m, 1, 199.99m, false, null, 4, 50.00m },
+                    { 3, 371, 10.89m, 1, 499.99m, false, null, 4, 200.00m },
+                    { 3, 372, 7.78m, 1, 999.99m, false, null, 4, 500.00m },
+                    { 3, 373, 6.22m, 1, 2499.99m, false, null, 4, 1000.00m },
+                    { 3, 374, 5.44m, 1, 4999.99m, false, null, 4, 2500.00m },
+                    { 3, 375, 5.05m, 1, 9999.99m, false, null, 4, 5000.00m },
+                    { 3, 376, 4.67m, 1, 19999.99m, false, null, 4, 10000.00m }
                 });
 
             migrationBuilder.InsertData(
                 table: "SegmentOrans",
-                columns: new[] { "ID", "AddedBy", "CurrencyID", "EndPrice", "IsDeleted", "ModifiedBy", "Oran", "SegmentID", "StartPrice" },
+                columns: new[] { "CurrencyID", "ID", "Oran", "AddedById", "EndPrice", "IsDeleted", "ModifiedById", "SegmentID", "StartPrice" },
                 values: new object[,]
                 {
-                    { 377, 1, 3, 39999.99m, false, null, 3.89m, 4, 20000.00m },
-                    { 378, 1, 3, 74999.99m, false, null, 3.5m, 4, 40000.00m },
-                    { 379, 1, 3, 99999.99m, false, null, 3.27m, 4, 75000.00m },
-                    { 380, 1, 3, 149999.99m, false, null, 3.11m, 4, 100000.00m },
-                    { 381, 1, 3, 249999.99m, false, null, 2.33m, 4, 150000.00m },
-                    { 382, 1, 3, 499999.99m, false, null, 1.9m, 4, 250000.00m },
-                    { 383, 1, 3, 999999.99m, false, null, 1.71m, 4, 500000.00m },
-                    { 384, 1, 3, 99999999.99m, false, null, 1.56m, 4, 1000000.00m },
-                    { 385, 1, 3, 49.99m, false, null, 27.99m, 5, 0.00m },
-                    { 386, 1, 3, 199.99m, false, null, 16.8m, 5, 50.00m },
-                    { 387, 1, 3, 499.99m, false, null, 13.06m, 5, 200.00m },
-                    { 388, 1, 3, 999.99m, false, null, 9.33m, 5, 500.00m },
-                    { 389, 1, 3, 2499.99m, false, null, 7.46m, 5, 1000.00m },
-                    { 390, 1, 3, 4999.99m, false, null, 6.53m, 5, 2500.00m },
-                    { 391, 1, 3, 9999.99m, false, null, 6.07m, 5, 5000.00m },
-                    { 392, 1, 3, 19999.99m, false, null, 5.6m, 5, 10000.00m },
-                    { 393, 1, 3, 39999.99m, false, null, 4.67m, 5, 20000.00m },
-                    { 394, 1, 3, 74999.99m, false, null, 4.2m, 5, 40000.00m },
-                    { 395, 1, 3, 99999.99m, false, null, 3.92m, 5, 75000.00m },
-                    { 396, 1, 3, 149999.99m, false, null, 3.73m, 5, 100000.00m },
-                    { 397, 1, 3, 249999.99m, false, null, 2.8m, 5, 150000.00m },
-                    { 398, 1, 3, 499999.99m, false, null, 2.33m, 5, 250000.00m },
-                    { 399, 1, 3, 999999.99m, false, null, 2.05m, 5, 500000.00m },
-                    { 400, 1, 3, 99999999.99m, false, null, 1.87m, 5, 1000000.00m },
-                    { 401, 1, 3, 49.99m, false, null, 33.59m, 6, 0.00m },
-                    { 402, 1, 3, 199.99m, false, null, 20.16m, 6, 50.00m },
-                    { 403, 1, 3, 499.99m, false, null, 15.68m, 6, 200.00m },
-                    { 404, 1, 3, 999.99m, false, null, 11.2m, 6, 500.00m },
-                    { 405, 1, 3, 2499.99m, false, null, 8.96m, 6, 1000.00m },
-                    { 406, 1, 3, 4999.99m, false, null, 7.84m, 6, 2500.00m },
-                    { 407, 1, 3, 9999.99m, false, null, 7.28m, 6, 5000.00m },
-                    { 408, 1, 3, 19999.99m, false, null, 6.72m, 6, 10000.00m },
-                    { 409, 1, 3, 39999.99m, false, null, 5.6m, 6, 20000.00m },
-                    { 410, 1, 3, 74999.99m, false, null, 5.04m, 6, 40000.00m },
-                    { 411, 1, 3, 99999.99m, false, null, 4.7m, 6, 75000.00m },
-                    { 412, 1, 3, 149999.99m, false, null, 4.48m, 6, 100000.00m },
-                    { 413, 1, 3, 249999.99m, false, null, 3.36m, 6, 150000.00m },
-                    { 414, 1, 3, 499999.99m, false, null, 2.8m, 6, 250000.00m },
-                    { 415, 1, 3, 999999.99m, false, null, 2.46m, 6, 500000.00m },
-                    { 416, 1, 3, 99999999.99m, false, null, 2.24m, 6, 1000000.00m },
-                    { 417, 1, 3, 49.99m, false, null, 40.31m, 7, 0.00m },
-                    { 418, 1, 3, 199.99m, false, null, 24.19m, 7, 50.00m }
+                    { 3, 377, 3.89m, 1, 39999.99m, false, null, 4, 20000.00m },
+                    { 3, 378, 3.5m, 1, 74999.99m, false, null, 4, 40000.00m },
+                    { 3, 379, 3.27m, 1, 99999.99m, false, null, 4, 75000.00m },
+                    { 3, 380, 3.11m, 1, 149999.99m, false, null, 4, 100000.00m },
+                    { 3, 381, 2.33m, 1, 249999.99m, false, null, 4, 150000.00m },
+                    { 3, 382, 1.9m, 1, 499999.99m, false, null, 4, 250000.00m },
+                    { 3, 383, 1.71m, 1, 999999.99m, false, null, 4, 500000.00m },
+                    { 3, 384, 1.56m, 1, 99999999.99m, false, null, 4, 1000000.00m },
+                    { 3, 385, 27.99m, 1, 49.99m, false, null, 5, 0.00m },
+                    { 3, 386, 16.8m, 1, 199.99m, false, null, 5, 50.00m },
+                    { 3, 387, 13.06m, 1, 499.99m, false, null, 5, 200.00m },
+                    { 3, 388, 9.33m, 1, 999.99m, false, null, 5, 500.00m },
+                    { 3, 389, 7.46m, 1, 2499.99m, false, null, 5, 1000.00m },
+                    { 3, 390, 6.53m, 1, 4999.99m, false, null, 5, 2500.00m },
+                    { 3, 391, 6.07m, 1, 9999.99m, false, null, 5, 5000.00m },
+                    { 3, 392, 5.6m, 1, 19999.99m, false, null, 5, 10000.00m },
+                    { 3, 393, 4.67m, 1, 39999.99m, false, null, 5, 20000.00m },
+                    { 3, 394, 4.2m, 1, 74999.99m, false, null, 5, 40000.00m },
+                    { 3, 395, 3.92m, 1, 99999.99m, false, null, 5, 75000.00m },
+                    { 3, 396, 3.73m, 1, 149999.99m, false, null, 5, 100000.00m },
+                    { 3, 397, 2.8m, 1, 249999.99m, false, null, 5, 150000.00m },
+                    { 3, 398, 2.33m, 1, 499999.99m, false, null, 5, 250000.00m },
+                    { 3, 399, 2.05m, 1, 999999.99m, false, null, 5, 500000.00m },
+                    { 3, 400, 1.87m, 1, 99999999.99m, false, null, 5, 1000000.00m },
+                    { 3, 401, 33.59m, 1, 49.99m, false, null, 6, 0.00m },
+                    { 3, 402, 20.16m, 1, 199.99m, false, null, 6, 50.00m },
+                    { 3, 403, 15.68m, 1, 499.99m, false, null, 6, 200.00m },
+                    { 3, 404, 11.2m, 1, 999.99m, false, null, 6, 500.00m },
+                    { 3, 405, 8.96m, 1, 2499.99m, false, null, 6, 1000.00m },
+                    { 3, 406, 7.84m, 1, 4999.99m, false, null, 6, 2500.00m },
+                    { 3, 407, 7.28m, 1, 9999.99m, false, null, 6, 5000.00m },
+                    { 3, 408, 6.72m, 1, 19999.99m, false, null, 6, 10000.00m },
+                    { 3, 409, 5.6m, 1, 39999.99m, false, null, 6, 20000.00m },
+                    { 3, 410, 5.04m, 1, 74999.99m, false, null, 6, 40000.00m },
+                    { 3, 411, 4.7m, 1, 99999.99m, false, null, 6, 75000.00m },
+                    { 3, 412, 4.48m, 1, 149999.99m, false, null, 6, 100000.00m },
+                    { 3, 413, 3.36m, 1, 249999.99m, false, null, 6, 150000.00m },
+                    { 3, 414, 2.8m, 1, 499999.99m, false, null, 6, 250000.00m },
+                    { 3, 415, 2.46m, 1, 999999.99m, false, null, 6, 500000.00m },
+                    { 3, 416, 2.24m, 1, 99999999.99m, false, null, 6, 1000000.00m },
+                    { 3, 417, 40.31m, 1, 49.99m, false, null, 7, 0.00m },
+                    { 3, 418, 24.19m, 1, 199.99m, false, null, 7, 50.00m }
                 });
 
             migrationBuilder.InsertData(
                 table: "SegmentOrans",
-                columns: new[] { "ID", "AddedBy", "CurrencyID", "EndPrice", "IsDeleted", "ModifiedBy", "Oran", "SegmentID", "StartPrice" },
+                columns: new[] { "CurrencyID", "ID", "Oran", "AddedById", "EndPrice", "IsDeleted", "ModifiedById", "SegmentID", "StartPrice" },
                 values: new object[,]
                 {
-                    { 419, 1, 3, 499.99m, false, null, 18.81m, 7, 200.00m },
-                    { 420, 1, 3, 999.99m, false, null, 13.44m, 7, 500.00m },
-                    { 421, 1, 3, 2499.99m, false, null, 10.75m, 7, 1000.00m },
-                    { 422, 1, 3, 4999.99m, false, null, 9.41m, 7, 2500.00m },
-                    { 423, 1, 3, 9999.99m, false, null, 8.73m, 7, 5000.00m },
-                    { 424, 1, 3, 19999.99m, false, null, 8.06m, 7, 10000.00m },
-                    { 425, 1, 3, 39999.99m, false, null, 6.72m, 7, 20000.00m },
-                    { 426, 1, 3, 74999.99m, false, null, 6.05m, 7, 40000.00m },
-                    { 427, 1, 3, 99999.99m, false, null, 5.64m, 7, 75000.00m },
-                    { 428, 1, 3, 149999.99m, false, null, 5.37m, 7, 100000.00m },
-                    { 429, 1, 3, 249999.99m, false, null, 4.03m, 7, 150000.00m },
-                    { 430, 1, 3, 499999.99m, false, null, 3.36m, 7, 250000.00m },
-                    { 431, 1, 3, 999999.99m, false, null, 2.96m, 7, 500000.00m },
-                    { 432, 1, 3, 99999999.99m, false, null, 2.69m, 7, 1000000.00m },
-                    { 433, 1, 3, 49.99m, false, null, 48.37m, 8, 0.00m },
-                    { 434, 1, 3, 199.99m, false, null, 29.02m, 8, 50.00m },
-                    { 435, 1, 3, 499.99m, false, null, 22.57m, 8, 200.00m },
-                    { 436, 1, 3, 999.99m, false, null, 16.12m, 8, 500.00m },
-                    { 437, 1, 3, 2499.99m, false, null, 12.9m, 8, 1000.00m },
-                    { 438, 1, 3, 4999.99m, false, null, 11.29m, 8, 2500.00m },
-                    { 439, 1, 3, 9999.99m, false, null, 10.48m, 8, 5000.00m },
-                    { 440, 1, 3, 19999.99m, false, null, 9.67m, 8, 10000.00m },
-                    { 441, 1, 3, 39999.99m, false, null, 8.06m, 8, 20000.00m },
-                    { 442, 1, 3, 74999.99m, false, null, 7.26m, 8, 40000.00m },
-                    { 443, 1, 3, 99999.99m, false, null, 6.77m, 8, 75000.00m },
-                    { 444, 1, 3, 149999.99m, false, null, 6.45m, 8, 100000.00m },
-                    { 445, 1, 3, 249999.99m, false, null, 4.84m, 8, 150000.00m },
-                    { 446, 1, 3, 499999.99m, false, null, 4.03m, 8, 250000.00m },
-                    { 447, 1, 3, 999999.99m, false, null, 3.55m, 8, 500000.00m },
-                    { 448, 1, 3, 99999999.99m, false, null, 3.22m, 8, 1000000.00m },
-                    { 449, 1, 3, 49.99m, false, null, 58.05m, 9, 0.00m },
-                    { 450, 1, 3, 199.99m, false, null, 34.83m, 9, 50.00m },
-                    { 451, 1, 3, 499.99m, false, null, 27.09m, 9, 200.00m },
-                    { 452, 1, 3, 999.99m, false, null, 19.35m, 9, 500.00m },
-                    { 453, 1, 3, 2499.99m, false, null, 15.48m, 9, 1000.00m },
-                    { 454, 1, 3, 4999.99m, false, null, 13.54m, 9, 2500.00m },
-                    { 455, 1, 3, 9999.99m, false, null, 12.58m, 9, 5000.00m },
-                    { 456, 1, 3, 19999.99m, false, null, 11.61m, 9, 10000.00m },
-                    { 457, 1, 3, 39999.99m, false, null, 9.67m, 9, 20000.00m },
-                    { 458, 1, 3, 74999.99m, false, null, 8.71m, 9, 40000.00m },
-                    { 459, 1, 3, 99999.99m, false, null, 8.13m, 9, 75000.00m },
-                    { 460, 1, 3, 149999.99m, false, null, 7.74m, 9, 100000.00m }
+                    { 3, 419, 18.81m, 1, 499.99m, false, null, 7, 200.00m },
+                    { 3, 420, 13.44m, 1, 999.99m, false, null, 7, 500.00m },
+                    { 3, 421, 10.75m, 1, 2499.99m, false, null, 7, 1000.00m },
+                    { 3, 422, 9.41m, 1, 4999.99m, false, null, 7, 2500.00m },
+                    { 3, 423, 8.73m, 1, 9999.99m, false, null, 7, 5000.00m },
+                    { 3, 424, 8.06m, 1, 19999.99m, false, null, 7, 10000.00m },
+                    { 3, 425, 6.72m, 1, 39999.99m, false, null, 7, 20000.00m },
+                    { 3, 426, 6.05m, 1, 74999.99m, false, null, 7, 40000.00m },
+                    { 3, 427, 5.64m, 1, 99999.99m, false, null, 7, 75000.00m },
+                    { 3, 428, 5.37m, 1, 149999.99m, false, null, 7, 100000.00m },
+                    { 3, 429, 4.03m, 1, 249999.99m, false, null, 7, 150000.00m },
+                    { 3, 430, 3.36m, 1, 499999.99m, false, null, 7, 250000.00m },
+                    { 3, 431, 2.96m, 1, 999999.99m, false, null, 7, 500000.00m },
+                    { 3, 432, 2.69m, 1, 99999999.99m, false, null, 7, 1000000.00m },
+                    { 3, 433, 48.37m, 1, 49.99m, false, null, 8, 0.00m },
+                    { 3, 434, 29.02m, 1, 199.99m, false, null, 8, 50.00m },
+                    { 3, 435, 22.57m, 1, 499.99m, false, null, 8, 200.00m },
+                    { 3, 436, 16.12m, 1, 999.99m, false, null, 8, 500.00m },
+                    { 3, 437, 12.9m, 1, 2499.99m, false, null, 8, 1000.00m },
+                    { 3, 438, 11.29m, 1, 4999.99m, false, null, 8, 2500.00m },
+                    { 3, 439, 10.48m, 1, 9999.99m, false, null, 8, 5000.00m },
+                    { 3, 440, 9.67m, 1, 19999.99m, false, null, 8, 10000.00m },
+                    { 3, 441, 8.06m, 1, 39999.99m, false, null, 8, 20000.00m },
+                    { 3, 442, 7.26m, 1, 74999.99m, false, null, 8, 40000.00m },
+                    { 3, 443, 6.77m, 1, 99999.99m, false, null, 8, 75000.00m },
+                    { 3, 444, 6.45m, 1, 149999.99m, false, null, 8, 100000.00m },
+                    { 3, 445, 4.84m, 1, 249999.99m, false, null, 8, 150000.00m },
+                    { 3, 446, 4.03m, 1, 499999.99m, false, null, 8, 250000.00m },
+                    { 3, 447, 3.55m, 1, 999999.99m, false, null, 8, 500000.00m },
+                    { 3, 448, 3.22m, 1, 99999999.99m, false, null, 8, 1000000.00m },
+                    { 3, 449, 58.05m, 1, 49.99m, false, null, 9, 0.00m },
+                    { 3, 450, 34.83m, 1, 199.99m, false, null, 9, 50.00m },
+                    { 3, 451, 27.09m, 1, 499.99m, false, null, 9, 200.00m },
+                    { 3, 452, 19.35m, 1, 999.99m, false, null, 9, 500.00m },
+                    { 3, 453, 15.48m, 1, 2499.99m, false, null, 9, 1000.00m },
+                    { 3, 454, 13.54m, 1, 4999.99m, false, null, 9, 2500.00m },
+                    { 3, 455, 12.58m, 1, 9999.99m, false, null, 9, 5000.00m },
+                    { 3, 456, 11.61m, 1, 19999.99m, false, null, 9, 10000.00m },
+                    { 3, 457, 9.67m, 1, 39999.99m, false, null, 9, 20000.00m },
+                    { 3, 458, 8.71m, 1, 74999.99m, false, null, 9, 40000.00m },
+                    { 3, 459, 8.13m, 1, 99999.99m, false, null, 9, 75000.00m },
+                    { 3, 460, 7.74m, 1, 149999.99m, false, null, 9, 100000.00m }
                 });
 
             migrationBuilder.InsertData(
                 table: "SegmentOrans",
-                columns: new[] { "ID", "AddedBy", "CurrencyID", "EndPrice", "IsDeleted", "ModifiedBy", "Oran", "SegmentID", "StartPrice" },
+                columns: new[] { "CurrencyID", "ID", "Oran", "AddedById", "EndPrice", "IsDeleted", "ModifiedById", "SegmentID", "StartPrice" },
                 values: new object[,]
                 {
-                    { 461, 1, 3, 249999.99m, false, null, 5.8m, 9, 150000.00m },
-                    { 462, 1, 3, 499999.99m, false, null, 4.84m, 9, 250000.00m },
-                    { 463, 1, 3, 999999.99m, false, null, 4.26m, 9, 500000.00m },
-                    { 464, 1, 3, 99999999.99m, false, null, 3.87m, 9, 1000000.00m },
-                    { 465, 1, 3, 49.99m, false, null, 69.66m, 10, 0.00m },
-                    { 466, 1, 3, 199.99m, false, null, 43.54m, 10, 50.00m },
-                    { 467, 1, 3, 499.99m, false, null, 35.22m, 10, 200.00m },
-                    { 468, 1, 3, 999.99m, false, null, 26.12m, 10, 500.00m },
-                    { 469, 1, 3, 2499.99m, false, null, 21.67m, 10, 1000.00m },
-                    { 470, 1, 3, 4999.99m, false, null, 19.64m, 10, 2500.00m },
-                    { 471, 1, 3, 9999.99m, false, null, 18.87m, 10, 5000.00m },
-                    { 472, 1, 3, 19999.99m, false, null, 17.99m, 10, 10000.00m },
-                    { 473, 1, 3, 39999.99m, false, null, 15.48m, 10, 20000.00m },
-                    { 474, 1, 3, 74999.99m, false, null, 14.37m, 10, 40000.00m },
-                    { 475, 1, 3, 99999.99m, false, null, 13.82m, 10, 75000.00m },
-                    { 476, 1, 3, 149999.99m, false, null, 13.54m, 10, 100000.00m },
-                    { 477, 1, 3, 249999.99m, false, null, 10.45m, 10, 150000.00m },
-                    { 478, 1, 3, 499999.99m, false, null, 8.05m, 10, 250000.00m },
-                    { 479, 1, 3, 999999.99m, false, null, 8.09m, 10, 500000.00m },
-                    { 480, 1, 3, 99999999.99m, false, null, 7.55m, 10, 1000000.00m }
+                    { 3, 461, 5.8m, 1, 249999.99m, false, null, 9, 150000.00m },
+                    { 3, 462, 4.84m, 1, 499999.99m, false, null, 9, 250000.00m },
+                    { 3, 463, 4.26m, 1, 999999.99m, false, null, 9, 500000.00m },
+                    { 3, 464, 3.87m, 1, 99999999.99m, false, null, 9, 1000000.00m },
+                    { 3, 465, 69.66m, 1, 49.99m, false, null, 10, 0.00m },
+                    { 3, 466, 43.54m, 1, 199.99m, false, null, 10, 50.00m },
+                    { 3, 467, 35.22m, 1, 499.99m, false, null, 10, 200.00m },
+                    { 3, 468, 26.12m, 1, 999.99m, false, null, 10, 500.00m },
+                    { 3, 469, 21.67m, 1, 2499.99m, false, null, 10, 1000.00m },
+                    { 3, 470, 19.64m, 1, 4999.99m, false, null, 10, 2500.00m },
+                    { 3, 471, 18.87m, 1, 9999.99m, false, null, 10, 5000.00m },
+                    { 3, 472, 17.99m, 1, 19999.99m, false, null, 10, 10000.00m },
+                    { 3, 473, 15.48m, 1, 39999.99m, false, null, 10, 20000.00m },
+                    { 3, 474, 14.37m, 1, 74999.99m, false, null, 10, 40000.00m },
+                    { 3, 475, 13.82m, 1, 99999.99m, false, null, 10, 75000.00m },
+                    { 3, 476, 13.54m, 1, 149999.99m, false, null, 10, 100000.00m },
+                    { 3, 477, 10.45m, 1, 249999.99m, false, null, 10, 150000.00m },
+                    { 3, 478, 8.05m, 1, 499999.99m, false, null, 10, 250000.00m },
+                    { 3, 479, 8.09m, 1, 999999.99m, false, null, 10, 500000.00m },
+                    { 3, 480, 7.55m, 1, 99999999.99m, false, null, 10, 1000000.00m }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
-                columns: new[] { "RoleId", "UserId", "AddedBy", "Discriminator", "EndDate", "Id", "IsDeleted", "ModifiedBy", "StartDate" },
-                values: new object[] { 1, 1, 1, "AppRolesOfUsers", new DateTime(2032, 5, 24, 12, 20, 27, 732, DateTimeKind.Local).AddTicks(2468), 0, false, null, new DateTime(2022, 5, 24, 12, 20, 27, 732, DateTimeKind.Local).AddTicks(2466) });
+                columns: new[] { "RoleId", "UserId", "AddedById", "Discriminator", "EndDate", "Id", "IsDeleted", "ModifiedById", "StartDate" },
+                values: new object[] { 1, 1, 1, "AppRolesOfUsers", new DateTime(2032, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1641), 0, false, null, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1641) });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Announcements_AddedBy",
+                name: "IX_Announcements_AddedById",
                 table: "Announcements",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Announcements_ModifiedBy",
+                name: "IX_Announcements_ModifiedById",
                 table: "Announcements",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AppAuthorizationsRoleGroups_AddedBy",
+                name: "IX_AppAuthorizationsRoleGroups_AddedById",
                 table: "AppAuthorizationsRoleGroups",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AppAuthorizationsRoleGroups_ModifiedBy",
+                name: "IX_AppAuthorizationsRoleGroups_ModifiedById",
                 table: "AppAuthorizationsRoleGroups",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -3173,14 +3251,14 @@ namespace GegiCRM.DAL.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetRoles_AddedBy",
+                name: "IX_AspNetRoles_AddedById",
                 table: "AspNetRoles",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetRoles_ModifiedBy",
+                name: "IX_AspNetRoles_ModifiedById",
                 table: "AspNetRoles",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoles_RoleGroupId",
@@ -3205,14 +3283,14 @@ namespace GegiCRM.DAL.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserRoles_AddedBy",
+                name: "IX_AspNetUserRoles_AddedById",
                 table: "AspNetUserRoles",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserRoles_ModifiedBy",
+                name: "IX_AspNetUserRoles_ModifiedById",
                 table: "AspNetUserRoles",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserRoles_RoleId",
@@ -3225,14 +3303,14 @@ namespace GegiCRM.DAL.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_AddedBy",
+                name: "IX_AspNetUsers_AddedById",
                 table: "AspNetUsers",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_ModifiedBy",
+                name: "IX_AspNetUsers_ModifiedById",
                 table: "AspNetUsers",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUsers_UserCompanyID",
@@ -3247,9 +3325,9 @@ namespace GegiCRM.DAL.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BankInformations_AddedBy",
+                name: "IX_BankInformations_AddedById",
                 table: "BankInformations",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BankInformations_BankID",
@@ -3262,44 +3340,44 @@ namespace GegiCRM.DAL.Migrations
                 column: "CompanyID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BankInformations_ModifiedBy",
+                name: "IX_BankInformations_ModifiedById",
                 table: "BankInformations",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Banks_AddedBy",
+                name: "IX_Banks_AddedById",
                 table: "Banks",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Banks_ModifiedBy",
+                name: "IX_Banks_ModifiedById",
                 table: "Banks",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Birims_AddedBy",
+                name: "IX_Birims_AddedById",
                 table: "Birims",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Birims_ModifiedBy",
+                name: "IX_Birims_ModifiedById",
                 table: "Birims",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Brands_AddedBy",
+                name: "IX_Brands_AddedById",
                 table: "Brands",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Brands_ModifiedBy",
+                name: "IX_Brands_ModifiedById",
                 table: "Brands",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CollectionReceipts_AddedBy",
+                name: "IX_CollectionReceipts_AddedById",
                 table: "CollectionReceipts",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CollectionReceipts_CurrencyID",
@@ -3312,9 +3390,9 @@ namespace GegiCRM.DAL.Migrations
                 column: "CustomerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CollectionReceipts_ModifiedBy",
+                name: "IX_CollectionReceipts_ModifiedById",
                 table: "CollectionReceipts",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CollectionReceipts_PaymentTypeID",
@@ -3327,19 +3405,34 @@ namespace GegiCRM.DAL.Migrations
                 column: "SupplierID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Currencies_AddedBy",
+                name: "IX_Currencies_AddedById",
                 table: "Currencies",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Currencies_ModifiedBy",
+                name: "IX_Currencies_ModifiedById",
                 table: "Currencies",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerAddresses_AddedBy",
+                name: "IX_CustomerActivityLogs_AddedById",
+                table: "CustomerActivityLogs",
+                column: "AddedById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CustomerActivityLogs_CustomerId",
+                table: "CustomerActivityLogs",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CustomerActivityLogs_ModifiedById",
+                table: "CustomerActivityLogs",
+                column: "ModifiedById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CustomerAddresses_AddedById",
                 table: "CustomerAddresses",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CustomerAddresses_CustomerID",
@@ -3347,14 +3440,14 @@ namespace GegiCRM.DAL.Migrations
                 column: "CustomerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerAddresses_ModifiedBy",
+                name: "IX_CustomerAddresses_ModifiedById",
                 table: "CustomerAddresses",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerBillingAddresses_AddedBy",
+                name: "IX_CustomerBillingAddresses_AddedById",
                 table: "CustomerBillingAddresses",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CustomerBillingAddresses_CustomerID",
@@ -3362,14 +3455,14 @@ namespace GegiCRM.DAL.Migrations
                 column: "CustomerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerBillingAddresses_ModifiedBy",
+                name: "IX_CustomerBillingAddresses_ModifiedById",
                 table: "CustomerBillingAddresses",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerContacts_AddedBy",
+                name: "IX_CustomerContacts_AddedById",
                 table: "CustomerContacts",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CustomerContacts_CustomerID",
@@ -3377,14 +3470,24 @@ namespace GegiCRM.DAL.Migrations
                 column: "CustomerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerContacts_ModifiedBy",
+                name: "IX_CustomerContacts_ModifiedById",
                 table: "CustomerContacts",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerRepresentetiveUsers_AddedBy",
+                name: "IX_CustomerMainCompanies_AddedById",
+                table: "CustomerMainCompanies",
+                column: "AddedById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CustomerMainCompanies_ModifiedById",
+                table: "CustomerMainCompanies",
+                column: "ModifiedById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CustomerRepresentetiveUsers_AddedById",
                 table: "CustomerRepresentetiveUsers",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CustomerRepresentetiveUsers_CustomerID",
@@ -3392,9 +3495,9 @@ namespace GegiCRM.DAL.Migrations
                 column: "CustomerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerRepresentetiveUsers_ModifiedBy",
+                name: "IX_CustomerRepresentetiveUsers_ModifiedById",
                 table: "CustomerRepresentetiveUsers",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CustomerRepresentetiveUsers_UserID",
@@ -3402,14 +3505,19 @@ namespace GegiCRM.DAL.Migrations
                 column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customers_AddedBy",
+                name: "IX_Customers_AddedById",
                 table: "Customers",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customers_ModifiedBy",
+                name: "IX_Customers_CustomerMainCompanyId",
                 table: "Customers",
-                column: "ModifiedBy");
+                column: "CustomerMainCompanyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Customers_ModifiedById",
+                table: "Customers",
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Customers_PreferredCurrencyId",
@@ -3432,29 +3540,29 @@ namespace GegiCRM.DAL.Migrations
                 column: "TypeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerTypes_AddedBy",
+                name: "IX_CustomerTypes_AddedById",
                 table: "CustomerTypes",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerTypes_ModifiedBy",
+                name: "IX_CustomerTypes_ModifiedById",
                 table: "CustomerTypes",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Departments_AddedBy",
+                name: "IX_Departments_AddedById",
                 table: "Departments",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Departments_ModifiedBy",
+                name: "IX_Departments_ModifiedById",
                 table: "Departments",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DepartmentsOfUsers_AddedBy",
+                name: "IX_DepartmentsOfUsers_AddedById",
                 table: "DepartmentsOfUsers",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DepartmentsOfUsers_DepartmentID",
@@ -3462,24 +3570,29 @@ namespace GegiCRM.DAL.Migrations
                 column: "DepartmentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DepartmentsOfUsers_ModifiedBy",
+                name: "IX_DepartmentsOfUsers_ModifiedById",
                 table: "DepartmentsOfUsers",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DepositRelations_AddedBy",
+                name: "IX_DepartmentsOfUsers_UserID",
+                table: "DepartmentsOfUsers",
+                column: "UserID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DepositRelations_AddedById",
                 table: "DepositRelations",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DepositRelations_ModifiedBy",
+                name: "IX_DepositRelations_ModifiedById",
                 table: "DepositRelations",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Deposits_AddedBy",
+                name: "IX_Deposits_AddedById",
                 table: "Deposits",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Deposits_CurrencyID",
@@ -3497,24 +3610,24 @@ namespace GegiCRM.DAL.Migrations
                 column: "DepositTypeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Deposits_ModifiedBy",
+                name: "IX_Deposits_ModifiedById",
                 table: "Deposits",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DepositTypes_AddedBy",
+                name: "IX_DepositTypes_AddedById",
                 table: "DepositTypes",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DepositTypes_ModifiedBy",
+                name: "IX_DepositTypes_ModifiedById",
                 table: "DepositTypes",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DiscountCupons_AddedBy",
+                name: "IX_DiscountCupons_AddedById",
                 table: "DiscountCupons",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DiscountCupons_CuponCurrencyID",
@@ -3522,14 +3635,19 @@ namespace GegiCRM.DAL.Migrations
                 column: "CuponCurrencyID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DiscountCupons_ModifiedBy",
+                name: "IX_DiscountCupons_ModifiedById",
                 table: "DiscountCupons",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DiscountCuponsOfCustomers_AddedBy",
+                name: "IX_DiscountCuponsOfCustomers_AddedById",
                 table: "DiscountCuponsOfCustomers",
-                column: "AddedBy");
+                column: "AddedById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DiscountCuponsOfCustomers_CustomerID",
+                table: "DiscountCuponsOfCustomers",
+                column: "CustomerID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DiscountCuponsOfCustomers_DiscountCuponID",
@@ -3537,19 +3655,19 @@ namespace GegiCRM.DAL.Migrations
                 column: "DiscountCuponID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DiscountCuponsOfCustomers_ModifiedBy",
+                name: "IX_DiscountCuponsOfCustomers_ModifiedById",
                 table: "DiscountCuponsOfCustomers",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Documents_AddedBy",
+                name: "IX_Documents_AddedById",
                 table: "Documents",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Documents_ModifiedBy",
+                name: "IX_Documents_ModifiedById",
                 table: "Documents",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Documents_TypeID",
@@ -3557,19 +3675,19 @@ namespace GegiCRM.DAL.Migrations
                 column: "TypeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DocumentTypes_AddedByNavigationId",
+                name: "IX_DocumentTypes_AddedById",
                 table: "DocumentTypes",
-                column: "AddedByNavigationId");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DocumentTypes_ModifiedByNavigationId",
+                name: "IX_DocumentTypes_ModifiedById",
                 table: "DocumentTypes",
-                column: "ModifiedByNavigationId");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmailTemplates_AddedBy",
+                name: "IX_EmailTemplates_AddedById",
                 table: "EmailTemplates",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EmailTemplates_DepartmentID",
@@ -3577,24 +3695,24 @@ namespace GegiCRM.DAL.Migrations
                 column: "DepartmentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmailTemplates_ModifiedBy",
+                name: "IX_EmailTemplates_ModifiedById",
                 table: "EmailTemplates",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Expansions_AddedBy",
+                name: "IX_Expansions_AddedById",
                 table: "Expansions",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Expansions_ModifiedBy",
+                name: "IX_Expansions_ModifiedById",
                 table: "Expansions",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MaintenanceBills_AddedBy",
+                name: "IX_MaintenanceBills_AddedById",
                 table: "MaintenanceBills",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MaintenanceBills_CurrencyID",
@@ -3617,9 +3735,9 @@ namespace GegiCRM.DAL.Migrations
                 column: "MaintenencePeriodID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MaintenanceBills_ModifiedBy",
+                name: "IX_MaintenanceBills_ModifiedById",
                 table: "MaintenanceBills",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MaintenanceBills_ProductGroupID",
@@ -3632,24 +3750,24 @@ namespace GegiCRM.DAL.Migrations
                 column: "SellingRepresentetiveUserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MaintenencePeriods_AddedBy",
+                name: "IX_MaintenencePeriods_AddedById",
                 table: "MaintenencePeriods",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MaintenencePeriods_ModifiedBy",
+                name: "IX_MaintenencePeriods_ModifiedById",
                 table: "MaintenencePeriods",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MarketPlaces_AddedBy",
+                name: "IX_MarketPlaces_AddedById",
                 table: "MarketPlaces",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MarketPlaces_ModifiedBy",
+                name: "IX_MarketPlaces_ModifiedById",
                 table: "MarketPlaces",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MarketPlacesOfSuppliers_MarketPlaceID",
@@ -3657,9 +3775,9 @@ namespace GegiCRM.DAL.Migrations
                 column: "MarketPlaceID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_AddedBy",
+                name: "IX_Orders_AddedById",
                 table: "Orders",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_CustomerID",
@@ -3667,9 +3785,9 @@ namespace GegiCRM.DAL.Migrations
                 column: "CustomerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_ModifiedBy",
+                name: "IX_Orders_ModifiedById",
                 table: "Orders",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_OrderStateID",
@@ -3677,9 +3795,14 @@ namespace GegiCRM.DAL.Migrations
                 column: "OrderStateID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrdersCurrencies_AddedByNavigationId",
+                name: "IX_Orders_RepresentetiveUserId",
+                table: "Orders",
+                column: "RepresentetiveUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrdersCurrencies_AddedById",
                 table: "OrdersCurrencies",
-                column: "AddedByNavigationId");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrdersCurrencies_CurrencyID",
@@ -3687,14 +3810,19 @@ namespace GegiCRM.DAL.Migrations
                 column: "CurrencyID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrdersCurrencies_ModifiedByNavigationId",
+                name: "IX_OrdersCurrencies_ModifiedById",
                 table: "OrdersCurrencies",
-                column: "ModifiedByNavigationId");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrdersProducts_AddedBy",
+                name: "IX_OrdersCurrencies_OrderID",
+                table: "OrdersCurrencies",
+                column: "OrderID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrdersProducts_AddedById",
                 table: "OrdersProducts",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrdersProducts_BirimID",
@@ -3712,9 +3840,14 @@ namespace GegiCRM.DAL.Migrations
                 column: "KesinSupplierID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrdersProducts_ModifiedBy",
+                name: "IX_OrdersProducts_ModifiedById",
                 table: "OrdersProducts",
-                column: "ModifiedBy");
+                column: "ModifiedById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrdersProducts_OrderID",
+                table: "OrdersProducts",
+                column: "OrderID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrdersProducts_OrderStateId",
@@ -3737,34 +3870,34 @@ namespace GegiCRM.DAL.Migrations
                 column: "ReferansSupplierID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderStates_AddedBy",
+                name: "IX_OrderStates_AddedById",
                 table: "OrderStates",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderStates_ModifiedBy",
+                name: "IX_OrderStates_ModifiedById",
                 table: "OrderStates",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PaymentTypes_AddedBy",
+                name: "IX_PaymentTypes_AddedById",
                 table: "PaymentTypes",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PaymentTypes_ModifiedBy",
+                name: "IX_PaymentTypes_ModifiedById",
                 table: "PaymentTypes",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductCategories_AddedBy",
+                name: "IX_ProductCategories_AddedById",
                 table: "ProductCategories",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductCategories_ModifiedBy",
+                name: "IX_ProductCategories_ModifiedById",
                 table: "ProductCategories",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductCategories_ProductGroupID",
@@ -3772,24 +3905,24 @@ namespace GegiCRM.DAL.Migrations
                 column: "ProductGroupID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductGroups_AddedBy",
+                name: "IX_ProductGroups_AddedById",
                 table: "ProductGroups",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductGroups_ModifiedBy",
+                name: "IX_ProductGroups_ModifiedById",
                 table: "ProductGroups",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductGroupsFAQs_AddedBy",
+                name: "IX_ProductGroupsFAQs_AddedById",
                 table: "ProductGroupsFAQs",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductGroupsFAQs_ModifiedBy",
+                name: "IX_ProductGroupsFAQs_ModifiedById",
                 table: "ProductGroupsFAQs",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductGroupsFAQs_ProductGroupID",
@@ -3802,14 +3935,14 @@ namespace GegiCRM.DAL.Migrations
                 column: "ProductGroupID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_AddedBy",
+                name: "IX_Products_AddedById",
                 table: "Products",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_ModifiedBy",
+                name: "IX_Products_ModifiedById",
                 table: "Products",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_PorductBrandID",
@@ -3827,9 +3960,9 @@ namespace GegiCRM.DAL.Migrations
                 column: "SupplierID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReturnAndFaults_AddedBy",
+                name: "IX_ReturnAndFaults_AddedById",
                 table: "ReturnAndFaults",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ReturnAndFaults_CurrentStateID",
@@ -3837,9 +3970,9 @@ namespace GegiCRM.DAL.Migrations
                 column: "CurrentStateID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReturnAndFaults_ModifiedBy",
+                name: "IX_ReturnAndFaults_ModifiedById",
                 table: "ReturnAndFaults",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ReturnAndFaults_RepresentitveUser",
@@ -3847,39 +3980,39 @@ namespace GegiCRM.DAL.Migrations
                 column: "RepresentitveUser");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReturnAndFaultStates_AddedBy",
+                name: "IX_ReturnAndFaultStates_AddedById",
                 table: "ReturnAndFaultStates",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReturnAndFaultStates_ModifiedBy",
+                name: "IX_ReturnAndFaultStates_ModifiedById",
                 table: "ReturnAndFaultStates",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rules_AddedBy",
+                name: "IX_Rules_AddedById",
                 table: "Rules",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rules_ModifiedBy",
+                name: "IX_Rules_ModifiedById",
                 table: "Rules",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sectors_AddedBy",
+                name: "IX_Sectors_AddedById",
                 table: "Sectors",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sectors_ModifiedBy",
+                name: "IX_Sectors_ModifiedById",
                 table: "Sectors",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SegmentOrans_AddedBy",
+                name: "IX_SegmentOrans_AddedById",
                 table: "SegmentOrans",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SegmentOrans_CurrencyID",
@@ -3887,9 +4020,9 @@ namespace GegiCRM.DAL.Migrations
                 column: "CurrencyID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SegmentOrans_ModifiedBy",
+                name: "IX_SegmentOrans_ModifiedById",
                 table: "SegmentOrans",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SegmentOrans_SegmentID",
@@ -3897,19 +4030,19 @@ namespace GegiCRM.DAL.Migrations
                 column: "SegmentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Segments_AddedBy",
+                name: "IX_Segments_AddedById",
                 table: "Segments",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Segments_ModifiedBy",
+                name: "IX_Segments_ModifiedById",
                 table: "Segments",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SellsAndBuysAssets_AddedBy",
+                name: "IX_SellsAndBuysAssets_AddedById",
                 table: "SellsAndBuysAssets",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SellsAndBuysAssets_CurrentStepID",
@@ -3917,9 +4050,9 @@ namespace GegiCRM.DAL.Migrations
                 column: "CurrentStepID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SellsAndBuysAssets_ModifiedBy",
+                name: "IX_SellsAndBuysAssets_ModifiedById",
                 table: "SellsAndBuysAssets",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SellsAndBuysAssets_SABCategoryID",
@@ -3927,24 +4060,24 @@ namespace GegiCRM.DAL.Migrations
                 column: "SABCategoryID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SellsAndBuysCategories_AddedBy",
+                name: "IX_SellsAndBuysCategories_AddedById",
                 table: "SellsAndBuysCategories",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SellsAndBuysCategories_ModifiedBy",
+                name: "IX_SellsAndBuysCategories_ModifiedById",
                 table: "SellsAndBuysCategories",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SellsAndBuysGuideSteps_AddedBy",
+                name: "IX_SellsAndBuysGuideSteps_AddedById",
                 table: "SellsAndBuysGuideSteps",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SellsAndBuysGuideSteps_ModifiedBy",
+                name: "IX_SellsAndBuysGuideSteps_ModifiedById",
                 table: "SellsAndBuysGuideSteps",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SellsAndBuysGuideSteps_SABCategoryID",
@@ -3952,29 +4085,29 @@ namespace GegiCRM.DAL.Migrations
                 column: "SABCategoryID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ServicePlaces_AddedBy",
+                name: "IX_ServicePlaces_AddedById",
                 table: "ServicePlaces",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ServicePlaces_ModifiedBy",
+                name: "IX_ServicePlaces_ModifiedById",
                 table: "ServicePlaces",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ServiceReasons_AddedBy",
+                name: "IX_ServiceReasons_AddedById",
                 table: "ServiceReasons",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ServiceReasons_ModifiedBy",
+                name: "IX_ServiceReasons_ModifiedById",
                 table: "ServiceReasons",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ServiceRecords_AddedBy",
+                name: "IX_ServiceRecords_AddedById",
                 table: "ServiceRecords",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServiceRecords_CustomerID",
@@ -3982,9 +4115,9 @@ namespace GegiCRM.DAL.Migrations
                 column: "CustomerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ServiceRecords_ModifiedBy",
+                name: "IX_ServiceRecords_ModifiedById",
                 table: "ServiceRecords",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServiceRecords_ServicePersonalUser",
@@ -4007,19 +4140,19 @@ namespace GegiCRM.DAL.Migrations
                 column: "ServiceTypeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ServiceTypes_AddedBy",
+                name: "IX_ServiceTypes_AddedById",
                 table: "ServiceTypes",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ServiceTypes_ModifiedBy",
+                name: "IX_ServiceTypes_ModifiedById",
                 table: "ServiceTypes",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShippingDeals_AddedByNavigationId",
+                name: "IX_ShippingDeals_AddedById",
                 table: "ShippingDeals",
-                column: "AddedByNavigationId");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShippingDeals_CompanyID",
@@ -4027,14 +4160,14 @@ namespace GegiCRM.DAL.Migrations
                 column: "CompanyID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShippingDeals_ModifiedByNavigationId",
+                name: "IX_ShippingDeals_ModifiedById",
                 table: "ShippingDeals",
-                column: "ModifiedByNavigationId");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SupplierDetails_AddedByNavigationId",
+                name: "IX_SupplierDetails_AddedById",
                 table: "SupplierDetails",
-                column: "AddedByNavigationId");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SupplierDetails_CurrencyID",
@@ -4042,9 +4175,9 @@ namespace GegiCRM.DAL.Migrations
                 column: "CurrencyID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SupplierDetails_ModifiedByNavigationId",
+                name: "IX_SupplierDetails_ModifiedById",
                 table: "SupplierDetails",
-                column: "ModifiedByNavigationId");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SupplierDetails_SupplierID",
@@ -4052,24 +4185,24 @@ namespace GegiCRM.DAL.Migrations
                 column: "SupplierID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SupplierPaymentStates_AddedBy",
+                name: "IX_SupplierPaymentStates_AddedById",
                 table: "SupplierPaymentStates",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SupplierPaymentStates_ModifiedBy",
+                name: "IX_SupplierPaymentStates_ModifiedById",
                 table: "SupplierPaymentStates",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Suppliers_AddedBy",
+                name: "IX_Suppliers_AddedById",
                 table: "Suppliers",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Suppliers_ModifiedBy",
+                name: "IX_Suppliers_ModifiedById",
                 table: "Suppliers",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SuppliersBrands_SupplierID",
@@ -4077,14 +4210,14 @@ namespace GegiCRM.DAL.Migrations
                 column: "SupplierID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SuppliersPayments_AddedBy",
+                name: "IX_SuppliersPayments_AddedById",
                 table: "SuppliersPayments",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SuppliersPayments_ModifiedBy",
+                name: "IX_SuppliersPayments_ModifiedById",
                 table: "SuppliersPayments",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SuppliersPayments_StateID",
@@ -4092,24 +4225,24 @@ namespace GegiCRM.DAL.Migrations
                 column: "StateID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserCompanies_AddedBy",
+                name: "IX_UserCompanies_AddedById",
                 table: "UserCompanies",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserCompanies_ModifiedBy",
+                name: "IX_UserCompanies_ModifiedById",
                 table: "UserCompanies",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_VehicleInformations_AddedBy",
+                name: "IX_VehicleInformations_AddedById",
                 table: "VehicleInformations",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_VehicleInformations_ModifiedBy",
+                name: "IX_VehicleInformations_ModifiedById",
                 table: "VehicleInformations",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_VehicleInformations_UserCompanyID",
@@ -4117,9 +4250,9 @@ namespace GegiCRM.DAL.Migrations
                 column: "UserCompanyID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WarrantyTrackings_AddedBy",
+                name: "IX_WarrantyTrackings_AddedById",
                 table: "WarrantyTrackings",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WarrantyTrackings_BrandID",
@@ -4127,14 +4260,14 @@ namespace GegiCRM.DAL.Migrations
                 column: "BrandID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WarrantyTrackings_ModifiedBy",
+                name: "IX_WarrantyTrackings_ModifiedById",
                 table: "WarrantyTrackings",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WorkStandarts_AddedBy",
+                name: "IX_WorkStandarts_AddedById",
                 table: "WorkStandarts",
-                column: "AddedBy");
+                column: "AddedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WorkStandarts_DepartmentID",
@@ -4142,35 +4275,35 @@ namespace GegiCRM.DAL.Migrations
                 column: "DepartmentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WorkStandarts_ModifiedBy",
+                name: "IX_WorkStandarts_ModifiedById",
                 table: "WorkStandarts",
-                column: "ModifiedBy");
+                column: "ModifiedById");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Announcements_Users",
                 table: "Announcements",
-                column: "AddedBy",
+                column: "AddedById",
                 principalTable: "AspNetUsers",
                 principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Announcements_Users1",
                 table: "Announcements",
-                column: "ModifiedBy",
+                column: "ModifiedById",
                 principalTable: "AspNetUsers",
                 principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_AuthorizationRoleGroup_ModifiedBy",
                 table: "AppAuthorizationsRoleGroups",
-                column: "ModifiedBy",
+                column: "ModifiedById",
                 principalTable: "AspNetUsers",
                 principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_AuthorizationRoleGroups_AddedBy",
                 table: "AppAuthorizationsRoleGroups",
-                column: "AddedBy",
+                column: "AddedById",
                 principalTable: "AspNetUsers",
                 principalColumn: "ID");
 
@@ -4185,14 +4318,14 @@ namespace GegiCRM.DAL.Migrations
             migrationBuilder.AddForeignKey(
                 name: "FK_Authorizations_Users",
                 table: "AspNetRoles",
-                column: "AddedBy",
+                column: "AddedById",
                 principalTable: "AspNetUsers",
                 principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Authorizations_Users1",
                 table: "AspNetRoles",
-                column: "ModifiedBy",
+                column: "ModifiedById",
                 principalTable: "AspNetUsers",
                 principalColumn: "ID");
 
@@ -4223,14 +4356,14 @@ namespace GegiCRM.DAL.Migrations
             migrationBuilder.AddForeignKey(
                 name: "FK_UsersAuthorizations_AddedBy",
                 table: "AspNetUserRoles",
-                column: "AddedBy",
+                column: "AddedById",
                 principalTable: "AspNetUsers",
                 principalColumn: "ID");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_UsersAuthorizations_ModifiedBy",
                 table: "AspNetUserRoles",
-                column: "ModifiedBy",
+                column: "ModifiedById",
                 principalTable: "AspNetUsers",
                 principalColumn: "ID");
 
@@ -4245,11 +4378,11 @@ namespace GegiCRM.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_UserCompanies_Users",
+                name: "FK_UserCompanies_AddedBy",
                 table: "UserCompanies");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_UserCompanies_Users1",
+                name: "FK_UserCompanies_ModifiedBy",
                 table: "UserCompanies");
 
             migrationBuilder.DropTable(
@@ -4278,6 +4411,9 @@ namespace GegiCRM.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "CollectionReceipts");
+
+            migrationBuilder.DropTable(
+                name: "CustomerActivityLogs");
 
             migrationBuilder.DropTable(
                 name: "CustomerAddresses");
@@ -4449,6 +4585,9 @@ namespace GegiCRM.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Currencies");
+
+            migrationBuilder.DropTable(
+                name: "CustomerMainCompanies");
 
             migrationBuilder.DropTable(
                 name: "CustomerTypes");

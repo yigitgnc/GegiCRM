@@ -3,8 +3,8 @@
 @foreach (var item in Model)
 {
     <p>@item.Name</p>
-    @*<p>@item.OrderAddedByNavigations.FirstOrDefault().Id</p>*@
-    @*<p>@item.OrderAddedByNavigations.FirstOrDefault().ModifiedByNavigation.Name</p>*@
-    @*<p>@item.OrderModifiedByNavigations.FirstOrDefault().Customer.Name</p>*@
-    @*<p>@item.OrderModifiedByNavigations.FirstOrDefault().Customer.Name</p>*@
+    @*<p>@item.OrderAddedBy.FirstOrDefault().Id</p>*@
+    @*<p>@item.OrderAddedBy.FirstOrDefault().ModifiedBy.Name</p>*@
+    @*<p>@item.OrderModifiedBy.FirstOrDefault().Customer.Name</p>*@
+    @*<p>@item.OrderModifiedBy.FirstOrDefault().Customer.Name</p>*@
 }

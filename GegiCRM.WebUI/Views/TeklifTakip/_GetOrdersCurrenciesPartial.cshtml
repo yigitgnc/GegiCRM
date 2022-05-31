@@ -9,12 +9,47 @@
     {
         <span>Siparişe Ait Kur Bilgisi Mevcut Değil</span>
     }
-    @foreach (var item in Model)
-    {
-        <i>@item.Currency.Name</i>
-        <i>@item.Currency.Code</i>
-        <i>@item.Value</i>
-    }
+    <ul class="list-group">
+        @foreach (var item in Model)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>
+                    <b>[@item.Currency.Code] </b>
+                    <i>@item.Currency.Name </i>
+                    <i class="text-primary">@item.Value</i>
+                </span>
+                <button data-id="@item.Id" class="deleteCurrencyBtn btn btn-danger">Sil</button>
+            </li>
+
+        }
+    </ul>
 </div>
+
+<script>
+    
+    $('.deleteCurrencyBtn').on('click', function() {
+        console.log("Clicked");
+        var id = $(this).attr("data-id");
+        console.log(this);
+        console.log(id);
+
+        $.ajax({
+            type: "POST",
+            url: "/TeklifTakip/DeleteOrdersCurrency/"+id,
+            success: function(data) {
+                if (data === "ok") {
+                    getNewOrdersCurrencies();
+                }
+            },
+            error: function(err) {
+                alert(err);
+            }
+        });
+
+    });
+
+</script>
+
+
 
 

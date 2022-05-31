@@ -27,6 +27,10 @@ namespace GegiCRM.BLL.Concrete
         {
             return _orderDal.GetListAllWithNavigations();
         }
+        public Order GetByIdWithNavigations(int id)
+        {
+            return _orderDal.GetByIdWithNavigations(id);
+        }
 
         public new Order Create(Order order)
         {

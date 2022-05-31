@@ -10,122 +10,122 @@ namespace GegiCRM.Entities.Concrete
     {
         public AppUser()
         {
-            AppRolesOfUsersAddedByNavigations = new HashSet<AppRolesOfUsers>();
-            AppRolesOfUsersModifiedByNavigations = new HashSet<AppRolesOfUsers>();
-            AppAuthorizationRoleGroupAddedByNavigations = new HashSet<AppIdentityRoleGroup>();
-            AppAuthorizationRoleGroupModifiedByNavigations = new HashSet<AppIdentityRoleGroup>();
+            AppRolesOfUsersAddedBy = new HashSet<AppRolesOfUsers>();
+            AppRolesOfUsersModifiedBy = new HashSet<AppRolesOfUsers>();
+            AppAuthorizationRoleGroupAddedBy = new HashSet<AppIdentityRoleGroup>();
+            AppAuthorizationRoleGroupModifiedBy = new HashSet<AppIdentityRoleGroup>();
             //AppUsersAuthorizationRoleUsers = new HashSet<AppUsersAuthorizationRole>();
-            AuthorizationsRoleAddedByNavigations = new HashSet<AppIdentityRole>();
-            AuthorizationsRoleModifiedByNavigations = new HashSet<AppIdentityRole>();
-            BankAddedByNavigations = new HashSet<Bank>();
-            BankModifiedByNavigations = new HashSet<Bank>();
-            BankInformationAddedByNavigations = new HashSet<BankInformation>();
-            BankInformationModifiedByNavigations = new HashSet<BankInformation>();
-            BirimAddedByNavigations = new HashSet<Birim>();
-            BirimModifiedByNavigations = new HashSet<Birim>();
-            BrandAddedByNavigations = new HashSet<Brand>();
-            BrandModifiedByNavigations = new HashSet<Brand>();
-            CustomerTypeAddedByNavigations = new HashSet<CustomerType>();
-            CustomerTypeModifiedByNavigations = new HashSet<CustomerType>();
-            CustomerAddedByNavigations = new HashSet<Customer>();
-            CustomerModifiedByNavigations = new HashSet<Customer>();
-            CustomerMainCompanyAddedByNavigations = new HashSet<CustomerMainCompany>();
-            CustomerMainCompanyModifiedByNavigations = new HashSet<CustomerMainCompany>();
+            AuthorizationsRoleAddedBy = new HashSet<AppIdentityRole>();
+            AuthorizationsRoleModifiedBy = new HashSet<AppIdentityRole>();
+            BankAddedBy = new HashSet<Bank>();
+            BankModifiedBy = new HashSet<Bank>();
+            BankInformationAddedBy = new HashSet<BankInformation>();
+            BankInformationModifiedBy = new HashSet<BankInformation>();
+            BirimAddedBy = new HashSet<Birim>();
+            BirimModifiedBy = new HashSet<Birim>();
+            BrandAddedBy = new HashSet<Brand>();
+            BrandModifiedBy = new HashSet<Brand>();
+            CustomerTypeAddedBy = new HashSet<CustomerType>();
+            CustomerTypeModifiedBy = new HashSet<CustomerType>();
+            CustomerAddedBy = new HashSet<Customer>();
+            CustomerModifiedBy = new HashSet<Customer>();
+            CustomerMainCompanyAddedBy = new HashSet<CustomerMainCompany>();
+            CustomerMainCompanyModifiedBy = new HashSet<CustomerMainCompany>();
             OrderRepresentetiveUserNavigations = new HashSet<Order>();
-            CustomerActivityLogAddedByNavigations = new HashSet<CustomerActivityLog>();
-            CustomerActivityLogModifiedByNavigations = new HashSet<CustomerActivityLog>();
-            CustomerAddressAddedByNavigations = new HashSet<CustomerAddress>();
-            CustomerAddressModifiedByNavigations = new HashSet<CustomerAddress>();
-            CustomerContactAddedByNavigations = new HashSet<CustomerContact>();
-            CustomerContactModifiedByNavigations = new HashSet<CustomerContact>();
+            CustomerActivityLogAddedBy = new HashSet<CustomerActivityLog>();
+            CustomerActivityLogModifiedBy = new HashSet<CustomerActivityLog>();
+            CustomerAddressAddedBy = new HashSet<CustomerAddress>();
+            CustomerAddressModifiedBy = new HashSet<CustomerAddress>();
+            CustomerContactAddedBy = new HashSet<CustomerContact>();
+            CustomerContactModifiedBy = new HashSet<CustomerContact>();
             CustomerRepresentetiveUsers = new HashSet<CustomerRepresentetiveUser>();
-            DepartmentAddedByNavigations = new HashSet<Department>();
-            DepartmentModifiedByNavigations = new HashSet<Department>();
+            DepartmentAddedBy = new HashSet<Department>();
+            DepartmentModifiedBy = new HashSet<Department>();
             DepartmentsOfUsers = new HashSet<DepartmentsOfUser>();
-            DepositAddedByNavigations = new HashSet<Deposit>();
-            DepositModifiedByNavigations = new HashSet<Deposit>();
-            DepositRelationAddedByNavigations = new HashSet<DepositRelation>();
-            DepositRelationModifiedByNavigations = new HashSet<DepositRelation>();
-            DepositTypeAddedByNavigations = new HashSet<DepositType>();
-            DepositTypeModifiedByNavigations = new HashSet<DepositType>();
-            DiscountCuponAddedByNavigations = new HashSet<DiscountCupon>();
-            DiscountCuponModifiedByNavigations = new HashSet<DiscountCupon>();
-            DiscountCuponsOfCustomerAddedByNavigations = new HashSet<DiscountCuponsOfCustomer>();
-            DiscountCuponsOfCustomerModifiedByNavigations = new HashSet<DiscountCuponsOfCustomer>();
-            DocumentAddedByNavigations = new HashSet<Document>();
-            DocumentModifiedByNavigations = new HashSet<Document>();
-            EmailTemplateAddedByNavigations = new HashSet<EmailTemplate>();
-            EmailTemplateModifiedByNavigations = new HashSet<EmailTemplate>();
-            ExpansionAddedByNavigations = new HashSet<Expansion>();
-            ExpansionModifiedByNavigations = new HashSet<Expansion>();
-            InverseAddedByNavigation = new HashSet<AppUser>();
-            InverseModifiedByNavigation = new HashSet<AppUser>();
-            MaintenanceBillAddedByNavigations = new HashSet<MaintenanceBill>();
+            DepositAddedBy = new HashSet<Deposit>();
+            DepositModifiedBy = new HashSet<Deposit>();
+            DepositRelationAddedBy = new HashSet<DepositRelation>();
+            DepositRelationModifiedBy = new HashSet<DepositRelation>();
+            DepositTypeAddedBy = new HashSet<DepositType>();
+            DepositTypeModifiedBy = new HashSet<DepositType>();
+            DiscountCuponAddedBy = new HashSet<DiscountCupon>();
+            DiscountCuponModifiedBy = new HashSet<DiscountCupon>();
+            DiscountCuponsOfCustomerAddedBy = new HashSet<DiscountCuponsOfCustomer>();
+            DiscountCuponsOfCustomerModifiedBy = new HashSet<DiscountCuponsOfCustomer>();
+            DocumentAddedBy = new HashSet<Document>();
+            DocumentModifiedBy = new HashSet<Document>();
+            EmailTemplateAddedBy = new HashSet<EmailTemplate>();
+            EmailTemplateModifiedBy = new HashSet<EmailTemplate>();
+            ExpansionAddedBy = new HashSet<Expansion>();
+            ExpansionModifiedBy = new HashSet<Expansion>();
+            InverseAddedBy = new HashSet<AppUser>();
+            InverseModifiedBy = new HashSet<AppUser>();
+            MaintenanceBillAddedBy = new HashSet<MaintenanceBill>();
             MaintenanceBillCustomerRepresentetiveUsers = new HashSet<MaintenanceBill>();
-            MaintenanceBillModifiedByNavigations = new HashSet<MaintenanceBill>();
+            MaintenanceBillModifiedBy = new HashSet<MaintenanceBill>();
             MaintenanceBillSellingRepresentetiveUsers = new HashSet<MaintenanceBill>();
-            MaintenencePeriodAddedByNavigations = new HashSet<MaintenencePeriod>();
-            MaintenencePeriodModifiedByNavigations = new HashSet<MaintenencePeriod>();
-            MarketPlaceAddedByNavigations = new HashSet<MarketPlace>();
-            MarketPlaceModifiedByNavigations = new HashSet<MarketPlace>();
-            OrderAddedByNavigations = new HashSet<Order>();
-            OrderAndProductStateAddedByNavigations = new HashSet<OrderState>();
-            OrderAndProductStateModifiedByNavigations = new HashSet<OrderState>();
-            OrderModifiedByNavigations = new HashSet<Order>();
-            OrdersProductAddedByNavigations = new HashSet<OrdersProduct>();
-            OrdersProductModifiedByNavigations = new HashSet<OrdersProduct>();
-            PaymentTypeAddedByNavigations = new HashSet<PaymentType>();
-            PaymentTypeModifiedByNavigations = new HashSet<PaymentType>();
-            ProductAddedByNavigations = new HashSet<Product>();
-            ProductCategoryAddedByNavigations = new HashSet<ProductCategory>();
-            ProductCategoryModifiedByNavigations = new HashSet<ProductCategory>();
-            ProductGroupAddedByNavigations = new HashSet<ProductGroup>();
-            ProductGroupModifiedByNavigations = new HashSet<ProductGroup>();
-            ProductGroupsFaqAddedByNavigations = new HashSet<ProductGroupsFaq>();
-            ProductGroupsFaqModifiedByNavigations = new HashSet<ProductGroupsFaq>();
-            ProductModifiedByNavigations = new HashSet<Product>();
-            ReturnAndFaultAddedByNavigations = new HashSet<ReturnAndFault>();
-            ReturnAndFaultModifiedByNavigations = new HashSet<ReturnAndFault>();
+            MaintenencePeriodAddedBy = new HashSet<MaintenencePeriod>();
+            MaintenencePeriodModifiedBy = new HashSet<MaintenencePeriod>();
+            MarketPlaceAddedBy = new HashSet<MarketPlace>();
+            MarketPlaceModifiedBy = new HashSet<MarketPlace>();
+            OrderAddedBy = new HashSet<Order>();
+            OrderAndProductStateAddedBy = new HashSet<OrderState>();
+            OrderAndProductStateModifiedBy = new HashSet<OrderState>();
+            OrderModifiedBy = new HashSet<Order>();
+            OrdersProductAddedBy = new HashSet<OrdersProduct>();
+            OrdersProductModifiedBy = new HashSet<OrdersProduct>();
+            PaymentTypeAddedBy = new HashSet<PaymentType>();
+            PaymentTypeModifiedBy = new HashSet<PaymentType>();
+            ProductAddedBy = new HashSet<Product>();
+            ProductCategoryAddedBy = new HashSet<ProductCategory>();
+            ProductCategoryModifiedBy = new HashSet<ProductCategory>();
+            ProductGroupAddedBy = new HashSet<ProductGroup>();
+            ProductGroupModifiedBy = new HashSet<ProductGroup>();
+            ProductGroupsFaqAddedBy = new HashSet<ProductGroupsFaq>();
+            ProductGroupsFaqModifiedBy = new HashSet<ProductGroupsFaq>();
+            ProductModifiedBy = new HashSet<Product>();
+            ReturnAndFaultAddedBy = new HashSet<ReturnAndFault>();
+            ReturnAndFaultModifiedBy = new HashSet<ReturnAndFault>();
             ReturnAndFaultRepresentitveUserNavigations = new HashSet<ReturnAndFault>();
-            ReturnAndFaultStateAddedByNavigations = new HashSet<ReturnAndFaultState>();
-            ReturnAndFaultStateModifiedByNavigations = new HashSet<ReturnAndFaultState>();
-            RuleAddedByNavigations = new HashSet<Rule>();
-            RuleModifiedByNavigations = new HashSet<Rule>();
-            SegmentAddedByNavigations = new HashSet<Segment>();
-            SegmentModifiedByNavigations = new HashSet<Segment>();
-            SectorAddedByNavigations = new HashSet<Sector>();
-            SectorModifiedByNavigations = new HashSet<Sector>();
-            SegmentOranAddedByNavigations = new HashSet<SegmentOran>();
-            SegmentOranModifiedByNavigations = new HashSet<SegmentOran>();
-            SellsAndBuysAssetAddedByNavigations = new HashSet<SellsAndBuysAsset>();
-            SellsAndBuysAssetModifiedByNavigations = new HashSet<SellsAndBuysAsset>();
-            SellsAndBuysCategoryAddedByNavigations = new HashSet<SellsAndBuysCategory>();
-            SellsAndBuysCategoryModifiedByNavigations = new HashSet<SellsAndBuysCategory>();
-            SellsAndBuysGuideStepAddedByNavigations = new HashSet<SellsAndBuysGuideStep>();
-            SellsAndBuysGuideStepModifiedByNavigations = new HashSet<SellsAndBuysGuideStep>();
-            ServicePlaceAddedByNavigations = new HashSet<ServicePlace>();
-            ServicePlaceModifiedByNavigations = new HashSet<ServicePlace>();
-            ServiceReasonAddedByNavigations = new HashSet<ServiceReason>();
-            ServiceReasonModifiedByNavigations = new HashSet<ServiceReason>();
-            ServiceRecordAddedByNavigations = new HashSet<ServiceRecord>();
-            ServiceRecordModifiedByNavigations = new HashSet<ServiceRecord>();
+            ReturnAndFaultStateAddedBy = new HashSet<ReturnAndFaultState>();
+            ReturnAndFaultStateModifiedBy = new HashSet<ReturnAndFaultState>();
+            RuleAddedBy = new HashSet<Rule>();
+            RuleModifiedBy = new HashSet<Rule>();
+            SegmentAddedBy = new HashSet<Segment>();
+            SegmentModifiedBy = new HashSet<Segment>();
+            SectorAddedBy = new HashSet<Sector>();
+            SectorModifiedBy = new HashSet<Sector>();
+            SegmentOranAddedBy = new HashSet<SegmentOran>();
+            SegmentOranModifiedBy = new HashSet<SegmentOran>();
+            SellsAndBuysAssetAddedBy = new HashSet<SellsAndBuysAsset>();
+            SellsAndBuysAssetModifiedBy = new HashSet<SellsAndBuysAsset>();
+            SellsAndBuysCategoryAddedBy = new HashSet<SellsAndBuysCategory>();
+            SellsAndBuysCategoryModifiedBy = new HashSet<SellsAndBuysCategory>();
+            SellsAndBuysGuideStepAddedBy = new HashSet<SellsAndBuysGuideStep>();
+            SellsAndBuysGuideStepModifiedBy = new HashSet<SellsAndBuysGuideStep>();
+            ServicePlaceAddedBy = new HashSet<ServicePlace>();
+            ServicePlaceModifiedBy = new HashSet<ServicePlace>();
+            ServiceReasonAddedBy = new HashSet<ServiceReason>();
+            ServiceReasonModifiedBy = new HashSet<ServiceReason>();
+            ServiceRecordAddedBy = new HashSet<ServiceRecord>();
+            ServiceRecordModifiedBy = new HashSet<ServiceRecord>();
             ServiceRecordServicePersonalUserNavigations = new HashSet<ServiceRecord>();
-            ServiceTypeAddedByNavigations = new HashSet<ServiceType>();
-            ServiceTypeModifiedByNavigations = new HashSet<ServiceType>();
-            SupplierAddedByNavigations = new HashSet<Supplier>();
-            SupplierModifiedByNavigations = new HashSet<Supplier>();
-            SupplierPaymentStateAddedByNavigations = new HashSet<SupplierPaymentState>();
-            SupplierPaymentStateModifiedByNavigations = new HashSet<SupplierPaymentState>();
-            SuppliersPaymentAddedByNavigations = new HashSet<SuppliersPayment>();
-            SuppliersPaymentModifiedByNavigations = new HashSet<SuppliersPayment>();
-            UserCompanyAddedByNavigations = new HashSet<UserCompany>();
-            UserCompanyModifiedByNavigations = new HashSet<UserCompany>();
-            VehicleInformationAddedByNavigations = new HashSet<VehicleInformation>();
-            VehicleInformationModifiedByNavigations = new HashSet<VehicleInformation>();
-            WarrantyTrackingAddedByNavigations = new HashSet<WarrantyTracking>();
-            WarrantyTrackingModifiedByNavigations = new HashSet<WarrantyTracking>();
-            WorkStandartAddedByNavigations = new HashSet<WorkStandart>();
-            WorkStandartModifiedByNavigations = new HashSet<WorkStandart>();
+            ServiceTypeAddedBy = new HashSet<ServiceType>();
+            ServiceTypeModifiedBy = new HashSet<ServiceType>();
+            SupplierAddedBy = new HashSet<Supplier>();
+            SupplierModifiedBy = new HashSet<Supplier>();
+            SupplierPaymentStateAddedBy = new HashSet<SupplierPaymentState>();
+            SupplierPaymentStateModifiedBy = new HashSet<SupplierPaymentState>();
+            SuppliersPaymentAddedBy = new HashSet<SuppliersPayment>();
+            SuppliersPaymentModifiedBy = new HashSet<SuppliersPayment>();
+            UserCompanyAddedBy = new HashSet<UserCompany>();
+            UserCompanyModifiedBy = new HashSet<UserCompany>();
+            VehicleInformationAddedBy = new HashSet<VehicleInformation>();
+            VehicleInformationModifiedBy = new HashSet<VehicleInformation>();
+            WarrantyTrackingAddedBy = new HashSet<WarrantyTracking>();
+            WarrantyTrackingModifiedBy = new HashSet<WarrantyTracking>();
+            WorkStandartAddedBy = new HashSet<WorkStandart>();
+            WorkStandartModifiedBy = new HashSet<WorkStandart>();
         }
 
 
@@ -135,145 +135,145 @@ namespace GegiCRM.Entities.Concrete
         public string Surname { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        public int AddedBy { get; set; }
-        public int? ModifiedBy { get; set; }
+        public int AddedById { get; set; }
+        public int? ModifiedById { get; set; }
         public bool IsDeleted { get; set; }
         public string? ProfilePictureUrl { get; set; }
 
         #region virtuals
         public virtual UserCompany UserCompany { get; set; } = null!;
-        public virtual ICollection<Announcement> AnnouncementsAddedByNavigations { get; set; }
-        public virtual ICollection<Announcement> AnnouncementsModifiedByNavigations { get; set; }
-        public virtual ICollection<AppRolesOfUsers>? AppRolesOfUsersAddedByNavigations { get; set; }
-        public virtual ICollection<AppRolesOfUsers> AppRolesOfUsersModifiedByNavigations { get; set; }
-        public virtual ICollection<AppIdentityRoleGroup>? AppAuthorizationRoleGroupAddedByNavigations { get; set; }
-        public virtual ICollection<AppIdentityRoleGroup> AppAuthorizationRoleGroupModifiedByNavigations { get; set; }
+        public virtual ICollection<Announcement> AnnouncementsAddedBy { get; set; }
+        public virtual ICollection<Announcement> AnnouncementsModifiedBy { get; set; }
+        public virtual ICollection<AppRolesOfUsers>? AppRolesOfUsersAddedBy { get; set; }
+        public virtual ICollection<AppRolesOfUsers> AppRolesOfUsersModifiedBy { get; set; }
+        public virtual ICollection<AppIdentityRoleGroup>? AppAuthorizationRoleGroupAddedBy { get; set; }
+        public virtual ICollection<AppIdentityRoleGroup> AppAuthorizationRoleGroupModifiedBy { get; set; }
         //public virtual ICollection<AppAppUsersAuthorizationRole> AppUsersAuthorizationRoleUsers { get; set; } 
-        public virtual ICollection<AppIdentityRole> AuthorizationsRoleAddedByNavigations { get; set; }
-        public virtual ICollection<AppIdentityRole> AuthorizationsRoleModifiedByNavigations { get; set; }
-        public virtual ICollection<Bank> BankAddedByNavigations { get; set; }
-        public virtual ICollection<Bank> BankModifiedByNavigations { get; set; }
-        public virtual ICollection<BankInformation> BankInformationAddedByNavigations { get; set; }
-        public virtual ICollection<BankInformation> BankInformationModifiedByNavigations { get; set; }
-        public virtual ICollection<Birim> BirimAddedByNavigations { get; set; }
-        public virtual ICollection<Birim> BirimModifiedByNavigations { get; set; }
-        public virtual ICollection<Brand> BrandAddedByNavigations { get; set; }
-        public virtual ICollection<Brand> BrandModifiedByNavigations { get; set; }
-        public virtual ICollection<CollectionReceipt> CollectionReceiptAddedByNavigations { get; set; }
-        public virtual ICollection<CollectionReceipt> CollectionReceiptModifiedByNavigations { get; set; }
-        public virtual ICollection<Currency> CurrencyAddedByNavigations { get; set; }
-        public virtual ICollection<Currency> CurrencyModifiedByNavigations { get; set; }
-        public virtual ICollection<CustomerType> CustomerTypeAddedByNavigations { get; set; }
-        public virtual ICollection<CustomerType> CustomerTypeModifiedByNavigations { get; set; }
-        public virtual ICollection<Customer> CustomerAddedByNavigations { get; set; }
-        public virtual ICollection<Customer> CustomerModifiedByNavigations { get; set; }
-        public virtual ICollection<CustomerMainCompany> CustomerMainCompanyAddedByNavigations { get; set; }
-        public virtual ICollection<CustomerMainCompany> CustomerMainCompanyModifiedByNavigations { get; set; }
+        public virtual ICollection<AppIdentityRole> AuthorizationsRoleAddedBy { get; set; }
+        public virtual ICollection<AppIdentityRole> AuthorizationsRoleModifiedBy { get; set; }
+        public virtual ICollection<Bank> BankAddedBy { get; set; }
+        public virtual ICollection<Bank> BankModifiedBy { get; set; }
+        public virtual ICollection<BankInformation> BankInformationAddedBy { get; set; }
+        public virtual ICollection<BankInformation> BankInformationModifiedBy { get; set; }
+        public virtual ICollection<Birim> BirimAddedBy { get; set; }
+        public virtual ICollection<Birim> BirimModifiedBy { get; set; }
+        public virtual ICollection<Brand> BrandAddedBy { get; set; }
+        public virtual ICollection<Brand> BrandModifiedBy { get; set; }
+        public virtual ICollection<CollectionReceipt> CollectionReceiptAddedBy { get; set; }
+        public virtual ICollection<CollectionReceipt> CollectionReceiptModifiedBy { get; set; }
+        public virtual ICollection<Currency> CurrencyAddedBy { get; set; }
+        public virtual ICollection<Currency> CurrencyModifiedBy { get; set; }
+        public virtual ICollection<CustomerType> CustomerTypeAddedBy { get; set; }
+        public virtual ICollection<CustomerType> CustomerTypeModifiedBy { get; set; }
+        public virtual ICollection<Customer> CustomerAddedBy { get; set; }
+        public virtual ICollection<Customer> CustomerModifiedBy { get; set; }
+        public virtual ICollection<CustomerMainCompany> CustomerMainCompanyAddedBy { get; set; }
+        public virtual ICollection<CustomerMainCompany> CustomerMainCompanyModifiedBy { get; set; }
         public virtual ICollection<Order> OrderRepresentetiveUserNavigations { get; set; }
-        public virtual ICollection<CustomerActivityLog> CustomerActivityLogAddedByNavigations { get; set; }
-        public virtual ICollection<CustomerActivityLog> CustomerActivityLogModifiedByNavigations { get; set; }
-        public virtual ICollection<CustomerAddress> CustomerAddressAddedByNavigations { get; set; }
-        public virtual ICollection<CustomerAddress> CustomerAddressModifiedByNavigations { get; set; }
-        public virtual ICollection<CustomerBillingAddress> CustomerBillingAddressAddedByNavigations { get; set; }
-        public virtual ICollection<CustomerBillingAddress> CustomerBillingAddressModifiedByNavigations { get; set; }
-        public virtual ICollection<CustomerContact> CustomerContactAddedByNavigations { get; set; }
-        public virtual ICollection<CustomerContact> CustomerContactModifiedByNavigations { get; set; }
-        //public virtual ICollection<CustomerDetail> CustomerDetailAddedByNavigations { get; set; }
-        //public virtual ICollection<CustomerDetail> CustomerDetailModifiedByNavigations { get; set; }
-        public virtual ICollection<CustomerRepresentetiveUser> CustomerRepresentetiveUserAddedByNavigations { get; set; }
-        public virtual ICollection<CustomerRepresentetiveUser> CustomerRepresentetiveUserModifiedByNavigations { get; set; }
+        public virtual ICollection<CustomerActivityLog> CustomerActivityLogAddedBy { get; set; }
+        public virtual ICollection<CustomerActivityLog> CustomerActivityLogModifiedBy { get; set; }
+        public virtual ICollection<CustomerAddress> CustomerAddressAddedBy { get; set; }
+        public virtual ICollection<CustomerAddress> CustomerAddressModifiedBy { get; set; }
+        public virtual ICollection<CustomerBillingAddress> CustomerBillingAddressAddedBy { get; set; }
+        public virtual ICollection<CustomerBillingAddress> CustomerBillingAddressModifiedBy { get; set; }
+        public virtual ICollection<CustomerContact> CustomerContactAddedBy { get; set; }
+        public virtual ICollection<CustomerContact> CustomerContactModifiedBy { get; set; }
+        //public virtual ICollection<CustomerDetail> CustomerDetailAddedBy { get; set; }
+        //public virtual ICollection<CustomerDetail> CustomerDetailModifiedBy { get; set; }
+        public virtual ICollection<CustomerRepresentetiveUser> CustomerRepresentetiveUserAddedBy { get; set; }
+        public virtual ICollection<CustomerRepresentetiveUser> CustomerRepresentetiveUserModifiedBy { get; set; }
         public virtual ICollection<CustomerRepresentetiveUser> CustomerRepresentetiveUsers { get; set; }
-        public virtual ICollection<Department> DepartmentAddedByNavigations { get; set; }
-        public virtual ICollection<Department> DepartmentModifiedByNavigations { get; set; }
+        public virtual ICollection<Department> DepartmentAddedBy { get; set; }
+        public virtual ICollection<Department> DepartmentModifiedBy { get; set; }
         public virtual ICollection<DepartmentsOfUser> DepartmentsOfUsers { get; set; }
-        public virtual ICollection<DepartmentsOfUser> DepartmentsOfUsersAddedByNavigations { get; set; }
-        public virtual ICollection<DepartmentsOfUser> DepartmentsOfUsersModifiedByNavigations { get; set; }
-        public virtual ICollection<Deposit> DepositAddedByNavigations { get; set; }
-        public virtual ICollection<Deposit> DepositModifiedByNavigations { get; set; }
-        public virtual ICollection<DepositRelation> DepositRelationAddedByNavigations { get; set; }
-        public virtual ICollection<DepositRelation> DepositRelationModifiedByNavigations { get; set; }
-        public virtual ICollection<DepositType> DepositTypeAddedByNavigations { get; set; }
-        public virtual ICollection<DepositType> DepositTypeModifiedByNavigations { get; set; }
-        public virtual ICollection<DiscountCupon> DiscountCuponAddedByNavigations { get; set; }
-        public virtual ICollection<DiscountCupon> DiscountCuponModifiedByNavigations { get; set; }
-        public virtual ICollection<DiscountCuponsOfCustomer> DiscountCuponsOfCustomerAddedByNavigations { get; set; }
-        public virtual ICollection<DiscountCuponsOfCustomer> DiscountCuponsOfCustomerModifiedByNavigations { get; set; }
-        public virtual ICollection<Document> DocumentAddedByNavigations { get; set; }
-        public virtual ICollection<Document> DocumentModifiedByNavigations { get; set; }
-        public virtual ICollection<EmailTemplate> EmailTemplateAddedByNavigations { get; set; }
-        public virtual ICollection<EmailTemplate> EmailTemplateModifiedByNavigations { get; set; }
-        public virtual ICollection<Expansion> ExpansionAddedByNavigations { get; set; }
-        public virtual ICollection<Expansion> ExpansionModifiedByNavigations { get; set; }
-        public virtual ICollection<AppUser> InverseAddedByNavigation { get; set; }
-        public virtual ICollection<AppUser> InverseModifiedByNavigation { get; set; }
-        public virtual ICollection<MaintenanceBill> MaintenanceBillAddedByNavigations { get; set; }
+        public virtual ICollection<DepartmentsOfUser> DepartmentsOfUsersAddedBy { get; set; }
+        public virtual ICollection<DepartmentsOfUser> DepartmentsOfUsersModifiedBy { get; set; }
+        public virtual ICollection<Deposit> DepositAddedBy { get; set; }
+        public virtual ICollection<Deposit> DepositModifiedBy { get; set; }
+        public virtual ICollection<DepositRelation> DepositRelationAddedBy { get; set; }
+        public virtual ICollection<DepositRelation> DepositRelationModifiedBy { get; set; }
+        public virtual ICollection<DepositType> DepositTypeAddedBy { get; set; }
+        public virtual ICollection<DepositType> DepositTypeModifiedBy { get; set; }
+        public virtual ICollection<DiscountCupon> DiscountCuponAddedBy { get; set; }
+        public virtual ICollection<DiscountCupon> DiscountCuponModifiedBy { get; set; }
+        public virtual ICollection<DiscountCuponsOfCustomer> DiscountCuponsOfCustomerAddedBy { get; set; }
+        public virtual ICollection<DiscountCuponsOfCustomer> DiscountCuponsOfCustomerModifiedBy { get; set; }
+        public virtual ICollection<Document> DocumentAddedBy { get; set; }
+        public virtual ICollection<Document> DocumentModifiedBy { get; set; }
+        public virtual ICollection<EmailTemplate> EmailTemplateAddedBy { get; set; }
+        public virtual ICollection<EmailTemplate> EmailTemplateModifiedBy { get; set; }
+        public virtual ICollection<Expansion> ExpansionAddedBy { get; set; }
+        public virtual ICollection<Expansion> ExpansionModifiedBy { get; set; }
+        public virtual ICollection<AppUser> InverseAddedBy { get; set; }
+        public virtual ICollection<AppUser> InverseModifiedBy { get; set; }
+        public virtual ICollection<MaintenanceBill> MaintenanceBillAddedBy { get; set; }
         public virtual ICollection<MaintenanceBill> MaintenanceBillCustomerRepresentetiveUsers { get; set; }
-        public virtual ICollection<MaintenanceBill> MaintenanceBillModifiedByNavigations { get; set; }
+        public virtual ICollection<MaintenanceBill> MaintenanceBillModifiedBy { get; set; }
         public virtual ICollection<MaintenanceBill> MaintenanceBillSellingRepresentetiveUsers { get; set; }
-        public virtual ICollection<MaintenencePeriod> MaintenencePeriodAddedByNavigations { get; set; }
-        public virtual ICollection<MaintenencePeriod> MaintenencePeriodModifiedByNavigations { get; set; }
-        public virtual ICollection<MarketPlace> MarketPlaceAddedByNavigations { get; set; }
-        public virtual ICollection<MarketPlace> MarketPlaceModifiedByNavigations { get; set; }
-        public virtual ICollection<Order> OrderAddedByNavigations { get; set; }
-        public virtual ICollection<OrderState> OrderAndProductStateAddedByNavigations { get; set; }
-        public virtual ICollection<OrderState> OrderAndProductStateModifiedByNavigations { get; set; }
-        public virtual ICollection<Order> OrderModifiedByNavigations { get; set; }
-        public virtual ICollection<OrdersProduct> OrdersProductAddedByNavigations { get; set; }
-        public virtual ICollection<OrdersProduct> OrdersProductModifiedByNavigations { get; set; }
-        public virtual ICollection<PaymentType> PaymentTypeAddedByNavigations { get; set; }
-        public virtual ICollection<PaymentType> PaymentTypeModifiedByNavigations { get; set; }
-        public virtual ICollection<Product> ProductAddedByNavigations { get; set; }
-        public virtual ICollection<ProductCategory> ProductCategoryAddedByNavigations { get; set; }
-        public virtual ICollection<ProductCategory> ProductCategoryModifiedByNavigations { get; set; }
-        public virtual ICollection<ProductGroup> ProductGroupAddedByNavigations { get; set; }
-        public virtual ICollection<ProductGroup> ProductGroupModifiedByNavigations { get; set; }
-        public virtual ICollection<ProductGroupsFaq> ProductGroupsFaqAddedByNavigations { get; set; }
-        public virtual ICollection<ProductGroupsFaq> ProductGroupsFaqModifiedByNavigations { get; set; }
-        public virtual ICollection<Product> ProductModifiedByNavigations { get; set; }
-        public virtual ICollection<ReturnAndFault> ReturnAndFaultAddedByNavigations { get; set; }
-        public virtual ICollection<ReturnAndFault> ReturnAndFaultModifiedByNavigations { get; set; }
+        public virtual ICollection<MaintenencePeriod> MaintenencePeriodAddedBy { get; set; }
+        public virtual ICollection<MaintenencePeriod> MaintenencePeriodModifiedBy { get; set; }
+        public virtual ICollection<MarketPlace> MarketPlaceAddedBy { get; set; }
+        public virtual ICollection<MarketPlace> MarketPlaceModifiedBy { get; set; }
+        public virtual ICollection<Order> OrderAddedBy { get; set; }
+        public virtual ICollection<OrderState> OrderAndProductStateAddedBy { get; set; }
+        public virtual ICollection<OrderState> OrderAndProductStateModifiedBy { get; set; }
+        public virtual ICollection<Order> OrderModifiedBy { get; set; }
+        public virtual ICollection<OrdersProduct> OrdersProductAddedBy { get; set; }
+        public virtual ICollection<OrdersProduct> OrdersProductModifiedBy { get; set; }
+        public virtual ICollection<PaymentType> PaymentTypeAddedBy { get; set; }
+        public virtual ICollection<PaymentType> PaymentTypeModifiedBy { get; set; }
+        public virtual ICollection<Product> ProductAddedBy { get; set; }
+        public virtual ICollection<ProductCategory> ProductCategoryAddedBy { get; set; }
+        public virtual ICollection<ProductCategory> ProductCategoryModifiedBy { get; set; }
+        public virtual ICollection<ProductGroup> ProductGroupAddedBy { get; set; }
+        public virtual ICollection<ProductGroup> ProductGroupModifiedBy { get; set; }
+        public virtual ICollection<ProductGroupsFaq> ProductGroupsFaqAddedBy { get; set; }
+        public virtual ICollection<ProductGroupsFaq> ProductGroupsFaqModifiedBy { get; set; }
+        public virtual ICollection<Product> ProductModifiedBy { get; set; }
+        public virtual ICollection<ReturnAndFault> ReturnAndFaultAddedBy { get; set; }
+        public virtual ICollection<ReturnAndFault> ReturnAndFaultModifiedBy { get; set; }
         public virtual ICollection<ReturnAndFault> ReturnAndFaultRepresentitveUserNavigations { get; set; }
-        public virtual ICollection<ReturnAndFaultState> ReturnAndFaultStateAddedByNavigations { get; set; }
-        public virtual ICollection<ReturnAndFaultState> ReturnAndFaultStateModifiedByNavigations { get; set; }
-        public virtual ICollection<Rule> RuleAddedByNavigations { get; set; }
-        public virtual ICollection<Rule> RuleModifiedByNavigations { get; set; }
-        public virtual ICollection<Segment> SegmentAddedByNavigations { get; set; }
-        public virtual ICollection<Segment> SegmentModifiedByNavigations { get; set; }
-        public virtual ICollection<Sector> SectorAddedByNavigations { get; set; }
-        public virtual ICollection<Sector> SectorModifiedByNavigations { get; set; }
-        public virtual ICollection<SegmentOran> SegmentOranAddedByNavigations { get; set; }
-        public virtual ICollection<SegmentOran> SegmentOranModifiedByNavigations { get; set; }
-        public virtual ICollection<SellsAndBuysAsset> SellsAndBuysAssetAddedByNavigations { get; set; }
-        public virtual ICollection<SellsAndBuysAsset> SellsAndBuysAssetModifiedByNavigations { get; set; }
-        public virtual ICollection<SellsAndBuysCategory> SellsAndBuysCategoryAddedByNavigations { get; set; }
-        public virtual ICollection<SellsAndBuysCategory> SellsAndBuysCategoryModifiedByNavigations { get; set; }
-        public virtual ICollection<SellsAndBuysGuideStep> SellsAndBuysGuideStepAddedByNavigations { get; set; }
-        public virtual ICollection<SellsAndBuysGuideStep> SellsAndBuysGuideStepModifiedByNavigations { get; set; }
-        public virtual ICollection<ServicePlace> ServicePlaceAddedByNavigations { get; set; }
-        public virtual ICollection<ServicePlace> ServicePlaceModifiedByNavigations { get; set; }
-        public virtual ICollection<ServiceReason> ServiceReasonAddedByNavigations { get; set; }
-        public virtual ICollection<ServiceReason> ServiceReasonModifiedByNavigations { get; set; }
-        public virtual ICollection<ServiceRecord> ServiceRecordAddedByNavigations { get; set; }
-        public virtual ICollection<ServiceRecord> ServiceRecordModifiedByNavigations { get; set; }
+        public virtual ICollection<ReturnAndFaultState> ReturnAndFaultStateAddedBy { get; set; }
+        public virtual ICollection<ReturnAndFaultState> ReturnAndFaultStateModifiedBy { get; set; }
+        public virtual ICollection<Rule> RuleAddedBy { get; set; }
+        public virtual ICollection<Rule> RuleModifiedBy { get; set; }
+        public virtual ICollection<Segment> SegmentAddedBy { get; set; }
+        public virtual ICollection<Segment> SegmentModifiedBy { get; set; }
+        public virtual ICollection<Sector> SectorAddedBy { get; set; }
+        public virtual ICollection<Sector> SectorModifiedBy { get; set; }
+        public virtual ICollection<SegmentOran> SegmentOranAddedBy { get; set; }
+        public virtual ICollection<SegmentOran> SegmentOranModifiedBy { get; set; }
+        public virtual ICollection<SellsAndBuysAsset> SellsAndBuysAssetAddedBy { get; set; }
+        public virtual ICollection<SellsAndBuysAsset> SellsAndBuysAssetModifiedBy { get; set; }
+        public virtual ICollection<SellsAndBuysCategory> SellsAndBuysCategoryAddedBy { get; set; }
+        public virtual ICollection<SellsAndBuysCategory> SellsAndBuysCategoryModifiedBy { get; set; }
+        public virtual ICollection<SellsAndBuysGuideStep> SellsAndBuysGuideStepAddedBy { get; set; }
+        public virtual ICollection<SellsAndBuysGuideStep> SellsAndBuysGuideStepModifiedBy { get; set; }
+        public virtual ICollection<ServicePlace> ServicePlaceAddedBy { get; set; }
+        public virtual ICollection<ServicePlace> ServicePlaceModifiedBy { get; set; }
+        public virtual ICollection<ServiceReason> ServiceReasonAddedBy { get; set; }
+        public virtual ICollection<ServiceReason> ServiceReasonModifiedBy { get; set; }
+        public virtual ICollection<ServiceRecord> ServiceRecordAddedBy { get; set; }
+        public virtual ICollection<ServiceRecord> ServiceRecordModifiedBy { get; set; }
         public virtual ICollection<ServiceRecord> ServiceRecordServicePersonalUserNavigations { get; set; }
-        public virtual ICollection<ServiceType> ServiceTypeAddedByNavigations { get; set; }
-        public virtual ICollection<ServiceType> ServiceTypeModifiedByNavigations { get; set; }
-        public virtual ICollection<Supplier> SupplierAddedByNavigations { get; set; }
-        public virtual ICollection<Supplier> SupplierModifiedByNavigations { get; set; }
-        public virtual ICollection<SupplierPaymentState> SupplierPaymentStateAddedByNavigations { get; set; }
-        public virtual ICollection<SupplierPaymentState> SupplierPaymentStateModifiedByNavigations { get; set; }
-        public virtual ICollection<SuppliersPayment> SuppliersPaymentAddedByNavigations { get; set; }
-        public virtual ICollection<SuppliersPayment> SuppliersPaymentModifiedByNavigations { get; set; }
-        public virtual ICollection<UserCompany> UserCompanyAddedByNavigations { get; set; }
-        public virtual ICollection<UserCompany> UserCompanyModifiedByNavigations { get; set; }
-        public virtual ICollection<VehicleInformation> VehicleInformationAddedByNavigations { get; set; }
-        public virtual ICollection<VehicleInformation> VehicleInformationModifiedByNavigations { get; set; }
-        public virtual ICollection<WarrantyTracking> WarrantyTrackingAddedByNavigations { get; set; }
-        public virtual ICollection<WarrantyTracking> WarrantyTrackingModifiedByNavigations { get; set; }
-        public virtual ICollection<WorkStandart> WorkStandartAddedByNavigations { get; set; }
-        public virtual ICollection<WorkStandart> WorkStandartModifiedByNavigations { get; set; }
-        public virtual AppUser AddedByNavigation { get; set; }
-        public virtual AppUser? ModifiedByNavigation { get; set; }
+        public virtual ICollection<ServiceType> ServiceTypeAddedBy { get; set; }
+        public virtual ICollection<ServiceType> ServiceTypeModifiedBy { get; set; }
+        public virtual ICollection<Supplier> SupplierAddedBy { get; set; }
+        public virtual ICollection<Supplier> SupplierModifiedBy { get; set; }
+        public virtual ICollection<SupplierPaymentState> SupplierPaymentStateAddedBy { get; set; }
+        public virtual ICollection<SupplierPaymentState> SupplierPaymentStateModifiedBy { get; set; }
+        public virtual ICollection<SuppliersPayment> SuppliersPaymentAddedBy { get; set; }
+        public virtual ICollection<SuppliersPayment> SuppliersPaymentModifiedBy { get; set; }
+        public virtual ICollection<UserCompany> UserCompanyAddedBy { get; set; }
+        public virtual ICollection<UserCompany> UserCompanyModifiedBy { get; set; }
+        public virtual ICollection<VehicleInformation> VehicleInformationAddedBy { get; set; }
+        public virtual ICollection<VehicleInformation> VehicleInformationModifiedBy { get; set; }
+        public virtual ICollection<WarrantyTracking> WarrantyTrackingAddedBy { get; set; }
+        public virtual ICollection<WarrantyTracking> WarrantyTrackingModifiedBy { get; set; }
+        public virtual ICollection<WorkStandart> WorkStandartAddedBy { get; set; }
+        public virtual ICollection<WorkStandart> WorkStandartModifiedBy { get; set; }
+        public virtual AppUser AddedBy { get; set; }
+        public virtual AppUser? ModifiedBy { get; set; }
 
         [NotMapped]
         public string NameSurname

@@ -15,11 +15,12 @@
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Teklif Bilgisi</h5>
-            <small class="d-none d-md-block text-muted float-end">Teklif Durumu</small>
+            @*<small class="d-none d-md-block text-muted float-end">Teklif Durumu</small>*@
         </div>
         <div class="card-body">
             <div class="row d-flex justify-content-between">
                 <div class="col-12 col-md-6">
+
                     <div class="card">
                         <div class="card-body m-1">
 
@@ -40,14 +41,14 @@
                             <div class="mb-3">
                                 <h6>
                                     Kaydeden:
-                                    <i class="text-muted">@Model.AddedBy</i>
+                                    <i class="text-muted">@Model.AddedBy.Name</i>
                                 </h6>
                             </div>
 
                             <div class="mb-3">
                                 <h6>
                                     Ana Müşteri:
-                                    <i class="text-muted"></i>
+                                    <i class="text-muted">@Model.Customer.CustomerMainCompany.Name</i>
                                 </h6>
                             </div>
 
@@ -59,7 +60,7 @@
                                         {
                                             if (item.Id == Model.CustomerId)
                                             {
-                                                <option value="@item.Id" data-tokens="@item.Name" selected="selected">@item.Name</option>
+                                                <option value="@item.Id" data-tokens="@item.Name" selected="selected" class="bg-primary">@item.Name</option>
                                             }
                                             else
                                             {
@@ -92,8 +93,29 @@
                                     @*<div id="representetiveUserHelp" class="form-text">Temsilci Seçin</div>*@
                                 </div>
                             </div>
-                            
-                            
+
+                            <div class="mb-3">
+                                <span for="select-RepresentetiveUser" class="col-sm-2 form-control-label">Sipariş Durumu</span>
+                                <div class="col-12">
+                                    <select name="orderState_Id" class="form-control selectpicker" id="select-orderState" data-live-search="true" aria-describedby="representetiveUserHelp" data-container="body">
+                                        @foreach (OrderState item in ViewBag.OrderStates)
+                                        {
+                                            if (item.Id == Model.OrderStateId)
+                                            {
+                                                <option value="@item.Id" data-tokens="@item" selected="selected" class="bg-primary">@item.Name</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Id" data-tokens="@item">@item.Name</option>
+                                            }
+                                        }
+                                    </select>
+
+                                    @*<div id="select-orderState" class="form-text">Temsilci Seçin</div>*@
+                                </div>
+                            </div>
+
+
                             <div class="mb-3">
                                 <span>Sipraiş Kurları</span>
                                 <div id="waitCurrency" class="spinner-border spinner-border-sm text-secondary" role="status">

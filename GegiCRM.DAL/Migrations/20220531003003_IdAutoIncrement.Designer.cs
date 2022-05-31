@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GegiCRM.DAL.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220530013104_currencyCorrection")]
-    partial class currencyCorrection
+    [Migration("20220531003003_IdAutoIncrement")]
+    partial class IdAutoIncrement
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,7 +33,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -47,7 +47,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -62,9 +62,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("Announcements");
                 });
@@ -78,7 +78,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -96,7 +96,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -117,9 +117,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
@@ -134,13 +134,13 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AddedBy = 1,
-                            ConcurrencyStamp = "178382e7-304d-4ec9-b4ef-7ef21d18894c",
-                            CreatedDate = new DateTime(2022, 5, 30, 4, 31, 2, 796, DateTimeKind.Local).AddTicks(6587),
+                            AddedById = 1,
+                            ConcurrencyStamp = "689ebe17-aa3c-4a7e-b6b4-0cda58d43f3f",
+                            CreatedDate = new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1629),
                             Description = "Sistem Admini Full Yetki",
                             IsDeleted = false,
-                            ModifiedBy = 1,
-                            ModifiedDate = new DateTime(2022, 5, 30, 4, 31, 2, 796, DateTimeKind.Local).AddTicks(6587),
+                            ModifiedById = 1,
+                            ModifiedDate = new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1631),
                             Name = "SysAdmin",
                             NormalizedName = "Sistem Admini",
                             RoleGroupId = 1
@@ -156,7 +156,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -171,7 +171,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -189,9 +189,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("AppAuthorizationsRoleGroups");
 
@@ -199,7 +199,7 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AddedBy = 1,
+                            AddedById = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Admin Rollerinin Bulunduğu Grup",
                             IsDeleted = false,
@@ -220,7 +220,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -248,7 +248,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -302,9 +302,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -323,21 +323,21 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            AddedBy = 1,
-                            ConcurrencyStamp = "9b66efec-ab6c-4896-a37f-d52599b96e6f",
-                            CreatedDate = new DateTime(2022, 5, 30, 4, 31, 2, 795, DateTimeKind.Local).AddTicks(6681),
+                            AddedById = 1,
+                            ConcurrencyStamp = "a075532d-8aaf-489c-9903-5b498bb6fa6f",
+                            CreatedDate = new DateTime(2022, 5, 31, 3, 30, 2, 370, DateTimeKind.Local).AddTicks(1314),
                             Email = "yigit.genc@gegi.com.tr",
                             EmailConfirmed = true,
                             IsDeleted = false,
                             LockoutEnabled = false,
-                            ModifiedDate = new DateTime(2022, 5, 30, 4, 31, 2, 795, DateTimeKind.Local).AddTicks(6692),
+                            ModifiedDate = new DateTime(2022, 5, 31, 3, 30, 2, 370, DateTimeKind.Local).AddTicks(1334),
                             Name = "Yiğit",
                             NormalizedEmail = "YIGIT.GENC@GEGI.COM.TR",
                             NormalizedUserName = "ADMINYGT",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPUMcpMXIFI9uCJzZrG7SKw/ITVqw5kPwwaPYzMUG+Xvhw6scDrYl8AVzjH35+XjbQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKiGijO86SQkwfqd30+u8kzaMHXTq1+Jr1p51gMk/j64zsq3wzO+sUB+xT0hJnsxaA==",
                             PhoneNumber = "+905382630008",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "975a3858-83df-4ae1-8229-410e11151c02",
+                            SecurityStamp = "929ecce8-3bf5-47a9-906d-bd5b7cf08871",
                             Surname = "Genç",
                             TwoFactorEnabled = false,
                             UserCompanyId = 1,
@@ -354,7 +354,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<string>("BankDescirption")
@@ -373,7 +373,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -383,9 +383,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("Banks");
                 });
@@ -399,7 +399,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<int>("BankId")
@@ -425,7 +425,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -445,13 +445,13 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("BankId");
 
                     b.HasIndex("CompanyId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("BankInformations");
                 });
@@ -465,7 +465,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -476,7 +476,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -494,9 +494,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("Birims");
                 });
@@ -510,7 +510,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -524,7 +524,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -539,9 +539,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("Brands");
                 });
@@ -555,7 +555,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -581,7 +581,7 @@ namespace GegiCRM.DAL.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -609,13 +609,13 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("CurrencyId");
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("PaymentTypeId");
 
@@ -633,7 +633,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<string>("Code")
@@ -644,13 +644,13 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal?>("CurentValue")
+                    b.Property<decimal?>("CurrentValue")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -662,9 +662,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("Currencies");
 
@@ -672,27 +672,27 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AddedBy = 1,
+                            AddedById = 1,
                             Code = "TRY",
-                            CreatedDate = new DateTime(2022, 5, 30, 4, 31, 2, 796, DateTimeKind.Local).AddTicks(6718),
+                            CreatedDate = new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1695),
                             IsDeleted = false,
                             Name = "Türk Lirası"
                         },
                         new
                         {
                             Id = 2,
-                            AddedBy = 1,
+                            AddedById = 1,
                             Code = "USD",
-                            CreatedDate = new DateTime(2022, 5, 30, 4, 31, 2, 796, DateTimeKind.Local).AddTicks(6732),
+                            CreatedDate = new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1722),
                             IsDeleted = false,
                             Name = "Amerikan Doları"
                         },
                         new
                         {
                             Id = 3,
-                            AddedBy = 1,
+                            AddedById = 1,
                             Code = "EUR",
-                            CreatedDate = new DateTime(2022, 5, 30, 4, 31, 2, 796, DateTimeKind.Local).AddTicks(6734),
+                            CreatedDate = new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1725),
                             IsDeleted = false,
                             Name = "EURO"
                         });
@@ -707,7 +707,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<string>("CariKodu")
@@ -734,7 +734,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -780,11 +780,11 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("CustomerMainCompanyId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("PreferredCurrencyId");
 
@@ -800,7 +800,7 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AddedBy = 1,
+                            AddedById = 1,
                             CariKodu = "123",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CurrencyId = 0,
@@ -825,7 +825,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -839,7 +839,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -852,11 +852,11 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("CustomerActivityLogs");
                 });
@@ -870,7 +870,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
@@ -903,7 +903,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeliveryAddress")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -913,11 +913,11 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("CustomerAddresses");
                 });
@@ -931,7 +931,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<string>("AddressName")
@@ -951,7 +951,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -967,11 +967,11 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("CustomerBillingAddresses");
                 });
@@ -985,7 +985,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<string>("ContactName")
@@ -1021,7 +1021,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -1035,11 +1035,11 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("CustomerContacts");
                 });
@@ -1053,7 +1053,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1068,7 +1068,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -1083,9 +1083,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("CustomerMainCompanies");
 
@@ -1093,7 +1093,7 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AddedBy = 1,
+                            AddedById = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Test Müşterisinin Ana Müşterisi (çatı firma)",
                             IsDeleted = false,
@@ -1110,7 +1110,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1123,7 +1123,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -1140,11 +1140,11 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("UserId");
 
@@ -1160,7 +1160,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1172,7 +1172,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -1185,9 +1185,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("CustomerTypes");
 
@@ -1195,7 +1195,7 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AddedBy = 1,
+                            AddedById = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Bu Müşteri Tipi Tesat Amaçlı Eklenmiştir",
                             IsDeleted = false,
@@ -1212,7 +1212,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1231,7 +1231,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -1241,15 +1241,21 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.DepartmentsOfUser", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<int>("UserId")
                         .HasColumnType("int")
                         .HasColumnName("UserID");
@@ -1258,14 +1264,11 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("DepartmentID");
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -1273,19 +1276,21 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsResponsible")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("UserId", "DepartmentId");
+                    b.HasKey("Id", "UserId", "DepartmentId");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("DepartmentId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("DepartmentsOfUsers");
                 });
@@ -1299,7 +1304,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Amount")
@@ -1337,7 +1342,7 @@ namespace GegiCRM.DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -1353,7 +1358,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("CurrencyId");
 
@@ -1361,7 +1366,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("DepositTypeId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("Deposits");
                 });
@@ -1375,7 +1380,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1389,7 +1394,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -1403,9 +1408,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("DepositRelations");
                 });
@@ -1419,7 +1424,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1433,7 +1438,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -1448,9 +1453,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("DepositTypes");
                 });
@@ -1464,7 +1469,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1496,7 +1501,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -1506,17 +1511,23 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("CuponCurrencyId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("DiscountCupons");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.DiscountCuponsOfCustomer", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<int>("CustomerId")
                         .HasColumnType("int")
                         .HasColumnName("CustomerID");
@@ -1525,7 +1536,7 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("DiscountCuponID");
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("BeginDate")
@@ -1542,13 +1553,10 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<DateTime>("ExpryDate")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -1556,13 +1564,15 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
 
-                    b.HasKey("CustomerId", "DiscountCuponId");
+                    b.HasKey("Id", "CustomerId", "DiscountCuponId");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
+
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("DiscountCuponId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("DiscountCuponsOfCustomers");
                 });
@@ -1576,7 +1586,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1597,7 +1607,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -1611,9 +1621,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("TypeId");
 
@@ -1629,10 +1639,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AddedByNavigationId")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1644,10 +1651,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ModifiedByNavigationId")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -1659,9 +1663,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedByNavigationId");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedByNavigationId");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("DocumentTypes");
                 });
@@ -1675,7 +1679,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1698,7 +1702,7 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -1715,11 +1719,11 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("DepartmentId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("EmailTemplates");
                 });
@@ -1733,7 +1737,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1747,7 +1751,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -1767,9 +1771,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("Expansions");
                 });
@@ -1783,7 +1787,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1813,7 +1817,7 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("MaintenencePeriodID");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -1843,7 +1847,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("CurrencyId");
 
@@ -1853,7 +1857,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("MaintenencePeriodId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("ProductGroupId");
 
@@ -1871,7 +1875,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1885,7 +1889,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -1899,9 +1903,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("MaintenencePeriods");
                 });
@@ -1915,7 +1919,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -1935,7 +1939,7 @@ namespace GegiCRM.DAL.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -1945,9 +1949,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("MarketPlaces");
                 });
@@ -1961,7 +1965,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CancelledDate")
@@ -1997,7 +2001,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsOrderApproved")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -2020,11 +2024,11 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("OrderStateId");
 
@@ -2035,6 +2039,12 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.OrdersCurrency", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<int>("OrderId")
                         .HasColumnType("int")
                         .HasColumnName("OrderID");
@@ -2043,25 +2053,16 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("CurrencyID");
 
-                    b.Property<int>("AddedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AddedByNavigationId")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ModifiedByNavigationId")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -2070,19 +2071,27 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<decimal?>("Value")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("OrderId", "CurrencyId");
+                    b.HasKey("Id", "OrderId", "CurrencyId");
 
-                    b.HasIndex("AddedByNavigationId");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("CurrencyId");
 
-                    b.HasIndex("ModifiedByNavigationId");
+                    b.HasIndex("ModifiedById");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("OrdersCurrencies");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.OrdersProduct", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<int>("OrderId")
                         .HasColumnType("int")
                         .HasColumnName("OrderID");
@@ -2097,7 +2106,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<DateTime?>("AbonelikBitis")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("Adet")
@@ -2114,9 +2123,6 @@ namespace GegiCRM.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -2135,7 +2141,7 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("KesinSupplierID");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -2170,9 +2176,9 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ReferansSupplierID");
 
-                    b.HasKey("OrderId", "ProductId");
+                    b.HasKey("Id", "OrderId", "ProductId");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("BirimId");
 
@@ -2180,7 +2186,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasIndex("KesinSupplierId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
+
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("OrderStateId");
 
@@ -2202,7 +2210,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -2218,7 +2226,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -2233,9 +2241,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("OrderStates");
 
@@ -2243,7 +2251,7 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AddedBy = 1,
+                            AddedById = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Test Açıklama",
                             IsDeleted = false,
@@ -2252,7 +2260,7 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            AddedBy = 1,
+                            AddedById = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Test Açıklama",
                             IsDeleted = false,
@@ -2261,7 +2269,7 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            AddedBy = 1,
+                            AddedById = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Test Açıklama",
                             IsDeleted = false,
@@ -2270,7 +2278,7 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            AddedBy = 1,
+                            AddedById = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Test Açıklama",
                             IsDeleted = false,
@@ -2279,7 +2287,7 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            AddedBy = 1,
+                            AddedById = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Test Açıklama",
                             IsDeleted = false,
@@ -2288,7 +2296,7 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            AddedBy = 1,
+                            AddedById = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Test Açıklama",
                             IsDeleted = false,
@@ -2297,7 +2305,7 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            AddedBy = 1,
+                            AddedById = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Test Açıklama",
                             IsDeleted = false,
@@ -2306,7 +2314,7 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            AddedBy = 1,
+                            AddedById = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Test Açıklama",
                             IsDeleted = false,
@@ -2315,7 +2323,7 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 9,
-                            AddedBy = 1,
+                            AddedById = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Test Açıklama",
                             IsDeleted = false,
@@ -2324,7 +2332,7 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 10,
-                            AddedBy = 1,
+                            AddedById = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Test Açıklama",
                             IsDeleted = false,
@@ -2341,7 +2349,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -2356,7 +2364,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -2370,9 +2378,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("PaymentTypes");
                 });
@@ -2386,7 +2394,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -2402,7 +2410,7 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("float")
                         .HasDefaultValueSql("((18))");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -2431,9 +2439,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("PorductBrandId");
 
@@ -2451,7 +2459,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -2462,7 +2470,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -2484,9 +2492,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("ProductGroupId");
 
@@ -2502,7 +2510,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -2520,7 +2528,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -2530,9 +2538,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("ProductGroups");
                 });
@@ -2546,7 +2554,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<string>("Answer")
@@ -2560,7 +2568,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -2577,9 +2585,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("ProductGroupId");
 
@@ -2595,7 +2603,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -2617,7 +2625,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -2644,11 +2652,11 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("CurrentStateId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("RepresentitveUser");
 
@@ -2664,7 +2672,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -2675,7 +2683,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -2694,9 +2702,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("ReturnAndFaultStates");
                 });
@@ -2710,7 +2718,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -2721,7 +2729,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -2740,9 +2748,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("Rules");
                 });
@@ -2756,7 +2764,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -2771,7 +2779,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -2786,9 +2794,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("Sectors");
 
@@ -2796,7 +2804,7 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AddedBy = 1,
+                            AddedById = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Test Sektör Açıklaması",
                             IsDeleted = false,
@@ -2813,7 +2821,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -2828,7 +2836,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -2843,9 +2851,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("Segments");
 
@@ -2853,8 +2861,8 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 30, 4, 31, 2, 796, DateTimeKind.Local).AddTicks(6775),
+                            AddedById = 1,
+                            CreatedDate = new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1782),
                             Description = "Segment 1 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 1"
@@ -2862,8 +2870,8 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 30, 4, 31, 2, 796, DateTimeKind.Local).AddTicks(6788),
+                            AddedById = 1,
+                            CreatedDate = new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1796),
                             Description = "Segment 2 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 2"
@@ -2871,8 +2879,8 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 30, 4, 31, 2, 796, DateTimeKind.Local).AddTicks(6805),
+                            AddedById = 1,
+                            CreatedDate = new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1809),
                             Description = "Segment 3 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 3"
@@ -2880,8 +2888,8 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 30, 4, 31, 2, 796, DateTimeKind.Local).AddTicks(6807),
+                            AddedById = 1,
+                            CreatedDate = new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1811),
                             Description = "Segment 4 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 4"
@@ -2889,8 +2897,8 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 30, 4, 31, 2, 796, DateTimeKind.Local).AddTicks(6809),
+                            AddedById = 1,
+                            CreatedDate = new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1821),
                             Description = "Segment 5 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 5"
@@ -2898,8 +2906,8 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 30, 4, 31, 2, 796, DateTimeKind.Local).AddTicks(6812),
+                            AddedById = 1,
+                            CreatedDate = new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1824),
                             Description = "Segment 6 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 6"
@@ -2907,8 +2915,8 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 30, 4, 31, 2, 796, DateTimeKind.Local).AddTicks(6814),
+                            AddedById = 1,
+                            CreatedDate = new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1826),
                             Description = "Segment 7 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 7"
@@ -2916,8 +2924,8 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 30, 4, 31, 2, 796, DateTimeKind.Local).AddTicks(6816),
+                            AddedById = 1,
+                            CreatedDate = new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1828),
                             Description = "Segment 8 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 8"
@@ -2925,8 +2933,8 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 9,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 30, 4, 31, 2, 796, DateTimeKind.Local).AddTicks(6817),
+                            AddedById = 1,
+                            CreatedDate = new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1829),
                             Description = "Segment 9 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 9"
@@ -2934,8 +2942,8 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 10,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(2022, 5, 30, 4, 31, 2, 796, DateTimeKind.Local).AddTicks(6819),
+                            AddedById = 1,
+                            CreatedDate = new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1832),
                             Description = "Segment 10 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 10"
@@ -2951,7 +2959,13 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<decimal>("Oran")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("CurrencyID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -2959,25 +2973,19 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
 
-                    b.Property<int>("CurrencyID")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("EndPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
-
-                    b.Property<decimal>("Oran")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("SegmentId")
                         .HasColumnType("int")
@@ -2986,13 +2994,13 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<decimal>("StartPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id", "Oran", "CurrencyID");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("CurrencyID");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("SegmentId");
 
@@ -3002,5760 +3010,5760 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 22.5m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 22.5m,
                             SegmentId = 1,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 2,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 13.5m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 13.5m,
                             SegmentId = 1,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 3,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 11m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 11m,
                             SegmentId = 1,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 4,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.5m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 7.5m,
                             SegmentId = 1,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 5,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 6m,
                             SegmentId = 1,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 6,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.25m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 5.25m,
                             SegmentId = 1,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 7,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 5m,
                             SegmentId = 1,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 8,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.5m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 4.5m,
                             SegmentId = 1,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 9,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 4m,
                             SegmentId = 1,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 10,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.38m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 3.38m,
                             SegmentId = 1,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 11,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 3m,
                             SegmentId = 1,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 12,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 3m,
                             SegmentId = 1,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 13,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 2m,
                             SegmentId = 1,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 14,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.88m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 1.88m,
                             SegmentId = 1,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 15,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 2m,
                             SegmentId = 1,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 16,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.5m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 1.5m,
                             SegmentId = 1,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 17,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 27m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 27m,
                             SegmentId = 2,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 18,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 16.2m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 16.2m,
                             SegmentId = 2,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 19,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 126.6m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 126.6m,
                             SegmentId = 2,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 20,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 9m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 9m,
                             SegmentId = 2,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 21,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.2m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 7.2m,
                             SegmentId = 2,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 22,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.3m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 6.3m,
                             SegmentId = 2,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 23,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.85m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 5.85m,
                             SegmentId = 2,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 24,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.4m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 5.4m,
                             SegmentId = 2,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 25,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.5m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 4.5m,
                             SegmentId = 2,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 26,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.05m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 4.05m,
                             SegmentId = 2,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 27,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.78m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 3.78m,
                             SegmentId = 2,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 28,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.6m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 3.6m,
                             SegmentId = 2,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 29,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.7m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 2.7m,
                             SegmentId = 2,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 30,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.25m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 2.25m,
                             SegmentId = 2,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 31,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.98m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 1.98m,
                             SegmentId = 2,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 32,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.8m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 1.8m,
                             SegmentId = 2,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 33,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 32.4m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 32.4m,
                             SegmentId = 3,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 34,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 19.44m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 19.44m,
                             SegmentId = 3,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 35,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 15.12m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 15.12m,
                             SegmentId = 3,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 36,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 10.8m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 10.8m,
                             SegmentId = 3,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 37,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.64m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 8.64m,
                             SegmentId = 3,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 38,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.56m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 7.56m,
                             SegmentId = 3,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 39,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.02m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 7.02m,
                             SegmentId = 3,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 40,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.48m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 6.48m,
                             SegmentId = 3,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 41,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.4m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 5.4m,
                             SegmentId = 3,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 42,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.86m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 4.86m,
                             SegmentId = 3,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 43,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.54m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 4.54m,
                             SegmentId = 3,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 44,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.32m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 4.32m,
                             SegmentId = 3,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 45,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.24m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 3.24m,
                             SegmentId = 3,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 46,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.7m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 2.7m,
                             SegmentId = 3,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 47,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.38m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 2.38m,
                             SegmentId = 3,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 48,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.16m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 2.16m,
                             SegmentId = 3,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 49,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 38.88m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 38.88m,
                             SegmentId = 4,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 50,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 23.33m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 23.33m,
                             SegmentId = 4,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 51,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 18.14m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 18.14m,
                             SegmentId = 4,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 52,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 12.96m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 12.96m,
                             SegmentId = 4,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 53,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 10.37m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 10.37m,
                             SegmentId = 4,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 54,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 9.07m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 9.07m,
                             SegmentId = 4,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 55,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.42m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 8.42m,
                             SegmentId = 4,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 56,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.78m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 7.78m,
                             SegmentId = 4,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 57,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.48m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 6.48m,
                             SegmentId = 4,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 58,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.83m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 5.83m,
                             SegmentId = 4,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 59,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.44m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 5.44m,
                             SegmentId = 4,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 60,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.18m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 5.18m,
                             SegmentId = 4,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 61,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.89m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 3.89m,
                             SegmentId = 4,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 62,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.24m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 3.24m,
                             SegmentId = 4,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 63,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.85m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 2.85m,
                             SegmentId = 4,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 64,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.59m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 2.59m,
                             SegmentId = 4,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 65,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 46.66m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 46.66m,
                             SegmentId = 5,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 66,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 27.99m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 27.99m,
                             SegmentId = 5,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 67,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 21.77m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 21.77m,
                             SegmentId = 5,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 68,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 15.55m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 15.55m,
                             SegmentId = 5,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 69,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 12.44m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 12.44m,
                             SegmentId = 5,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 70,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 10.89m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 10.89m,
                             SegmentId = 5,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 71,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 10.11m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 10.11m,
                             SegmentId = 5,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 72,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 9.33m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 9.33m,
                             SegmentId = 5,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 73,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.78m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 7.78m,
                             SegmentId = 5,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 74,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 7m,
                             SegmentId = 5,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 75,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.53m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 6.53m,
                             SegmentId = 5,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 76,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.22m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 6.22m,
                             SegmentId = 5,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 77,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.67m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 4.67m,
                             SegmentId = 5,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 78,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.89m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 3.89m,
                             SegmentId = 5,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 79,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.42m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 3.42m,
                             SegmentId = 5,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 80,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.11m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 3.11m,
                             SegmentId = 5,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 81,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 55.99m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 55.99m,
                             SegmentId = 6,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 82,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 33.59m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 33.59m,
                             SegmentId = 6,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 83,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 26.13m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 26.13m,
                             SegmentId = 6,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 84,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 18.66m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 18.66m,
                             SegmentId = 6,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 85,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 14.93m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 14.93m,
                             SegmentId = 6,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 86,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 13.06m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 13.06m,
                             SegmentId = 6,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 87,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 12.13m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 12.13m,
                             SegmentId = 6,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 88,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 11.2m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 11.2m,
                             SegmentId = 6,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 89,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 9.33m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 9.33m,
                             SegmentId = 6,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 90,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.4m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 8.4m,
                             SegmentId = 6,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 91,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.84m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 7.84m,
                             SegmentId = 6,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 92,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.46m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 7.46m,
                             SegmentId = 6,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 93,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.6m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 5.6m,
                             SegmentId = 6,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 94,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.67m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 4.67m,
                             SegmentId = 6,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 95,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.11m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 4.11m,
                             SegmentId = 6,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 96,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.73m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 3.73m,
                             SegmentId = 6,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 97,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 67.18m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 67.18m,
                             SegmentId = 7,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 98,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 40.31m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 40.31m,
                             SegmentId = 7,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 99,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 31.35m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 31.35m,
                             SegmentId = 7,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 100,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 22.39m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 22.39m,
                             SegmentId = 7,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 101,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 17.92m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 17.92m,
                             SegmentId = 7,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 102,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 15.68m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 15.68m,
                             SegmentId = 7,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 103,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 14.56m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 14.56m,
                             SegmentId = 7,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 104,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 13.44m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 13.44m,
                             SegmentId = 7,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 105,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 11.2m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 11.2m,
                             SegmentId = 7,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 106,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 10.08m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 10.08m,
                             SegmentId = 7,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 107,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 9.41m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 9.41m,
                             SegmentId = 7,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 108,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.96m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 8.96m,
                             SegmentId = 7,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 109,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.72m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 6.72m,
                             SegmentId = 7,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 110,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.6m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 5.6m,
                             SegmentId = 7,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 111,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.93m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 4.93m,
                             SegmentId = 7,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 112,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.48m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 4.48m,
                             SegmentId = 7,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 113,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 80.62m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 80.62m,
                             SegmentId = 8,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 114,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 48.37m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 48.37m,
                             SegmentId = 8,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 115,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 37.62m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 37.62m,
                             SegmentId = 8,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 116,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 26.87m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 26.87m,
                             SegmentId = 8,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 117,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 21.5m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 21.5m,
                             SegmentId = 8,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 118,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 18.81m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 18.81m,
                             SegmentId = 8,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 119,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 17.47m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 17.47m,
                             SegmentId = 8,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 120,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 16.12m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 16.12m,
                             SegmentId = 8,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 121,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 13.44m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 13.44m,
                             SegmentId = 8,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 122,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 12.09m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 12.09m,
                             SegmentId = 8,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 123,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 11.29m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 11.29m,
                             SegmentId = 8,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 124,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 10.75m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 10.75m,
                             SegmentId = 8,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 125,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.06m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 8.06m,
                             SegmentId = 8,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 126,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.72m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 6.72m,
                             SegmentId = 8,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 127,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.91m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 5.91m,
                             SegmentId = 8,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 128,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.37m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 5.37m,
                             SegmentId = 8,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 129,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 96.75m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 96.75m,
                             SegmentId = 9,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 130,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 58.05m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 58.05m,
                             SegmentId = 9,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 131,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 45.15m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 45.15m,
                             SegmentId = 9,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 132,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 32.25m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 32.25m,
                             SegmentId = 9,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 133,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 25.8m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 25.8m,
                             SegmentId = 9,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 134,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 22.57m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 22.57m,
                             SegmentId = 9,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 135,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 20.96m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 20.96m,
                             SegmentId = 9,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 136,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 19.35m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 19.35m,
                             SegmentId = 9,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 137,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 16.12m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 16.12m,
                             SegmentId = 9,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 138,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 14.51m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 14.51m,
                             SegmentId = 9,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 139,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 13.54m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 13.54m,
                             SegmentId = 9,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 140,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 12.9m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 12.9m,
                             SegmentId = 9,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 141,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 9.67m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 9.67m,
                             SegmentId = 9,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 142,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.06m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 8.06m,
                             SegmentId = 9,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 143,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 7m,
                             SegmentId = 9,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 144,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.45m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 6.45m,
                             SegmentId = 9,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 145,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 116.1m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 116.1m,
                             SegmentId = 10,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 146,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 72.56m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 72.56m,
                             SegmentId = 10,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 147,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 58.69m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 58.69m,
                             SegmentId = 10,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 148,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 43.54m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 43.54m,
                             SegmentId = 10,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 149,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 36.12m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 36.12m,
                             SegmentId = 10,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 150,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 32.73m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 32.73m,
                             SegmentId = 10,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 151,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 31.44m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 31.44m,
                             SegmentId = 10,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 152,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 29.99m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 29.99m,
                             SegmentId = 10,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 153,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 25.8m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 25.8m,
                             SegmentId = 10,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 154,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 23.94m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 23.94m,
                             SegmentId = 10,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 155,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 23.03m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 23.03m,
                             SegmentId = 10,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 156,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 22.57m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 22.57m,
                             SegmentId = 10,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 157,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 17.41m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 17.41m,
                             SegmentId = 10,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 158,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 14.91m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 14.91m,
                             SegmentId = 10,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 159,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 13.48m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 13.48m,
                             SegmentId = 10,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 160,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 12.58m,
                             CurrencyID = 1,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 12.58m,
                             SegmentId = 10,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 161,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 15m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 15m,
                             SegmentId = 1,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 162,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 9m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 9m,
                             SegmentId = 1,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 163,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 7m,
                             SegmentId = 1,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 164,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 5m,
                             SegmentId = 1,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 165,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 4m,
                             SegmentId = 1,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 166,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.5m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 3.5m,
                             SegmentId = 1,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 167,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.25m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 3.25m,
                             SegmentId = 1,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 168,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 3m,
                             SegmentId = 1,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 169,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.5m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 2.5m,
                             SegmentId = 1,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 170,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.25m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 2.25m,
                             SegmentId = 1,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 171,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.1m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 2.1m,
                             SegmentId = 1,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 172,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 2m,
                             SegmentId = 1,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 173,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.5m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 1.5m,
                             SegmentId = 1,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 174,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.25m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 1.25m,
                             SegmentId = 1,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 175,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.1m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 1.1m,
                             SegmentId = 1,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 176,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 1m,
                             SegmentId = 1,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 177,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 18m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 18m,
                             SegmentId = 2,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 178,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 10.8m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 10.8m,
                             SegmentId = 2,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 179,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.4m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 8.4m,
                             SegmentId = 2,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 180,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 6m,
                             SegmentId = 2,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 181,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.8m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 4.8m,
                             SegmentId = 2,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 182,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.2m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 4.2m,
                             SegmentId = 2,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 183,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.9m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 3.9m,
                             SegmentId = 2,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 184,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.6m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 3.6m,
                             SegmentId = 2,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 185,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 3m,
                             SegmentId = 2,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 186,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.7m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 2.7m,
                             SegmentId = 2,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 187,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.52m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 2.52m,
                             SegmentId = 2,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 188,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.4m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 2.4m,
                             SegmentId = 2,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 189,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.8m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 1.8m,
                             SegmentId = 2,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 190,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.5m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 1.5m,
                             SegmentId = 2,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 191,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.32m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 1.32m,
                             SegmentId = 2,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 192,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.2m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 1.2m,
                             SegmentId = 2,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 193,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 21.6m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 21.6m,
                             SegmentId = 3,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 194,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 12.96m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 12.96m,
                             SegmentId = 3,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 195,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 10.08m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 10.08m,
                             SegmentId = 3,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 196,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.2m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 7.2m,
                             SegmentId = 3,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 197,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.76m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 5.76m,
                             SegmentId = 3,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 198,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.04m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 5.04m,
                             SegmentId = 3,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 199,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.68m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 4.68m,
                             SegmentId = 3,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 200,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.32m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 4.32m,
                             SegmentId = 3,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 201,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.6m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 3.6m,
                             SegmentId = 3,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 202,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.24m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 3.24m,
                             SegmentId = 3,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 203,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.02m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 3.02m,
                             SegmentId = 3,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 204,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.88m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 2.88m,
                             SegmentId = 3,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 205,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.16m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 2.16m,
                             SegmentId = 3,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 206,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.8m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 1.8m,
                             SegmentId = 3,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 207,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.58m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 1.58m,
                             SegmentId = 3,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 208,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.44m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 1.44m,
                             SegmentId = 3,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 209,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 25.92m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 25.92m,
                             SegmentId = 4,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 210,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 15.55m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 15.55m,
                             SegmentId = 4,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 211,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 12.1m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 12.1m,
                             SegmentId = 4,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 212,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.64m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 8.64m,
                             SegmentId = 4,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 213,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.91m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 6.91m,
                             SegmentId = 4,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 214,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.05m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 6.05m,
                             SegmentId = 4,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 215,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.62m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 5.62m,
                             SegmentId = 4,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 216,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.18m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 5.18m,
                             SegmentId = 4,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 217,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.32m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 4.32m,
                             SegmentId = 4,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 218,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.89m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 3.89m,
                             SegmentId = 4,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 219,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.63m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 3.63m,
                             SegmentId = 4,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 220,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.46m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 3.46m,
                             SegmentId = 4,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 221,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.59m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 2.59m,
                             SegmentId = 4,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 222,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.16m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 2.16m,
                             SegmentId = 4,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 223,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.9m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 1.9m,
                             SegmentId = 4,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 224,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.73m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 1.73m,
                             SegmentId = 4,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 225,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 31.1m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 31.1m,
                             SegmentId = 5,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 226,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 18.66m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 18.66m,
                             SegmentId = 5,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 227,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 14.52m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 14.52m,
                             SegmentId = 5,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 228,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 10.37m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 10.37m,
                             SegmentId = 5,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 229,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.29m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 8.29m,
                             SegmentId = 5,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 230,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.26m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 7.26m,
                             SegmentId = 5,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 231,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.74m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 6.74m,
                             SegmentId = 5,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 232,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.22m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 6.22m,
                             SegmentId = 5,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 233,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.18m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 5.18m,
                             SegmentId = 5,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 234,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.67m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 4.67m,
                             SegmentId = 5,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 235,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.35m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 4.35m,
                             SegmentId = 5,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 236,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.15m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 4.15m,
                             SegmentId = 5,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 237,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.11m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 3.11m,
                             SegmentId = 5,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 238,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.59m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 2.59m,
                             SegmentId = 5,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 239,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.28m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 2.28m,
                             SegmentId = 5,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 240,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.07m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 2.07m,
                             SegmentId = 5,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 241,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 37.32m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 37.32m,
                             SegmentId = 6,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 242,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 22.39m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 22.39m,
                             SegmentId = 6,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 243,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 17.42m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 17.42m,
                             SegmentId = 6,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 244,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 12.44m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 12.44m,
                             SegmentId = 6,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 245,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 9.95m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 9.95m,
                             SegmentId = 6,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 246,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.71m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 8.71m,
                             SegmentId = 6,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 247,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.09m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 8.09m,
                             SegmentId = 6,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 248,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.46m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 7.46m,
                             SegmentId = 6,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 249,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.22m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 6.22m,
                             SegmentId = 6,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 250,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.6m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 5.6m,
                             SegmentId = 6,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 251,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.23m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 5.23m,
                             SegmentId = 6,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 252,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.98m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 4.98m,
                             SegmentId = 6,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 253,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.73m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 3.73m,
                             SegmentId = 6,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 254,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.11m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 3.11m,
                             SegmentId = 6,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 255,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.74m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 2.74m,
                             SegmentId = 6,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 256,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.49m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 2.49m,
                             SegmentId = 6,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 257,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 44.79m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 44.79m,
                             SegmentId = 7,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 258,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 26.87m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 26.87m,
                             SegmentId = 7,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 259,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 20.9m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 20.9m,
                             SegmentId = 7,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 260,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 14.93m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 14.93m,
                             SegmentId = 7,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 261,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 11.94m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 11.94m,
                             SegmentId = 7,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 262,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 10.45m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 10.45m,
                             SegmentId = 7,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 263,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 9.7m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 9.7m,
                             SegmentId = 7,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 264,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.96m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 8.96m,
                             SegmentId = 7,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 265,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.46m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 7.46m,
                             SegmentId = 7,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 266,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.72m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 6.72m,
                             SegmentId = 7,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 267,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.27m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 6.27m,
                             SegmentId = 7,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 268,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.97m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 5.97m,
                             SegmentId = 7,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 269,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.48m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 4.48m,
                             SegmentId = 7,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 270,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.73m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 3.73m,
                             SegmentId = 7,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 271,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.28m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 3.28m,
                             SegmentId = 7,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 272,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.99m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 2.99m,
                             SegmentId = 7,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 273,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 53.75m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 53.75m,
                             SegmentId = 8,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 274,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 32.25m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 32.25m,
                             SegmentId = 8,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 275,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 25.08m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 25.08m,
                             SegmentId = 8,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 276,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 17.92m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 17.92m,
                             SegmentId = 8,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 277,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 14.33m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 14.33m,
                             SegmentId = 8,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 278,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 12.54m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 12.54m,
                             SegmentId = 8,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 279,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 11.65m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 11.65m,
                             SegmentId = 8,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 280,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 10.75m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 10.75m,
                             SegmentId = 8,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 281,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.96m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 8.96m,
                             SegmentId = 8,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 282,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.06m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 8.06m,
                             SegmentId = 8,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 283,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.52m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 7.52m,
                             SegmentId = 8,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 284,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.17m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 7.17m,
                             SegmentId = 8,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 285,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.37m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 5.37m,
                             SegmentId = 8,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 286,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.48m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 4.48m,
                             SegmentId = 8,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 287,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.94m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 3.94m,
                             SegmentId = 8,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 288,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.58m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 3.58m,
                             SegmentId = 8,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 289,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 64.5m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 64.5m,
                             SegmentId = 9,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 290,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 38.7m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 38.7m,
                             SegmentId = 9,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 291,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 30.1m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 30.1m,
                             SegmentId = 9,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 292,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 21.5m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 21.5m,
                             SegmentId = 9,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 293,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 17.2m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 17.2m,
                             SegmentId = 9,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 294,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 15.05m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 15.05m,
                             SegmentId = 9,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 295,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 13.97m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 13.97m,
                             SegmentId = 9,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 296,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 12.9m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 12.9m,
                             SegmentId = 9,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 297,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 10.75m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 10.75m,
                             SegmentId = 9,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 298,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 9.67m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 9.67m,
                             SegmentId = 9,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 299,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 9.03m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 9.03m,
                             SegmentId = 9,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 300,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.6m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 8.6m,
                             SegmentId = 9,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 301,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.45m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 6.45m,
                             SegmentId = 9,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 302,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.37m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 5.37m,
                             SegmentId = 9,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 303,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.73m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 4.73m,
                             SegmentId = 9,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 304,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.3m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 4.3m,
                             SegmentId = 9,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 305,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 77.4m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 77.4m,
                             SegmentId = 10,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 306,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 48.37m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 48.37m,
                             SegmentId = 10,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 307,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 39.13m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 39.13m,
                             SegmentId = 10,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 308,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 29.02m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 29.02m,
                             SegmentId = 10,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 309,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 24.08m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 24.08m,
                             SegmentId = 10,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 310,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 21.82m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 21.82m,
                             SegmentId = 10,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 311,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 20.96m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 20.96m,
                             SegmentId = 10,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 312,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 19.99m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 19.99m,
                             SegmentId = 10,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 313,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 17.2m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 17.2m,
                             SegmentId = 10,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 314,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 15.96m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 15.96m,
                             SegmentId = 10,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 315,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 15.35m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 15.35m,
                             SegmentId = 10,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 316,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 15.05m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 15.05m,
                             SegmentId = 10,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 317,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 11.61m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 11.61m,
                             SegmentId = 10,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 318,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 9.94m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 9.94m,
                             SegmentId = 10,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 319,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.99m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 8.99m,
                             SegmentId = 10,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 320,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.96m,
                             CurrencyID = 2,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 5.96m,
                             SegmentId = 10,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 321,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 13.5m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 13.5m,
                             SegmentId = 1,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 322,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.1m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 8.1m,
                             SegmentId = 1,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 323,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.3m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 6.3m,
                             SegmentId = 1,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 324,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.5m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 4.5m,
                             SegmentId = 1,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 325,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.6m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 3.6m,
                             SegmentId = 1,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 326,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.15m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 3.15m,
                             SegmentId = 1,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 327,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.93m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 2.93m,
                             SegmentId = 1,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 328,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.7m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 2.7m,
                             SegmentId = 1,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 329,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.25m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 2.25m,
                             SegmentId = 1,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 330,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.03m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 2.03m,
                             SegmentId = 1,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 331,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.89m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 1.89m,
                             SegmentId = 1,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 332,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.8m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 1.8m,
                             SegmentId = 1,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 333,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.35m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 1.35m,
                             SegmentId = 1,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 334,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.13m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 1.13m,
                             SegmentId = 1,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 335,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 0.99m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 0.99m,
                             SegmentId = 1,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 336,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 0.9m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 0.9m,
                             SegmentId = 1,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 337,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 16.2m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 16.2m,
                             SegmentId = 2,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 338,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 9.72m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 9.72m,
                             SegmentId = 2,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 339,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.56m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 7.56m,
                             SegmentId = 2,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 340,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.4m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 5.4m,
                             SegmentId = 2,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 341,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.32m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 4.32m,
                             SegmentId = 2,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 342,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.78m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 3.78m,
                             SegmentId = 2,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 343,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.51m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 3.51m,
                             SegmentId = 2,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 344,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.24m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 3.24m,
                             SegmentId = 2,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 345,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.7m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 2.7m,
                             SegmentId = 2,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 346,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.43m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 2.43m,
                             SegmentId = 2,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 347,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.27m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 2.27m,
                             SegmentId = 2,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 348,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.16m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 2.16m,
                             SegmentId = 2,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 349,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.62m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 1.62m,
                             SegmentId = 2,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 350,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.35m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 1.35m,
                             SegmentId = 2,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 351,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.19m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 1.19m,
                             SegmentId = 2,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 352,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.08m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 1.08m,
                             SegmentId = 2,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 353,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 19.44m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 19.44m,
                             SegmentId = 3,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 354,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 11.66m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 11.66m,
                             SegmentId = 3,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 355,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 9.07m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 9.07m,
                             SegmentId = 3,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 356,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.48m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 6.48m,
                             SegmentId = 3,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 357,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.18m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 5.18m,
                             SegmentId = 3,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 358,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.54m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 4.54m,
                             SegmentId = 3,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 359,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.21m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 4.21m,
                             SegmentId = 3,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 360,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.89m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 3.89m,
                             SegmentId = 3,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 361,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.24m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 3.24m,
                             SegmentId = 3,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 362,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.92m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 2.92m,
                             SegmentId = 3,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 363,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.72m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 2.72m,
                             SegmentId = 3,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 364,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.59m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 2.59m,
                             SegmentId = 3,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 365,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.94m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 1.94m,
                             SegmentId = 3,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 366,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.62m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 1.62m,
                             SegmentId = 3,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 367,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.43m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 1.43m,
                             SegmentId = 3,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 368,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.3m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 1.3m,
                             SegmentId = 3,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 369,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 23.33m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 23.33m,
                             SegmentId = 4,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 370,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 14m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 14m,
                             SegmentId = 4,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 371,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 10.89m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 10.89m,
                             SegmentId = 4,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 372,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.78m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 7.78m,
                             SegmentId = 4,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 373,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.22m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 6.22m,
                             SegmentId = 4,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 374,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.44m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 5.44m,
                             SegmentId = 4,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 375,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.05m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 5.05m,
                             SegmentId = 4,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 376,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.67m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 4.67m,
                             SegmentId = 4,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 377,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.89m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 3.89m,
                             SegmentId = 4,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 378,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.5m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 3.5m,
                             SegmentId = 4,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 379,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.27m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 3.27m,
                             SegmentId = 4,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 380,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.11m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 3.11m,
                             SegmentId = 4,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 381,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.33m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 2.33m,
                             SegmentId = 4,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 382,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.9m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 1.9m,
                             SegmentId = 4,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 383,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.71m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 1.71m,
                             SegmentId = 4,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 384,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.56m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 1.56m,
                             SegmentId = 4,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 385,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 27.99m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 27.99m,
                             SegmentId = 5,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 386,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 16.8m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 16.8m,
                             SegmentId = 5,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 387,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 13.06m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 13.06m,
                             SegmentId = 5,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 388,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 9.33m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 9.33m,
                             SegmentId = 5,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 389,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.46m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 7.46m,
                             SegmentId = 5,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 390,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.53m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 6.53m,
                             SegmentId = 5,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 391,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.07m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 6.07m,
                             SegmentId = 5,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 392,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.6m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 5.6m,
                             SegmentId = 5,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 393,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.67m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 4.67m,
                             SegmentId = 5,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 394,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.2m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 4.2m,
                             SegmentId = 5,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 395,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.92m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 3.92m,
                             SegmentId = 5,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 396,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.73m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 3.73m,
                             SegmentId = 5,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 397,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.8m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 2.8m,
                             SegmentId = 5,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 398,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.33m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 2.33m,
                             SegmentId = 5,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 399,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.05m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 2.05m,
                             SegmentId = 5,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 400,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 1.87m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 1.87m,
                             SegmentId = 5,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 401,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 33.59m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 33.59m,
                             SegmentId = 6,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 402,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 20.16m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 20.16m,
                             SegmentId = 6,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 403,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 15.68m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 15.68m,
                             SegmentId = 6,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 404,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 11.2m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 11.2m,
                             SegmentId = 6,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 405,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.96m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 8.96m,
                             SegmentId = 6,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 406,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.84m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 7.84m,
                             SegmentId = 6,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 407,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.28m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 7.28m,
                             SegmentId = 6,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 408,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.72m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 6.72m,
                             SegmentId = 6,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 409,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.6m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 5.6m,
                             SegmentId = 6,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 410,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.04m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 5.04m,
                             SegmentId = 6,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 411,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.7m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 4.7m,
                             SegmentId = 6,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 412,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.48m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 4.48m,
                             SegmentId = 6,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 413,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.36m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 3.36m,
                             SegmentId = 6,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 414,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.8m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 2.8m,
                             SegmentId = 6,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 415,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.46m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 2.46m,
                             SegmentId = 6,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 416,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.24m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 2.24m,
                             SegmentId = 6,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 417,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 40.31m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 40.31m,
                             SegmentId = 7,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 418,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 24.19m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 24.19m,
                             SegmentId = 7,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 419,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 18.81m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 18.81m,
                             SegmentId = 7,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 420,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 13.44m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 13.44m,
                             SegmentId = 7,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 421,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 10.75m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 10.75m,
                             SegmentId = 7,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 422,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 9.41m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 9.41m,
                             SegmentId = 7,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 423,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.73m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 8.73m,
                             SegmentId = 7,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 424,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.06m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 8.06m,
                             SegmentId = 7,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 425,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.72m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 6.72m,
                             SegmentId = 7,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 426,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.05m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 6.05m,
                             SegmentId = 7,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 427,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.64m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 5.64m,
                             SegmentId = 7,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 428,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.37m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 5.37m,
                             SegmentId = 7,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 429,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.03m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 4.03m,
                             SegmentId = 7,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 430,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.36m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 3.36m,
                             SegmentId = 7,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 431,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.96m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 2.96m,
                             SegmentId = 7,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 432,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 2.69m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 2.69m,
                             SegmentId = 7,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 433,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 48.37m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 48.37m,
                             SegmentId = 8,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 434,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 29.02m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 29.02m,
                             SegmentId = 8,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 435,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 22.57m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 22.57m,
                             SegmentId = 8,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 436,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 16.12m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 16.12m,
                             SegmentId = 8,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 437,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 12.9m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 12.9m,
                             SegmentId = 8,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 438,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 11.29m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 11.29m,
                             SegmentId = 8,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 439,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 10.48m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 10.48m,
                             SegmentId = 8,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 440,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 9.67m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 9.67m,
                             SegmentId = 8,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 441,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.06m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 8.06m,
                             SegmentId = 8,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 442,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.26m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 7.26m,
                             SegmentId = 8,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 443,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.77m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 6.77m,
                             SegmentId = 8,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 444,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 6.45m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 6.45m,
                             SegmentId = 8,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 445,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.84m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 4.84m,
                             SegmentId = 8,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 446,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.03m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 4.03m,
                             SegmentId = 8,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 447,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.55m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 3.55m,
                             SegmentId = 8,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 448,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.22m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 3.22m,
                             SegmentId = 8,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 449,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 58.05m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 58.05m,
                             SegmentId = 9,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 450,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 34.83m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 34.83m,
                             SegmentId = 9,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 451,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 27.09m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 27.09m,
                             SegmentId = 9,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 452,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 19.35m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 19.35m,
                             SegmentId = 9,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 453,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 15.48m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 15.48m,
                             SegmentId = 9,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 454,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 13.54m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 13.54m,
                             SegmentId = 9,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 455,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 12.58m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 12.58m,
                             SegmentId = 9,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 456,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 11.61m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 11.61m,
                             SegmentId = 9,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 457,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 9.67m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 9.67m,
                             SegmentId = 9,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 458,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.71m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 8.71m,
                             SegmentId = 9,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 459,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.13m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 8.13m,
                             SegmentId = 9,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 460,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.74m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 7.74m,
                             SegmentId = 9,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 461,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 5.8m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 5.8m,
                             SegmentId = 9,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 462,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.84m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 4.84m,
                             SegmentId = 9,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 463,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 4.26m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 4.26m,
                             SegmentId = 9,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 464,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 3.87m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 3.87m,
                             SegmentId = 9,
                             StartPrice = 1000000.00m
                         },
                         new
                         {
                             Id = 465,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 69.66m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 49.99m,
                             IsDeleted = false,
-                            Oran = 69.66m,
                             SegmentId = 10,
                             StartPrice = 0.00m
                         },
                         new
                         {
                             Id = 466,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 43.54m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 199.99m,
                             IsDeleted = false,
-                            Oran = 43.54m,
                             SegmentId = 10,
                             StartPrice = 50.00m
                         },
                         new
                         {
                             Id = 467,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 35.22m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499.99m,
                             IsDeleted = false,
-                            Oran = 35.22m,
                             SegmentId = 10,
                             StartPrice = 200.00m
                         },
                         new
                         {
                             Id = 468,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 26.12m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999.99m,
                             IsDeleted = false,
-                            Oran = 26.12m,
                             SegmentId = 10,
                             StartPrice = 500.00m
                         },
                         new
                         {
                             Id = 469,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 21.67m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 2499.99m,
                             IsDeleted = false,
-                            Oran = 21.67m,
                             SegmentId = 10,
                             StartPrice = 1000.00m
                         },
                         new
                         {
                             Id = 470,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 19.64m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 4999.99m,
                             IsDeleted = false,
-                            Oran = 19.64m,
                             SegmentId = 10,
                             StartPrice = 2500.00m
                         },
                         new
                         {
                             Id = 471,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 18.87m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 9999.99m,
                             IsDeleted = false,
-                            Oran = 18.87m,
                             SegmentId = 10,
                             StartPrice = 5000.00m
                         },
                         new
                         {
                             Id = 472,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 17.99m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 19999.99m,
                             IsDeleted = false,
-                            Oran = 17.99m,
                             SegmentId = 10,
                             StartPrice = 10000.00m
                         },
                         new
                         {
                             Id = 473,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 15.48m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 39999.99m,
                             IsDeleted = false,
-                            Oran = 15.48m,
                             SegmentId = 10,
                             StartPrice = 20000.00m
                         },
                         new
                         {
                             Id = 474,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 14.37m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 74999.99m,
                             IsDeleted = false,
-                            Oran = 14.37m,
                             SegmentId = 10,
                             StartPrice = 40000.00m
                         },
                         new
                         {
                             Id = 475,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 13.82m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999.99m,
                             IsDeleted = false,
-                            Oran = 13.82m,
                             SegmentId = 10,
                             StartPrice = 75000.00m
                         },
                         new
                         {
                             Id = 476,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 13.54m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 149999.99m,
                             IsDeleted = false,
-                            Oran = 13.54m,
                             SegmentId = 10,
                             StartPrice = 100000.00m
                         },
                         new
                         {
                             Id = 477,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 10.45m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 249999.99m,
                             IsDeleted = false,
-                            Oran = 10.45m,
                             SegmentId = 10,
                             StartPrice = 150000.00m
                         },
                         new
                         {
                             Id = 478,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.05m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 499999.99m,
                             IsDeleted = false,
-                            Oran = 8.05m,
                             SegmentId = 10,
                             StartPrice = 250000.00m
                         },
                         new
                         {
                             Id = 479,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 8.09m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 999999.99m,
                             IsDeleted = false,
-                            Oran = 8.09m,
                             SegmentId = 10,
                             StartPrice = 500000.00m
                         },
                         new
                         {
                             Id = 480,
-                            AddedBy = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Oran = 7.55m,
                             CurrencyID = 3,
+                            AddedById = 1,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EndPrice = 99999999.99m,
                             IsDeleted = false,
-                            Oran = 7.55m,
                             SegmentId = 10,
                             StartPrice = 1000000.00m
                         });
@@ -8770,7 +8778,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -8791,7 +8799,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsSell")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -8812,11 +8820,11 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("CurrentStepId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("SabcategoryId");
 
@@ -8832,7 +8840,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<string>("CategoryDescription")
@@ -8851,7 +8859,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -8861,9 +8869,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("SellsAndBuysCategories");
                 });
@@ -8877,7 +8885,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -8891,7 +8899,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsSell")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -8915,9 +8923,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("SabcategoryId");
 
@@ -8933,7 +8941,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -8947,7 +8955,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -8962,9 +8970,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("ServicePlaces");
                 });
@@ -8978,7 +8986,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -8992,7 +9000,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -9007,9 +9015,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("ServiceReasons");
                 });
@@ -9023,7 +9031,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<string>("ArizaTanimi")
@@ -9041,7 +9049,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -9081,11 +9089,11 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("ServicePersonalUser");
 
@@ -9107,7 +9115,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -9121,7 +9129,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -9136,9 +9144,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("ServiceTypes");
                 });
@@ -9152,10 +9160,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AddedByNavigationId")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<int>("CompanyId")
@@ -9171,10 +9176,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ModifiedByNavigationId")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -9187,11 +9189,11 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedByNavigationId");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("CompanyId");
 
-                    b.HasIndex("ModifiedByNavigationId");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("ShippingDeals");
                 });
@@ -9205,7 +9207,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -9223,7 +9225,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<DateTime?>("LastContactDate")
                         .HasColumnType("datetime");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -9245,9 +9247,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("Suppliers");
 
@@ -9255,7 +9257,7 @@ namespace GegiCRM.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AddedBy = 1,
+                            AddedById = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DealerCode = "123",
                             IsDeleted = false,
@@ -9272,10 +9274,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AddedByNavigationId")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("ArizaKargoUcreti")
@@ -9326,10 +9325,7 @@ namespace GegiCRM.DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("ModifiedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ModifiedByNavigationId")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -9371,11 +9367,11 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedByNavigationId");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("CurrencyId");
 
-                    b.HasIndex("ModifiedByNavigationId");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("SupplierId");
 
@@ -9391,7 +9387,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -9406,7 +9402,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -9421,9 +9417,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("SupplierPaymentStates");
                 });
@@ -9437,7 +9433,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -9458,7 +9454,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -9486,9 +9482,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("StateId");
 
@@ -9504,7 +9500,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("AddedBy")
+                    b.Property<int?>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<string>("CompanyDescription")
@@ -9539,7 +9535,7 @@ namespace GegiCRM.DAL.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -9557,9 +9553,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("UserCompanies");
 
@@ -9582,7 +9578,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<int?>("BakimKmperiod")
@@ -9629,7 +9625,8 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<short>("ModelYear")
                         .HasColumnType("smallint");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -9681,9 +9678,9 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("UserCompanyId");
 
@@ -9699,7 +9696,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<int>("BrandId")
@@ -9717,7 +9714,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -9735,11 +9732,11 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("BrandId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("WarrantyTrackings");
                 });
@@ -9753,7 +9750,7 @@ namespace GegiCRM.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ApplicationCalendar")
@@ -9775,7 +9772,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -9801,11 +9798,11 @@ namespace GegiCRM.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
                     b.HasIndex("DepartmentId");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.ToTable("WorkStandarts");
                 });
@@ -10024,7 +10021,7 @@ namespace GegiCRM.DAL.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUserRole<int>");
 
-                    b.Property<int>("AddedBy")
+                    b.Property<int>("AddedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -10041,7 +10038,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ModifiedBy")
+                    b.Property<int?>("ModifiedById")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -10054,9 +10051,9 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("(getdate())");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedById");
 
-                    b.HasIndex("ModifiedBy");
+                    b.HasIndex("ModifiedById");
 
                     b.HasDiscriminator().HasValue("AppRolesOfUsers");
 
@@ -10065,44 +10062,44 @@ namespace GegiCRM.DAL.Migrations
                         {
                             UserId = 1,
                             RoleId = 1,
-                            AddedBy = 1,
+                            AddedById = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EndDate = new DateTime(2032, 5, 30, 4, 31, 2, 796, DateTimeKind.Local).AddTicks(6605),
+                            EndDate = new DateTime(2032, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1641),
                             Id = 0,
                             IsDeleted = false,
-                            StartDate = new DateTime(2022, 5, 30, 4, 31, 2, 796, DateTimeKind.Local).AddTicks(6603)
+                            StartDate = new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1641)
                         });
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Announcement", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("AnnouncementsAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("AnnouncementsAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_Announcements_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("AnnouncementsModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("AnnouncementsModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_Announcements_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.AppIdentityRole", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("AuthorizationsRoleAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("AuthorizationsRoleAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_Authorizations_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("AuthorizationsRoleModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("AuthorizationsRoleModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_Authorizations_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.AppIdentityRoleGroup", "RoleGroup")
@@ -10111,42 +10108,42 @@ namespace GegiCRM.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("RoleGroup");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.AppIdentityRoleGroup", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("AppAuthorizationRoleGroupAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("AppAuthorizationRoleGroupAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_AuthorizationRoleGroups_AddedBy");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("AppAuthorizationRoleGroupModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("AppAuthorizationRoleGroupModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_AuthorizationRoleGroup_ModifiedBy");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.AppUser", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("InverseAddedByNavigation")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("InverseAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_Users_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("InverseModifiedByNavigation")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("InverseModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_Users_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.UserCompany", "UserCompany")
@@ -10155,36 +10152,36 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_Users_UserCompanies");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("UserCompany");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Bank", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("BankAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("BankAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_Banks_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("BankModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("BankModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_Banks_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.BankInformation", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("BankInformationAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("BankInformationAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_BankInformations_Users");
 
@@ -10200,61 +10197,61 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_BankInformations_UserCompanies");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("BankInformationModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("BankInformationModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_BankInformations_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Bank");
 
                     b.Navigation("Company");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Birim", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("BirimAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("BirimAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_Birims_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("BirimModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("BirimModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_Birims_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Brand", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("BrandAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("BrandAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_Brands_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("BrandModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("BrandModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_Brands_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CollectionReceipt", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("CollectionReceiptAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("CollectionReceiptAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_CollectionReceipts_Users");
 
@@ -10270,9 +10267,9 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_CollectionReceipts_Customers");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("CollectionReceiptModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("CollectionReceiptModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_CollectionReceipts_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.PaymentType", "PaymentType")
@@ -10287,13 +10284,13 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_CollectionReceipts_Suppliers");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Currency");
 
                     b.Navigation("Customer");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("PaymentType");
 
@@ -10302,27 +10299,27 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Currency", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("CurrencyAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("CurrencyAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_CollectionReceipts_AddedBy");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("CurrencyModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("CurrencyModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_CollectionReceipts_ModifiedBy");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Customer", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("CustomerAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("CustomerAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_Customers_Users");
 
@@ -10332,9 +10329,9 @@ namespace GegiCRM.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("CustomerModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("CustomerModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_Customers_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.Currency", "PreferredCurrency")
@@ -10358,11 +10355,11 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_Customers_CustomerTypes");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("CustomerMainCompany");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("PreferredCurrency");
 
@@ -10375,9 +10372,9 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerActivityLog", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("CustomerActivityLogAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("CustomerActivityLogAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_CustomersActivityLog_AddedBy");
 
@@ -10387,23 +10384,23 @@ namespace GegiCRM.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("CustomerActivityLogModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("CustomerActivityLogModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_CustomersActivityLog_ModifiedBy");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Customer");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerAddress", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("CustomerAddressAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("CustomerAddressAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_CustomerDeliveryAddresses_Users");
 
@@ -10412,23 +10409,23 @@ namespace GegiCRM.DAL.Migrations
                         .HasForeignKey("CustomerId")
                         .HasConstraintName("FK_CustomerAddresses_Customers");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("CustomerAddressModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("CustomerAddressModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_CustomerDeliveryAddresses_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Customer");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerBillingAddress", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("CustomerBillingAddressAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("CustomerBillingAddressAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_CustomerBillingAddresses_AddedBy");
 
@@ -10437,23 +10434,23 @@ namespace GegiCRM.DAL.Migrations
                         .HasForeignKey("CustomerId")
                         .HasConstraintName("FK_CustomerBillingAddresses_Customers");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("CustomerBillingAddressModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("CustomerBillingAddressModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_CustomerBillingAddresses_ModifiedBy");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Customer");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerContact", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("CustomerContactAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("CustomerContactAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_CustomerContacts_Users");
 
@@ -10462,41 +10459,41 @@ namespace GegiCRM.DAL.Migrations
                         .HasForeignKey("CustomerId")
                         .HasConstraintName("FK_CustomerContacts_Customers");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("CustomerContactModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("CustomerContactModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_CustomerContacts_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Customer");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerMainCompany", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("CustomerMainCompanyAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("CustomerMainCompanyAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_CustomerMainCompany_AddedBy");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("CustomerMainCompanyModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("CustomerMainCompanyModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_CustomerMainCompany_ModifiedBy");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerRepresentetiveUser", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("CustomerRepresentetiveUserAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("CustomerRepresentetiveUserAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_CustomerRepresentetiveUsers_AddedBy");
 
@@ -10506,9 +10503,9 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_CustomerRepresentetiveUsers_Customers");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("CustomerRepresentetiveUserModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("CustomerRepresentetiveUserModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_CustomerRepresentetiveUsers_ModifiedBy");
 
                     b.HasOne("GegiCRM.Entities.Concrete.AppUser", "User")
@@ -10517,56 +10514,56 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_CustomerRepresentetiveUsers_Users");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Customer");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.CustomerType", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("CustomerTypeAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("CustomerTypeAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_CustomerType_AddedBy");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("CustomerTypeModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("CustomerTypeModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_CustomerType_ModifiedBy");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Department", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("DepartmentAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("DepartmentAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_Departments_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("DepartmentModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("DepartmentModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_Departments_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.DepartmentsOfUser", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("DepartmentsOfUsersAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("DepartmentsOfUsersAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_DepartmentsOfUsers_AddedBy");
 
@@ -10576,9 +10573,9 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_DepartmentsOfUsers_Departments");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("DepartmentsOfUsersModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("DepartmentsOfUsersModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_DepartmentsOfUsers_ModifiedBy");
 
                     b.HasOne("GegiCRM.Entities.Concrete.AppUser", "User")
@@ -10587,20 +10584,20 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_DepartmentsOfUsers_Users");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Department");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Deposit", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("DepositAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("DepositAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_Deposits_Users");
 
@@ -10622,12 +10619,12 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_Deposits_DepositTypes");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("DepositModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("DepositModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_Deposits_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Currency");
 
@@ -10635,50 +10632,50 @@ namespace GegiCRM.DAL.Migrations
 
                     b.Navigation("DepositType");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.DepositRelation", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("DepositRelationAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("DepositRelationAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_DepositRelations_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("DepositRelationModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("DepositRelationModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_DepositRelations_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.DepositType", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("DepositTypeAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("DepositTypeAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_DepositTypes_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("DepositTypeModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("DepositTypeModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_DepositTypes_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.DiscountCupon", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("DiscountCuponAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("DiscountCuponAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_DiscountCupons_Users");
 
@@ -10688,23 +10685,23 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_DiscountCupons_Currencies");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("DiscountCuponModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("DiscountCuponModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_DiscountCupons_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("CuponCurrency");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.DiscountCuponsOfCustomer", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("DiscountCuponsOfCustomerAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("DiscountCuponsOfCustomerAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_DiscountCuponsOfCustomers_Users");
 
@@ -10720,31 +10717,31 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_DiscountCuponsOfCustomers_DiscountCupons");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("DiscountCuponsOfCustomerModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("DiscountCuponsOfCustomerModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_DiscountCuponsOfCustomers_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Customer");
 
                     b.Navigation("DiscountCupon");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Document", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("DocumentAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("DocumentAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_Documents_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("DocumentModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("DocumentModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_Documents_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.DocumentType", "Type")
@@ -10752,35 +10749,35 @@ namespace GegiCRM.DAL.Migrations
                         .HasForeignKey("TypeId")
                         .HasConstraintName("FK_Documents_DocumentTypes");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("Type");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.DocumentType", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
                         .WithMany()
-                        .HasForeignKey("AddedByNavigationId")
+                        .HasForeignKey("AddedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
                         .WithMany()
-                        .HasForeignKey("ModifiedByNavigationId");
+                        .HasForeignKey("ModifiedById");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.EmailTemplate", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("EmailTemplateAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("EmailTemplateAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_EmailTemplates_Users2");
 
@@ -10789,41 +10786,41 @@ namespace GegiCRM.DAL.Migrations
                         .HasForeignKey("DepartmentId")
                         .HasConstraintName("FK_EmailTemplates_Departments");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("EmailTemplateModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("EmailTemplateModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_EmailTemplates_Users3");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Department");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Expansion", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("ExpansionAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("ExpansionAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_Acilimlar_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("ExpansionModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("ExpansionModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_Acilimlar_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.MaintenanceBill", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("MaintenanceBillAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("MaintenanceBillAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_MaintenanceBills_Users");
 
@@ -10849,9 +10846,9 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_MaintenanceBills_MaintenencePeriods");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("MaintenanceBillModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("MaintenanceBillModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_MaintenanceBills_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.ProductGroup", "ProductGroup")
@@ -10865,7 +10862,7 @@ namespace GegiCRM.DAL.Migrations
                         .HasForeignKey("SellingRepresentetiveUserId")
                         .HasConstraintName("FK_MaintenanceBills_Users2");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Currency");
 
@@ -10875,7 +10872,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.Navigation("MaintenencePeriod");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("ProductGroup");
 
@@ -10884,45 +10881,45 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.MaintenencePeriod", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("MaintenencePeriodAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("MaintenencePeriodAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_MaintenencePeriods_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("MaintenencePeriodModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("MaintenencePeriodModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_MaintenencePeriods_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.MarketPlace", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("MarketPlaceAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("MarketPlaceAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_MarketPlaces_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("MarketPlaceModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("MarketPlaceModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_MarketPlaces_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Order", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("OrderAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("OrderAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_Orders_Users");
 
@@ -10932,9 +10929,9 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_Orders_Customers");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("OrderModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("OrderModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_Orders_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.OrderState", "OrderState")
@@ -10949,11 +10946,11 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_OrdersRepresentetiveUsers");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Customer");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("OrderState");
 
@@ -10962,9 +10959,9 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.OrdersCurrency", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
                         .WithMany()
-                        .HasForeignKey("AddedByNavigationId")
+                        .HasForeignKey("AddedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -10974,9 +10971,9 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_OrdersCurrencies_Currencies");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
                         .WithMany()
-                        .HasForeignKey("ModifiedByNavigationId");
+                        .HasForeignKey("ModifiedById");
 
                     b.HasOne("GegiCRM.Entities.Concrete.Order", "Order")
                         .WithMany("OrdersCurrencies")
@@ -10984,20 +10981,20 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_OrdersCurrencies_Orders");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Currency");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("Order");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.OrdersProduct", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("OrdersProductAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("OrdersProductAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_OrdersProducts_Users");
 
@@ -11017,9 +11014,9 @@ namespace GegiCRM.DAL.Migrations
                         .HasForeignKey("KesinSupplierId")
                         .HasConstraintName("FK_OrdersProducts_Suppliers");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("OrdersProductModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("OrdersProductModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_OrdersProducts_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.Order", "Order")
@@ -11049,7 +11046,7 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_OrdersProducts_Suppliers1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Birim");
 
@@ -11057,7 +11054,7 @@ namespace GegiCRM.DAL.Migrations
 
                     b.Navigation("KesinSupplier");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("Order");
 
@@ -11070,51 +11067,51 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.OrderState", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("OrderAndProductStateAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("OrderAndProductStateAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_OrderStates_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("OrderAndProductStateModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("OrderAndProductStateModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_OrderStates_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.PaymentType", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("PaymentTypeAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("PaymentTypeAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_PaymentTypes_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("PaymentTypeModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("PaymentTypeModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_PaymentTypes_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Product", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("ProductAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("ProductAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_OurServices_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("ProductModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("ProductModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_OurServices_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.Brand", "PorductBrand")
@@ -11128,9 +11125,9 @@ namespace GegiCRM.DAL.Migrations
                         .HasForeignKey("ProductGroupId")
                         .HasConstraintName("FK_OurServices_ServiceCategories");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("PorductBrand");
 
@@ -11139,15 +11136,15 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ProductCategory", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("ProductCategoryAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("ProductCategoryAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_ProductSubCategories_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("ProductCategoryModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("ProductCategoryModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_ProductSubCategories_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.ProductGroup", "ProductGroup")
@@ -11156,42 +11153,42 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_ProductSubCategories_ProductCategories");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("ProductGroup");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ProductGroup", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("ProductGroupAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("ProductGroupAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_ProductCategories_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("ProductGroupModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("ProductGroupModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_ProductCategories_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ProductGroupsFaq", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("ProductGroupsFaqAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("ProductGroupsFaqAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_ProductCategoriesFAQs_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("ProductGroupsFaqModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("ProductGroupsFaqModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_ProductCategoriesFAQs_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.ProductGroup", "ProductGroup")
@@ -11199,18 +11196,18 @@ namespace GegiCRM.DAL.Migrations
                         .HasForeignKey("ProductGroupId")
                         .HasConstraintName("FK_ProductCategoriesFAQs_ProductCategories");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("ProductGroup");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ReturnAndFault", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("ReturnAndFaultAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("ReturnAndFaultAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_ReturnAndFaults_Users");
 
@@ -11219,9 +11216,9 @@ namespace GegiCRM.DAL.Migrations
                         .HasForeignKey("CurrentStateId")
                         .HasConstraintName("FK_ReturnAndFaults_ReturnAndFaultStates");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("ReturnAndFaultModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("ReturnAndFaultModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_ReturnAndFaults_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.AppUser", "RepresentitveUserNavigation")
@@ -11230,92 +11227,92 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_ReturnAndFaults_Users2");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("CurrentState");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("RepresentitveUserNavigation");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ReturnAndFaultState", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("ReturnAndFaultStateAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("ReturnAndFaultStateAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_ReturnAndFaultStates_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("ReturnAndFaultStateModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("ReturnAndFaultStateModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_ReturnAndFaultStates_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Rule", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("RuleAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("RuleAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_Rules_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("RuleModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("RuleModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_Rules_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Sector", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("SectorAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("SectorAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_Sector_AddedBy");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("SectorModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("SectorModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_Sector_ModidfiedBy");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Segment", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("SegmentAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("SegmentAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_Segments_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("SegmentModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("SegmentModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_Segments_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.SegmentOran", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("SegmentOranAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("SegmentOranAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_SegmentOrans_Users");
 
@@ -11325,9 +11322,9 @@ namespace GegiCRM.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("SegmentOranModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("SegmentOranModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_SegmentOrans_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.Segment", "Segment")
@@ -11337,20 +11334,20 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_SegmentOrans_Segments");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Currency");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("Segment");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.SellsAndBuysAsset", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("SellsAndBuysAssetAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("SellsAndBuysAssetAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_SellsAndBuysAssets_Users");
 
@@ -11359,9 +11356,9 @@ namespace GegiCRM.DAL.Migrations
                         .HasForeignKey("CurrentStepId")
                         .HasConstraintName("FK_SellsAndBuysAssets_SellsAndBuysGuideSteps");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("SellsAndBuysAssetModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("SellsAndBuysAssetModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_SellsAndBuysAssets_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.SellsAndBuysCategory", "Sabcategory")
@@ -11370,44 +11367,44 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_SellsAndBuysAssets_SellsAndBuysCategories");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("CurrentStep");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("Sabcategory");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.SellsAndBuysCategory", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("SellsAndBuysCategoryAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("SellsAndBuysCategoryAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_SellsAndBuysCategories_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("SellsAndBuysCategoryModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("SellsAndBuysCategoryModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_SellsAndBuysCategories_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.SellsAndBuysGuideStep", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("SellsAndBuysGuideStepAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("SellsAndBuysGuideStepAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_SellsAndBuysGuideSteps_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("SellsAndBuysGuideStepModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("SellsAndBuysGuideStepModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_SellsAndBuysGuideSteps_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.SellsAndBuysCategory", "Sabcategory")
@@ -11416,54 +11413,54 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_SellsAndBuysGuideSteps_SellsAndBuysCategories");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("Sabcategory");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ServicePlace", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("ServicePlaceAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("ServicePlaceAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_ServicePlaces_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("ServicePlaceModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("ServicePlaceModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_ServicePlaces_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ServiceReason", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("ServiceReasonAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("ServiceReasonAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_ServiceReasons_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("ServiceReasonModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("ServiceReasonModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_ServiceReasons_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ServiceRecord", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("ServiceRecordAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("ServiceRecordAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_ServiceRecords_Users");
 
@@ -11473,9 +11470,9 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_ServiceRecords_Customers");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("ServiceRecordModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("ServiceRecordModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_ServiceRecords_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ServicePersonalUserNavigation")
@@ -11502,11 +11499,11 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_ServiceRecords_ServiceTypes");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Customer");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("ServicePersonalUserNavigation");
 
@@ -11519,27 +11516,27 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ServiceType", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("ServiceTypeAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("ServiceTypeAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_ServiceTypes_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("ServiceTypeModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("ServiceTypeModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_ServiceTypes_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.ShippingDeal", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
                         .WithMany()
-                        .HasForeignKey("AddedByNavigationId")
+                        .HasForeignKey("AddedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -11549,40 +11546,40 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_ShippingDeals_UserCompanies");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
                         .WithMany()
-                        .HasForeignKey("ModifiedByNavigationId");
+                        .HasForeignKey("ModifiedById");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Company");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Supplier", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("SupplierAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("SupplierAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_Suppliers_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("SupplierModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("SupplierModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_Suppliers_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.SupplierDetail", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
                         .WithMany()
-                        .HasForeignKey("AddedByNavigationId")
+                        .HasForeignKey("AddedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -11592,9 +11589,9 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_SupplierDetails_Currencies");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
                         .WithMany()
-                        .HasForeignKey("ModifiedByNavigationId");
+                        .HasForeignKey("ModifiedById");
 
                     b.HasOne("GegiCRM.Entities.Concrete.Supplier", "Supplier")
                         .WithMany("SupplierDetails")
@@ -11602,44 +11599,44 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_SupplierDetails_Suppliers1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Currency");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.SupplierPaymentState", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("SupplierPaymentStateAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("SupplierPaymentStateAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_SupplierPaymentStates_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("SupplierPaymentStateModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("SupplierPaymentStateModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_SupplierPaymentStates_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.SuppliersPayment", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("SuppliersPaymentAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("SuppliersPaymentAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_SuppliersPayments_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("SuppliersPaymentModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("SuppliersPaymentModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_SuppliersPayments_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.SupplierPaymentState", "State")
@@ -11648,41 +11645,42 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_SuppliersPayments_SupplierPaymentStatuses");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("State");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.UserCompany", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("UserCompanyAddedByNavigations")
-                        .HasForeignKey("AddedBy")
-                        .HasConstraintName("FK_UserCompanies_Users");
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("UserCompanyAddedBy")
+                        .HasForeignKey("AddedById")
+                        .HasConstraintName("FK_UserCompanies_AddedBy");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("UserCompanyModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
-                        .HasConstraintName("FK_UserCompanies_Users1");
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("UserCompanyModifiedBy")
+                        .HasForeignKey("ModifiedById")
+                        .HasConstraintName("FK_UserCompanies_ModifiedBy");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.VehicleInformation", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("VehicleInformationAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("VehicleInformationAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_VehicleInformations_Users");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("VehicleInformationModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("VehicleInformationModifiedBy")
+                        .HasForeignKey("ModifiedById")
+                        .IsRequired()
                         .HasConstraintName("FK_VehicleInformations_Users1");
 
                     b.HasOne("GegiCRM.Entities.Concrete.UserCompany", "UserCompany")
@@ -11691,18 +11689,18 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_VehicleInformations_UserCompanies");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
 
                     b.Navigation("UserCompany");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.WarrantyTracking", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("WarrantyTrackingAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("WarrantyTrackingAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_WarrantyTrackings_Users");
 
@@ -11712,23 +11710,23 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_WarrantyTrackings_Brands");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("WarrantyTrackingModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("WarrantyTrackingModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_WarrantyTrackings_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Brand");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.WorkStandart", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("WorkStandartAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("WorkStandartAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_WorkStandarts_Users");
 
@@ -11738,16 +11736,16 @@ namespace GegiCRM.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_WorkStandarts_Departments");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("WorkStandartModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("WorkStandartModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_WorkStandarts_Users1");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Department");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("MarketPlacesOfSupplier", b =>
@@ -11863,20 +11861,20 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.AppRolesOfUsers", b =>
                 {
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedByNavigation")
-                        .WithMany("AppRolesOfUsersAddedByNavigations")
-                        .HasForeignKey("AddedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "AddedBy")
+                        .WithMany("AppRolesOfUsersAddedBy")
+                        .HasForeignKey("AddedById")
                         .IsRequired()
                         .HasConstraintName("FK_UsersAuthorizations_AddedBy");
 
-                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedByNavigation")
-                        .WithMany("AppRolesOfUsersModifiedByNavigations")
-                        .HasForeignKey("ModifiedBy")
+                    b.HasOne("GegiCRM.Entities.Concrete.AppUser", "ModifiedBy")
+                        .WithMany("AppRolesOfUsersModifiedBy")
+                        .HasForeignKey("ModifiedById")
                         .HasConstraintName("FK_UsersAuthorizations_ModifiedBy");
 
-                    b.Navigation("AddedByNavigation");
+                    b.Navigation("AddedBy");
 
-                    b.Navigation("ModifiedByNavigation");
+                    b.Navigation("ModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.AppIdentityRoleGroup", b =>
@@ -11886,259 +11884,259 @@ namespace GegiCRM.DAL.Migrations
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.AppUser", b =>
                 {
-                    b.Navigation("AnnouncementsAddedByNavigations");
+                    b.Navigation("AnnouncementsAddedBy");
 
-                    b.Navigation("AnnouncementsModifiedByNavigations");
+                    b.Navigation("AnnouncementsModifiedBy");
 
-                    b.Navigation("AppAuthorizationRoleGroupAddedByNavigations");
+                    b.Navigation("AppAuthorizationRoleGroupAddedBy");
 
-                    b.Navigation("AppAuthorizationRoleGroupModifiedByNavigations");
+                    b.Navigation("AppAuthorizationRoleGroupModifiedBy");
 
-                    b.Navigation("AppRolesOfUsersAddedByNavigations");
+                    b.Navigation("AppRolesOfUsersAddedBy");
 
-                    b.Navigation("AppRolesOfUsersModifiedByNavigations");
+                    b.Navigation("AppRolesOfUsersModifiedBy");
 
-                    b.Navigation("AuthorizationsRoleAddedByNavigations");
+                    b.Navigation("AuthorizationsRoleAddedBy");
 
-                    b.Navigation("AuthorizationsRoleModifiedByNavigations");
+                    b.Navigation("AuthorizationsRoleModifiedBy");
 
-                    b.Navigation("BankAddedByNavigations");
+                    b.Navigation("BankAddedBy");
 
-                    b.Navigation("BankInformationAddedByNavigations");
+                    b.Navigation("BankInformationAddedBy");
 
-                    b.Navigation("BankInformationModifiedByNavigations");
+                    b.Navigation("BankInformationModifiedBy");
 
-                    b.Navigation("BankModifiedByNavigations");
+                    b.Navigation("BankModifiedBy");
 
-                    b.Navigation("BirimAddedByNavigations");
+                    b.Navigation("BirimAddedBy");
 
-                    b.Navigation("BirimModifiedByNavigations");
+                    b.Navigation("BirimModifiedBy");
 
-                    b.Navigation("BrandAddedByNavigations");
+                    b.Navigation("BrandAddedBy");
 
-                    b.Navigation("BrandModifiedByNavigations");
+                    b.Navigation("BrandModifiedBy");
 
-                    b.Navigation("CollectionReceiptAddedByNavigations");
+                    b.Navigation("CollectionReceiptAddedBy");
 
-                    b.Navigation("CollectionReceiptModifiedByNavigations");
+                    b.Navigation("CollectionReceiptModifiedBy");
 
-                    b.Navigation("CurrencyAddedByNavigations");
+                    b.Navigation("CurrencyAddedBy");
 
-                    b.Navigation("CurrencyModifiedByNavigations");
+                    b.Navigation("CurrencyModifiedBy");
 
-                    b.Navigation("CustomerActivityLogAddedByNavigations");
+                    b.Navigation("CustomerActivityLogAddedBy");
 
-                    b.Navigation("CustomerActivityLogModifiedByNavigations");
+                    b.Navigation("CustomerActivityLogModifiedBy");
 
-                    b.Navigation("CustomerAddedByNavigations");
+                    b.Navigation("CustomerAddedBy");
 
-                    b.Navigation("CustomerAddressAddedByNavigations");
+                    b.Navigation("CustomerAddressAddedBy");
 
-                    b.Navigation("CustomerAddressModifiedByNavigations");
+                    b.Navigation("CustomerAddressModifiedBy");
 
-                    b.Navigation("CustomerBillingAddressAddedByNavigations");
+                    b.Navigation("CustomerBillingAddressAddedBy");
 
-                    b.Navigation("CustomerBillingAddressModifiedByNavigations");
+                    b.Navigation("CustomerBillingAddressModifiedBy");
 
-                    b.Navigation("CustomerContactAddedByNavigations");
+                    b.Navigation("CustomerContactAddedBy");
 
-                    b.Navigation("CustomerContactModifiedByNavigations");
+                    b.Navigation("CustomerContactModifiedBy");
 
-                    b.Navigation("CustomerMainCompanyAddedByNavigations");
+                    b.Navigation("CustomerMainCompanyAddedBy");
 
-                    b.Navigation("CustomerMainCompanyModifiedByNavigations");
+                    b.Navigation("CustomerMainCompanyModifiedBy");
 
-                    b.Navigation("CustomerModifiedByNavigations");
+                    b.Navigation("CustomerModifiedBy");
 
-                    b.Navigation("CustomerRepresentetiveUserAddedByNavigations");
+                    b.Navigation("CustomerRepresentetiveUserAddedBy");
 
-                    b.Navigation("CustomerRepresentetiveUserModifiedByNavigations");
+                    b.Navigation("CustomerRepresentetiveUserModifiedBy");
 
                     b.Navigation("CustomerRepresentetiveUsers");
 
-                    b.Navigation("CustomerTypeAddedByNavigations");
+                    b.Navigation("CustomerTypeAddedBy");
 
-                    b.Navigation("CustomerTypeModifiedByNavigations");
+                    b.Navigation("CustomerTypeModifiedBy");
 
-                    b.Navigation("DepartmentAddedByNavigations");
+                    b.Navigation("DepartmentAddedBy");
 
-                    b.Navigation("DepartmentModifiedByNavigations");
+                    b.Navigation("DepartmentModifiedBy");
 
                     b.Navigation("DepartmentsOfUsers");
 
-                    b.Navigation("DepartmentsOfUsersAddedByNavigations");
+                    b.Navigation("DepartmentsOfUsersAddedBy");
 
-                    b.Navigation("DepartmentsOfUsersModifiedByNavigations");
+                    b.Navigation("DepartmentsOfUsersModifiedBy");
 
-                    b.Navigation("DepositAddedByNavigations");
+                    b.Navigation("DepositAddedBy");
 
-                    b.Navigation("DepositModifiedByNavigations");
+                    b.Navigation("DepositModifiedBy");
 
-                    b.Navigation("DepositRelationAddedByNavigations");
+                    b.Navigation("DepositRelationAddedBy");
 
-                    b.Navigation("DepositRelationModifiedByNavigations");
+                    b.Navigation("DepositRelationModifiedBy");
 
-                    b.Navigation("DepositTypeAddedByNavigations");
+                    b.Navigation("DepositTypeAddedBy");
 
-                    b.Navigation("DepositTypeModifiedByNavigations");
+                    b.Navigation("DepositTypeModifiedBy");
 
-                    b.Navigation("DiscountCuponAddedByNavigations");
+                    b.Navigation("DiscountCuponAddedBy");
 
-                    b.Navigation("DiscountCuponModifiedByNavigations");
+                    b.Navigation("DiscountCuponModifiedBy");
 
-                    b.Navigation("DiscountCuponsOfCustomerAddedByNavigations");
+                    b.Navigation("DiscountCuponsOfCustomerAddedBy");
 
-                    b.Navigation("DiscountCuponsOfCustomerModifiedByNavigations");
+                    b.Navigation("DiscountCuponsOfCustomerModifiedBy");
 
-                    b.Navigation("DocumentAddedByNavigations");
+                    b.Navigation("DocumentAddedBy");
 
-                    b.Navigation("DocumentModifiedByNavigations");
+                    b.Navigation("DocumentModifiedBy");
 
-                    b.Navigation("EmailTemplateAddedByNavigations");
+                    b.Navigation("EmailTemplateAddedBy");
 
-                    b.Navigation("EmailTemplateModifiedByNavigations");
+                    b.Navigation("EmailTemplateModifiedBy");
 
-                    b.Navigation("ExpansionAddedByNavigations");
+                    b.Navigation("ExpansionAddedBy");
 
-                    b.Navigation("ExpansionModifiedByNavigations");
+                    b.Navigation("ExpansionModifiedBy");
 
-                    b.Navigation("InverseAddedByNavigation");
+                    b.Navigation("InverseAddedBy");
 
-                    b.Navigation("InverseModifiedByNavigation");
+                    b.Navigation("InverseModifiedBy");
 
-                    b.Navigation("MaintenanceBillAddedByNavigations");
+                    b.Navigation("MaintenanceBillAddedBy");
 
                     b.Navigation("MaintenanceBillCustomerRepresentetiveUsers");
 
-                    b.Navigation("MaintenanceBillModifiedByNavigations");
+                    b.Navigation("MaintenanceBillModifiedBy");
 
                     b.Navigation("MaintenanceBillSellingRepresentetiveUsers");
 
-                    b.Navigation("MaintenencePeriodAddedByNavigations");
+                    b.Navigation("MaintenencePeriodAddedBy");
 
-                    b.Navigation("MaintenencePeriodModifiedByNavigations");
+                    b.Navigation("MaintenencePeriodModifiedBy");
 
-                    b.Navigation("MarketPlaceAddedByNavigations");
+                    b.Navigation("MarketPlaceAddedBy");
 
-                    b.Navigation("MarketPlaceModifiedByNavigations");
+                    b.Navigation("MarketPlaceModifiedBy");
 
-                    b.Navigation("OrderAddedByNavigations");
+                    b.Navigation("OrderAddedBy");
 
-                    b.Navigation("OrderAndProductStateAddedByNavigations");
+                    b.Navigation("OrderAndProductStateAddedBy");
 
-                    b.Navigation("OrderAndProductStateModifiedByNavigations");
+                    b.Navigation("OrderAndProductStateModifiedBy");
 
-                    b.Navigation("OrderModifiedByNavigations");
+                    b.Navigation("OrderModifiedBy");
 
                     b.Navigation("OrderRepresentetiveUserNavigations");
 
-                    b.Navigation("OrdersProductAddedByNavigations");
+                    b.Navigation("OrdersProductAddedBy");
 
-                    b.Navigation("OrdersProductModifiedByNavigations");
+                    b.Navigation("OrdersProductModifiedBy");
 
-                    b.Navigation("PaymentTypeAddedByNavigations");
+                    b.Navigation("PaymentTypeAddedBy");
 
-                    b.Navigation("PaymentTypeModifiedByNavigations");
+                    b.Navigation("PaymentTypeModifiedBy");
 
-                    b.Navigation("ProductAddedByNavigations");
+                    b.Navigation("ProductAddedBy");
 
-                    b.Navigation("ProductCategoryAddedByNavigations");
+                    b.Navigation("ProductCategoryAddedBy");
 
-                    b.Navigation("ProductCategoryModifiedByNavigations");
+                    b.Navigation("ProductCategoryModifiedBy");
 
-                    b.Navigation("ProductGroupAddedByNavigations");
+                    b.Navigation("ProductGroupAddedBy");
 
-                    b.Navigation("ProductGroupModifiedByNavigations");
+                    b.Navigation("ProductGroupModifiedBy");
 
-                    b.Navigation("ProductGroupsFaqAddedByNavigations");
+                    b.Navigation("ProductGroupsFaqAddedBy");
 
-                    b.Navigation("ProductGroupsFaqModifiedByNavigations");
+                    b.Navigation("ProductGroupsFaqModifiedBy");
 
-                    b.Navigation("ProductModifiedByNavigations");
+                    b.Navigation("ProductModifiedBy");
 
-                    b.Navigation("ReturnAndFaultAddedByNavigations");
+                    b.Navigation("ReturnAndFaultAddedBy");
 
-                    b.Navigation("ReturnAndFaultModifiedByNavigations");
+                    b.Navigation("ReturnAndFaultModifiedBy");
 
                     b.Navigation("ReturnAndFaultRepresentitveUserNavigations");
 
-                    b.Navigation("ReturnAndFaultStateAddedByNavigations");
+                    b.Navigation("ReturnAndFaultStateAddedBy");
 
-                    b.Navigation("ReturnAndFaultStateModifiedByNavigations");
+                    b.Navigation("ReturnAndFaultStateModifiedBy");
 
-                    b.Navigation("RuleAddedByNavigations");
+                    b.Navigation("RuleAddedBy");
 
-                    b.Navigation("RuleModifiedByNavigations");
+                    b.Navigation("RuleModifiedBy");
 
-                    b.Navigation("SectorAddedByNavigations");
+                    b.Navigation("SectorAddedBy");
 
-                    b.Navigation("SectorModifiedByNavigations");
+                    b.Navigation("SectorModifiedBy");
 
-                    b.Navigation("SegmentAddedByNavigations");
+                    b.Navigation("SegmentAddedBy");
 
-                    b.Navigation("SegmentModifiedByNavigations");
+                    b.Navigation("SegmentModifiedBy");
 
-                    b.Navigation("SegmentOranAddedByNavigations");
+                    b.Navigation("SegmentOranAddedBy");
 
-                    b.Navigation("SegmentOranModifiedByNavigations");
+                    b.Navigation("SegmentOranModifiedBy");
 
-                    b.Navigation("SellsAndBuysAssetAddedByNavigations");
+                    b.Navigation("SellsAndBuysAssetAddedBy");
 
-                    b.Navigation("SellsAndBuysAssetModifiedByNavigations");
+                    b.Navigation("SellsAndBuysAssetModifiedBy");
 
-                    b.Navigation("SellsAndBuysCategoryAddedByNavigations");
+                    b.Navigation("SellsAndBuysCategoryAddedBy");
 
-                    b.Navigation("SellsAndBuysCategoryModifiedByNavigations");
+                    b.Navigation("SellsAndBuysCategoryModifiedBy");
 
-                    b.Navigation("SellsAndBuysGuideStepAddedByNavigations");
+                    b.Navigation("SellsAndBuysGuideStepAddedBy");
 
-                    b.Navigation("SellsAndBuysGuideStepModifiedByNavigations");
+                    b.Navigation("SellsAndBuysGuideStepModifiedBy");
 
-                    b.Navigation("ServicePlaceAddedByNavigations");
+                    b.Navigation("ServicePlaceAddedBy");
 
-                    b.Navigation("ServicePlaceModifiedByNavigations");
+                    b.Navigation("ServicePlaceModifiedBy");
 
-                    b.Navigation("ServiceReasonAddedByNavigations");
+                    b.Navigation("ServiceReasonAddedBy");
 
-                    b.Navigation("ServiceReasonModifiedByNavigations");
+                    b.Navigation("ServiceReasonModifiedBy");
 
-                    b.Navigation("ServiceRecordAddedByNavigations");
+                    b.Navigation("ServiceRecordAddedBy");
 
-                    b.Navigation("ServiceRecordModifiedByNavigations");
+                    b.Navigation("ServiceRecordModifiedBy");
 
                     b.Navigation("ServiceRecordServicePersonalUserNavigations");
 
-                    b.Navigation("ServiceTypeAddedByNavigations");
+                    b.Navigation("ServiceTypeAddedBy");
 
-                    b.Navigation("ServiceTypeModifiedByNavigations");
+                    b.Navigation("ServiceTypeModifiedBy");
 
-                    b.Navigation("SupplierAddedByNavigations");
+                    b.Navigation("SupplierAddedBy");
 
-                    b.Navigation("SupplierModifiedByNavigations");
+                    b.Navigation("SupplierModifiedBy");
 
-                    b.Navigation("SupplierPaymentStateAddedByNavigations");
+                    b.Navigation("SupplierPaymentStateAddedBy");
 
-                    b.Navigation("SupplierPaymentStateModifiedByNavigations");
+                    b.Navigation("SupplierPaymentStateModifiedBy");
 
-                    b.Navigation("SuppliersPaymentAddedByNavigations");
+                    b.Navigation("SuppliersPaymentAddedBy");
 
-                    b.Navigation("SuppliersPaymentModifiedByNavigations");
+                    b.Navigation("SuppliersPaymentModifiedBy");
 
-                    b.Navigation("UserCompanyAddedByNavigations");
+                    b.Navigation("UserCompanyAddedBy");
 
-                    b.Navigation("UserCompanyModifiedByNavigations");
+                    b.Navigation("UserCompanyModifiedBy");
 
-                    b.Navigation("VehicleInformationAddedByNavigations");
+                    b.Navigation("VehicleInformationAddedBy");
 
-                    b.Navigation("VehicleInformationModifiedByNavigations");
+                    b.Navigation("VehicleInformationModifiedBy");
 
-                    b.Navigation("WarrantyTrackingAddedByNavigations");
+                    b.Navigation("WarrantyTrackingAddedBy");
 
-                    b.Navigation("WarrantyTrackingModifiedByNavigations");
+                    b.Navigation("WarrantyTrackingModifiedBy");
 
-                    b.Navigation("WorkStandartAddedByNavigations");
+                    b.Navigation("WorkStandartAddedBy");
 
-                    b.Navigation("WorkStandartModifiedByNavigations");
+                    b.Navigation("WorkStandartModifiedBy");
                 });
 
             modelBuilder.Entity("GegiCRM.Entities.Concrete.Bank", b =>

@@ -118,15 +118,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.AnnouncementsAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.AnnouncementsAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Announcements_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.AnnouncementsModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.AnnouncementsModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Announcements_Users1");
             });
@@ -145,15 +145,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.AuthorizationsRoleAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.AuthorizationsRoleAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Authorizations_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.AuthorizationsRoleModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.AuthorizationsRoleModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Authorizations_Users1");
             });
@@ -171,15 +171,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.AppAuthorizationRoleGroupAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.AppAuthorizationRoleGroupAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_AuthorizationRoleGroups_AddedBy");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.AppAuthorizationRoleGroupModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.AppAuthorizationRoleGroupModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_AuthorizationRoleGroup_ModifiedBy");
             });
@@ -198,15 +198,15 @@ namespace GegiCRM.DAL.Concrete
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.BankAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.BankAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Banks_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.BankModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.BankModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_Banks_Users1");
             });
 
@@ -240,15 +240,15 @@ namespace GegiCRM.DAL.Concrete
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_BankInformations_UserCompanies");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.BankInformationAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.BankInformationAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_BankInformations_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.BankInformationModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.BankInformationModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_BankInformations_Users1");
             });
 
@@ -269,15 +269,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Short).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.BirimAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.BirimAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Birims_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.BirimModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.BirimModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Birims_Users1");
             });
@@ -296,15 +296,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.BrandAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.BrandAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Brands_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.BrandModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.BrandModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Brands_Users1");
 
@@ -378,15 +378,15 @@ namespace GegiCRM.DAL.Concrete
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CollectionReceipts_Suppliers");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                  .WithMany(p => p.CollectionReceiptAddedByNavigations)
-                  .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                  .WithMany(p => p.CollectionReceiptAddedBy)
+                  .HasForeignKey(d => d.AddedById)
                   .OnDelete(DeleteBehavior.ClientSetNull)
                   .HasConstraintName("FK_CollectionReceipts_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.CollectionReceiptModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.CollectionReceiptModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_CollectionReceipts_Users1");
             });
 
@@ -398,15 +398,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.CurrencyAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.CurrencyAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CollectionReceipts_AddedBy");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.CurrencyModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.CurrencyModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_CollectionReceipts_ModifiedBy");
             });
 
@@ -423,7 +423,7 @@ namespace GegiCRM.DAL.Concrete
                 entity.Property(e => e.IsActive)
                     .IsRequired()
                     .HasDefaultValueSql("((1))");
-                
+
 
                 entity.Property(e => e.ModifiedDate)
                     .HasColumnType("datetime")
@@ -441,15 +441,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.TypeId).HasColumnName("TypeID");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.CustomerAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.CustomerAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Customers_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.CustomerModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.CustomerModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Customers_Users1");
 
@@ -485,17 +485,17 @@ namespace GegiCRM.DAL.Concrete
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Name).HasMaxLength(250);
-                
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.CustomerMainCompanyAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.CustomerMainCompanyAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CustomerMainCompany_AddedBy");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.CustomerMainCompanyModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.CustomerMainCompanyModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CustomerMainCompany_ModifiedBy");
 
@@ -513,15 +513,15 @@ namespace GegiCRM.DAL.Concrete
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.CustomerActivityLogAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.CustomerActivityLogAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CustomersActivityLog_AddedBy");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.CustomerActivityLogModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.CustomerActivityLogModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CustomersActivityLog_ModifiedBy");
             });
@@ -546,9 +546,9 @@ namespace GegiCRM.DAL.Concrete
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.CustomerAddressAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.CustomerAddressAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CustomerDeliveryAddresses_Users");
 
@@ -557,9 +557,9 @@ namespace GegiCRM.DAL.Concrete
                     .HasForeignKey(d => d.CustomerId)
                     .HasConstraintName("FK_CustomerAddresses_Customers");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.CustomerAddressModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.CustomerAddressModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_CustomerDeliveryAddresses_Users1");
             });
 
@@ -580,15 +580,15 @@ namespace GegiCRM.DAL.Concrete
                     .HasForeignKey(d => d.CustomerId)
                     .HasConstraintName("FK_CustomerBillingAddresses_Customers");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                  .WithMany(p => p.CustomerBillingAddressAddedByNavigations)
-                  .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                  .WithMany(p => p.CustomerBillingAddressAddedBy)
+                  .HasForeignKey(d => d.AddedById)
                   .OnDelete(DeleteBehavior.ClientSetNull)
                   .HasConstraintName("FK_CustomerBillingAddresses_AddedBy");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.CustomerBillingAddressModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.CustomerBillingAddressModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_CustomerBillingAddresses_ModifiedBy");
             });
 
@@ -620,9 +620,9 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Tel).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.CustomerContactAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.CustomerContactAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CustomerContacts_Users");
 
@@ -631,9 +631,9 @@ namespace GegiCRM.DAL.Concrete
                     .HasForeignKey(d => d.CustomerId)
                     .HasConstraintName("FK_CustomerContacts_Customers");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.CustomerContactModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.CustomerContactModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CustomerContacts_Users1");
             });
@@ -661,15 +661,15 @@ namespace GegiCRM.DAL.Concrete
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CustomerRepresentetiveUsers_Users");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                  .WithMany(p => p.CustomerRepresentetiveUserAddedByNavigations)
-                  .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                  .WithMany(p => p.CustomerRepresentetiveUserAddedBy)
+                  .HasForeignKey(d => d.AddedById)
                   .OnDelete(DeleteBehavior.ClientSetNull)
                   .HasConstraintName("FK_CustomerRepresentetiveUsers_AddedBy");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.CustomerRepresentetiveUserModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.CustomerRepresentetiveUserModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_CustomerRepresentetiveUsers_ModifiedBy");
             });
 
@@ -680,15 +680,15 @@ namespace GegiCRM.DAL.Concrete
                 entity.Property(e => e.Name).HasMaxLength(50);
 
 
-                entity.HasOne(d => d.AddedByNavigation)
-                  .WithMany(p => p.CustomerTypeAddedByNavigations)
-                  .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                  .WithMany(p => p.CustomerTypeAddedBy)
+                  .HasForeignKey(d => d.AddedById)
                   .OnDelete(DeleteBehavior.ClientSetNull)
                   .HasConstraintName("FK_CustomerType_AddedBy");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.CustomerTypeModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.CustomerTypeModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_CustomerType_ModifiedBy");
             });
 
@@ -706,21 +706,21 @@ namespace GegiCRM.DAL.Concrete
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.DepartmentAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.DepartmentAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Departments_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.DepartmentModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.DepartmentModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_Departments_Users1");
             });
 
             modelBuilder.Entity<DepartmentsOfUser>(entity =>
             {
-                entity.HasKey(e => new { e.UserId, e.DepartmentId });
+                entity.HasKey(e => new { e.Id, e.UserId, e.DepartmentId });
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 
@@ -738,15 +738,15 @@ namespace GegiCRM.DAL.Concrete
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DepartmentsOfUsers_Users");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                  .WithMany(p => p.DepartmentsOfUsersAddedByNavigations)
-                  .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                  .WithMany(p => p.DepartmentsOfUsersAddedBy)
+                  .HasForeignKey(d => d.AddedById)
                   .OnDelete(DeleteBehavior.ClientSetNull)
                   .HasConstraintName("FK_DepartmentsOfUsers_AddedBy");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.DepartmentsOfUsersModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.DepartmentsOfUsersModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_DepartmentsOfUsers_ModifiedBy");
             });
 
@@ -778,9 +778,9 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.VerilisTarihi).HasColumnType("datetime");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.DepositAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.DepositAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Deposits_Users");
 
@@ -802,9 +802,9 @@ namespace GegiCRM.DAL.Concrete
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Deposits_DepositTypes");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.DepositModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.DepositModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Deposits_Users1");
             });
@@ -823,15 +823,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.DepositRelationAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.DepositRelationAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DepositRelations_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.DepositRelationModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.DepositRelationModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DepositRelations_Users1");
             });
@@ -850,15 +850,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.DepositTypeAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.DepositTypeAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DepositTypes_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.DepositTypeModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.DepositTypeModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DepositTypes_Users1");
             });
@@ -883,9 +883,9 @@ namespace GegiCRM.DAL.Concrete
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.DiscountCuponAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.DiscountCuponAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DiscountCupons_Users");
 
@@ -895,16 +895,16 @@ namespace GegiCRM.DAL.Concrete
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DiscountCupons_Currencies");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.DiscountCuponModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.DiscountCuponModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DiscountCupons_Users1");
             });
 
             modelBuilder.Entity<DiscountCuponsOfCustomer>(entity =>
             {
-                entity.HasKey(e => new { e.CustomerId, e.DiscountCuponId });
+                entity.HasKey(e => new { e.Id, e.CustomerId, e.DiscountCuponId });
 
                 entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
 
@@ -922,9 +922,9 @@ namespace GegiCRM.DAL.Concrete
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.DiscountCuponsOfCustomerAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.DiscountCuponsOfCustomerAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DiscountCuponsOfCustomers_Users");
 
@@ -940,9 +940,9 @@ namespace GegiCRM.DAL.Concrete
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DiscountCuponsOfCustomers_DiscountCupons");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.DiscountCuponsOfCustomerModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.DiscountCuponsOfCustomerModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DiscountCuponsOfCustomers_Users1");
             });
@@ -963,15 +963,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.TypeId).HasColumnName("TypeID");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.DocumentAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.DocumentAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Documents_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.DocumentModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.DocumentModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Documents_Users1");
 
@@ -1003,9 +1003,9 @@ namespace GegiCRM.DAL.Concrete
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.EmailTemplateAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.EmailTemplateAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_EmailTemplates_Users2");
 
@@ -1014,9 +1014,9 @@ namespace GegiCRM.DAL.Concrete
                     .HasForeignKey(d => d.DepartmentId)
                     .HasConstraintName("FK_EmailTemplates_Departments");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.EmailTemplateModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.EmailTemplateModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_EmailTemplates_Users3");
             });
@@ -1037,15 +1037,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.ShortCode).HasMaxLength(10);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.ExpansionAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.ExpansionAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Acilimlar_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.ExpansionModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.ExpansionModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_Acilimlar_Users1");
             });
 
@@ -1079,9 +1079,9 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.SozlesmeBitisTarihi).HasColumnType("datetime");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.MaintenanceBillAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.MaintenanceBillAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MaintenanceBills_Users");
 
@@ -1107,9 +1107,9 @@ namespace GegiCRM.DAL.Concrete
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MaintenanceBills_MaintenencePeriods");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.MaintenanceBillModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.MaintenanceBillModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_MaintenanceBills_Users1");
 
                 entity.HasOne(d => d.ProductGroup)
@@ -1138,15 +1138,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.MaintenencePeriodAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.MaintenencePeriodAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MaintenencePeriods_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.MaintenencePeriodModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.MaintenencePeriodModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_MaintenencePeriods_Users1");
             });
 
@@ -1165,15 +1165,15 @@ namespace GegiCRM.DAL.Concrete
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.MarketPlaceAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.MarketPlaceAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MarketPlaces_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.MarketPlaceModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.MarketPlaceModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MarketPlaces_Users1");
             });
@@ -1197,9 +1197,9 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.OrderStateId).HasColumnName("OrderStateID");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.OrderAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.OrderAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Orders_Users");
 
@@ -1209,9 +1209,9 @@ namespace GegiCRM.DAL.Concrete
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Orders_Customers");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.OrderModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.OrderModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Orders_Users1");
 
@@ -1244,22 +1244,22 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.OrderAndProductStateAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.OrderAndProductStateAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OrderStates_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.OrderAndProductStateModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.OrderAndProductStateModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OrderStates_Users1");
             });
 
             modelBuilder.Entity<OrdersCurrency>(entity =>
             {
-                entity.HasKey(e => new { e.OrderId, e.CurrencyId });
+                entity.HasKey(e => new { e.Id, e.OrderId, e.CurrencyId });
 
                 entity.Property(e => e.OrderId).HasColumnName("OrderID");
 
@@ -1282,7 +1282,7 @@ namespace GegiCRM.DAL.Concrete
 
             modelBuilder.Entity<OrdersProduct>(entity =>
             {
-                entity.HasKey(e => new { e.OrderId, e.ProductId });
+                entity.HasKey(e => new { e.Id, e.OrderId, e.ProductId });
 
                 entity.Property(e => e.OrderId).HasColumnName("OrderID");
 
@@ -1326,9 +1326,9 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.ReferansSupplierId).HasColumnName("ReferansSupplierID");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.OrdersProductAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.OrdersProductAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OrdersProducts_Users");
 
@@ -1348,9 +1348,9 @@ namespace GegiCRM.DAL.Concrete
                     .HasForeignKey(d => d.KesinSupplierId)
                     .HasConstraintName("FK_OrdersProducts_Suppliers");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.OrdersProductModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.OrdersProductModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OrdersProducts_Users1");
 
@@ -1395,15 +1395,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.PaymentTypeAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.PaymentTypeAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PaymentTypes_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.PaymentTypeModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.PaymentTypeModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_PaymentTypes_Users1");
             });
 
@@ -1429,15 +1429,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.ProductName).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.ProductAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.ProductAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OurServices_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.ProductModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.ProductModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OurServices_Users1");
 
@@ -1488,15 +1488,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.ProductGroupId).HasColumnName("ProductGroupID");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.ProductCategoryAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.ProductCategoryAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ProductSubCategories_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.ProductCategoryModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.ProductCategoryModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ProductSubCategories_Users1");
 
@@ -1522,15 +1522,15 @@ namespace GegiCRM.DAL.Concrete
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.ProductGroupAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.ProductGroupAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ProductCategories_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.ProductGroupModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.ProductGroupModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ProductCategories_Users1");
             });
@@ -1551,15 +1551,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.ProductGroupId).HasColumnName("ProductGroupID");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.ProductGroupsFaqAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.ProductGroupsFaqAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ProductCategoriesFAQs_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.ProductGroupsFaqModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.ProductGroupsFaqModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_ProductCategoriesFAQs_Users1");
 
                 entity.HasOne(d => d.ProductGroup)
@@ -1590,9 +1590,9 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.ReturnAndFaultAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.ReturnAndFaultAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ReturnAndFaults_Users");
 
@@ -1601,9 +1601,9 @@ namespace GegiCRM.DAL.Concrete
                     .HasForeignKey(d => d.CurrentStateId)
                     .HasConstraintName("FK_ReturnAndFaults_ReturnAndFaultStates");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.ReturnAndFaultModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.ReturnAndFaultModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_ReturnAndFaults_Users1");
 
                 entity.HasOne(d => d.RepresentitveUserNavigation)
@@ -1629,15 +1629,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.StatName).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.ReturnAndFaultStateAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.ReturnAndFaultStateAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ReturnAndFaultStates_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.ReturnAndFaultStateModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.ReturnAndFaultStateModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_ReturnAndFaultStates_Users1");
             });
 
@@ -1655,15 +1655,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.RuleName).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.RuleAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.RuleAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Rules_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.RuleModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.RuleModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Rules_Users1");
             });
@@ -1685,15 +1685,15 @@ namespace GegiCRM.DAL.Concrete
                 entity.Property(e => e.Name).HasMaxLength(250);
 
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.SectorAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.SectorAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Sector_AddedBy");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.SectorModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.SectorModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Sector_ModidfiedBy");
             });
@@ -1712,22 +1712,22 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.SegmentAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.SegmentAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Segments_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.SegmentModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.SegmentModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Segments_Users1");
             });
 
             modelBuilder.Entity<SegmentOran>(entity =>
             {
-                //entity.HasKey(e => new { e.Id, e.Oran, e.CurrencyID });
+                entity.HasKey(e => new { e.Id, e.Oran, e.CurrencyID });
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
@@ -1747,15 +1747,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.StartPrice).HasColumnType("decimal(18, 2)");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.SegmentOranAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.SegmentOranAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SegmentOrans_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.SegmentOranModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.SegmentOranModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SegmentOrans_Users1");
 
@@ -1783,9 +1783,9 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.SabcategoryId).HasColumnName("SABCategoryID");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.SellsAndBuysAssetAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.SellsAndBuysAssetAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SellsAndBuysAssets_Users");
 
@@ -1794,9 +1794,9 @@ namespace GegiCRM.DAL.Concrete
                     .HasForeignKey(d => d.CurrentStepId)
                     .HasConstraintName("FK_SellsAndBuysAssets_SellsAndBuysGuideSteps");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.SellsAndBuysAssetModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.SellsAndBuysAssetModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SellsAndBuysAssets_Users1");
 
@@ -1821,15 +1821,15 @@ namespace GegiCRM.DAL.Concrete
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.SellsAndBuysCategoryAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.SellsAndBuysCategoryAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SellsAndBuysCategories_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.SellsAndBuysCategoryModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.SellsAndBuysCategoryModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SellsAndBuysCategories_Users1");
             });
@@ -1850,15 +1850,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.StepName).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.SellsAndBuysGuideStepAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.SellsAndBuysGuideStepAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SellsAndBuysGuideSteps_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.SellsAndBuysGuideStepModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.SellsAndBuysGuideStepModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SellsAndBuysGuideSteps_Users1");
 
@@ -1883,15 +1883,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.ServicePlaceAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.ServicePlaceAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ServicePlaces_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.ServicePlaceModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.ServicePlaceModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_ServicePlaces_Users1");
             });
 
@@ -1909,15 +1909,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.ServiceReasonAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.ServiceReasonAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ServiceReasons_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.ServiceReasonModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.ServiceReasonModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_ServiceReasons_Users1");
             });
 
@@ -1945,9 +1945,9 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.ServiceTypeId).HasColumnName("ServiceTypeID");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.ServiceRecordAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.ServiceRecordAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ServiceRecords_Users");
 
@@ -1957,9 +1957,9 @@ namespace GegiCRM.DAL.Concrete
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ServiceRecords_Customers");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.ServiceRecordModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.ServiceRecordModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_ServiceRecords_Users1");
 
                 entity.HasOne(d => d.ServicePersonalUserNavigation)
@@ -2001,15 +2001,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.ServiceTypeAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.ServiceTypeAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ServiceTypes_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.ServiceTypeModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.ServiceTypeModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_ServiceTypes_Users1");
             });
 
@@ -2051,15 +2051,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Url).HasColumnName("URL");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.SupplierAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.SupplierAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Suppliers_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.SupplierModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.SupplierModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Suppliers_Users1");
 
@@ -2171,15 +2171,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.SupplierPaymentStateAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.SupplierPaymentStateAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SupplierPaymentStates_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.SupplierPaymentStateModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.SupplierPaymentStateModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SupplierPaymentStates_Users1");
             });
@@ -2208,15 +2208,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.SuppliersPaymentAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.SuppliersPaymentAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SuppliersPayments_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.SuppliersPaymentModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.SuppliersPaymentModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SuppliersPayments_Users1");
 
@@ -2248,15 +2248,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.UserCompanyId).HasColumnName("UserCompanyID");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.InverseAddedByNavigation)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.InverseAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Users_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.InverseModifiedByNavigation)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.InverseModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_Users_Users1");
 
                 entity.HasOne(d => d.UserCompany)
@@ -2292,16 +2292,31 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.TicaretSicilNo).HasMaxLength(250);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.UserCompanyAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UserCompanies_Users");
+                //entity.HasOne(d => d.AddedBy)
+                //    .WithMany(p => p.AppRolesOfUsersAddedBy)
+                //    .HasForeignKey(d => d.AddedById)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_UsersAuthorizations_AddedBy");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.UserCompanyModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
-                    .HasConstraintName("FK_UserCompanies_Users1");
+                //entity.HasOne(d => d.ModifiedBy)
+                //    .WithMany(p => p.AppRolesOfUsersModifiedBy)
+                //    .HasForeignKey(d => d.ModifiedById)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_UsersAuthorizations_ModifiedBy");
+
+
+                entity.HasOne(a => a.AddedBy)
+                    .WithMany(a => a.UserCompanyAddedBy)
+                    .HasForeignKey(k => k.AddedById)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserCompanies_AddedBy");
+
+                entity.HasOne(a => a.ModifiedBy)
+                    .WithMany(a => a.UserCompanyModifiedBy)
+                    .HasForeignKey(k => k.ModifiedById)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserCompanies_ModifiedBy");
+
             });
 
             modelBuilder.Entity<AppRolesOfUsers>(entity =>
@@ -2321,15 +2336,15 @@ namespace GegiCRM.DAL.Concrete
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.AppRolesOfUsersAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.AppRolesOfUsersAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_UsersAuthorizations_AddedBy");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.AppRolesOfUsersModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.AppRolesOfUsersModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_UsersAuthorizations_ModifiedBy");
             });
@@ -2391,15 +2406,15 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.YazLastigiDegisimTarihi).HasColumnType("datetime");
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.VehicleInformationAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.VehicleInformationAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_VehicleInformations_Users");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.VehicleInformationModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.VehicleInformationModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_VehicleInformations_Users1");
 
@@ -2428,9 +2443,9 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.Tel).HasMaxLength(50);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.WarrantyTrackingAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.WarrantyTrackingAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_WarrantyTrackings_Users");
 
@@ -2440,9 +2455,9 @@ namespace GegiCRM.DAL.Concrete
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_WarrantyTrackings_Brands");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.WarrantyTrackingModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.WarrantyTrackingModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_WarrantyTrackings_Users1");
             });
 
@@ -2470,9 +2485,9 @@ namespace GegiCRM.DAL.Concrete
 
                 entity.Property(e => e.WorkTime).HasMaxLength(150);
 
-                entity.HasOne(d => d.AddedByNavigation)
-                    .WithMany(p => p.WorkStandartAddedByNavigations)
-                    .HasForeignKey(d => d.AddedBy)
+                entity.HasOne(d => d.AddedBy)
+                    .WithMany(p => p.WorkStandartAddedBy)
+                    .HasForeignKey(d => d.AddedById)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_WorkStandarts_Users");
 
@@ -2482,9 +2497,9 @@ namespace GegiCRM.DAL.Concrete
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_WorkStandarts_Departments");
 
-                entity.HasOne(d => d.ModifiedByNavigation)
-                    .WithMany(p => p.WorkStandartModifiedByNavigations)
-                    .HasForeignKey(d => d.ModifiedBy)
+                entity.HasOne(d => d.ModifiedBy)
+                    .WithMany(p => p.WorkStandartModifiedBy)
+                    .HasForeignKey(d => d.ModifiedById)
                     .HasConstraintName("FK_WorkStandarts_Users1");
             });
 
