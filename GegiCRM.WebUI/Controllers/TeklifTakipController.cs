@@ -52,12 +52,27 @@ namespace GegiCRM.WebUI.Controllers
 
         public IActionResult Edit(int id)
         {
-            var data = _teklifTakipManager.GetByIdWithNavigations(id);
+            
+            var order = _teklifTakipManager.GetByIdWithNavigations(id);
+            if (order == null)
+            {
+                return BadRequest();
+            }
             ViewBag.Customers = _customerManager.ListByFilter(x => x.IsDeleted == false);
             ViewBag.Users = _userManager.Users.Where(x=>x.IsDeleted == false).ToList();
             ViewBag.OrderStates = _orderStateManager.ListByFilter(x=>x.IsDeleted == false);
+
+            bool isOffer = false;
+
+            //offer onaylanmadıysa ve nullsa bu bir tekliftir
+            if (order.IsOfferApproved == null && !order.IsOfferApproved)
+            {
+                isOffer = true;
+            }
+            
+            ViewBag.IsOffer = isOffer;
             //ViewBag.OfferStates = data.i;
-            return View(data);
+            return View(order);
         }
 
         public IActionResult _GetOrdersCurrenciesPartial(int id)

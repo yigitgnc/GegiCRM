@@ -23,23 +23,23 @@
 
         <div class="col-12 card-body">
 
-            <form class="row" id="addNewCurrencyForm" action="/TeklifTakip/AddCurrencyToOrder">
+            <form class="row" id="addNewCurrencyForm" data-a="b" action="/TeklifTakip/AddCurrencyToOrder">
                 <input type="hidden" name="orderId" value="@Model" />
                 <div class="mb-3 col-12">
-                    <label class="form-label" for="currencyId">Eklenecek Kur :</label>
+                    <label class="form-label col-12" for="currencyId">Eklenecek Kur :</label>
 
-                    <select id="currencyId" name="currencyId" class="form-control selectpicker" id="select-ordersCurrency" data-live-search="true" aria-describedby="representetiveUserHelp" data-container="body">
+                    <select id="currencyId" name="currencyId" class="form-control selectpicker" data-live-search="true" aria-describedby="representetiveUserHelp" data-container="body">
                         @foreach (Currency item in ViewBag.Currencies)
                         {
-                            <option value="@item.Id" data-value="@item.CurrentValue">[@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)</option>
+                            <option value="@item.Id" data-val="@item.CurrentValue">[@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)</option>
                         }
                     </select>
                 </div>
 
 
                 <div class="mb-3 col-12">
-                    <label class="form-label" for="currencyValue">Kur Değeri</label>
-                    <input id="currencyValue" name="currencyValue" type="number" class="form-control currency" value="10.00" step="any"/>
+                    <label class="form-label col-12" for="currencyValue">Kur Değeri</label>
+                    <input id="currencyValue" name="currencyValue" type="number" class="form-control currency" value="" step="any" min="0" />
                 </div>
 
                 <div class="mb-3">
@@ -58,10 +58,13 @@
 
 
 <script>
+    $("#currencyValue").val($("#currencyId option:selected").attr("data-val"));
     $('#currencyId').on('change', function() {
-        $("#currencyValue").val($(this).attr("data-value"));
+
+        var selectedVal = $("#currencyId option:selected").attr("data-val");
+        $("#currencyValue").val(selectedVal);
     });
-    
+
     $("#addNewCurrencyForm").submit(function(e) {
         e.preventDefault();
 
