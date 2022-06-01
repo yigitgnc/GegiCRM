@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GegiCRM.DAL.Migrations
 {
-    public partial class IdAutoIncrement : Migration
+    public partial class SelectedAddressesAddedToOrder : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -2282,60 +2282,6 @@ namespace GegiCRM.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerID = table.Column<int>(type: "int", nullable: false),
-                    OrderStateID = table.Column<int>(type: "int", nullable: false),
-                    IsFrequentlyUsed = table.Column<bool>(type: "bit", nullable: false),
-                    IsOfferApproved = table.Column<bool>(type: "bit", nullable: false),
-                    OfferApprovedDate = table.Column<DateTime>(type: "datetime", nullable: true),
-                    IsOrderApproved = table.Column<bool>(type: "bit", nullable: false),
-                    OrderApprovedDate = table.Column<DateTime>(type: "datetime", nullable: true),
-                    IsCancelled = table.Column<bool>(type: "bit", nullable: false),
-                    CancelledDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeneied = table.Column<bool>(type: "bit", nullable: false),
-                    DeniedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    RepresentetiveUserId = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
-                    AddedById = table.Column<int>(type: "int", nullable: false),
-                    ModifiedById = table.Column<int>(type: "int", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Orders_Customers",
-                        column: x => x.CustomerID,
-                        principalTable: "Customers",
-                        principalColumn: "ID");
-                    table.ForeignKey(
-                        name: "FK_Orders_OrderStates",
-                        column: x => x.OrderStateID,
-                        principalTable: "OrderStates",
-                        principalColumn: "ID");
-                    table.ForeignKey(
-                        name: "FK_Orders_Users",
-                        column: x => x.AddedById,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "ID");
-                    table.ForeignKey(
-                        name: "FK_Orders_Users1",
-                        column: x => x.ModifiedById,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "ID");
-                    table.ForeignKey(
-                        name: "FK_OrdersRepresentetiveUsers",
-                        column: x => x.RepresentetiveUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "ID");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ServiceRecords",
                 columns: table => new
                 {
@@ -2437,6 +2383,72 @@ namespace GegiCRM.DAL.Migrations
                     table.ForeignKey(
                         name: "FK_SellsAndBuysAssets_Users1",
                         column: x => x.ModifiedById,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerID = table.Column<int>(type: "int", nullable: false),
+                    OrderStateID = table.Column<int>(type: "int", nullable: false),
+                    IsFrequentlyUsed = table.Column<bool>(type: "bit", nullable: false),
+                    IsOfferApproved = table.Column<bool>(type: "bit", nullable: false),
+                    OfferApprovedDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    IsOrderApproved = table.Column<bool>(type: "bit", nullable: false),
+                    OrderApprovedDate = table.Column<DateTime>(type: "datetime", nullable: true),
+                    IsCancelled = table.Column<bool>(type: "bit", nullable: false),
+                    CancelledDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeneied = table.Column<bool>(type: "bit", nullable: false),
+                    DeniedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    SelectedCustomerAddressId = table.Column<int>(type: "int", nullable: true),
+                    SelectedCustomerBillingAddressId = table.Column<int>(type: "int", nullable: true),
+                    RepresentetiveUserId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())"),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "(getdate())"),
+                    AddedById = table.Column<int>(type: "int", nullable: false),
+                    ModifiedById = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Orders_CustomerAddresses_SelectedCustomerAddressId",
+                        column: x => x.SelectedCustomerAddressId,
+                        principalTable: "CustomerAddresses",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Orders_CustomerBillingAddresses_SelectedCustomerBillingAddressId",
+                        column: x => x.SelectedCustomerBillingAddressId,
+                        principalTable: "CustomerBillingAddresses",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Orders_Customers",
+                        column: x => x.CustomerID,
+                        principalTable: "Customers",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Orders_OrderStates",
+                        column: x => x.OrderStateID,
+                        principalTable: "OrderStates",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Orders_Users",
+                        column: x => x.AddedById,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Orders_Users1",
+                        column: x => x.ModifiedById,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_OrdersRepresentetiveUsers",
+                        column: x => x.RepresentetiveUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "ID");
                 });
@@ -2575,7 +2587,7 @@ namespace GegiCRM.DAL.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "ID", "AccessFailedCount", "AddedById", "ConcurrencyStamp", "CreatedDate", "Email", "EmailConfirmed", "IsDeleted", "LockoutEnabled", "LockoutEnd", "ModifiedById", "ModifiedDate", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserCompanyID", "UserName" },
-                values: new object[] { 1, 0, 1, "a075532d-8aaf-489c-9903-5b498bb6fa6f", new DateTime(2022, 5, 31, 3, 30, 2, 370, DateTimeKind.Local).AddTicks(1314), "yigit.genc@gegi.com.tr", true, false, false, null, null, new DateTime(2022, 5, 31, 3, 30, 2, 370, DateTimeKind.Local).AddTicks(1334), "Yiğit", "YIGIT.GENC@GEGI.COM.TR", "ADMINYGT", "AQAAAAEAACcQAAAAEKiGijO86SQkwfqd30+u8kzaMHXTq1+Jr1p51gMk/j64zsq3wzO+sUB+xT0hJnsxaA==", "+905382630008", false, null, "929ecce8-3bf5-47a9-906d-bd5b7cf08871", "Genç", false, 1, "AdminYigit" });
+                values: new object[] { 1, 0, 1, "5825184e-ac1c-4c71-80ea-18abfdf2a22a", new DateTime(2022, 6, 1, 13, 0, 56, 283, DateTimeKind.Local).AddTicks(4858), "yigit.genc@gegi.com.tr", true, false, false, null, null, new DateTime(2022, 6, 1, 13, 0, 56, 283, DateTimeKind.Local).AddTicks(4871), "Yiğit", "YIGIT.GENC@GEGI.COM.TR", "ADMINYGT", "AQAAAAEAACcQAAAAEPPnMgAG0T+Aed3Uvh//QOcsv1UN/BMbfJ6F4lKro4p0zNu2HWpny5mXFntFTnRzrw==", "+905382630008", false, null, "ad24ad08-af1d-4e2d-ae54-5a68c2862090", "Genç", false, 1, "AdminYigit" });
 
             migrationBuilder.InsertData(
                 table: "AppAuthorizationsRoleGroups",
@@ -2587,9 +2599,9 @@ namespace GegiCRM.DAL.Migrations
                 columns: new[] { "ID", "AddedById", "Code", "CreatedDate", "CurrentValue", "IsDeleted", "ModifiedById", "ModifiedDate", "Name" },
                 values: new object[,]
                 {
-                    { 1, 1, "TRY", new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1695), null, false, null, null, "Türk Lirası" },
-                    { 2, 1, "USD", new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1722), null, false, null, null, "Amerikan Doları" },
-                    { 3, 1, "EUR", new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1725), null, false, null, null, "EURO" }
+                    { 1, 1, "TRY", new DateTime(2022, 6, 1, 13, 0, 56, 284, DateTimeKind.Local).AddTicks(9681), null, false, null, null, "Türk Lirası" },
+                    { 2, 1, "USD", new DateTime(2022, 6, 1, 13, 0, 56, 284, DateTimeKind.Local).AddTicks(9687), null, false, null, null, "Amerikan Doları" },
+                    { 3, 1, "EUR", new DateTime(2022, 6, 1, 13, 0, 56, 284, DateTimeKind.Local).AddTicks(9689), null, false, null, null, "EURO" }
                 });
 
             migrationBuilder.InsertData(
@@ -2629,16 +2641,16 @@ namespace GegiCRM.DAL.Migrations
                 columns: new[] { "ID", "AddedById", "CreatedDate", "Description", "IsDeleted", "ModifiedById", "Name" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1782), "Segment 1 Açıklaması", false, null, "Segment 1" },
-                    { 2, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1796), "Segment 2 Açıklaması", false, null, "Segment 2" },
-                    { 3, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1809), "Segment 3 Açıklaması", false, null, "Segment 3" },
-                    { 4, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1811), "Segment 4 Açıklaması", false, null, "Segment 4" },
-                    { 5, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1821), "Segment 5 Açıklaması", false, null, "Segment 5" },
-                    { 6, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1824), "Segment 6 Açıklaması", false, null, "Segment 6" },
-                    { 7, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1826), "Segment 7 Açıklaması", false, null, "Segment 7" },
-                    { 8, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1828), "Segment 8 Açıklaması", false, null, "Segment 8" },
-                    { 9, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1829), "Segment 9 Açıklaması", false, null, "Segment 9" },
-                    { 10, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1832), "Segment 10 Açıklaması", false, null, "Segment 10" }
+                    { 1, 1, new DateTime(2022, 6, 1, 13, 0, 56, 284, DateTimeKind.Local).AddTicks(9721), "Segment 1 Açıklaması", false, null, "Segment 1" },
+                    { 2, 1, new DateTime(2022, 6, 1, 13, 0, 56, 284, DateTimeKind.Local).AddTicks(9724), "Segment 2 Açıklaması", false, null, "Segment 2" },
+                    { 3, 1, new DateTime(2022, 6, 1, 13, 0, 56, 284, DateTimeKind.Local).AddTicks(9726), "Segment 3 Açıklaması", false, null, "Segment 3" },
+                    { 4, 1, new DateTime(2022, 6, 1, 13, 0, 56, 284, DateTimeKind.Local).AddTicks(9728), "Segment 4 Açıklaması", false, null, "Segment 4" },
+                    { 5, 1, new DateTime(2022, 6, 1, 13, 0, 56, 284, DateTimeKind.Local).AddTicks(9730), "Segment 5 Açıklaması", false, null, "Segment 5" },
+                    { 6, 1, new DateTime(2022, 6, 1, 13, 0, 56, 284, DateTimeKind.Local).AddTicks(9763), "Segment 6 Açıklaması", false, null, "Segment 6" },
+                    { 7, 1, new DateTime(2022, 6, 1, 13, 0, 56, 284, DateTimeKind.Local).AddTicks(9765), "Segment 7 Açıklaması", false, null, "Segment 7" },
+                    { 8, 1, new DateTime(2022, 6, 1, 13, 0, 56, 284, DateTimeKind.Local).AddTicks(9767), "Segment 8 Açıklaması", false, null, "Segment 8" },
+                    { 9, 1, new DateTime(2022, 6, 1, 13, 0, 56, 284, DateTimeKind.Local).AddTicks(9769), "Segment 9 Açıklaması", false, null, "Segment 9" },
+                    { 10, 1, new DateTime(2022, 6, 1, 13, 0, 56, 284, DateTimeKind.Local).AddTicks(9772), "Segment 10 Açıklaması", false, null, "Segment 10" }
                 });
 
             migrationBuilder.InsertData(
@@ -2649,7 +2661,7 @@ namespace GegiCRM.DAL.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "ID", "AddedById", "ConcurrencyStamp", "CreatedDate", "Description", "IsDeleted", "ModifiedById", "ModifiedDate", "Name", "NormalizedName", "RoleGroupId" },
-                values: new object[] { 1, 1, "689ebe17-aa3c-4a7e-b6b4-0cda58d43f3f", new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1629), "Sistem Admini Full Yetki", false, 1, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1631), "SysAdmin", "Sistem Admini", 1 });
+                values: new object[] { 1, 1, "de12a709-7674-4053-8ba4-0d1b929ec50d", new DateTime(2022, 6, 1, 13, 0, 56, 284, DateTimeKind.Local).AddTicks(9645), "Sistem Admini Full Yetki", false, 1, new DateTime(2022, 6, 1, 13, 0, 56, 284, DateTimeKind.Local).AddTicks(9646), "SysAdmin", "Sistem Admini", 1 });
 
             migrationBuilder.InsertData(
                 table: "Customers",
@@ -3223,7 +3235,7 @@ namespace GegiCRM.DAL.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId", "AddedById", "Discriminator", "EndDate", "Id", "IsDeleted", "ModifiedById", "StartDate" },
-                values: new object[] { 1, 1, 1, "AppRolesOfUsers", new DateTime(2032, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1641), 0, false, null, new DateTime(2022, 5, 31, 3, 30, 2, 371, DateTimeKind.Local).AddTicks(1641) });
+                values: new object[] { 1, 1, 1, "AppRolesOfUsers", new DateTime(2032, 6, 1, 13, 0, 56, 284, DateTimeKind.Local).AddTicks(9657), 0, false, null, new DateTime(2022, 6, 1, 13, 0, 56, 284, DateTimeKind.Local).AddTicks(9656) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Announcements_AddedById",
@@ -3798,6 +3810,16 @@ namespace GegiCRM.DAL.Migrations
                 name: "IX_Orders_RepresentetiveUserId",
                 table: "Orders",
                 column: "RepresentetiveUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_SelectedCustomerAddressId",
+                table: "Orders",
+                column: "SelectedCustomerAddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_SelectedCustomerBillingAddressId",
+                table: "Orders",
+                column: "SelectedCustomerBillingAddressId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrdersCurrencies_AddedById",
@@ -4416,12 +4438,6 @@ namespace GegiCRM.DAL.Migrations
                 name: "CustomerActivityLogs");
 
             migrationBuilder.DropTable(
-                name: "CustomerAddresses");
-
-            migrationBuilder.DropTable(
-                name: "CustomerBillingAddresses");
-
-            migrationBuilder.DropTable(
                 name: "CustomerContacts");
 
             migrationBuilder.DropTable(
@@ -4569,7 +4585,10 @@ namespace GegiCRM.DAL.Migrations
                 name: "AppAuthorizationsRoleGroups");
 
             migrationBuilder.DropTable(
-                name: "Customers");
+                name: "CustomerAddresses");
+
+            migrationBuilder.DropTable(
+                name: "CustomerBillingAddresses");
 
             migrationBuilder.DropTable(
                 name: "OrderStates");
@@ -4582,6 +4601,9 @@ namespace GegiCRM.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "SellsAndBuysCategories");
+
+            migrationBuilder.DropTable(
+                name: "Customers");
 
             migrationBuilder.DropTable(
                 name: "Currencies");

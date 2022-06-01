@@ -25,9 +25,12 @@ namespace GegiCRM.Entities.Concrete
         public DateTime? CancelledDate { get; set; }
         public bool IsDeneied { get; set; }
         public DateTime? DeniedDate { get; set; }
-
+        public int? SelectedCustomerAddressId { get; set; }
+        public int? SelectedCustomerBillingAddressId { get; set; }
         public int RepresentetiveUserId { get; set; }
 
+        public virtual CustomerAddress SelectedCustomerAddress { get; set; }
+        public virtual CustomerBillingAddress SelectedCustomerBillingAddress { get; set; }
         public virtual AppUser RepresentetiveUser { get; set; } = null!;
         public virtual Customer Customer { get; set; } = null!;
         public virtual OrderState OrderState { get; set; } = null!;

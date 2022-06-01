@@ -11,5 +11,6 @@ namespace GegiCRM.DAL.Abstract
     {
         public List<Order> GetListAllWithNavigations();
         public Order? GetByIdWithNavigations(int id);
+        
     }
 }

@@ -112,3 +112,8 @@
 .select2-search__field {
     height: 26px !important;
 }
+
+.select2-container--default .select2-results__option--selected {
+    background-color: #ffeb00 !important;
+    color: #798899 !important;
+}

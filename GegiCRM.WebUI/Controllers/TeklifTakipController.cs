@@ -56,6 +56,7 @@ namespace GegiCRM.WebUI.Controllers
             ViewBag.Customers = _customerManager.ListByFilter(x => x.IsDeleted == false);
             ViewBag.Users = _userManager.Users.Where(x=>x.IsDeleted == false).ToList();
             ViewBag.OrderStates = _orderStateManager.ListByFilter(x=>x.IsDeleted == false);
+            //ViewBag.OfferStates = data.i;
             return View(data);
         }
 
@@ -70,6 +71,11 @@ namespace GegiCRM.WebUI.Controllers
             var data = _currencyManager.ListByFilter(x => x.IsDeleted == false);
             ViewBag.Currencies = data;
             return View(id);
+        }
+
+        public IActionResult _GetOfferApprovePartial(int id)
+        {
+            return View();
         }
 
         [HttpPost]
