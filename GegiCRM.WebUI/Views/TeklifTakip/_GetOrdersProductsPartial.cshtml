@@ -13,6 +13,7 @@
                         <th>ADET</th>
                         <th>BİRİM FİYATI</th>
                         <th>DÖVİZ KURU</th>
+                        <th>BİRİMİ</th>
                         <th>KDV ORANI</th>
                         <th>ÜRÜN GRUBU</th>
                         <th>MARKA</th>
@@ -24,9 +25,7 @@
                         <th>ABONELİK BİTİŞ</th>
                         <th>KESİN SEVK DURUMU</th>
                         <th>KESİN TEDARİKÇİ</th>
-                        <th>KESİN BİRİM</th>
                         <th>KESİN FİYAT</th>
-                        <th>KESİN KATEGORİ</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -40,6 +39,7 @@
                             <td>@item.Adet</td>
                             <td>@item.BirimFiyat</td>
                             <td>@item.KesinCurrency.Code: @item.KesinCurrencyValue</td>
+                            <td>@item.Birim.Name</td>
                             <td>@item.Product.ProductGroup.GroupName</td>
                             <td>@item.Product.PorductBrand.Name</td>
                             <td>@item.ReferansSupplier.SupplierName</td>
@@ -48,9 +48,9 @@
                             <td>@item.CreateHtmlBadge(@item.IsApproved)</td>
                             <td>@item.AbonelikBaslangicFormatted</td>
                             <td>@item.AbonelikBitisFormatted</td>
-                            <td>@item.</td>
-                            
-                            
+                            <td>@item.KesinSevkDurumu</td>
+                            <td>@item.KesinSupplier.SupplierName</td>
+                            <td>@item.KesinFiyat</td>
 
                             <td>
                                 <div class="dropdown blockNavigate">
