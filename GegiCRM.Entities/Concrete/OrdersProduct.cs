@@ -1,17 +1,19 @@
 ﻿using GegiCRM.Entities.Abstract;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class OrdersProduct : BaseEntity<int>
+    public partial class OrdersProduct : BaseEntity<int>
     {
         public int OrderId { get; set; }
         public int ProductId { get; set; }
         public string? ReferanceCode { get; set; }
-        public int ProductStateId { get; set; }
         public int? KesinCurrencyId { get; set; }
         public int? ReferansCurrencyId { get; set; }
+        public decimal? KesinCurrencyValue { get; set; }
+        public decimal? ReferansCurrencyValue { get; set; }
         public decimal? Adet { get; set; }
         public decimal? KesinFiyat { get; set; }
         public decimal? BirimFiyat { get; set; }
@@ -24,6 +26,13 @@ namespace GegiCRM.Entities.Concrete
         public DateTime? AbonelikBitis { get; set; }
         public DateTime? KesinSevkTarihi { get; set; }
 
+        public bool IsApproved { get; set; }
+        public DateTime? ApprovedDate { get; set; }
+        public bool IsCancelled { get; set; }
+        public DateTime? CancelledDate { get; set; }
+        public bool IsDeneied { get; set; }
+        public DateTime? DeniedDate { get; set; }
+
         public virtual Birim Birim { get; set; } = null!;
         public virtual Currency? KesinCurrency { get; set; }
         public virtual Supplier? KesinSupplier { get; set; }
@@ -31,5 +40,52 @@ namespace GegiCRM.Entities.Concrete
         public virtual Product Product { get; set; } = null!;
         public virtual Currency? ReferansCurrency { get; set; }
         public virtual Supplier ReferansSupplier { get; set; } = null!;
+    }
+
+    public partial class OrdersProduct
+    {
+
+        [NotMapped]
+        public string ApprovedDateFormatted => FormatNullDate(ApprovedDate);
+
+        [NotMapped]
+        public string CancelledDateFormatted => FormatNullDate(CancelledDate);
+
+        [NotMapped]
+        public string DeniedDateFormatted => FormatNullDate(DeniedDate);
+
+        public string CreateHtmlBadge(bool property)
+        {
+            string badge = "<span class=\"badge bg-label-dark me-1\">Beklemede</span>";
+            if (IsCancelled)
+            {
+                badge = "<span class=\"badge bg-label-outline-danger me-1\">İptal</span>";
+            }
+            else if (IsDeneied)
+            {
+                badge = "<span class=\"badge bg-label-danger me-1\">Red</span>";
+            }
+            else if (property)
+            {
+                badge = "<span class=\"badge bg-label-success me-1\">Onaylandı</span>";
+            }
+            return badge;
+        }
+
+        private string FormatNullDate(DateTime? date)
+        {
+            string value = "";
+            if (date == null)
+            {
+                value = "Beklemede";
+            }
+            else
+            {
+                value = date.ToString();
+            }
+
+            return value;
+
+        }
     }
 }

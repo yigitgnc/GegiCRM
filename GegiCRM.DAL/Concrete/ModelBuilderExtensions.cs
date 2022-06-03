@@ -115,6 +115,7 @@ namespace GegiCRM.DAL.Concrete
                   Code = "TRY",
                   Name = "Türk Lirası",
                   CreatedDate = DateTime.Now,
+                  CurrentValue = 1
               },
               new Currency()
               {
@@ -123,6 +124,7 @@ namespace GegiCRM.DAL.Concrete
                   Code = "USD",
                   Name = "Amerikan Doları",
                   CreatedDate = DateTime.Now,
+                  CurrentValue = 16
               },
               new Currency()
               {
@@ -131,6 +133,7 @@ namespace GegiCRM.DAL.Concrete
                   Code = "EUR",
                   Name = "EURO",
                   CreatedDate = DateTime.Now,
+                  CurrentValue = 17
               }
             };
 

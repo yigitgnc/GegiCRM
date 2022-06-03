@@ -1,0 +1,72 @@
+﻿@{
+    Layout = null;
+}
+@model List< GegiCRM.Entities.Concrete.OrdersProduct>
+  <div class="table-responsive text-nowrap pt-2 pb-4 w-100" style="overflow-x:hidden">
+            <table id="Orders" class="table table-striped table-hover col-12 w-100">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>REFERANS KODU</th>
+                        <th>EKLENME TARİHİ</th>
+                        <th>ÜRÜN ADI</th>
+                        <th>ADET</th>
+                        <th>BİRİM FİYATI</th>
+                        <th>DÖVİZ KURU</th>
+                        <th>KDV ORANI</th>
+                        <th>ÜRÜN GRUBU</th>
+                        <th>MARKA</th>
+                        <th>REFERANS TEDARİKÇİ</th>
+                        <th>REFERANS DÖVİZ KURU</th>
+                        <th>DURUM</th>
+                        <th>ABONELİK BAŞLANGIÇ</th>
+                        <th>ABONELİK BİTİŞ</th>
+                        <th>KESİN SEVK DURUMU</th>
+                        <th>KESİN TEDARİKÇİ</th>
+                        <th>KESİN BİRİM</th>
+                        <th>KESİN FİYAT</th>
+                        <th>KESİN KATEGORİ</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model)
+                    {
+                        <tr data-id="@item.Id" class="clickableTr">
+                            <td>@item.Id</td>
+                            <td>@item.ReferanceCode</td>
+                            <td>@item.CreatedDate</td>
+                            <td>@item.Product.ProductName</td>
+                            <td>@item.Adet</td>
+                            <td>@item.BirimFiyat</td>
+                            <td>@item.ReferansCurrency.Code</td>
+                            <td>@item.Product.ProductGroup.GroupName</td>
+                            <td>@item.Product.PorductBrand.Name</td>
+                            <td>@item.ReferansSupplier.SupplierName</td>
+                            <td>@item.ReferansBirimFiyat</td>
+                            <td>@item.ReferansCurrency.Code</td>
+                            
+                            
+
+                            <td>
+                                <div class="dropdown blockNavigate">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>Düzenle</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-check-double me-1 bg-label-success"></i>Tüm Kalemler ile Onayla</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-check me-1 text-success"></i>Onaylı Kalemler ile Onayla</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-x me-1 bg-label-danger"></i>İptal Et</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1 text-danger"></i>Sil</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+                <tfoot class="table-border-bottom-0">
+                </tfoot>
+            </table>
+        </div>

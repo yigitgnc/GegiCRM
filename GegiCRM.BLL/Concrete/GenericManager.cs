@@ -37,6 +37,7 @@ namespace GegiCRM.BLL.Concrete
         public void Create(T t)
         {
             t = SetAddedBy(t);
+            t = SetLastModifiedBy(t);
             _genericDal.Insert(t);
         }
         public void Update(T t)

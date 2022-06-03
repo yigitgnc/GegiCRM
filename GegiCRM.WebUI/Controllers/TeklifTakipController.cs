@@ -17,6 +17,7 @@ namespace GegiCRM.WebUI.Controllers
         readonly GenericManager<Customer> _customerManager;
         readonly OrdersCurrencyManager _orderCurrencyManager;
         readonly GenericManager<OrderState> _orderStateManager;
+        readonly GenericManager<OrdersProduct> _orderProductsManager;
 
         private GenericManager<Currency> _currencyManager;
         public TeklifTakipController(UserManager<AppUser> userManager)
@@ -27,6 +28,7 @@ namespace GegiCRM.WebUI.Controllers
             _orderCurrencyManager = new OrdersCurrencyManager(_userManager, new EfOrdersCurrencyRepository());
             _currencyManager = new GenericManager<Currency>(_userManager, new EfCurrencieRepository());
             _orderStateManager = new GenericManager<OrderState>(_userManager, new GenericRepository<OrderState>());
+            _orderProductsManager = new GenericManager<OrdersProduct>(_userManager, new EfOrdersProductRepository());
         }
 
 
@@ -52,7 +54,6 @@ namespace GegiCRM.WebUI.Controllers
 
         public IActionResult Edit(int id)
         {
-            
             var order = _teklifTakipManager.GetByIdWithNavigations(id);
             if (order == null)
             {
@@ -62,17 +63,23 @@ namespace GegiCRM.WebUI.Controllers
             ViewBag.Users = _userManager.Users.Where(x=>x.IsDeleted == false).ToList();
             ViewBag.OrderStates = _orderStateManager.ListByFilter(x=>x.IsDeleted == false);
 
-            bool isOffer = false;
-
+            string type = "Sipariş";
             //offer onaylanmadıysa ve nullsa bu bir tekliftir
-            if (order.IsOfferApproved == null && !order.IsOfferApproved)
+            if (order.IsOfferApproved == null || !order.IsOfferApproved)
             {
-                isOffer = true;
+                type = "Teklif";
             }
             
-            ViewBag.IsOffer = isOffer;
+            ViewBag.Type = type;
+
             //ViewBag.OfferStates = data.i;
             return View(order);
+        }
+
+        public IActionResult _GetOrdersProductsPartial(int id)
+        {
+            List<OrdersProduct> ordersProducts = _orderProductsManager.ListByFilter(x => x.OrderId == id);
+            return View(ordersProducts);
         }
 
         public IActionResult _GetOrdersCurrenciesPartial(int id)
@@ -150,6 +157,19 @@ namespace GegiCRM.WebUI.Controllers
                 return e.Message;
             }
 
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var orderToDelete = _teklifTakipManager.GetById(id);
+            if (orderToDelete != null)
+            {
+                _teklifTakipManager.Delete(orderToDelete);
+                return RedirectToAction("Index");
+            }
+
+            return BadRequest();
         }
 
         public async Task<IActionResult> Test()

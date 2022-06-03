@@ -28,6 +28,8 @@ namespace GegiCRM.Entities.Concrete
         public int? SelectedCustomerAddressId { get; set; }
         public int? SelectedCustomerBillingAddressId { get; set; }
         public int RepresentetiveUserId { get; set; }
+        public string? OfferNote { get; set; }
+        public string? OrderNote { get; set; }
 
         public virtual CustomerAddress SelectedCustomerAddress { get; set; }
         public virtual CustomerBillingAddress SelectedCustomerBillingAddress { get; set; }
@@ -44,16 +46,26 @@ namespace GegiCRM.Entities.Concrete
     {
 
         [NotMapped]
-        public string SiparisOnayFormatted => FormatNullDate(OrderApprovedDate);
+        public string OfferApprovedDateDateFormatted => FormatNullDate(OfferApprovedDate);
+
         [NotMapped]
-        public string TeklifOnayFormatted => FormatNullDate(OrderApprovedDate);
+        public string OrderApprovedDateFormatted => FormatNullDate(OrderApprovedDate);
+
+        [NotMapped]
+        public string CancelledDateFormatted => FormatNullDate(CancelledDate);
+
+        [NotMapped]
+        public string DeniedDateFormatted => FormatNullDate(DeniedDate);
 
         public string CreateHtmlBadge(bool property)
         {
             string badge = "<span class=\"badge bg-label-dark me-1\">Beklemede</span>";
             if (IsCancelled)
             {
-                badge = "<span class=\"badge bg-label-danger me-1\">İptal</span>";
+                badge = "<span class=\"badge bg-label-outline-danger me-1\">İptal</span>";
+            }else if (IsDeneied)
+            {
+                badge = "<span class=\"badge bg-label-danger me-1\">Red</span>";
             }
             else if (property)
             {

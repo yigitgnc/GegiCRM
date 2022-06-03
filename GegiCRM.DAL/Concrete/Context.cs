@@ -1313,8 +1313,7 @@ namespace GegiCRM.DAL.Concrete
                 entity.Property(e => e.ModifiedDate)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.ProductStateId).HasColumnName("ProductStateID");
+                
 
                 entity.Property(e => e.ReferanceCode).HasMaxLength(50);
 
