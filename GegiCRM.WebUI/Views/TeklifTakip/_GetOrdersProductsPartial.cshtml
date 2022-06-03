@@ -17,6 +17,7 @@
                         <th>ÜRÜN GRUBU</th>
                         <th>MARKA</th>
                         <th>REFERANS TEDARİKÇİ</th>
+                        <th>REFERANS BİRİM FİYAT</th>
                         <th>REFERANS DÖVİZ KURU</th>
                         <th>DURUM</th>
                         <th>ABONELİK BAŞLANGIÇ</th>
@@ -38,12 +39,16 @@
                             <td>@item.Product.ProductName</td>
                             <td>@item.Adet</td>
                             <td>@item.BirimFiyat</td>
-                            <td>@item.ReferansCurrency.Code</td>
+                            <td>@item.KesinCurrency.Code: @item.KesinCurrencyValue</td>
                             <td>@item.Product.ProductGroup.GroupName</td>
                             <td>@item.Product.PorductBrand.Name</td>
                             <td>@item.ReferansSupplier.SupplierName</td>
                             <td>@item.ReferansBirimFiyat</td>
-                            <td>@item.ReferansCurrency.Code</td>
+                            <td>@item.ReferansCurrency.Code: @item.ReferansCurrencyValue</td>
+                            <td>@item.CreateHtmlBadge(@item.IsApproved)</td>
+                            <td>@item.AbonelikBaslangicFormatted</td>
+                            <td>@item.AbonelikBitisFormatted</td>
+                            <td>@item.</td>
                             
                             
 
@@ -54,9 +59,6 @@
                                     </button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>Düzenle</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-check-double me-1 bg-label-success"></i>Tüm Kalemler ile Onayla</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-check me-1 text-success"></i>Onaylı Kalemler ile Onayla</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-x me-1 bg-label-danger"></i>İptal Et</a>
                                         <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1 text-danger"></i>Sil</a>
                                     </div>
                                 </div>

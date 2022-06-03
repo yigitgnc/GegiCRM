@@ -24,6 +24,7 @@ namespace GegiCRM.Entities.Concrete
         public int ReferansSupplierId { get; set; }
         public DateTime? AbonelikBaslangic { get; set; }
         public DateTime? AbonelikBitis { get; set; }
+        public string? KesinSevkDurumu { get; set; }
         public DateTime? KesinSevkTarihi { get; set; }
 
         public bool IsApproved { get; set; }
@@ -53,6 +54,10 @@ namespace GegiCRM.Entities.Concrete
 
         [NotMapped]
         public string DeniedDateFormatted => FormatNullDate(DeniedDate);
+        [NotMapped]
+        public string AbonelikBaslangicFormatted => FormatNullDate(AbonelikBaslangic);
+        [NotMapped]
+        public string AbonelikBitisFormatted => FormatNullDate(AbonelikBitis);
 
         public string CreateHtmlBadge(bool property)
         {
