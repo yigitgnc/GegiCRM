@@ -87,7 +87,7 @@ function SearchInDataSet(value) {
 }
 
 //selectPicker (bootstrap-select)
-$(document).on("ready ajaxSuccess", function () {
+$(document).on("ajaxSuccess", function () {
     InitCustomInputs();
 });
 
@@ -129,3 +129,4 @@ function InitCustomInputs() {
         });
     };
 })(jQuery);
+

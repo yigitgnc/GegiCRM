@@ -39,6 +39,14 @@
     padding: 0 0 0 5px;
     margin: 0;
 }
+
+.dataTables_empty {
+    text-align: center;
+    width: 100% !important;
+    position: absolute;
+    height: 96%;
+    cursor: not-allowed;
+}
 /*datatable end*/
 
 /*scrollbar begin*/

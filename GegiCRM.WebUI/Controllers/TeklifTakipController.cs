@@ -2,6 +2,7 @@
 using GegiCRM.DAL.EntityFramework;
 using GegiCRM.DAL.Repositories;
 using GegiCRM.Entities.Concrete;
+using GegiCRM.WebUI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -23,8 +24,8 @@ namespace GegiCRM.WebUI.Controllers
         public TeklifTakipController(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
-            _teklifTakipManager = new TeklifTakipManager(userManager, new EfOrderRepository()); ;
-            _customerManager = new GenericManager<Customer>(userManager, new EfCustomerRepository());
+            _teklifTakipManager = new TeklifTakipManager(_userManager, new EfOrderRepository()); ;
+            _customerManager = new GenericManager<Customer>(_userManager, new EfCustomerRepository());
             _orderCurrencyManager = new OrdersCurrencyManager(_userManager, new EfOrdersCurrencyRepository());
             _currencyManager = new GenericManager<Currency>(_userManager, new EfCurrencieRepository());
             _orderStateManager = new GenericManager<OrderState>(_userManager, new GenericRepository<OrderState>());
@@ -34,7 +35,8 @@ namespace GegiCRM.WebUI.Controllers
 
         public IActionResult Index()
         {
-            List<Order> model = _teklifTakipManager.GetListAllWithNavigations();
+            List<Order> model = _teklifTakipManager.GetListAllWithNavigations(); 
+            ViewBag.Type = "Teklif";
             return View(model);
         }
 
@@ -94,12 +96,6 @@ namespace GegiCRM.WebUI.Controllers
             ViewBag.Currencies = data;
             return View(id);
         }
-
-        public IActionResult _GetOfferApprovePartial(int id)
-        {
-            return View();
-        }
-
         [HttpPost]
         public string AddCurrencyToOrder(string orderId, string currencyId, string currencyValue)
         {
@@ -170,6 +166,43 @@ namespace GegiCRM.WebUI.Controllers
             }
 
             return BadRequest();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">Order Id to add Product</param>
+        /// <returns></returns>
+        public IActionResult _AddOrdersProductPartial(int id)
+        {
+            GenericManager<Supplier> supplierGenericManager =
+                new GenericManager<Supplier>(_userManager, new EfSupplierRepository());
+
+            GenericManager<Birim> birimGenericManager =
+                new GenericManager<Birim>(_userManager, new EfBirimRepository());
+
+            GenericManager<Brand> brandGenericManager =
+                new GenericManager<Brand>(_userManager, new EfBrandRepository());
+
+            GenericManager<ProductGroup> productGroupGenericManager =
+                new GenericManager<ProductGroup>(_userManager, new EfProductGroupRepository());
+
+            GenericManager<Product> productsGenericManager = new GenericManager<Product>(_userManager,new EfProductRepository());
+
+            GenericManager<Currency> currencyGenericManager =
+                new GenericManager<Currency>(_userManager, new EfCurrencieRepository());
+
+
+            AddOrdersProductViewModel vm = new AddOrdersProductViewModel();
+            vm.Suppliers = supplierGenericManager.GetAll();
+            vm.Birims = birimGenericManager.GetAll();
+            vm.Brands = brandGenericManager.GetAll();
+            vm.ProductGroups = productGroupGenericManager.GetAll();
+            vm.Products = productsGenericManager.GetAll();
+            vm.Currencies = currencyGenericManager.GetAll();
+            vm.OrdersCurrencies = _orderCurrencyManager.GetOrdersCurrencies(id);
+            
+            return View(vm);
         }
 
         public async Task<IActionResult> Test()

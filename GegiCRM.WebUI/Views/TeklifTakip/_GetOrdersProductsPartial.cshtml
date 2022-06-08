@@ -2,73 +2,85 @@
     Layout = null;
 }
 @model List< GegiCRM.Entities.Concrete.OrdersProduct>
-  <div class="table-responsive text-nowrap pt-2 pb-4 w-100" style="overflow-x:hidden">
-            <table id="Orders" class="table table-striped table-hover col-12 w-100">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>REFERANS KODU</th>
-                        <th>EKLENME TARİHİ</th>
-                        <th>ÜRÜN ADI</th>
-                        <th>ADET</th>
-                        <th>BİRİM FİYATI</th>
-                        <th>DÖVİZ KURU</th>
-                        <th>BİRİMİ</th>
-                        <th>KDV ORANI</th>
-                        <th>ÜRÜN GRUBU</th>
-                        <th>MARKA</th>
-                        <th>REFERANS TEDARİKÇİ</th>
-                        <th>REFERANS BİRİM FİYAT</th>
-                        <th>REFERANS DÖVİZ KURU</th>
-                        <th>DURUM</th>
-                        <th>ABONELİK BAŞLANGIÇ</th>
-                        <th>ABONELİK BİTİŞ</th>
-                        <th>KESİN SEVK DURUMU</th>
-                        <th>KESİN TEDARİKÇİ</th>
-                        <th>KESİN FİYAT</th>
-                    </tr>
-                </thead>
-                <tbody class="table-border-bottom-0">
-                    @foreach (var item in Model)
-                    {
-                        <tr data-id="@item.Id" class="clickableTr">
-                            <td>@item.Id</td>
-                            <td>@item.ReferanceCode</td>
-                            <td>@item.CreatedDate</td>
-                            <td>@item.Product.ProductName</td>
-                            <td>@item.Adet</td>
-                            <td>@item.BirimFiyat</td>
-                            <td>@item.KesinCurrency.Code: @item.KesinCurrencyValue</td>
-                            <td>@item.Birim.Name</td>
-                            <td>@item.Product.ProductGroup.GroupName</td>
-                            <td>@item.Product.PorductBrand.Name</td>
-                            <td>@item.ReferansSupplier.SupplierName</td>
-                            <td>@item.ReferansBirimFiyat</td>
-                            <td>@item.ReferansCurrency.Code: @item.ReferansCurrencyValue</td>
-                            <td>@item.CreateHtmlBadge(@item.IsApproved)</td>
-                            <td>@item.AbonelikBaslangicFormatted</td>
-                            <td>@item.AbonelikBitisFormatted</td>
-                            <td>@item.KesinSevkDurumu</td>
-                            <td>@item.KesinSupplier.SupplierName</td>
-                            <td>@item.KesinFiyat</td>
+<div class="table-responsive text-nowrap pt-2 pb-4 w-100" style="overflow-x:hidden">
+    <table id="ordersProductsTable" class="table table-striped table-hover col-12 w-100">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>REFERANS KODU</th>
+                <th>EKLENME TARİHİ</th>
+                <th>ÜRÜN ADI</th>
+                <th>ADET</th>
+                <th>BİRİM FİYATI</th>
+                <th>DÖVİZ KURU</th>
+                <th>BİRİMİ</th>
+                <th>KDV ORANI</th>
+                <th>ÜRÜN GRUBU</th>
+                <th>MARKA</th>
+                <th>REFERANS TEDARİKÇİ</th>
+                <th>REFERANS BİRİM FİYAT</th>
+                <th>REFERANS DÖVİZ KURU</th>
+                <th>DURUM</th>
+                <th>ABONELİK BAŞLANGIÇ</th>
+                <th>ABONELİK BİTİŞ</th>
+                <th>KESİN SEVK DURUMU</th>
+                <th>KESİN TEDARİKÇİ</th>
+                <th>KESİN FİYAT</th>
+            </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+            @foreach (var item in Model)
+            {
+                <tr data-id="@item.Id" class="clickableTr">
+                    <td>@item.Id</td>
+                    <td>@item.ReferanceCode</td>
+                    <td>@item.CreatedDate</td>
+                    <td>@item.Product.ProductName</td>
+                    <td>@item.Adet</td>
+                    <td>@item.BirimFiyat</td>
+                    <td>@item.KesinCurrency.Code: @item.KesinCurrencyValue</td>
+                    <td>@item.Birim.Name</td>
+                    <td>@item.Product.ProductGroup.GroupName</td>
+                    <td>@item.Product.PorductBrand.Name</td>
+                    <td>@item.ReferansSupplier.SupplierName</td>
+                    <td>@item.ReferansBirimFiyat</td>
+                    <td>@item.ReferansCurrency.Code: @item.ReferansCurrencyValue</td>
+                    <td>@item.CreateHtmlBadge(@item.IsApproved)</td>
+                    <td>@item.AbonelikBaslangicFormatted</td>
+                    <td>@item.AbonelikBitisFormatted</td>
+                    <td>@item.KesinSevkDurumu</td>
+                    <td>@item.KesinSupplier.SupplierName</td>
+                    <td>@item.KesinFiyat</td>
 
-                            <td>
-                                <div class="dropdown blockNavigate">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>Düzenle</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1 text-danger"></i>Sil</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    }
+                    <td>
+                        <div class="dropdown blockNavigate">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>Düzenle</a>
+                                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1 text-danger"></i>Sil</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
 
 
-                </tbody>
-                <tfoot class="table-border-bottom-0">
-                </tfoot>
-            </table>
-        </div>
+        </tbody>
+        <tfoot class="table-border-bottom-0">
+        </tfoot>
+    </table>
+</div>
+
+<script>
+    $(".clickableTr").on("click", function() {
+        var id = $(this).attr("data-id");
+        console.log(id);
+        window.location.href = "/TeklifTakip/Edit/" + id;
+    });
+
+    $(".blockNavigate").on("click", function(e) {
+        e.stopPropagation();
+    });
+</script>

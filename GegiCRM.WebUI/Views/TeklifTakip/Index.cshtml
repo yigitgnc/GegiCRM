@@ -93,7 +93,7 @@
                                         <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-check-double me-1 bg-label-success"></i>Tüm Kalemler ile Onayla</a>
                                         <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-check me-1 text-success"></i>Onaylı Kalemler ile Onayla</a>
                                         <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-x me-1 bg-label-danger"></i>İptal Et</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1 text-danger"></i>Sil</a>
+                                        <a class="dropdown-item" href="javascript:void(0);" onclick="ShowDeleteModal(@item.Id)"><i class="bx bx-trash me-1 text-danger"></i>Sil</a>
                                     </div>
                                 </div>
                             </td>
@@ -112,14 +112,39 @@
 
 <hr class="my-5" />
 
-
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="backDropModalTitle"><i class="deletedOrderId"></i> Id'li @ViewBag.Type<text>i</text> Silmek Üzeresin !</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col mb-3">
+                        <label class="text-danger"><i class="deletedOrderId"></i> Id'li @ViewBag.Type<text>i</text> Silmek İstediğine Emin Misin ?</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Hayır İptal
+                </button>
+                <button class="btn btn-danger" onclick="DeleteOrder()">Evet Sil</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
 @section Scripts{
 
     <script>
+        var orderIdToDelete = 0;
         var firstTime = true;
+
         $("#newOrderButton").click(function() {
 
             if (firstTime) {
@@ -139,10 +164,41 @@
                 },
                 error: function(err) {
                     console.log(err);
-                    $("#newOrderContent").html("Bir Hata Oluştu !");
+                    alert("Bir Hata Oluştu !");
                 }
             }).done(function() {
                 $("#waitNewOrder").hide();
+            });
+
+        };
+
+        function ShowDeleteModal(id) {
+            orderIdToDelete = id;
+            $(".deletedOrderId").html(id);
+            $("#deleteModal").modal('show');
+        }
+
+        function DeleteOrder() {
+            var trToDelete = $('tr[data-id="' + orderIdToDelete + '"]');
+            console.log(trToDelete);
+
+            var table = $('#Orders').DataTable();
+            table.row(trToDelete).remove().draw();
+
+            $.ajax({
+                "url": "/TeklifTakip/Delete",
+                "method": "POST",
+                data: { id: orderIdToDelete },
+                success: function(data) {
+                    var table = $('#Orders').DataTable();
+                    table.row(trToDelete).remove().draw();
+                },
+                error: function(err) {
+                    console.log(err);
+                    alert("Bir Hata Oluştu !");
+                }
+            }).done(function() {
+                $("#deleteModal").modal('hide');
             });
 
         };
@@ -156,6 +212,26 @@
         $(".blockNavigate").on("click", function(e) {
             e.stopPropagation();
         });
+        
+        //$(function(){
+        //    $('.dataTable tbody').contextMenu({
+        //        selector: 'tr', 
+        //        callback: function(key, options) {
+        //            var m = "clicked: " + key + " on " + $(this).text();
+        //            window.console && console.log(m) || alert(m); 
+        //        },
+        //        items: {
+        //            "newTab": {name: "Yeni Sekmede Aç", icon: "external-link"},
+        //            "cut": {name: "Cut", icon: "cut"},
+        //            "copy": {name: "Copy", icon: "copy"},
+        //            "paste": {name: "Paste", icon: "paste"},
+        //            "delete": {name: "Delete", icon: "delete"},
+        //            "sep1": "---------",
+        //            "quit": {name: "Quit", icon: function($element, key, item){ return 'context-menu-icon context-menu-icon-quit'; }}
+        //        }
+        //    });
+        //});
+        
 
 
     </script>

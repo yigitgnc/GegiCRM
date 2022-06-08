@@ -1,7 +1,71 @@
 ﻿$(document).ready(function () {
+    AutoInitAllDataTables();
+});
+
+$(document).on("ajaxSuccess", function () {
+    AutoInitAllDataTables();
+});
 
 
-    var table = $('.table').DataTable({
+function AdjustNoDataRowLeft() {
+    var body = $(".dataTables_scrollBody")[0];
+    var emptyRow = $(".dataTables_empty")[0];
+    $(emptyRow).css('left', $(body).scrollLeft());
+}
+
+function AutoInitAllDataTables() {
+    for (var i = 0; i < $(".table").length; i++) {
+
+        var table = $(".table")[i];
+        if (!$.fn.DataTable.isDataTable(table)) {
+
+            DataTableInitialize(
+                $(table),
+                [
+                    {
+                        "targets": 0,
+                        "searchable": false
+                    }
+                ],
+                false
+            );
+
+        }
+
+
+    };
+}
+
+// Call the dataTables jQuery plugin
+function DataTableInitialize(table, defs, responsive) {
+
+    //table = $(table).DataTable({
+    //    //dom: 'Blfrtip',
+    //    "lengthMenu": [[10, 25, 50, 100, 150, 200, - 1], [10, 25, 50, 100, 150, 200, "Hepsi"]],
+    //    dom: "<'row'<'pt-1 col-sm-6 col-12'l><'pt-1 col-sm-6 col-12'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'d-flex justify-content-center col-12'i><'d-flex justify-content-center col-12'p><'pt-1 pb-1 col-sm-12 d-flex justify-content-center'B>>",
+    //    buttons: [
+    //        'copy', 'csv', 'excel', 'pdf', 'print'
+    //    ],
+    //    "iDisplayLength": 50,
+    //    "iorder": [[0, "desc"]],
+    //    "columnDefs": defs,
+    //    "oLanguage": {
+    //        "sUrl": "https://cdn.datatables.net/plug-ins/1.12.0/i18n/tr.json"
+    //    },
+    //    colReorder: true,
+    //    //disable filter
+    //    //"stateSaveParams": function (settings, data) {
+    //    //    data.search.search = "";
+    //    //},
+    //    "oSearch": {
+    //        "sSearch": ""
+    //    },
+    //    stateSave: true,
+    //    responsive: responsive,
+    //    "bAutowidth": false,
+    //});
+
+    var table = $(table).DataTable({
         "lengthMenu": [[10, 25, 50, 100, 150, 200, - 1], [10, 25, 50, 100, 150, 200, "Hepsi"]],
         "iDisplayLength": 50,
         "pageLength": 50,
@@ -17,10 +81,7 @@
         },
         dom: "Q<'row'<'d-flex justify-content-center justify-content-sm-start pt-1 col-sm-6 col-12'l><'d-flex justify-content-center justify-content-sm-end pt-1 col-sm-6 col-12'f>> <'row'<'col-12'tr>> <'row'<'d-flex justify-content-center justify-content-lg-start col-12 col-lg-5'i><'d-flex justify-content-center justify-content-lg-end col-12 col-lg-7 p-2'p><'pt-1 pb-1 col-sm-12 d-flex justify-content-center'B>>",
         //dom: "QlftripB",
-        "columnDefs": [{
-            "targets": 0,
-            "searchable": false
-        }],
+        "columnDefs": defs,
 
         buttons: [
             { extend: 'copy', className: 'btn-outline-primary' },
@@ -29,7 +90,7 @@
             { extend: 'pdf', className: 'btn-outline-primary' },
             { extend: 'print', className: 'btn-outline-primary' }
         ],
-        responsive: false,
+        responsive: responsive,
         "bAutowidth": false,
         fixedHeader: {
             header: true,
@@ -43,6 +104,9 @@
             //$('.dataTables_scrollBody').perfectScrollbar();
             //ps = new PerfectScrollbar('.dataTables_scrollBody');
             //$("thead tr").clone().appendTo($("tfoot"));
+            $(".dataTables_scrollBody").scroll(function () {
+                AdjustNoDataRowLeft();
+            });
         },
         //on paginition page 2,3.. often scroll shown, so reset it and assign it again
         "fnDrawCallback": function (oSettings) {
@@ -51,42 +115,8 @@
             //const ps = new PerfectScrollbar('.dataTables_scrollBody');
         }
     });
-    table.search('');
-    table.columns().search('');
-    table.order([0, 'desc']);
-    table.draw();
 
 
-});
-
-// Call the dataTables jQuery plugin
-function DataTableInitialize(table, defs, responsive) {
-
-    table = $(table).DataTable({
-        //dom: 'Blfrtip',
-        "lengthMenu": [[10, 25, 50, 100, 150, 200, - 1], [10, 25, 50, 100, 150, 200, "Hepsi"]],
-        dom: "<'row'<'pt-1 col-sm-6 col-12'l><'pt-1 col-sm-6 col-12'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'d-flex justify-content-center col-12'i><'d-flex justify-content-center col-12'p><'pt-1 pb-1 col-sm-12 d-flex justify-content-center'B>>",
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ],
-        "iDisplayLength": 50,
-        "iorder": [[0, "desc"]],
-        "columnDefs": defs,
-        "oLanguage": {
-            "sUrl": "https://cdn.datatables.net/plug-ins/1.12.0/i18n/tr.json"
-        },
-        colReorder: true,
-        //disable filter
-        //"stateSaveParams": function (settings, data) {
-        //    data.search.search = "";
-        //},
-        "oSearch": {
-            "sSearch": ""
-        },
-        stateSave: true,
-        responsive: responsive,
-        "bAutowidth": false,
-    });
 
     table.search('');
     table.columns().search('');
@@ -151,3 +181,4 @@ function DataTableInitialize(table, defs, responsive) {
     //    });
 
 }
+
