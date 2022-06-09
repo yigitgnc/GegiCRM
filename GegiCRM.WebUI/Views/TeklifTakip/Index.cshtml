@@ -1,6 +1,6 @@
 ﻿@using GegiCRM.Entities.Concrete
 @{
-    ViewData["title"] = "Teklif Takip [TT]";
+    ViewData["title"] = $"{ViewBag.Type} Takip";
 }
 @model List<Order>
 
@@ -13,9 +13,9 @@
 <div class="card">
     <div class="card-header">
         <div class="d-flex justify-content-between">
-            <h5> Teklifler</h5>
+            <h5>@ViewBag.Type<text>ler</text></h5>
             <button id="newOrderButton" type="button" class="btn btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#newOrderCollapse">
-                Yeni Teklif
+                Yeni @ViewBag.Type
             </button>
         </div>
 
@@ -212,26 +212,26 @@
         $(".blockNavigate").on("click", function(e) {
             e.stopPropagation();
         });
-        
-        //$(function(){
-        //    $('.dataTable tbody').contextMenu({
-        //        selector: 'tr', 
-        //        callback: function(key, options) {
-        //            var m = "clicked: " + key + " on " + $(this).text();
-        //            window.console && console.log(m) || alert(m); 
-        //        },
-        //        items: {
-        //            "newTab": {name: "Yeni Sekmede Aç", icon: "external-link"},
-        //            "cut": {name: "Cut", icon: "cut"},
-        //            "copy": {name: "Copy", icon: "copy"},
-        //            "paste": {name: "Paste", icon: "paste"},
-        //            "delete": {name: "Delete", icon: "delete"},
-        //            "sep1": "---------",
-        //            "quit": {name: "Quit", icon: function($element, key, item){ return 'context-menu-icon context-menu-icon-quit'; }}
-        //        }
-        //    });
-        //});
-        
+
+                //$(function(){
+                //    $('.dataTable tbody').contextMenu({
+                //        selector: 'tr',
+                //        callback: function(key, options) {
+                //            var m = "clicked: " + key + " on " + $(this).text();
+                //            window.console && console.log(m) || alert(m);
+                //        },
+                //        items: {
+                //            "newTab": {name: "Yeni Sekmede Aç", icon: "external-link"},
+                //            "cut": {name: "Cut", icon: "cut"},
+                //            "copy": {name: "Copy", icon: "copy"},
+                //            "paste": {name: "Paste", icon: "paste"},
+                //            "delete": {name: "Delete", icon: "delete"},
+                //            "sep1": "---------",
+                //            "quit": {name: "Quit", icon: function($element, key, item){ return 'context-menu-icon context-menu-icon-quit'; }}
+                //        }
+                //    });
+                //});
+
 
 
     </script>

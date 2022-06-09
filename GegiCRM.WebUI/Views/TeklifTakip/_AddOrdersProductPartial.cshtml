@@ -11,21 +11,21 @@
     <div class="col-auto mt-2">
         <div class="form-check form-check-inline">
             <label class="form-check-label cursor-pointer" for="IsApproved">ONAYLANDI</label>
-            <input class="form-check-input cursor-pointer" type="checkbox" id="IsApproved" name="IsApproved" value="false" />
+            <input name="IsApproved" class="form-check-input cursor-pointer" type="checkbox" id="IsApproved" value="false" />
         </div>
     </div>
 
     <div class="col-auto mt-2">
         <div class="form-check form-check-inline">
             <label class="form-check-label cursor-pointer" for="IsCancelled">İPTAL EDİLDİ</label>
-            <input class="form-check-input cursor-pointer" type="checkbox" id="IsCancelled" name="IsCancelled" value="false" />
+            <input name="IsCancelled" class="form-check-input cursor-pointer" type="checkbox" id="IsCancelled" value="false" />
         </div>
     </div>
 
     <div class="col-auto mt-2">
         <div class="form-check form-check-inline">
             <label class="form-check-label cursor-pointer" for="IsDenied">REDDEDİLDİ</label>
-            <input class="form-check-input cursor-pointer" type="checkbox" id="IsDenied" name="IsDenied" value="false" />
+            <input name="IsDeneied" class="form-check-input cursor-pointer" type="checkbox" id="IsDenied" value="false" />
         </div>
     </div>
 </div>
@@ -37,13 +37,13 @@
     <div class="col-12 mb-3" id="ProductSearchContainer">
         <div class="d-flex align-items-center w-100">
             <i class="bx bx-search fs-4 lh-0"></i>
-            <input type="text" id="productSearch" class="form-control border-0 shadow-none" placeholder="Ürün Adı Girin" aria-label="Ürün Adı Girin" autocomplete="off">
+            <input name="ProductName" type="text" id="productSearch" class="form-control border-0 shadow-none" placeholder="Ürün Adı Girin" aria-label="Ürün Adı Girin" autocomplete="off">
         </div>
 
         <ul id="productsUl" class="d-none">
             @foreach (Product item in Model.Products)
             {
-                <li onclick="SetSelectedProduct(this)" data-id="@item.Id" data-kdv="@item.KdvOrani" data-GroupId="@item.ProductGroupId" data-brandId="@item.PorductBrandId" style="cursor: pointer">
+                <li class="list-group-item list-group-item-action" onclick="SetSelectedProduct(this)" data-name="@item.ProductName" data-id="@item.Id" data-kdv="@item.KdvOrani" data-groupId="@item.ProductGroupId" data-brandId="@item.PorductBrandId" style="cursor: pointer">
                     @item.ProductName (Marka: @item.PorductBrand.Name, Stok: @item.StockCount)
                     <br />
                     Açıklama: "@item.ProductDescription", Ürün Grubu: @item.ProductGroup.GroupName, KDV Oranı: @item.KdvOrani
@@ -51,7 +51,7 @@
             }
         </ul>
 
-        <input type="hidden" name="ProductId" id="ProductId" value="-1" />
+        <input name="ProductId" type="hidden" id="ProductId" value="-1" />
 
         <div id="productSearchResults" class="mt-3">
             <ul class="list-group">
@@ -71,7 +71,7 @@
             Marka
         </h5>
 
-        <select name="ProductBrandId" class="form-control selectpickerInModal" id="select-ProductBrandId" data-live-search="true" data-container="body">
+        <select name="PorductBrandId" id="ProductBrandId" class="form-control selectpickerInModal" id="select-ProductBrandId" data-live-search="true" data-container="body">
             @foreach (Brand item in Model.Brands)
             {
                 <option value="@item.Id" data-tokens="@item.Name">
@@ -87,7 +87,7 @@
             Ürün Grubu
         </h5>
 
-        <select name="ProductGroupId" class="form-control selectpickerInModal" id="select-ProductGroupId" data-live-search="true" data-container="body">
+        <select name="ProductGroupId" id="ProductGroupId" class="form-control selectpickerInModal" id="select-ProductGroupId" data-live-search="true" data-container="body">
             @foreach (ProductGroup item in Model.ProductGroups)
             {
                 <option value="@item.Id" data-tokens="@item.GroupName">
@@ -103,7 +103,7 @@
             Birimi
         </h5>
 
-        <select name="BirimId" class="form-control selectpickerInModal" id="select-BirimId" data-live-search="true" data-container="body">
+        <select  name="BirimId" class="form-control selectpickerInModal" id="select-BirimId" data-live-search="true" data-container="body">
             @foreach (Birim item in Model.Birims)
             {
                 <option value="@item.Id" data-tokens="@item.Name">
@@ -139,7 +139,7 @@
         <h5 class="col-12 mb-2">
             Abonelik Bitiş Tarihi
         </h5>
-        <input class="form-control" type="datetime-local" id="AbonelikBitis" name="AbonelikBitis" value="">
+        <input  class="form-control" type="datetime-local" id="AbonelikBitis" name="AbonelikBitis" value="">
     </div>
 </div>
 
@@ -150,7 +150,7 @@
             Referans Birim Fiyat
         </h5>
         <div class="input-group">
-            <input id="ReferansBirimFiyat" name="ReferansBirimFiyat" type="number" class="form-control currency" value="" step="any" min="0">
+            <input name="ReferansBirimFiyat" id="ReferansBirimFiyat" class="form-control currency" value="" step="any" min="0">
         </div>
     </div>
 
@@ -200,7 +200,7 @@
         <h5 class="col-12 mb-2">
             Birim Fiyat
         </h5>
-        <input id="BirimFiyat" name="BirimFiyat" type="number" class="form-control currency" value="" step="any" min="0">
+        <input name="BirimFiyat" id="BirimFiyat" type="number" class="form-control currency" value="" step="any" min="0">
 
     </div>
 
@@ -209,7 +209,7 @@
             Adet
         </h5>
         <div class="input-group">
-            <input id="Adet" name="Adet" type="number" class="form-control" value="1" step="any" min="0">
+            <input name="Adet" id="Adet" type="number" class="form-control" value="1" step="any" min="0">
         </div>
     </div>
 
@@ -229,7 +229,7 @@
             Ürün Kalemi Notu
         </h5>
         <div class="input-group w-100">
-            <textarea class="form-control" style="height: 160px" id="Notes" name="Notes"></textarea>
+            <textarea name="Notes" class="form-control" style="height: 160px" id="Notes"></textarea>
         </div>
     </div>
 </div>
@@ -240,10 +240,23 @@
     function SetSelectedProduct(selectedEl) {
         var id = $(selectedEl).attr("data-id");
         var kdv = $(selectedEl).attr("data-kdv");
-        var GroupId = $(selectedEl).attr("data-GroupId");
+        var groupId = $(selectedEl).attr("data-GroupId");
         var brandId = $(selectedEl).attr("data-brandId");
+        var name = $(selectedEl).attr("data-name");
+
+        console.log(kdv);
+        console.log(groupId);
+        console.log(brandId);
+
+
 
         $("#ProductId").val(id);
+        $("#ProductKdvOrani").val(kdv);
+        $("#ProductGroupId").select2("val", groupId);
+        $("#ProductBrandId").select2("val", brandId);
+        $("#productSearch").val(name);
+
+        $("#productSearchResults").hide();
     }
 
     //search
@@ -286,7 +299,8 @@
             value = value.toLowerCase();
 
             if (str.toLowerCase().indexOf(value) >= 0) {
-                el = item;
+                //console.log(item[0].outerHTML);
+                el = item[0].outerHTML;
                 searchResults.push(el);
             }
         }

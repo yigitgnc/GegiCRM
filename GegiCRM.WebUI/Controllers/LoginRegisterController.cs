@@ -106,13 +106,16 @@ namespace GegiCRM.WebUI.Controllers
                 {
                     UserCompanyId = 1,
                     Email = vm.Email,
-                    UserName = vm.UserName,
+                    //UserName = vm.UserName,
                     Name = vm.Name,
                     Surname = vm.Surname,
                     PhoneNumber = vm.PhoneNumber,
                     AddedById = 1,
 
                 };
+              
+                
+
                 var result = await _appUserManager._userManager.CreateAsync(user, vm.Password);
 
                 if (result.Succeeded)
@@ -148,5 +151,11 @@ namespace GegiCRM.WebUI.Controllers
         {
             return View();
         }
+
+        public async Task<string> Test()
+        {
+            return _appUserManager.GenerateUserName("Yiğit", "Genç");
+        }
     }
+
 }

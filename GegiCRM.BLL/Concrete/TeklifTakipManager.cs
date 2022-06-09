@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +22,11 @@ namespace GegiCRM.BLL.Concrete
         public TeklifTakipManager(UserManager<AppUser> userManager, IOrderDal orderDal) : base(userManager, orderDal)
         {
             _orderDal = orderDal;
+        }
+
+        public List<Order> GetListAllWithNavigationsByFilter(Expression<Func<Order, bool>> filter)
+        {
+            return _orderDal.GetListAllWithNavigationsByFilter(filter);
         }
 
         public List<Order> GetListAllWithNavigations()

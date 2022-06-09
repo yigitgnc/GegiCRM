@@ -1,0 +1,71 @@
+﻿@model IEnumerable<GegiCRM.Entities.Concrete.Birim>
+
+@{
+    ViewData["Title"] = "Birimler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Yeni Kayıt</a>
+</p>
+<table class="table table-striped table-hover col-12 w-100">
+    <thead>
+        <tr>
+            <th>
+               Birim Adı
+            </th>
+            <th>
+                Birim Kısaltması
+            </th>
+            <th>
+                Kayıt Silindi mi ?
+            </th>
+            <th>
+                Kayıt Tarihi
+            </th>
+            <th>
+                Son Düzenlenme Tarihi
+            </th>
+            <th>
+                Kaydeden
+            </th>
+            <th>
+                Son Düzenleyen
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Short)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddedBy.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedBy.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detaylar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

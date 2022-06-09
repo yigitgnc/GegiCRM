@@ -49,5 +49,46 @@ namespace GegiCRM.BLL.Concrete
             return _userDal.GetUserByEmail(email);
         }
 
+    
+
+        public string GenerateUserName(string name,string surname)
+        {
+            name = name.ToUpper();
+            surname = surname.ToUpper();
+
+            string userName = "";
+
+            int tryCount = 0;
+            int NameIndex = 0;
+            int SurnameIndex = 0;
+
+            do
+            {
+                try
+                {
+                    userName = $"{name.Substring(0, NameIndex)}{surname.Substring(0, SurnameIndex)}";
+                    tryCount++;
+                    if (tryCount % 2 == 0)
+                    {
+                        NameIndex++;
+                    }
+                    else
+                    {
+                        SurnameIndex++;
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Random rnd = new Random();
+                    userName = $"{name}{surname}{rnd.Next(int.MaxValue)}";
+                }
+
+
+            } while (ListByFilter(x => x.UserName == userName).Any());
+
+            return userName;
+        }
+
     }
 }

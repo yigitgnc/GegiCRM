@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="navbarControl">
             <ul class="navbar-nav w-100 d-flex justify-content-sm-end">
                 <li class="nav-item m-1">
-                    <button class="w-100 btn btn btn-success">
+                    <button class="w-100 btn btn btn-success" onclick="submitOrderForm()">
                         <i class="bx bx-save"></i>
                         Kaydet
                     </button>
@@ -70,10 +70,10 @@
                     </div>
                 </li>
                 <li class="nav-item m-1">
-                    <button class="w-100 btn btn-info">
+                    <a class="w-100 btn btn-info" href="/Customers/Details/@Model.CustomerId">
                         <i class="bx bx-info-circle"></i>
                         Müşteri Bilgisi
-                    </button>
+                    </a>
                 </li>
                 <li class="nav-item m-1">
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
@@ -93,263 +93,298 @@
             <h5 class="mb-0">@ViewBag.Type Bilgisi</h5>
             @*<small class="d-none d-md-block text-muted float-end">Teklif Durumu</small>*@
         </div>
-        <div class="card-body">
-            <div class="row d-flex justify-content-between">
-                <div class="col-12 col-md-6">
+    <div class="card-body">
+    <form id="orderForm" method="post">
+    <div class="row d-flex justify-content-between">
+    <div class="col-12 col-md-6">
 
-                    <div class="card">
-                        <div class="card-body m-1">
+        <div class="card">
+            <div class="card-body m-1">
 
-                            <div class="mb-3 row">
-                                <span class="col-md-12">
-                                    ID:
-                                    <i class="text-muted" style="white-space: nowrap">@Model.Id</i>
-                                </span>
-                                <span class="col-md-12">
-                                    Kaydeden:
-                                    <i class="text-muted" style="white-space: nowrap">@Model.AddedBy.NameSurname</i>
-                                </span>
-                                <span class="col-md-12">
-                                    Kayıt Tarihi:
-                                    <i class="text-muted" style="white-space: nowrap">@Model.CreatedDate</i>
-                                </span>
-                                <span class="col-md-12">
-                                    Son Düzenleyen:
-                                    <i class="text-muted" style="white-space: nowrap">@Model.ModifiedBy.NameSurname</i>
-                                </span>
-                                <span class="col-md-12">
-                                    Son Düzenlenme Tarihi:
-                                    <i class="text-muted" style="white-space: nowrap">@Model.ModifiedDate</i>
-                                </span>
-                            </div>
-
-
-                            <div class="mb-3">
-                                <label for="select-Customer" class="col-sm-2 form-control-label">Müşteri</label>
-                                <div class="col-12">
-                                    <select name="customer_Id" class="form-control selectpicker" id="select-Customer" data-live-search="true" aria-describedby="customerHelp" data-container="body">
-                                        @foreach (Customer item in ViewBag.Customers)
-                                        {
-                                            if (item.Id == Model.CustomerId)
-                                            {
-                                                <option value="@item.Id" data-tokens="@item.Name" selected="selected" class="bg-primary">@item.Name</option>
-                                            }
-                                            else
-                                            {
-                                                <option value="@item.Id" data-tokens="@item.Name">@item.Name</option>
-                                            }
-                                        }
-                                    </select>
-
-                                    @*<div id="customerHelp" class="form-text">Teklif Verilecek Müşteriyi Seçin</div>*@
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="select-RepresentetiveUser" class="col-sm-2 form-control-label">Temsilci</label>
-                                <div class="col-12">
-                                    <select name="rUser_Id" class="form-control selectpicker" id="select-RepresentetiveUser" data-live-search="true" aria-describedby="representetiveUserHelp" data-container="body">
-                                        @foreach (AppUser item in ViewBag.Users)
-                                        {
-                                            if (item.Id == Model.RepresentetiveUserId)
-                                            {
-                                                <option value="@item.Id" data-tokens="@item" selected="selected">@item.NameSurname</option>
-                                            }
-                                            else
-                                            {
-                                                <option value="@item.Id" data-tokens="@item">@item.NameSurname</option>
-                                            }
-                                        }
-                                    </select>
-
-                                    @*<div id="representetiveUserHelp" class="form-text">Temsilci Seçin</div>*@
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <span for="select-RepresentetiveUser" class="col-sm-2 form-control-label">Sipariş Durumu</span>
-                                <div class="col-12">
-                                    <select name="orderState_Id" class="form-control selectpicker" id="select-orderState" data-live-search="true" aria-describedby="representetiveUserHelp" data-container="body">
-                                        @foreach (OrderState item in ViewBag.OrderStates)
-                                        {
-                                            if (item.Id == Model.OrderStateId)
-                                            {
-                                                <option value="@item.Id" data-tokens="@item" selected="selected" class="bg-primary">@item.Name</option>
-                                            }
-                                            else
-                                            {
-                                                <option value="@item.Id" data-tokens="@item">@item.Name</option>
-                                            }
-                                        }
-                                    </select>
-
-                                    @*<div id="select-orderState" class="form-text">Temsilci Seçin</div>*@
-                                </div>
-                            </div>
+                <div class="mb-3 row">
+                    <span class="col-md-12">
+                        ID:
+                        <input asp-for="Id" type="hidden"/>
+                        <i class="text-muted" style="white-space: nowrap">@Model.Id</i>
+                    </span>
+                    <span class="col-md-12">
+                        Kaydeden:
+                        <input asp-for="AddedById" type="hidden"/>
+                        <i class="text-muted" style="white-space: nowrap">@Model.AddedBy.NameSurname</i>
+                    </span>
+                    <span class="col-md-12">
+                        Kayıt Tarihi:
+                        <input asp-for="CreatedDate" type="hidden"/>
+                        <i asp- class="text-muted" style="white-space: nowrap">@Model.CreatedDate</i>
+                    </span>
+                    <span class="col-md-12">
+                        Son Düzenleyen:
+                        <input asp-for="ModifiedById" type="hidden"/>
+                        <i class="text-muted" style="white-space: nowrap">@Model.ModifiedBy.NameSurname</i>
+                    </span>
+                    <span class="col-md-12">
+                        Son Düzenlenme Tarihi:
+                        <input asp-for="ModifiedDate" type="hidden"/>
+                        <i class="text-muted" style="white-space: nowrap">@Model.ModifiedDate</i>
+                    </span>
+                </div>
 
 
-                            <div class="mb-3">
-                                <span>Sipraiş Kurları</span>
-                                <div id="waitCurrency" class="spinner-border spinner-border-sm text-secondary" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                                <div id="OrdersCurrencies">
-                                </div>
-                            </div>
-                        </div>
+                <div class="mb-3">
+                    <label for="select-Customer" class="col-sm-2 form-control-label">Müşteri</label>
+                    <div class="col-12">
+                        <select asp-for="CustomerId" class="form-control selectpicker" id="select-Customer" data-live-search="true" aria-describedby="customerHelp" data-container="body">
+                            @foreach (Customer item in ViewBag.Customers)
+                            {
+                                if (item.Id == Model.CustomerId)
+                                {
+                                    <option value="@item.Id" data-tokens="@item.Name" selected="selected" class="bg-primary">@item.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id" data-tokens="@item.Name">@item.Name</option>
+                                }
+                            }
+                        </select>
+
+                        @*<div id="customerHelp" class="form-text">Teklif Verilecek Müşteriyi Seçin</div>*@
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="select-RepresentetiveUser" class="col-sm-2 form-control-label">Temsilci</label>
+                    <div class="col-12">
+                        <select asp-for="RepresentetiveUserId" class="form-control selectpicker" id="select-RepresentetiveUser" data-live-search="true" aria-describedby="representetiveUserHelp" data-container="body">
+                            @foreach (AppUser item in ViewBag.Users)
+                            {
+                                if (item.Id == Model.RepresentetiveUserId)
+                                {
+                                    <option value="@item.Id" data-tokens="@item" selected="selected">@item.NameSurname</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id" data-tokens="@item">@item.NameSurname</option>
+                                }
+                            }
+                        </select>
+
+                        @*<div id="representetiveUserHelp" class="form-text">Temsilci Seçin</div>*@
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <span for="select-RepresentetiveUser" class="col-sm-2 form-control-label">Sipariş Durumu</span>
+                    <div class="col-12">
+                        <select asp-for="OrderStateId" class="form-control selectpicker" id="select-orderState" data-live-search="true" aria-describedby="representetiveUserHelp" data-container="body">
+                            @foreach (OrderState item in ViewBag.OrderStates)
+                            {
+                                if (item.Id == Model.OrderStateId)
+                                {
+                                    <option value="@item.Id" data-tokens="@item" selected="selected" class="bg-primary">@item.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id" data-tokens="@item">@item.Name</option>
+                                }
+                            }
+                        </select>
+
+                        @*<div id="select-orderState" class="form-text">Temsilci Seçin</div>*@
                     </div>
                 </div>
 
 
-                <div class="col-12 col-md-6">
-                    <div class="card mt-1 mt-md-0 h-100">
-                        <div class="card-body">
-
-                            @if (ViewBag.Type == "Teklif")
-                            {
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="form-check form-check-inline">
-                                            <label class="form-check-label cursor-pointer" for="IsOfferApproved">TEKLİF ONAY</label>
-                                            <input class="form-check-input cursor-pointer" asp-for="IsOfferApproved">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-6">
-                                        <div class="form-check form-check-inline">
-                                            <label class="form-check-label cursor-pointer" for="IsCancelled">TEKLİF İPTAL</label>
-                                            <input class="form-check-input cursor-pointer" asp-for="IsCancelled">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-2">
-                                    <div class="col-6">
-                                        <input class="form-control" asp-for="OfferApprovedDate">
-                                        <label for="OfferApprovedDate" class="form-label text-muted">TEKLİF ONAY TARİHİ</label>
-
-                                    </div>
-
-                                    <div class="col-6">
-                                        <input class="form-control" asp-for="CancelledDate">
-                                        <label for="CancelledDate" class="form-label text-muted">TEKLİF İPTAL TARİHİ</label>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-12">
-                                    <label for="OfferNote" class="form-label text-muted">TEKLİF NOTU</label>
-                                    <textarea class="form-control" asp-for="OfferNote" style="height: 160px"></textarea>
-                                </div>
-                            }
-                            else
-                            {
-
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="form-check form-check-inline">
-                                            <label class="form-check-label cursor-pointer" for="IsOrderApproved">SİPARİŞ ONAY</label>
-                                            <input class="form-check-input cursor-pointer" asp-for="IsOrderApproved">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-6">
-                                        <div class="form-check form-check-inline">
-                                            <label class="form-check-label cursor-pointer" for="IsDeneied">SİPARİŞ İPTAL</label>
-                                            <input class="form-check-input cursor-pointer" asp-for="IsDeneied">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-2">
-                                    <div class="col-6">
-                                        <input class="form-control" asp-for="OrderApprovedDate">
-                                        <label for="OrderApprovedDate" class="form-label text-muted">SİPARİŞ ONAY TARİHİ</label>
-
-                                    </div>
-
-                                    <div class="col-6">
-                                        <input class="form-control" asp-for="DeniedDate">
-                                        <label for="DeniedDate" class="form-label text-muted">SİPARİŞ RED TARİHİ</label>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-12">
-                                    <label for="OfferNote" class="form-label text-muted">TEKLİF NOTU</label>
-                                    <textarea class="form-control" asp-for="OfferNote" disabled="disabled"></textarea>
-                                </div>
-
-
-                                <div class="col-12">
-                                    <label for="OrderNote" class="form-label text-muted">SİPARİŞ NOTU</label>
-                                    <textarea class="form-control" asp-for="OrderNote"></textarea>
-                                </div>
-                            }
-
-                            <div class="mt-3">
-                                <label for="select-DeliveryAddress" class="col-12 form-control-label">Teslimat Adresi Seç</label>
-                                <div class="col-12">
-                                    <select name="customer_Id" class="form-control selectpicker" id="select-DeliveryAddress" data-live-search="true" aria-describedby="select-DeliveryAddressHelp" data-container="body">
-                                        @foreach (CustomerAddress item in Model.Customer.CustomerAddresses)
-                                        {
-                                            if (item.Id == Model.SelectedCustomerAddressId)
-                                            {
-                                                <option value="@item.Id" data-tokens="@item.AddressName" selected="selected" class="bg-primary">
-                                                    @item.AddressName
-                                                    <br />
-                                                    <i class="text-muted">@item.Address</i>
-                                                </option>
-                                            }
-                                            else
-                                            {
-                                                <option value="@item.Id" data-tokens="@item.AddressName">
-                                                    @item.AddressName
-                                                    <br />
-                                                    <i class="text-muted">@item.Address</i>
-                                                </option>
-                                            }
-                                        }
-                                    </select>
-
-                                    <div id="select-DeliveryAddressHelp" class="form-text">Müşteri <b>Teslimat</b> Adreslerinden Bu Siparişe Özel <b>Teslimat</b> Adresini Seçin</div>
-                                </div>
-                            </div>
-
-                            <div class="mt-3">
-                                <label for="select-BillingAddress" class="col-12 form-control-label">Fatura Adresi Seç</label>
-                                <div class="col-12">
-                                    <select name="customer_Id" class="form-control selectpicker" id="select-BillingAddress" data-live-search="true" aria-describedby="select-BillingAddressHelp" data-container="body">
-                                        @foreach (CustomerBillingAddress item in Model.Customer.CustomerBillingAddresses)
-                                        {
-                                            if (item.Id == Model.SelectedCustomerBillingAddressId)
-                                            {
-                                                <option value="@item.Id" data-tokens="@item.AddressName" selected="selected" class="bg-primary">
-                                                    @item.AddressName
-                                                    <br />
-                                                    <i class="text-muted">VD: @item.VergiDairesi, Vergi No: @item.VergiNo, Adres: @item.BillingAddress</i>
-                                                </option>
-                                            }
-                                            else
-                                            {
-                                                <option value="@item.Id" data-tokens="@item.AddressName">
-                                                    @item.AddressName
-                                                    <br />
-                                                    <i class="text-muted">VD: @item.VergiDairesi, Vergi No: @item.VergiNo, Adres: @item.BillingAddress</i>
-                                                </option>
-                                            }
-                                        }
-                                    </select>
-
-                                    <div id="select-BillingAddressHelp" class="form-text">Müşteri <b>Fatura</b> Adreslerinden Bu Siparişe Özel <b>Fatura</b> Adresini Seçin</div>
-                                </div>
-                            </div>
-
-                        </div>
+                <div class="mb-3">
+                    <span>Sipraiş Kurları</span>
+                    <div id="waitCurrency" class="spinner-border spinner-border-sm text-secondary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div id="OrdersCurrencies">
                     </div>
                 </div>
             </div>
-
-
         </div>
+    </div>
+
+
+    <div class="col-12 col-md-6">
+        <div class="card mt-1 mt-md-0 h-100">
+            <div class="card-body">
+
+                @if (ViewBag.Type == "Teklif")
+                {
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label cursor-pointer" for="IsOfferApproved">TEKLİF ONAY</label>  
+                                @if (Model.IsOfferApproved)
+                                {
+                                    <input class="form-check-input cursor-pointer" asp-for="IsOfferApproved" checked="checked">
+                                }
+                                else
+                                {
+                                    <input class="form-check-input cursor-pointer" asp-for="IsOfferApproved">
+                                }
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label cursor-pointer" for="IsCancelled">TEKLİF İPTAL</label>
+                                @if (Model.IsCancelled)
+                                {
+                                    <input class="form-check-input cursor-pointer" asp-for="IsCancelled" checked="checked">
+                                }
+                                else
+                                {
+                                    <input class="form-check-input cursor-pointer" asp-for="IsCancelled">
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <input class="form-control" asp-for="OfferApprovedDate">
+                            <label for="OfferApprovedDate" class="form-label text-muted">TEKLİF ONAY TARİHİ</label>
+
+                        </div>
+
+                        <div class="col-6">
+                            <input class="form-control" asp-for="CancelledDate">
+                            <label for="CancelledDate" class="form-label text-muted">TEKLİF İPTAL TARİHİ</label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12">
+                        <label for="OfferNote" class="form-label text-muted">TEKLİF NOTU</label>
+                        <textarea class="form-control" asp-for="OfferNote" style="height: 160px"></textarea>
+                    </div>
+                }
+                else
+                {
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label cursor-pointer" for="IsOrderApproved">SİPARİŞ ONAY</label>
+                                @if (Model.IsOrderApproved)
+                                {
+                                    <input class="form-check-input cursor-pointer" asp-for="IsOrderApproved" checked="checked">
+                                }
+                                else
+                                {
+                                    <input class="form-check-input cursor-pointer" asp-for="IsOrderApproved">
+                                }
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label cursor-pointer" for="IsDeneied">SİPARİŞ RED</label>
+                                @if (Model.IsDeneied)
+                                {
+                                    <input class="form-check-input cursor-pointer" asp-for="IsDeneied" checked="checked">
+                                }
+                                else
+                                {
+                                    <input class="form-check-input cursor-pointer" asp-for="IsDeneied">
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <input class="form-control" asp-for="OrderApprovedDate">
+                            <label for="OrderApprovedDate" class="form-label text-muted">SİPARİŞ ONAY TARİHİ</label>
+
+                        </div>
+
+                        <div class="col-6">
+                            <input class="form-control" asp-for="DeniedDate">
+                            <label for="DeniedDate" class="form-label text-muted">SİPARİŞ RED TARİHİ</label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12">
+                        <label for="OfferNote" class="form-label text-muted">TEKLİF NOTU</label>
+                        <textarea class="form-control" asp-for="OfferNote" disabled="disabled"></textarea>
+                    </div>
+
+
+                    <div class="col-12">
+                        <label for="OrderNote" class="form-label text-muted">SİPARİŞ NOTU</label>
+                        <textarea class="form-control" asp-for="OrderNote"></textarea>
+                    </div>
+                }
+
+                <div class="mt-3">
+                    <label for="select-DeliveryAddress" class="col-12 form-control-label">Teslimat Adresi Seç</label>
+                    <div class="col-12">
+                        <select asp-for="SelectedCustomerAddressId" class="form-control selectpicker" id="select-DeliveryAddress" data-live-search="true" aria-describedby="select-DeliveryAddressHelp" data-container="body">
+                            @foreach (CustomerAddress item in Model.Customer.CustomerAddresses)
+                            {
+                                if (item.Id == Model.SelectedCustomerAddressId)
+                                {
+                                    <option value="@item.Id" data-tokens="@item.AddressName" selected="selected" class="bg-primary">
+                                        @item.AddressName
+                                        <br/>
+                                        <i class="text-muted">@item.Address</i>
+                                    </option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id" data-tokens="@item.AddressName">
+                                        @item.AddressName
+                                        <br/>
+                                        <i class="text-muted">@item.Address</i>
+                                    </option>
+                                }
+                            }
+                        </select>
+
+                        <div id="select-DeliveryAddressHelp" class="form-text">Müşteri <b>Teslimat</b> Adreslerinden Bu Siparişe Özel <b>Teslimat</b> Adresini Seçin</div>
+                    </div>
+                </div>
+
+                <div class="mt-3">
+                    <label for="select-BillingAddress" class="col-12 form-control-label">Fatura Adresi Seç</label>
+                    <div class="col-12">
+                        <select asp-for="SelectedCustomerBillingAddressId" class="form-control selectpicker" id="select-BillingAddress" data-live-search="true" aria-describedby="select-BillingAddressHelp" data-container="body">
+                            @foreach (CustomerBillingAddress item in Model.Customer.CustomerBillingAddresses)
+                            {
+                                if (item.Id == Model.SelectedCustomerBillingAddressId)
+                                {
+                                    <option value="@item.Id" data-tokens="@item.AddressName" selected="selected" class="bg-primary">
+                                        @item.AddressName
+                                        <br/>
+                                        <i class="text-muted">VD: @item.VergiDairesi, Vergi No: @item.VergiNo, Adres: @item.BillingAddress</i>
+                                    </option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id" data-tokens="@item.AddressName">
+                                        @item.AddressName
+                                        <br/>
+                                        <i class="text-muted">VD: @item.VergiDairesi, Vergi No: @item.VergiNo, Adres: @item.BillingAddress</i>
+                                    </option>
+                                }
+                            }
+                        </select>
+
+                        <div id="select-BillingAddressHelp" class="form-text">Müşteri <b>Fatura</b> Adreslerinden Bu Siparişe Özel <b>Fatura</b> Adresini Seçin</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </form>
+
+    </div>
     </div>
 </div>
 
@@ -504,6 +539,10 @@
             });
 
         };
+
+        function submitOrderForm() {
+            $("#orderForm").submit();
+        }
 
         getNewOrdersCurrencies();
         getOrdersProducts();

@@ -1,4 +1,5 @@
-﻿using GegiCRM.BLL.Concrete;
+﻿using AutoMapper;
+using GegiCRM.BLL.Concrete;
 using GegiCRM.DAL.EntityFramework;
 using GegiCRM.DAL.Repositories;
 using GegiCRM.Entities.Concrete;
@@ -6,6 +7,7 @@ using GegiCRM.WebUI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace GegiCRM.WebUI.Controllers
 {
@@ -18,25 +20,39 @@ namespace GegiCRM.WebUI.Controllers
         readonly GenericManager<Customer> _customerManager;
         readonly OrdersCurrencyManager _orderCurrencyManager;
         readonly GenericManager<OrderState> _orderStateManager;
-        readonly GenericManager<OrdersProduct> _orderProductsManager;
+        readonly OrdersProductManager _orderProductsManager;
+        readonly IMapper _mapper;
 
         private GenericManager<Currency> _currencyManager;
-        public TeklifTakipController(UserManager<AppUser> userManager)
+        public TeklifTakipController(UserManager<AppUser> userManager, IMapper mapper)
         {
             _userManager = userManager;
+            _mapper = mapper;
             _teklifTakipManager = new TeklifTakipManager(_userManager, new EfOrderRepository()); ;
             _customerManager = new GenericManager<Customer>(_userManager, new EfCustomerRepository());
             _orderCurrencyManager = new OrdersCurrencyManager(_userManager, new EfOrdersCurrencyRepository());
             _currencyManager = new GenericManager<Currency>(_userManager, new EfCurrencieRepository());
             _orderStateManager = new GenericManager<OrderState>(_userManager, new GenericRepository<OrderState>());
-            _orderProductsManager = new GenericManager<OrdersProduct>(_userManager, new EfOrdersProductRepository());
+            _orderProductsManager = new OrdersProductManager(_userManager, new EfOrdersProductRepository());
         }
 
-
-        public IActionResult Index()
+        [Route("SiparisTakip")]
+        public IActionResult St()
         {
-            List<Order> model = _teklifTakipManager.GetListAllWithNavigations();
-            ViewBag.Type = "Teklif";
+            return RedirectToAction("Index",new {isOrder = true});
+        }
+
+        public IActionResult Index(bool isOrder)
+        {
+            List<Order> model = _teklifTakipManager.GetListAllWithNavigationsByFilter(x => x.IsOfferApproved == isOrder);
+            if (isOrder)
+            {
+                ViewBag.Type = "Sipariş";
+            }
+            else
+            {
+                ViewBag.Type = "Teklif";
+            }
             return View(model);
         }
 
@@ -51,6 +67,7 @@ namespace GegiCRM.WebUI.Controllers
         public IActionResult CreateNewOrder(string customer_Id, string rUser_Id)
         {
             var createdOrder = _teklifTakipManager.Create(customer_Id, rUser_Id);
+            //createdOrder.CreatedDate = DateTime.Now;
             return RedirectToAction("Edit", new { createdOrder.Id });
         }
 
@@ -67,7 +84,38 @@ namespace GegiCRM.WebUI.Controllers
 
             string type = "Sipariş";
             //offer onaylanmadıysa ve nullsa bu bir tekliftir
-            if (order.IsOfferApproved == null || !order.IsOfferApproved)
+            if (order.IsOfferApproved == false)
+            {
+                type = "Teklif";
+            }
+
+
+            ViewBag.Type = type;
+
+            //ViewBag.OfferStates = data.i;
+            return View(order);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Order order)
+        {
+
+            if (order == null)
+            {
+                return BadRequest();
+            }
+
+            _teklifTakipManager.Update(order);
+
+
+
+            ViewBag.Customers = _customerManager.ListByFilter(x => x.IsDeleted == false);
+            ViewBag.Users = _userManager.Users.Where(x => x.IsDeleted == false).ToList();
+            ViewBag.OrderStates = _orderStateManager.ListByFilter(x => x.IsDeleted == false);
+
+            string type = "Sipariş";
+            //offer onaylanmadıysa ve nullsa bu bir tekliftir
+            if (order.IsOfferApproved == false)
             {
                 type = "Teklif";
             }
@@ -75,6 +123,8 @@ namespace GegiCRM.WebUI.Controllers
             ViewBag.Type = type;
 
             //ViewBag.OfferStates = data.i;
+
+            order = _teklifTakipManager.GetByIdWithNavigations(order.Id);
             return View(order);
         }
 
@@ -173,7 +223,7 @@ namespace GegiCRM.WebUI.Controllers
         /// </summary>
         /// <param name="id">Order Id to add Product</param>
         /// <returns></returns>
-        public IActionResult _AddOrdersProductPartial(int id)
+        public IActionResult _AddOrdersProductPartial(int id, int? orderProductId)
         {
             GenericManager<Supplier> supplierGenericManager =
                 new GenericManager<Supplier>(_userManager, new EfSupplierRepository());
@@ -202,11 +252,35 @@ namespace GegiCRM.WebUI.Controllers
             vm.Currencies = currencyGenericManager.GetAll();
             vm.OrdersCurrencies = _orderCurrencyManager.GetOrdersCurrencies(id);
             vm.CurrentOrderId = id;
+            if (orderProductId != null)
+            {
+                vm.OrderProduct = _orderProductsManager.GetById(orderProductId.Value);
+            }
+            else
+            {
+                vm.OrderProduct = new OrdersProduct();
+            }
+
             return View(vm);
         }
 
-        public async Task<string> AddOrdersProduct(OrdersProduct ordersProduct)
+        public async Task<string> AddOrdersProduct(OrdersProduct ordersProduct, string ProductName, string ProductBrandId, string ProductGroupId)
         {
+            if (ordersProduct.ProductId == -1)
+            {
+                Product product = new Product();
+                product.ProductName = ProductName;
+                product.PorductBrandId = Convert.ToInt32(ProductBrandId);
+                product.ProductGroupId = Convert.ToInt32(ProductGroupId);
+                GenericManager<Product> productGenericManager =
+                    new GenericManager<Product>(_userManager, new EfProductRepository());
+                productGenericManager.Create(product);
+
+            }
+            
+            //ordersProduct.ReferanceCode = $"{_user}"
+
+            _orderProductsManager.Create(ordersProduct);
 
 
             return "OK";

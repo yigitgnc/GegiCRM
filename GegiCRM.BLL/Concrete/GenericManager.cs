@@ -16,7 +16,7 @@ namespace GegiCRM.BLL.Concrete
 {
     public class GenericManager<T> : IGenericManager<T> where T : class
     {
-        private readonly UserManager<AppUser> _userManager;
+        public readonly UserManager<AppUser> _userManager;
         public IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<T> _logger;
         readonly IGenericDal<T> _genericDal;
@@ -34,16 +34,18 @@ namespace GegiCRM.BLL.Concrete
             _genericDal = genericDal;
         }
 
-        public void Create(T t)
+        public T Create(T t)
         {
             t = SetAddedBy(t);
             t = SetLastModifiedBy(t);
             _genericDal.Insert(t);
+            return t;
         }
-        public void Update(T t)
+        public T Update(T t)
         {
             t = SetLastModifiedBy(t);
             _genericDal.Update(t);
+            return t;
         }
 
         public void Delete(T t)
@@ -67,10 +69,30 @@ namespace GegiCRM.BLL.Concrete
 
         private T SetLastModifiedBy(T tEntity)
         {
+
+            //var LastModProp = tEntity.GetType().GetProperty("ModifiedDate");
+            //if (LastModProp != null)
+            //{
+            //    tEntity.GetType()
+            //        .GetProperty("ModifiedDate")
+            //        .SetValue(tEntity, DateTime.Now);
+            //}
+
             return SetAuditingProperty(tEntity, "ModifiedById");
+
         }
         private T SetAddedBy(T tEntity)
         {
+
+
+            //var LastModProp = tEntity.GetType().GetProperty("CreatedDate");
+            //if (LastModProp != null)
+            //{
+            //    tEntity.GetType()
+            //        .GetProperty("CreatedDate")
+            //        .SetValue(tEntity, DateTime.Now);
+            //}
+
             return SetAuditingProperty(tEntity, "AddedById");
         }
 

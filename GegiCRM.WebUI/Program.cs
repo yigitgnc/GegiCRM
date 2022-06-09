@@ -1,16 +1,13 @@
 using AutoMapper;
-using GegiCRM.BLL.Abstract;
 using GegiCRM.BLL.Concrete;
 using GegiCRM.DAL.Abstract;
 using GegiCRM.DAL.Concrete;
 using GegiCRM.DAL.EntityFramework;
-using GegiCRM.DAL.Repositories;
 using GegiCRM.Entities.Concrete;
 using GegiCRM.WebUI.Mappings;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
+//using Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,7 +43,19 @@ var mapperConfig = new MapperConfiguration(mc =>
 IMapper mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
+//////aha
 builder.Services.AddIdentity<AppUser, AppIdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<Context>();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    // Cookie settings
+    options.Cookie.HttpOnly = true;
+    options.ExpireTimeSpan = TimeSpan.FromDays(5);
+    options.LoginPath = "/Login";
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+    options.SlidingExpiration = true;
+});
+
 builder.Services.AddRazorPages();
 
 builder.Services.Configure<IdentityOptions>(options =>
@@ -70,15 +79,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     
 });
 
-builder.Services.ConfigureApplicationCookie(options =>
-{
-    // Cookie settings
-    options.Cookie.HttpOnly = true;
-    options.ExpireTimeSpan = TimeSpan.FromDays(5);
-    options.LoginPath = "/Login";
-    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
-    options.SlidingExpiration = true;
-});
+
 
 var app = builder.Build();
 

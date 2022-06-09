@@ -1,0 +1,90 @@
+﻿@model GegiCRM.Entities.Concrete.BankInformation
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>BankInformation</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CompanyId" class="control-label"></label>
+                <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
+                <span asp-validation-for="CompanyId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BankId" class="control-label"></label>
+                <select asp-for="BankId" class="form-control" asp-items="ViewBag.BankId"></select>
+                <span asp-validation-for="BankId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ttile" class="control-label"></label>
+                <input asp-for="Ttile" class="form-control" />
+                <span asp-validation-for="Ttile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HesapNo" class="control-label"></label>
+                <input asp-for="HesapNo" class="form-control" />
+                <span asp-validation-for="HesapNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sube" class="control-label"></label>
+                <input asp-for="Sube" class="form-control" />
+                <span asp-validation-for="Sube" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubeNo" class="control-label"></label>
+                <input asp-for="SubeNo" class="form-control" />
+                <span asp-validation-for="SubeNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Iban" class="control-label"></label>
+                <input asp-for="Iban" class="form-control" />
+                <span asp-validation-for="Iban" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="CreatedDate" class="control-label"></label>
+                <input asp-for="CreatedDate" class="form-control" />
+                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModifiedDate" class="control-label"></label>
+                <input asp-for="ModifiedDate" class="form-control" />
+                <span asp-validation-for="ModifiedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddedById" class="control-label"></label>
+                <select asp-for="AddedById" class="form-control" asp-items="ViewBag.AddedById"></select>
+                <span asp-validation-for="AddedById" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModifiedById" class="control-label"></label>
+                <select asp-for="ModifiedById" class="form-control" asp-items="ViewBag.ModifiedById"></select>
+                <span asp-validation-for="ModifiedById" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -18,9 +18,6 @@ namespace GegiCRM.WebUI.Models
         [Display(Name = "Soyad")]
         public string Surname { get; set; }
 
-        [Required(ErrorMessage = "'{0}' Alanı Gereklidir !"), MinLength(8, ErrorMessage = "{0} Mininmum {1} Karakter Uzunluğunda Olmalı Olmalı")]
-        [Display(Name = "Kullanıcı Adı")]
-        public string UserName { get; set; }
 
         [Required(ErrorMessage = "'{0}' Alanı Gereklidir !")]
         [Display(Name = "Şifre")]
