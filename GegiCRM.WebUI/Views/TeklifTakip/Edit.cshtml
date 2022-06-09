@@ -317,7 +317,7 @@
                             <div class="mt-3">
                                 <label for="select-BillingAddress" class="col-12 form-control-label">Fatura Adresi Seç</label>
                                 <div class="col-12">
-                                    <select name="customer_Id" class="form-control selectpicker" id="select-BillingAddress" data-live-search="true" aria-describedby="select-DeliveryAddressHelp" data-container="body">
+                                    <select name="customer_Id" class="form-control selectpicker" id="select-BillingAddress" data-live-search="true" aria-describedby="select-BillingAddressHelp" data-container="body">
                                         @foreach (CustomerBillingAddress item in Model.Customer.CustomerBillingAddresses)
                                         {
                                             if (item.Id == Model.SelectedCustomerBillingAddressId)
@@ -339,7 +339,7 @@
                                         }
                                     </select>
 
-                                    <div id="select-DeliveryAddressHelp" class="form-text">Müşteri <b>Fatura</b> Adreslerinden Bu Siparişe Özel <b>Fatura</b> Adresini Seçin</div>
+                                    <div id="select-BillingAddressHelp" class="form-text">Müşteri <b>Fatura</b> Adreslerinden Bu Siparişe Özel <b>Fatura</b> Adresini Seçin</div>
                                 </div>
                             </div>
 
@@ -410,7 +410,7 @@
 </div>
 
 <!-- Add New Product Modal -->
-<div class="modal fade" id="newProductModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
+<div class="modal fade" id="newProductModal" data-bs-backdrop="static" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
 
         <div id="waitAddOrdersProduct">
@@ -421,17 +421,24 @@
             </div>
         </div>
 
-        <form class="modal-content">
+        <form id="AddOrdersProductForm" action="/TeklifTakip/AddOrdersProduct" method="post" class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title">@ViewBag.Type<text>e</text> Yeni Ürün Kalemi Ekle</h5>
+                <h4 class="modal-title">@ViewBag.Type<text>e</text> Yeni Ürün Kalemi Ekle</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div id="AddOrdersProduct">
                 </div>
             </div>
-           
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Kapat
+                </button>
+                <input type="hidden" name="orderId" value="@Model.Id" />
+                <input type="submit" class="btn btn-success" value="Kaydet" />
+            </div>
+
         </form>
     </div>
 </div>

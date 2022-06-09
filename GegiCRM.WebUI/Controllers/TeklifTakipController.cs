@@ -35,14 +35,14 @@ namespace GegiCRM.WebUI.Controllers
 
         public IActionResult Index()
         {
-            List<Order> model = _teklifTakipManager.GetListAllWithNavigations(); 
+            List<Order> model = _teklifTakipManager.GetListAllWithNavigations();
             ViewBag.Type = "Teklif";
             return View(model);
         }
 
         public IActionResult _NewOrderContentPartial()
         {
-            ViewBag.Customers = _customerManager.ListByFilter(x=>x.IsDeleted == false);
+            ViewBag.Customers = _customerManager.ListByFilter(x => x.IsDeleted == false);
             ViewBag.Users = _userManager.Users.ToList();
             return View();
         }
@@ -62,8 +62,8 @@ namespace GegiCRM.WebUI.Controllers
                 return BadRequest();
             }
             ViewBag.Customers = _customerManager.ListByFilter(x => x.IsDeleted == false);
-            ViewBag.Users = _userManager.Users.Where(x=>x.IsDeleted == false).ToList();
-            ViewBag.OrderStates = _orderStateManager.ListByFilter(x=>x.IsDeleted == false);
+            ViewBag.Users = _userManager.Users.Where(x => x.IsDeleted == false).ToList();
+            ViewBag.OrderStates = _orderStateManager.ListByFilter(x => x.IsDeleted == false);
 
             string type = "Sipariş";
             //offer onaylanmadıysa ve nullsa bu bir tekliftir
@@ -71,7 +71,7 @@ namespace GegiCRM.WebUI.Controllers
             {
                 type = "Teklif";
             }
-            
+
             ViewBag.Type = type;
 
             //ViewBag.OfferStates = data.i;
@@ -137,8 +137,8 @@ namespace GegiCRM.WebUI.Controllers
         [HttpPost]
         public string DeleteOrdersCurrency(int id)
         {
-          
-            var orderC = _orderCurrencyManager.ListByFilter(x => x.Id ==id).FirstOrDefault();
+
+            var orderC = _orderCurrencyManager.ListByFilter(x => x.Id == id).FirstOrDefault();
             try
             {
                 if (orderC != null)
@@ -187,7 +187,7 @@ namespace GegiCRM.WebUI.Controllers
             GenericManager<ProductGroup> productGroupGenericManager =
                 new GenericManager<ProductGroup>(_userManager, new EfProductGroupRepository());
 
-            GenericManager<Product> productsGenericManager = new GenericManager<Product>(_userManager,new EfProductRepository());
+            ProductManager productManager = new ProductManager(_userManager, new EfProductRepository());
 
             GenericManager<Currency> currencyGenericManager =
                 new GenericManager<Currency>(_userManager, new EfCurrencieRepository());
@@ -198,11 +198,19 @@ namespace GegiCRM.WebUI.Controllers
             vm.Birims = birimGenericManager.GetAll();
             vm.Brands = brandGenericManager.GetAll();
             vm.ProductGroups = productGroupGenericManager.GetAll();
-            vm.Products = productsGenericManager.GetAll();
+            vm.Products = productManager.GetProductsWithNavigations();
             vm.Currencies = currencyGenericManager.GetAll();
             vm.OrdersCurrencies = _orderCurrencyManager.GetOrdersCurrencies(id);
-            
+            vm.CurrentOrderId = id;
             return View(vm);
+        }
+
+        public async Task<string> AddOrdersProduct(OrdersProduct ordersProduct)
+        {
+
+
+            return "OK";
+
         }
 
         public async Task<IActionResult> Test()

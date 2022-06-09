@@ -1,6 +1,309 @@
 ﻿@{
     Layout = null;
 }
+@using GegiCRM.Entities.Concrete
 @model AddOrdersProductViewModel;
 
-aaaa
+<div class="row d-flex justify-content-start">
+    <h5 class="col-12 mb-2">
+        Teklif Kalem Durumu
+    </h5>
+    <div class="col-auto mt-2">
+        <div class="form-check form-check-inline">
+            <label class="form-check-label cursor-pointer" for="IsApproved">ONAYLANDI</label>
+            <input class="form-check-input cursor-pointer" type="checkbox" id="IsApproved" name="IsApproved" value="false" />
+        </div>
+    </div>
+
+    <div class="col-auto mt-2">
+        <div class="form-check form-check-inline">
+            <label class="form-check-label cursor-pointer" for="IsCancelled">İPTAL EDİLDİ</label>
+            <input class="form-check-input cursor-pointer" type="checkbox" id="IsCancelled" name="IsCancelled" value="false" />
+        </div>
+    </div>
+
+    <div class="col-auto mt-2">
+        <div class="form-check form-check-inline">
+            <label class="form-check-label cursor-pointer" for="IsDenied">REDDEDİLDİ</label>
+            <input class="form-check-input cursor-pointer" type="checkbox" id="IsDenied" name="IsDenied" value="false" />
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <h5 class="col-12 mb-2">
+        Ürün Adı
+    </h5>
+    <div class="col-12 mb-3" id="ProductSearchContainer">
+        <div class="d-flex align-items-center w-100">
+            <i class="bx bx-search fs-4 lh-0"></i>
+            <input type="text" id="productSearch" class="form-control border-0 shadow-none" placeholder="Ürün Adı Girin" aria-label="Ürün Adı Girin" autocomplete="off">
+        </div>
+
+        <ul id="productsUl" class="d-none">
+            @foreach (Product item in Model.Products)
+            {
+                <li onclick="SetSelectedProduct(this)" data-id="@item.Id" data-kdv="@item.KdvOrani" data-GroupId="@item.ProductGroupId" data-brandId="@item.PorductBrandId" style="cursor: pointer">
+                    @item.ProductName (Marka: @item.PorductBrand.Name, Stok: @item.StockCount)
+                    <br />
+                    Açıklama: "@item.ProductDescription", Ürün Grubu: @item.ProductGroup.GroupName, KDV Oranı: @item.KdvOrani
+                </li>
+            }
+        </ul>
+
+        <input type="hidden" name="ProductId" id="ProductId" value="-1" />
+
+        <div id="productSearchResults" class="mt-3">
+            <ul class="list-group">
+                @*  <li data-id="@item.Id" data-kdv="@item.KdvOrani" data-GroupId="@item.ProductGroupId" data-brandId="@item.PorductBrandId">
+                @item.ProductName (Marka: @item.PorductBrand.Name, Stok: @item.StockCount)
+                <br />
+                Açıklama: "@item.ProductDescription", Ürün Grubu: @item.ProductGroup.GroupName, KDV Oranı: @item.KdvOrani
+                </li>*@
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-12 col-sm-6 col-md-3">
+        <h5 class="col-12 mb-2">
+            Marka
+        </h5>
+
+        <select name="ProductBrandId" class="form-control selectpickerInModal" id="select-ProductBrandId" data-live-search="true" data-container="body">
+            @foreach (Brand item in Model.Brands)
+            {
+                <option value="@item.Id" data-tokens="@item.Name">
+                    @item.Name
+                </option>
+
+            }
+        </select>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3">
+        <h5 class="col-12 mb-2">
+            Ürün Grubu
+        </h5>
+
+        <select name="ProductGroupId" class="form-control selectpickerInModal" id="select-ProductGroupId" data-live-search="true" data-container="body">
+            @foreach (ProductGroup item in Model.ProductGroups)
+            {
+                <option value="@item.Id" data-tokens="@item.GroupName">
+                    @item.GroupName
+                </option>
+
+            }
+        </select>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3">
+        <h5 class="col-12 mb-2">
+            Birimi
+        </h5>
+
+        <select name="BirimId" class="form-control selectpickerInModal" id="select-BirimId" data-live-search="true" data-container="body">
+            @foreach (Birim item in Model.Birims)
+            {
+                <option value="@item.Id" data-tokens="@item.Name">
+                    @item.Name
+                </option>
+
+            }
+        </select>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3">
+        <h5 class="col-12 mb-2">
+            Kdv Oranı
+        </h5>
+
+        <div class="input-group input-group-sm">
+            <input name="ProductKdvOrani" class="form-control" type="number" value="18" id="ProductKdvOrani">
+        </div>
+
+    </div>
+</div>
+
+<div class="row mt-3">
+
+    <div class="col-12 col-sm-6">
+        <h5 class="col-12 mb-2">
+            Abonelik Başlangıç Tarihi
+        </h5>
+        <input class="form-control" type="datetime-local" id="AbonelikBaslangic" name="AbonelikBaslangic" value="">
+    </div>
+
+    <div class="col-12 col-sm-6">
+        <h5 class="col-12 mb-2">
+            Abonelik Bitiş Tarihi
+        </h5>
+        <input class="form-control" type="datetime-local" id="AbonelikBitis" name="AbonelikBitis" value="">
+    </div>
+</div>
+
+<div class="row mt-3">
+
+    <div class="mb-3 col-12 col-md-4">
+        <h5 class="col-12 mb-2">
+            Referans Birim Fiyat
+        </h5>
+        <div class="input-group">
+            <input id="ReferansBirimFiyat" name="ReferansBirimFiyat" type="number" class="form-control currency" value="" step="any" min="0">
+        </div>
+    </div>
+
+    <div class="mb-3 col-12 col-md-4">
+        <h5 class="col-12 mb-2">
+            Referans Tedarikçi
+        </h5>
+
+        <select name="ReferansSupplierId" class="form-control selectpickerInModal" id="select-ReferansSupplierId" data-live-search="true" data-container="body">
+            @foreach (Supplier item in Model.Suppliers)
+            {
+                <option value="@item.Id" data-tokens="@item.SupplierName">
+                    @item.SupplierName
+                </option>
+
+            }
+        </select>
+    </div>
+
+    <div class="mb-3 col-12 col-md-4">
+        <h5 class="col-12 mb-2">
+            Referans Para Birimi
+        </h5>
+
+        <select name="ReferansCurrencyId" class="form-control selectpickerInModal" id="select-ReferansCurrencyId" data-live-search="true" data-container="body">
+            @foreach (Currency item in Model.Currencies)
+            {
+                <option value="@item.Id" data-tokens="@item.Code @item.Name @item.CurrentValue">
+                    [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
+                    @{
+                        var orderSpecial = Model.OrdersCurrencies.FirstOrDefault(x => x.CurrencyId == item.Id);
+                    }
+                    @if (orderSpecial != null)
+                    {
+                        <br />
+                        <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
+                    }
+                </option>
+
+            }
+        </select>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="mb-3 col-12 col-md-6 col-lg-4">
+        <h5 class="col-12 mb-2">
+            Birim Fiyat
+        </h5>
+        <input id="BirimFiyat" name="BirimFiyat" type="number" class="form-control currency" value="" step="any" min="0">
+
+    </div>
+
+    <div class="mb-3 col-12 col-md-6 col-lg-4">
+        <h5 class="col-12 mb-2">
+            Adet
+        </h5>
+        <div class="input-group">
+            <input id="Adet" name="Adet" type="number" class="form-control" value="1" step="any" min="0">
+        </div>
+    </div>
+
+
+    <div class="mb-3 col-12 col-md-12 col-lg-4">
+        <h5 class="col-12 mb-2 d-none d-lg-block">
+            &nbsp;
+        </h5>
+        <a href="javascript:void(0)" onclick="GetSegmentPrice()" class="w-100 btn btn-secondary">Referans Fiyatı Getir</a>
+    </div>
+
+</div>
+
+<div class="row mt-3">
+    <div class="mb-3 col-12">
+        <h5 class="col-12 mb-2">
+            Ürün Kalemi Notu
+        </h5>
+        <div class="input-group w-100">
+            <textarea class="form-control" style="height: 160px" id="Notes" name="Notes"></textarea>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    function SetSelectedProduct(selectedEl) {
+        var id = $(selectedEl).attr("data-id");
+        var kdv = $(selectedEl).attr("data-kdv");
+        var GroupId = $(selectedEl).attr("data-GroupId");
+        var brandId = $(selectedEl).attr("data-brandId");
+
+        $("#ProductId").val(id);
+    }
+
+    //search
+    var searchDataSet = $("#productsUl li");
+    $("#productSearch").on("input", function() {
+        var val = $("#productSearch").val();
+        if (val.length > 1) {
+            //console.log("searching: " + val);
+            SearchInDataSet(val);
+            $("#productSearchResults").fadeIn("fast");
+        } else {
+            $("#productSearchResults").hide();
+        }
+
+    });
+
+    $(window).click(function() {
+        //Hide the menus if visible
+        $("#productSearchResults").hide();
+    });
+
+    $('#ProductSearchContainer').click(function(event) {
+        event.stopPropagation();
+    });
+
+    $("#productSearch").on("focusin", function() {
+        $("#productSearchResults").fadeIn("fast");
+    });
+
+    function SearchInDataSet(value) {
+        $("#productSearchResults .list-group").html("");
+        var searchResults = [];
+        var el;
+
+        for (var i = 0; i < searchDataSet.length; i++) {
+            var item = $(searchDataSet[i]);
+
+            var str = item[0].innerText;
+            str = str.toString().toLowerCase().replace(/,/g, '');;
+            value = value.toLowerCase();
+
+            if (str.toLowerCase().indexOf(value) >= 0) {
+                el = item;
+                searchResults.push(el);
+            }
+        }
+
+        if (searchResults.length < 1) {
+            searchResults = [];
+            el = '<li class="list-group-item list-group-item-action disabled" style="color: red;">"' + value + '" İçin Sonuç Bulunamadı.<br/> Yazdığınız Ürün Adı için Seçilen Bilgilerle Yeni Bir Ürün Kaydı Oluşturulacak</li>';
+            searchResults.push(el);
+        }
+        var arrayToStr = searchResults.toString().replace(/,/g, '');
+        //console.log(arrayToStr);
+        $("#productSearchResults .list-group").html(arrayToStr);
+    }
+
+    $(".selectpickerInModal").select2({
+        tags: true,
+        dropdownParent: $("#newProductModal"),
+        language: "tr"
+    });
+</script>

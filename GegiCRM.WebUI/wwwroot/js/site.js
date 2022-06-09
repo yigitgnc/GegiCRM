@@ -102,9 +102,10 @@ function InitCustomInputs() {
         $('.selectpicker').select2(
             {
                 language: "tr"
-            });
-
-        $('input.currency').currencyInput();
+            }
+        );
+        
+        $('input .currency').currencyInput();
 
         //$('.selectpicker').selectpicker();
     });

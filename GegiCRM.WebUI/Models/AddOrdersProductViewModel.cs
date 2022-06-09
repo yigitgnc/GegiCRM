@@ -5,6 +5,7 @@ namespace GegiCRM.WebUI.Models
 {
     public class AddOrdersProductViewModel
     {
+        public int CurrentOrderId { get; set; }
         public IEnumerable<Product> Products { get; set; }
         public IEnumerable<ProductGroup> ProductGroups { get; set; }
         public IEnumerable<Birim> Birims { get; set; }
@@ -12,7 +13,7 @@ namespace GegiCRM.WebUI.Models
         public IEnumerable<Supplier> Suppliers { get; set; }
         public IEnumerable<Currency> Currencies { get; set; }
         public IEnumerable<OrdersCurrency> OrdersCurrencies { get; set; }
-        public Product Product { get; set; }
+        public OrdersProduct OrderProduct { get; set; }
 
     }
 }
