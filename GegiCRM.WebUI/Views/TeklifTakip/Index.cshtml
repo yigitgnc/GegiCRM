@@ -88,7 +88,7 @@
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
-                                    <div class="dropdown-menu">
+                                    <div class="dropdown-menu" data-name="actionList">
                                         <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>Düzenle</a>
                                         <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-check-double me-1 bg-label-success"></i>Tüm Kalemler ile Onayla</a>
                                         <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-check me-1 text-success"></i>Onaylı Kalemler ile Onayla</a>
@@ -213,24 +213,32 @@
             e.stopPropagation();
         });
 
-                //$(function(){
-                //    $('.dataTable tbody').contextMenu({
-                //        selector: 'tr',
-                //        callback: function(key, options) {
-                //            var m = "clicked: " + key + " on " + $(this).text();
-                //            window.console && console.log(m) || alert(m);
-                //        },
-                //        items: {
-                //            "newTab": {name: "Yeni Sekmede Aç", icon: "external-link"},
-                //            "cut": {name: "Cut", icon: "cut"},
-                //            "copy": {name: "Copy", icon: "copy"},
-                //            "paste": {name: "Paste", icon: "paste"},
-                //            "delete": {name: "Delete", icon: "delete"},
-                //            "sep1": "---------",
-                //            "quit": {name: "Quit", icon: function($element, key, item){ return 'context-menu-icon context-menu-icon-quit'; }}
-                //        }
-                //    });
-                //});
+        $(function() {
+            var contextMenuItems = {
+                "newTab": { name: "Yeni Sekmede Aç", icon: "external-link" },
+                "cut": { name: "Cut", icon: "cut" },
+                "copy": { name: "Copy", icon: "copy" },
+                "paste": { name: "Paste", icon: "paste" },
+                "delete": { name: "Delete", icon: "delete" }
+            };
+
+            $(contextMenuItems).extend({
+                "sep1": "---------",
+                "quit": { name: "Quit", icon: function($element, key, item) { return 'context-menu-icon context-menu-icon-quit'; } }
+            });
+            
+
+            console.log(contextMenuItems);
+
+            $('.dataTable tbody').contextMenu({
+                selector: 'tr',
+                callback: function(key, options) {
+                    var m = "clicked: " + key + " on " + $(this);
+                    window.console && console.log(m);
+                },
+                items: contextMenuItems
+            });
+        });
 
 
 

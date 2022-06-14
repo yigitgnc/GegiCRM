@@ -579,7 +579,12 @@
                     if (data.includes("OK")) {
                         $("#responseMessages").addClass("text-success").html("Ürün Kalemi Eklendi");
                         getOrdersProducts();
-                    } else {
+                    }else if (data.includes("UP")) {
+                        
+                        $("#responseMessages").addClass("text-info").html("Ürün Kalemi Güncellendi");
+                        getOrdersProducts();
+                    }
+                    else {
                         $("#responseMessages").addClass("text-danger").html(data);
                     }
                     console.log(data);

@@ -47,6 +47,19 @@
     height: 96%;
     cursor: not-allowed;
 }
+
+.dtsb-button, .dtsb-button:focus {
+    color: #696cff;
+    border-color: #696cff;
+}
+    .dtsb-button:hover {
+        color: #fff;
+        background-color: #5f61e6;
+        border-color: #5f61e6;
+        box-shadow: 0 0.125rem 0.25rem 0 rgb(105 108 255 / 40%);
+        transform: translateY(-1px px );
+    }
+
 /*datatable end*/
 
 /*scrollbar begin*/

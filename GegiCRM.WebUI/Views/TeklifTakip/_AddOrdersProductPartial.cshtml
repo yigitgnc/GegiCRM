@@ -4,6 +4,8 @@
 @using GegiCRM.Entities.Concrete
 @model AddOrdersProductViewModel;
 
+<input type="hidden" name="orderProductId" value="@Model.OrderProduct.Id"/>
+
 <div class="row d-flex justify-content-start">
     <h5 class="col-12 mb-2">
         Teklif Kalem Durumu
@@ -11,14 +13,30 @@
     <div class="col-auto mt-2">
         <div class="form-check form-check-inline">
             <label class="form-check-label cursor-pointer" for="IsApproved">ONAYLANDI</label>
-            <input name="IsApproved" class="form-check-input cursor-pointer" type="checkbox" id="IsApproved" value="false" />
+            @if (Model.OrderProduct.IsApproved)
+            {
+                <input name="IsApproved" class="form-check-input cursor-pointer" type="checkbox" id="IsApproved" value="false" checked="checked" />
+
+            }
+            else
+            {
+                <input name="IsApproved" class="form-check-input cursor-pointer" type="checkbox" id="IsApproved" value="false" />
+            }
         </div>
     </div>
 
     <div class="col-auto mt-2">
         <div class="form-check form-check-inline">
             <label class="form-check-label cursor-pointer" for="IsCancelled">İPTAL EDİLDİ</label>
-            <input name="IsCancelled" class="form-check-input cursor-pointer" type="checkbox" id="IsCancelled" value="false" />
+            @if (Model.OrderProduct.IsCancelled)
+            {
+                <input name="IsCancelled" class="form-check-input cursor-pointer" type="checkbox" id="IsCancelled" value="false" checked="checked"/>
+
+            }
+            else
+            {
+                <input name="IsCancelled" class="form-check-input cursor-pointer" type="checkbox" id="IsCancelled" value="false" /> 
+            }
         </div>
     </div>
 
@@ -27,7 +45,7 @@
             <label class="form-check-label cursor-pointer" for="IsDenied">REDDEDİLDİ</label>
             @if (Model.OrderProduct.IsDeneied)
             {
-                <input name="IsDeneied" class="form-check-input cursor-pointer" type="checkbox" id="IsDenied" value="true" />   
+                <input name="IsDeneied" class="form-check-input cursor-pointer" type="checkbox" id="IsDenied" value="true" checked="checked" />   
 
             }
             else
@@ -82,9 +100,19 @@
         <select name="ProductBrandId" id="ProductBrandId" class="form-control selectpickerInModal" data-live-search="true" data-container="body">
             @foreach (Brand item in Model.Brands)
             {
-                <option value="@item.Id" data-tokens="@item.Name">
-                    @item.Name
-                </option>
+                if (item.Id == Model.OrderProduct.Product?.PorductBrandId)
+                {
+                    <option value="@item.Id" data-tokens="@item.Name" selected="selected">
+                        @item.Name
+                    </option> 
+                }
+                else
+                {
+                    <option value="@item.Id" data-tokens="@item.Name">
+                        @item.Name
+                    </option>
+                        
+                }
 
             }
         </select>
@@ -98,9 +126,20 @@
         <select name="ProductGroupId" id="ProductGroupId" class="form-control selectpickerInModal" id="select-ProductGroupId" data-live-search="true" data-container="body">
             @foreach (ProductGroup item in Model.ProductGroups)
             {
-                <option value="@item.Id" data-tokens="@item.GroupName">
-                    @item.GroupName
-                </option>
+                if (item.Id == Model.OrderProduct.Product?.ProductGroupId)
+                {
+                    <option value="@item.Id" data-tokens="@item.GroupName" selected="selected">
+                        @item.GroupName
+                    </option>
+                    
+                }
+                else
+                {
+                    <option value="@item.Id" data-tokens="@item.GroupName">
+                        @item.GroupName
+                    </option>
+                        
+                }
 
             }
         </select>
@@ -114,9 +153,19 @@
         <select  name="BirimId" class="form-control selectpickerInModal" id="select-BirimId" data-live-search="true" data-container="body">
             @foreach (Birim item in Model.Birims)
             {
-                <option value="@item.Id" data-tokens="@item.Name">
-                    @item.Name
-                </option>
+                if (item.Id == Model.OrderProduct.BirimId)
+                {
+                    <option value="@item.Id" data-tokens="@item.Name" selected="selected">
+                        @item.Name
+                    </option>
+                }
+                else
+                {
+                        
+                    <option value="@item.Id" data-tokens="@item.Name">
+                        @item.Name
+                    </option>
+                }
 
             }
         </select>
@@ -170,9 +219,20 @@
         <select name="ReferansSupplierId" class="form-control selectpickerInModal" id="select-ReferansSupplierId" data-live-search="true" data-container="body">
             @foreach (Supplier item in Model.Suppliers)
             {
-                <option value="@item.Id" data-tokens="@item.SupplierName">
-                    @item.SupplierName
-                </option>
+                if (item.Id == Model.OrderProduct.ReferansSupplierId)
+                {
+                    <option value="@item.Id" data-tokens="@item.SupplierName" selected="selected">
+                        @item.SupplierName
+                    </option>
+                    
+                }
+                else
+                {
+                    <option value="@item.Id" data-tokens="@item.SupplierName">
+                        @item.SupplierName
+                    </option>
+                        
+                }
 
             }
         </select>
@@ -186,17 +246,35 @@
         <select name="ReferansCurrencyId" class="form-control selectpickerInModal" id="select-ReferansCurrencyId" data-live-search="true" data-container="body">
             @foreach (Currency item in Model.Currencies)
             {
-                <option value="@item.Id" data-tokens="@item.Code @item.Name @item.CurrentValue">
-                    [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
-                    @{
-                        var orderSpecial = Model.OrdersCurrencies.FirstOrDefault(x => x.CurrencyId == item.Id);
-                    }
-                    @if (orderSpecial != null)
-                    {
-                        <br />
-                        <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
-                    }
-                </option>
+                if (item.Id == Model.OrderProduct.ReferansCurrencyId)
+                {  
+                    <option value="@item.Id" data-tokens="@item.Code @item.Name @item.CurrentValue" selected="selected">
+                       [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
+                       @{
+                           var orderSpecial = Model.OrdersCurrencies.FirstOrDefault(x => x.CurrencyId == item.Id);
+                       }
+                       @if (orderSpecial != null)
+                       {
+                           <br />
+                           <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
+                       }
+                   </option>
+                    
+                }
+                else
+                {
+                    <option value="@item.Id" data-tokens="@item.Code @item.Name @item.CurrentValue">
+                        [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
+                        @{
+                            var orderSpecial = Model.OrdersCurrencies.FirstOrDefault(x => x.CurrencyId == item.Id);
+                        }
+                        @if (orderSpecial != null)
+                        {
+                            <br />
+                            <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
+                        }
+                    </option>  
+                }
 
             }
         </select>

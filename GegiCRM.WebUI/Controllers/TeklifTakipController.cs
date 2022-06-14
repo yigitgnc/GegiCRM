@@ -263,15 +263,15 @@ namespace GegiCRM.WebUI.Controllers
             }
             else
             {
-                vm.OrderProduct = new OrdersProduct() { OrderId = -1 };
+                vm.OrderProduct = new OrdersProduct() { ProductId = -1 };
             }
 
             return View(vm);
         }
 
-        public async Task<string> AddOrdersProduct(OrdersProduct ordersProduct, string ProductName, string ProductBrandId, string ProductGroupId)
+        public async Task<string> AddOrdersProduct(OrdersProduct ordersProduct,string orderProductId, string ProductName, string ProductBrandId, string ProductGroupId)
         {
-
+            ordersProduct.Id = Convert.ToInt32(orderProductId);
             StringBuilder errStringBuilder = new StringBuilder();
             if (ordersProduct.ProductId == -1)
             {
@@ -305,6 +305,11 @@ namespace GegiCRM.WebUI.Controllers
                     ordersProduct.ReferanceCode = _orderProductsManager.GenerateReferanceCode(currentUser, productGroup);
                 }
 
+                if (ordersProduct.Id>0)
+                {
+                    _orderProductsManager.Update(ordersProduct);
+                    return "UP";
+                }
                 _orderProductsManager.Create(ordersProduct);
 
                 return "OK";
