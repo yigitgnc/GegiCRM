@@ -13,6 +13,7 @@ namespace GegiCRM.DAL.Abstract
         List<AppUser> GetUsersWithModifiedOrders();
 
         AppUser? GetUserByEmail(string email);
+        public int GetUsersGivenOrderCountByGroupId(int groupId, int userId,DateTime beginDate,DateTime endDate);
 
 
     }

@@ -113,8 +113,8 @@ namespace GegiCRM.WebUI.Controllers
                     AddedById = 1,
 
                 };
-              
-                
+
+                user.UserName = _appUserManager.GenerateUserName(user.Name, user.Surname);
 
                 var result = await _appUserManager._userManager.CreateAsync(user, vm.Password);
 

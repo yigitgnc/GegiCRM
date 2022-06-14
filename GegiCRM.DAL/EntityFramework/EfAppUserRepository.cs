@@ -39,5 +39,11 @@ namespace GegiCRM.DAL.EntityFramework
         {
             throw new NotImplementedException();
         }
+
+        public int GetUsersGivenOrderCountByGroupId(int groupId, int userID, DateTime beginDate, DateTime endDate)
+        {
+            using Context context = new Context();
+            return context.OrdersProducts.Include(x => x.Product).Where(x=>x.CreatedDate>=beginDate && x.CreatedDate<=endDate).Count(x => x.Product.ProductGroupId == groupId && x.AddedById == userID);
+        }
     }
 }

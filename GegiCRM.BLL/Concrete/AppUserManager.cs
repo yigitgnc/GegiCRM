@@ -18,21 +18,15 @@ namespace GegiCRM.BLL.Concrete
         private readonly IAppUserDal _userDal;
         public readonly UserManager<AppUser> _userManager;
         public readonly SignInManager<AppUser> _signInManager;
-
+        private GenericManager<OrdersProduct> _ordersProductManager;
         public AppUserManager(UserManager<AppUser> userManager, IAppUserDal userDal, SignInManager<AppUser> signInManager) : base(userManager, userDal)
         {
             _userDal = userDal;
             _userManager = userManager;
             _signInManager = signInManager;
+            _ordersProductManager = new GenericManager<OrdersProduct>(userManager, new EfOrdersProductRepository());
         }
         //todo: refactor these fucking public implementations these should be done in here not in controller using _appusermanager._signinmanager alike !
-
-        //public AppUserManager(UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor, IAppUserDal userDal, SignInManager<AppUser> signInManager, ILogger<AppUser> logger) : base(userManager, httpContextAccessor, logger)
-        //{
-        //    _userDal = userDal;
-        //    _userManager = userManager;
-        //    _signInManager = signInManager;
-        //}
 
         public List<AppUser> GetUsersWithAddedOrders()
         {
@@ -49,9 +43,7 @@ namespace GegiCRM.BLL.Concrete
             return _userDal.GetUserByEmail(email);
         }
 
-    
-
-        public string GenerateUserName(string name,string surname)
+        public string GenerateUserName(string name, string surname)
         {
             name = name.ToUpper();
             surname = surname.ToUpper();
@@ -59,8 +51,8 @@ namespace GegiCRM.BLL.Concrete
             string userName = "";
 
             int tryCount = 0;
-            int NameIndex = 0;
-            int SurnameIndex = 0;
+            int NameIndex = 1;
+            int SurnameIndex = 1;
 
             do
             {
@@ -85,10 +77,15 @@ namespace GegiCRM.BLL.Concrete
                 }
 
 
+                //} while (ListByFilter(x => x.UserName == userName).Any());
             } while (ListByFilter(x => x.UserName == userName).Any());
 
             return userName;
         }
 
+        public int GetUsersGivenOrderCountByGroupId(int groupId,int userId, DateTime beginDate, DateTime endDate)
+        {
+            return _userDal.GetUsersGivenOrderCountByGroupId(groupId, userId,beginDate,endDate);
+        }
     }
 }

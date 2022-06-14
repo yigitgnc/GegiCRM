@@ -17,8 +17,8 @@
                 <th>KDV ORANI</th>
                 <th>ÜRÜN GRUBU</th>
                 <th>MARKA</th>
-                <th>REFERANS TEDARİKÇİ</th>
                 <th>REFERANS BİRİM FİYAT</th>
+                <th>REFERANS TEDARİKÇİ</th>
                 <th>REFERANS DÖVİZ KURU</th>
                 <th>DURUM</th>
                 <th>ABONELİK BAŞLANGIÇ</th>
@@ -26,6 +26,7 @@
                 <th>KESİN SEVK DURUMU</th>
                 <th>KESİN TEDARİKÇİ</th>
                 <th>KESİN FİYAT</th>
+                <th>İŞLEM</th>
             </tr>
         </thead>
         <tbody class="table-border-bottom-0">
@@ -35,22 +36,22 @@
                     <td>@item.Id</td>
                     <td>@item.ReferanceCode</td>
                     <td>@item.CreatedDate</td>
-                    @*<td>@item.Product.ProductName</td>*@
-                    <td>@item.ProductId</td>
+                    <td>@item.Product.ProductName</td>
                     <td>@item.Adet</td>
                     <td>@item.BirimFiyat</td>
-                    <td>?</td>
-                    <td>?</td>
-                    <td>?</td>
-                    <td>?</td>
-                    <td>?</td>
+                    <td>@item.KesinCurrency?.Code</td>
+                    <td>@item.Birim.Name</td>
+                    <td>@item.Product.KdvOrani</td>
+                    <td>@item.Product.ProductGroup?.GroupName</td>
+                    <td>@item.Product.PorductBrand.Name</td>
                     <td>@item.ReferansBirimFiyat</td>
-                    <td>?</td>
-                    <td>@item.CreateHtmlBadge(@item.IsApproved)</td>
+                    <td>@item.ReferansSupplier.SupplierName</td>
+                    <td>@item.ReferansCurrency?.Code</td>
+                    <td>@Html.Raw(item.CreateHtmlBadge(@item.IsApproved))</td>
                     <td>@item.AbonelikBaslangicFormatted</td>
                     <td>@item.AbonelikBitisFormatted</td>
                     <td>@item.KesinSevkDurumu</td>
-                    <td>?</td>
+                    <td>@item.KesinSupplier?.SupplierName</td>
                     <td>@item.KesinFiyat</td>
 
                     <td>
@@ -78,7 +79,7 @@
     $(".clickableTr").on("click", function() {
         var id = $(this).attr("data-id");
         console.log(id);
-        window.location.href = "/TeklifTakip/Edit/" + id;
+        getAddOrdersProductPartial(id);
     });
 
     $(".blockNavigate").on("click", function(e) {

@@ -5,39 +5,40 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using GegiCRM.DAL.Abstract;
+using GegiCRM.DAL.EntityFramework;
 using GegiCRM.Entities.Concrete;
 using Microsoft.AspNetCore.Identity;
 
 namespace GegiCRM.BLL.Concrete
 {
-    public class OrdersProductManager: GenericManager<OrdersProduct>
+    public class OrdersProductManager : GenericManager<OrdersProduct>
     {
         readonly IOrdersProductDal _dal;
+        private readonly AppUserManager _appUserManager;
+        public readonly SignInManager<AppUser> _signInManager;
 
-        public OrdersProductManager(UserManager<AppUser> userManager, IOrdersProductDal dal) : base(userManager, dal)
+        public OrdersProductManager(UserManager<AppUser> userManager, IOrdersProductDal dal, SignInManager<AppUser> signInManager) : base(userManager, dal)
         {
+            _appUserManager = new AppUserManager(userManager,new EfAppUserRepository(),signInManager);
             _dal = dal;
+            _signInManager = signInManager;
         }
 
-        //public async Task<OrdersProduct> CreateOrdersProductWithReferanceCodeAsync(OrdersProduct order)
-        //{
-        //    order.ReferanceCode = await GenerateReferanceCode(order);
-        //    order = base.Create(order);
-        //    return order;
-        //}
+        public List<OrdersProduct> GetListByAllNavigations(int orderId)
+        {
+            return _dal.GetListByAllNavigations(orderId);
+        }
 
-        //public async Task<string> GenerateReferanceCode(OrdersProduct order)
-        //{
-        //    string refCode = "";
+        public string GenerateReferanceCode(AppUser user, ProductGroup productGroup)
+        {
+            string code = string.Empty;
 
-        //    var claimsPrincipal = _httpContextAccessor.HttpContext?.User;
-        //    var user = await _userManager.GetUserAsync(claimsPrincipal);
-        //    if (user != null)
-        //    {
-        //        refCode = { }
-        //    }
+            DateTime yearBegin = new DateTime(DateTime.Now.Year, 1, 1);
+            DateTime yearEnd = new DateTime(yearBegin.AddYears(1).Ticks);
 
-        //    return refCode;
-        //}
+            code = $"{user.NormalizedUserName}{DateTime.Now:yy}{productGroup.GroupName[0]}{_appUserManager.GetUsersGivenOrderCountByGroupId(productGroup.Id,user.Id,yearBegin,yearEnd).ToString("D5")}";
+
+            return code;
+        }
     }
 }

@@ -16,6 +16,11 @@ namespace GegiCRM.BLL.Concrete
 {
     public class GenericManager<T> : IGenericManager<T> where T : class
     {
+        public async Task<AppUser?> GetCurrentUserAsync()
+        {
+            return await _userManager.GetUserAsync(_httpContextAccessor.HttpContext?.User);
+        }
+
         public readonly UserManager<AppUser> _userManager;
         public IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<T> _logger;

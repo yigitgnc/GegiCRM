@@ -25,7 +25,15 @@
     <div class="col-auto mt-2">
         <div class="form-check form-check-inline">
             <label class="form-check-label cursor-pointer" for="IsDenied">REDDEDİLDİ</label>
-            <input name="IsDeneied" class="form-check-input cursor-pointer" type="checkbox" id="IsDenied" value="false" />
+            @if (Model.OrderProduct.IsDeneied)
+            {
+                <input name="IsDeneied" class="form-check-input cursor-pointer" type="checkbox" id="IsDenied" value="true" />   
+
+            }
+            else
+            {
+                <input name="IsDeneied" class="form-check-input cursor-pointer" type="checkbox" id="IsDenied" value="false" />   
+            }
         </div>
     </div>
 </div>
@@ -37,7 +45,7 @@
     <div class="col-12 mb-3" id="ProductSearchContainer">
         <div class="d-flex align-items-center w-100">
             <i class="bx bx-search fs-4 lh-0"></i>
-            <input name="ProductName" type="text" id="productSearch" class="form-control border-0 shadow-none" placeholder="Ürün Adı Girin" aria-label="Ürün Adı Girin" autocomplete="off">
+            <input name="ProductName" type="text" id="productSearch" class="form-control border-0 shadow-none" placeholder="Ürün Adı Girin" aria-label="Ürün Adı Girin" autocomplete="off" value="@Model.OrderProduct.Product?.ProductName">
         </div>
 
         <ul id="productsUl" class="d-none">
@@ -51,7 +59,7 @@
             }
         </ul>
 
-        <input name="ProductId" type="hidden" id="ProductId" value="-1" />
+        <input name="ProductId" type="hidden" id="ProductId" value="@Model.OrderProduct.ProductId" />
 
         <div id="productSearchResults" class="mt-3">
             <ul class="list-group">
@@ -71,7 +79,7 @@
             Marka
         </h5>
 
-        <select name="PorductBrandId" id="ProductBrandId" class="form-control selectpickerInModal" id="select-ProductBrandId" data-live-search="true" data-container="body">
+        <select name="ProductBrandId" id="ProductBrandId" class="form-control selectpickerInModal" data-live-search="true" data-container="body">
             @foreach (Brand item in Model.Brands)
             {
                 <option value="@item.Id" data-tokens="@item.Name">

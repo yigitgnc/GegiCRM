@@ -9,5 +9,6 @@ namespace GegiCRM.DAL.Abstract
 {
     public interface IOrdersProductDal : IGenericDal<OrdersProduct>
     {
+        public List<OrdersProduct> GetListByAllNavigations(int orderId);
     }
 }

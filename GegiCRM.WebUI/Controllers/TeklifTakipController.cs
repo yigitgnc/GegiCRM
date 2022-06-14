@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Text;
+using AutoMapper;
 using GegiCRM.BLL.Concrete;
 using GegiCRM.DAL.EntityFramework;
 using GegiCRM.DAL.Repositories;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace GegiCRM.WebUI.Controllers
 {
@@ -21,25 +23,33 @@ namespace GegiCRM.WebUI.Controllers
         readonly OrdersCurrencyManager _orderCurrencyManager;
         readonly GenericManager<OrderState> _orderStateManager;
         readonly OrdersProductManager _orderProductsManager;
+        readonly GenericManager<ProductGroup> _productGroupGenericManager;
+        readonly ProductManager _productManager;
+
+        public readonly SignInManager<AppUser> _signInManager;
+
         readonly IMapper _mapper;
 
         private GenericManager<Currency> _currencyManager;
-        public TeklifTakipController(UserManager<AppUser> userManager, IMapper mapper)
+        public TeklifTakipController(UserManager<AppUser> userManager, IMapper mapper, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _mapper = mapper;
+            _signInManager = signInManager;
             _teklifTakipManager = new TeklifTakipManager(_userManager, new EfOrderRepository()); ;
             _customerManager = new GenericManager<Customer>(_userManager, new EfCustomerRepository());
             _orderCurrencyManager = new OrdersCurrencyManager(_userManager, new EfOrdersCurrencyRepository());
             _currencyManager = new GenericManager<Currency>(_userManager, new EfCurrencieRepository());
             _orderStateManager = new GenericManager<OrderState>(_userManager, new GenericRepository<OrderState>());
-            _orderProductsManager = new OrdersProductManager(_userManager, new EfOrdersProductRepository());
+            _orderProductsManager = new OrdersProductManager(_userManager, new EfOrdersProductRepository(), _signInManager);
+            _productGroupGenericManager = new GenericManager<ProductGroup>(_userManager, new EfProductGroupRepository());
+            _productManager = new ProductManager(_userManager, new EfProductRepository());
         }
 
         [Route("SiparisTakip")]
         public IActionResult St()
         {
-            return RedirectToAction("Index",new {isOrder = true});
+            return RedirectToAction("Index", new { isOrder = true });
         }
 
         public IActionResult Index(bool isOrder)
@@ -130,7 +140,7 @@ namespace GegiCRM.WebUI.Controllers
 
         public IActionResult _GetOrdersProductsPartial(int id)
         {
-            List<OrdersProduct> ordersProducts = _orderProductsManager.ListByFilter(x => x.OrderId == id);
+            List<OrdersProduct> ordersProducts = _orderProductsManager.GetListByAllNavigations(id);
             return View(ordersProducts);
         }
 
@@ -234,11 +244,6 @@ namespace GegiCRM.WebUI.Controllers
             GenericManager<Brand> brandGenericManager =
                 new GenericManager<Brand>(_userManager, new EfBrandRepository());
 
-            GenericManager<ProductGroup> productGroupGenericManager =
-                new GenericManager<ProductGroup>(_userManager, new EfProductGroupRepository());
-
-            ProductManager productManager = new ProductManager(_userManager, new EfProductRepository());
-
             GenericManager<Currency> currencyGenericManager =
                 new GenericManager<Currency>(_userManager, new EfCurrencieRepository());
 
@@ -247,18 +252,18 @@ namespace GegiCRM.WebUI.Controllers
             vm.Suppliers = supplierGenericManager.GetAll();
             vm.Birims = birimGenericManager.GetAll();
             vm.Brands = brandGenericManager.GetAll();
-            vm.ProductGroups = productGroupGenericManager.GetAll();
-            vm.Products = productManager.GetProductsWithNavigations();
+            vm.ProductGroups = _productGroupGenericManager.GetAll();
+            vm.Products = _productManager.GetProductsWithNavigations();
             vm.Currencies = currencyGenericManager.GetAll();
             vm.OrdersCurrencies = _orderCurrencyManager.GetOrdersCurrencies(id);
             vm.CurrentOrderId = id;
             if (orderProductId != null)
             {
-                vm.OrderProduct = _orderProductsManager.GetById(orderProductId.Value);
+                vm.OrderProduct = _orderProductsManager.GetListByAllNavigations(id).FirstOrDefault(x => x.Id == orderProductId.Value);
             }
             else
             {
-                vm.OrderProduct = new OrdersProduct();
+                vm.OrderProduct = new OrdersProduct() { OrderId = -1 };
             }
 
             return View(vm);
@@ -266,24 +271,50 @@ namespace GegiCRM.WebUI.Controllers
 
         public async Task<string> AddOrdersProduct(OrdersProduct ordersProduct, string ProductName, string ProductBrandId, string ProductGroupId)
         {
+
+            StringBuilder errStringBuilder = new StringBuilder();
             if (ordersProduct.ProductId == -1)
             {
-                Product product = new Product();
-                product.ProductName = ProductName;
-                product.PorductBrandId = Convert.ToInt32(ProductBrandId);
-                product.ProductGroupId = Convert.ToInt32(ProductGroupId);
-                GenericManager<Product> productGenericManager =
-                    new GenericManager<Product>(_userManager, new EfProductRepository());
-                productGenericManager.Create(product);
+                //yeni ürün oalarak ekliyoruz
+                if (!(string.IsNullOrWhiteSpace(ProductName) || string.IsNullOrWhiteSpace(ProductBrandId) || string.IsNullOrWhiteSpace(ProductGroupId)))
+                {
+                    Product product = new Product();
+                    product.ProductName = ProductName;
+                    product.PorductBrandId = Convert.ToInt32(ProductBrandId);
+                    product.ProductGroupId = Convert.ToInt32(ProductGroupId);
+                    GenericManager<Product> productGenericManager =
+                        new GenericManager<Product>(_userManager, new EfProductRepository());
+                    product = productGenericManager.Create(product);
+                    ordersProduct.ProductId = product.Id;
+                }
+                else
+                {
+                    errStringBuilder.AppendLine("Hata: Girilen Değerleri Kontrol Edin !  <br />");
 
+                }
             }
-            
-            //ordersProduct.ReferanceCode = $"{_user}"
 
-            _orderProductsManager.Create(ordersProduct);
+            try
+            {
 
+                var currentUser = await _orderProductsManager.GetCurrentUserAsync();
+                var productGroupId = _productManager.GetById(ordersProduct.ProductId)!.ProductGroupId;
+                if (productGroupId != null)
+                {
+                    var productGroup = _productGroupGenericManager.GetById(productGroupId.Value);
+                    ordersProduct.ReferanceCode = _orderProductsManager.GenerateReferanceCode(currentUser, productGroup);
+                }
 
-            return "OK";
+                _orderProductsManager.Create(ordersProduct);
+
+                return "OK";
+            }
+            catch (Exception e)
+            {
+                errStringBuilder.AppendLine($"Kritik Hata: {e.Message} <br />");
+            }
+
+            return errStringBuilder.ToString();
 
         }
 
