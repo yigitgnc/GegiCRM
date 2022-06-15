@@ -1,4 +1,4 @@
-﻿using GegiCRM.DAL.Abstract;
+﻿using GegiCRM.DAL.Abstract.Generic;
 using GegiCRM.DAL.Concrete;
 using System;
 using System.Collections.Generic;

@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using GegiCRM.BLL.Abstract;
-using GegiCRM.DAL.Abstract;
+using GegiCRM.DAL.Abstract.Generic;
 using GegiCRM.DAL.Repositories;
 using GegiCRM.Entities.Concrete;
 using Microsoft.AspNetCore.Http;

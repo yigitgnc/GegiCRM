@@ -1,3 +1,7 @@
+html {
+    /*zoom: 80%;*/
+}
+
 #fullScreenButton {
     margin-right: 10px;
     cursor: pointer;

@@ -20,8 +20,12 @@ namespace GegiCRM.Entities.Concrete
             ServiceRecords = new HashSet<ServiceRecord>();
             ActivityLogs = new HashSet<CustomerActivityLog>();
         }
-
-        
+        /// <summary>
+        /// S: Satış Kuru
+        /// A: Alış Kuru
+        /// P: Serbest Piyasa
+        /// </summary>
+        public char TercihEdilenKur { get; set; }
         public string? TicariUnvan { get; set; }
         public string? Name { get; set; }
         public string? Surname { get; set; }

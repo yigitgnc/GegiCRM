@@ -1,4 +1,5 @@
-﻿using GegiCRM.Entities.Concrete;
+﻿using GegiCRM.DAL.Abstract.Generic;
+using GegiCRM.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;

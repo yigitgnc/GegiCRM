@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GegiCRM.DAL.Abstract
+namespace GegiCRM.DAL.Abstract.Generic
 {
     public interface IGenericDal<T> where T : class
     {
