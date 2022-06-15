@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
-namespace GegiCRM.BLL.Concrete
+namespace GegiCRM.BLL.Generic
 {
     public class GenericManager<T> : IGenericManager<T> where T : class
     {
@@ -43,7 +43,7 @@ namespace GegiCRM.BLL.Concrete
         {
             t = SetAddedBy(t);
             t = SetLastModifiedBy(t);
-            _genericDal.Insert(t);
+            _genericDal.Create(t);
             return t;
         }
         public T Update(T t)
@@ -58,18 +58,18 @@ namespace GegiCRM.BLL.Concrete
             t = SetLastModifiedBy(t);
             _genericDal.Delete(t);
         }
-        public List<T> GetAll()
+        public List<T> GetAll(bool includeDeletedRecords)
         {
-            return _genericDal.GetListAll();
+            return _genericDal.GetListAll(includeDeletedRecords);
         }
-        public T? GetById(int id)
+        public T? GetById(int id, bool includeDeletedRecords)
         {
-            return _genericDal.GetByID(id);
+            return _genericDal.GetByID(id,includeDeletedRecords);
         }
 
-        public List<T> ListByFilter(Expression<Func<T, bool>> filter)
+        public List<T> ListByFilter(Expression<Func<T, bool>> filter, bool includeDeletedRecords)
         {
-            return _genericDal.ListByFilter(filter);
+            return _genericDal.ListByFilter(filter, includeDeletedRecords);
         }
 
         private T SetLastModifiedBy(T tEntity)

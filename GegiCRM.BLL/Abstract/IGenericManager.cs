@@ -6,9 +6,9 @@ namespace GegiCRM.BLL.Abstract
     {
         T Create(T t);
         void Delete(T t);
-        List<T> GetAll();
-        T? GetById(int id);
-        List<T> ListByFilter(Expression<Func<T, bool>> filter);
+        List<T> GetAll(bool includeDeletedRecords);
+        T? GetById(int id,bool includeDeletedRecords);
+        List<T> ListByFilter(Expression<Func<T, bool>> filter, bool includeDeletedRecords);
         T Update(T t);
     }
 }

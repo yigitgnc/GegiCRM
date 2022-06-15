@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using AutoMapper;
 using GegiCRM.BLL.Concrete;
+using GegiCRM.BLL.Generic;
 using GegiCRM.DAL.EntityFramework;
 using GegiCRM.DAL.Repositories;
 using GegiCRM.Entities.Concrete;
@@ -17,6 +18,7 @@ namespace GegiCRM.WebUI.Controllers
     public class TeklifTakipController : Controller
     {
         readonly UserManager<AppUser> _userManager;
+        readonly AppUserManager _appUserManager;
         //readonly GenericManager<AppUser> _userman;
         readonly TeklifTakipManager _teklifTakipManager;
         readonly GenericManager<Customer> _customerManager;
@@ -34,16 +36,17 @@ namespace GegiCRM.WebUI.Controllers
         public TeklifTakipController(UserManager<AppUser> userManager, IMapper mapper, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
+            _appUserManager = new AppUserManager(userManager, new EfAppUserRepository(), signInManager);
             _mapper = mapper;
             _signInManager = signInManager;
-            _teklifTakipManager = new TeklifTakipManager(_userManager, new EfOrderRepository()); ;
-            _customerManager = new GenericManager<Customer>(_userManager, new EfCustomerRepository());
-            _orderCurrencyManager = new OrdersCurrencyManager(_userManager, new EfOrdersCurrencyRepository());
-            _currencyManager = new GenericManager<Currency>(_userManager, new EfCurrencieRepository());
-            _orderStateManager = new GenericManager<OrderState>(_userManager, new GenericRepository<OrderState>());
-            _orderProductsManager = new OrdersProductManager(_userManager, new EfOrdersProductRepository(), _signInManager);
-            _productGroupGenericManager = new GenericManager<ProductGroup>(_userManager, new EfProductGroupRepository());
-            _productManager = new ProductManager(_userManager, new EfProductRepository());
+            _teklifTakipManager = new TeklifTakipManager(userManager, new EfOrderRepository()); ;
+            _customerManager = new GenericManager<Customer>(userManager, new EfCustomerRepository());
+            _orderCurrencyManager = new OrdersCurrencyManager(userManager, new EfOrdersCurrencyRepository());
+            _currencyManager = new GenericManager<Currency>(userManager, new EfCurrencieRepository());
+            _orderStateManager = new GenericManager<OrderState>(userManager, new GenericRepository<OrderState>());
+            _orderProductsManager = new OrdersProductManager(userManager, new EfOrdersProductRepository(), _signInManager);
+            _productGroupGenericManager = new GenericManager<ProductGroup>(userManager, new EfProductGroupRepository());
+            _productManager = new ProductManager(userManager, new EfProductRepository());
         }
 
         [Route("SiparisTakip")]
@@ -66,11 +69,11 @@ namespace GegiCRM.WebUI.Controllers
             return View(model);
         }
 
-        public IActionResult _NewOrderContentPartial()
+        public async Task<IActionResult> _NewOrderContentPartial()
         {
-            ViewBag.Customers = _customerManager.ListByFilter(x => x.IsDeleted == false);
-            ViewBag.Users = _userManager.Users.ToList();
-            return View();
+            ViewBag.Customers = _customerManager.GetAll(false);
+            ViewBag.Users = _appUserManager.GetAll(false);
+            return View(await _appUserManager.GetCurrentUserAsync());
         }
 
         [HttpPost]
@@ -88,9 +91,9 @@ namespace GegiCRM.WebUI.Controllers
             {
                 return BadRequest();
             }
-            ViewBag.Customers = _customerManager.ListByFilter(x => x.IsDeleted == false);
-            ViewBag.Users = _userManager.Users.Where(x => x.IsDeleted == false).ToList();
-            ViewBag.OrderStates = _orderStateManager.ListByFilter(x => x.IsDeleted == false);
+            ViewBag.Customers = _customerManager.GetAll(false);
+            ViewBag.Users = _appUserManager.GetAll(false);
+            ViewBag.OrderStates = _orderStateManager.GetAll(false);
 
             string type = "Sipariş";
             //offer onaylanmadıysa ve nullsa bu bir tekliftir
@@ -117,25 +120,7 @@ namespace GegiCRM.WebUI.Controllers
 
             _teklifTakipManager.Update(order);
 
-
-
-            ViewBag.Customers = _customerManager.ListByFilter(x => x.IsDeleted == false);
-            ViewBag.Users = _userManager.Users.Where(x => x.IsDeleted == false).ToList();
-            ViewBag.OrderStates = _orderStateManager.ListByFilter(x => x.IsDeleted == false);
-
-            string type = "Sipariş";
-            //offer onaylanmadıysa ve nullsa bu bir tekliftir
-            if (order.IsOfferApproved == false)
-            {
-                type = "Teklif";
-            }
-
-            ViewBag.Type = type;
-
-            //ViewBag.OfferStates = data.i;
-
-            order = _teklifTakipManager.GetByIdWithNavigations(order.Id);
-            return View(order);
+            return RedirectToAction("Edit", new { id = order.Id });
         }
 
         public IActionResult _GetOrdersProductsPartial(int id)
@@ -152,7 +137,7 @@ namespace GegiCRM.WebUI.Controllers
 
         public IActionResult _GetOrdersCurrenciesWithEditing(int id)
         {
-            var data = _currencyManager.ListByFilter(x => x.IsDeleted == false);
+            var data = _currencyManager.GetAll(false);
             ViewBag.Currencies = data;
             return View(id);
         }
@@ -162,7 +147,7 @@ namespace GegiCRM.WebUI.Controllers
             var curId = Convert.ToInt32(currencyId);
             var orId = Convert.ToInt32(orderId);
             var val = Convert.ToDecimal(currencyValue);
-            var orderC = _orderCurrencyManager.ListByFilter(x => x.CurrencyId == curId && x.OrderId == orId).FirstOrDefault();
+            var orderC = _orderCurrencyManager.ListByFilter(x => x.CurrencyId == curId && x.OrderId == orId, false).FirstOrDefault();
             try
             {
                 if (orderC == null)
@@ -198,7 +183,7 @@ namespace GegiCRM.WebUI.Controllers
         public string DeleteOrdersCurrency(int id)
         {
 
-            var orderC = _orderCurrencyManager.ListByFilter(x => x.Id == id).FirstOrDefault();
+            var orderC = _orderCurrencyManager.ListByFilter(x => x.Id == id, false).FirstOrDefault();
             try
             {
                 if (orderC != null)
@@ -218,7 +203,7 @@ namespace GegiCRM.WebUI.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            var orderToDelete = _teklifTakipManager.GetById(id);
+            var orderToDelete = _teklifTakipManager.GetById(id, false);
             if (orderToDelete != null)
             {
                 _teklifTakipManager.Delete(orderToDelete);
@@ -249,12 +234,12 @@ namespace GegiCRM.WebUI.Controllers
 
 
             AddOrdersProductViewModel vm = new AddOrdersProductViewModel();
-            vm.Suppliers = supplierGenericManager.GetAll();
-            vm.Birims = birimGenericManager.GetAll();
-            vm.Brands = brandGenericManager.GetAll();
-            vm.ProductGroups = _productGroupGenericManager.GetAll();
-            vm.Products = _productManager.GetProductsWithNavigations();
-            vm.Currencies = currencyGenericManager.GetAll();
+            vm.Suppliers = supplierGenericManager.GetAll(false);
+            vm.Birims = birimGenericManager.GetAll(false);
+            vm.Brands = brandGenericManager.GetAll(false);
+            vm.ProductGroups = _productGroupGenericManager.GetAll(false);
+            vm.Products = _productManager.GetProductsWithNavigations(false);
+            vm.Currencies = currencyGenericManager.GetAll(false);
             vm.OrdersCurrencies = _orderCurrencyManager.GetOrdersCurrencies(id);
             vm.CurrentOrderId = id;
             if (orderProductId != null)
@@ -269,7 +254,7 @@ namespace GegiCRM.WebUI.Controllers
             return View(vm);
         }
 
-        public async Task<string> AddOrdersProduct(OrdersProduct ordersProduct,string orderProductId, string ProductName, string ProductBrandId, string ProductGroupId)
+        public async Task<string> AddOrdersProduct(OrdersProduct ordersProduct, string orderProductId, string ProductName, string ProductBrandId, string ProductGroupId)
         {
             ordersProduct.Id = Convert.ToInt32(orderProductId);
             StringBuilder errStringBuilder = new StringBuilder();
@@ -298,14 +283,14 @@ namespace GegiCRM.WebUI.Controllers
             {
 
                 var currentUser = await _orderProductsManager.GetCurrentUserAsync();
-                var productGroupId = _productManager.GetById(ordersProduct.ProductId)!.ProductGroupId;
+                var productGroupId = _productManager.GetById(ordersProduct.ProductId, false)!.ProductGroupId;
                 if (productGroupId != null)
                 {
-                    var productGroup = _productGroupGenericManager.GetById(productGroupId.Value);
+                    var productGroup = _productGroupGenericManager.GetById(productGroupId.Value, false);
                     ordersProduct.ReferanceCode = _orderProductsManager.GenerateReferanceCode(currentUser, productGroup);
                 }
 
-                if (ordersProduct.Id>0)
+                if (ordersProduct.Id > 0)
                 {
                     _orderProductsManager.Update(ordersProduct);
                     return "UP";

@@ -57,17 +57,28 @@ namespace GegiCRM.Entities.Concrete
         [NotMapped]
         public string DeniedDateFormatted => FormatNullDate(DeniedDate);
 
-        public string CreateHtmlBadge(bool property)
+        public string CreateHtmlBadgeForOffer()
         {
             string badge = "<span class=\"badge bg-label-dark me-1\">Beklemede</span>";
             if (IsCancelled)
             {
-                badge = "<span class=\"badge bg-label-outline-danger me-1\">İptal</span>";
-            }else if (IsDeneied)
-            {
-                badge = "<span class=\"badge bg-label-danger me-1\">Red</span>";
+                badge = "<span class=\"badge bg-label-danger me-1\">İptal</span>";
             }
-            else if (property)
+            else if (IsOfferApproved)
+            {
+                badge = "<span class=\"badge bg-label-success me-1\">Onaylandı</span>";
+            }
+            return badge;
+        }
+
+        public string CreateHtmlBadgeForOrder()
+        {
+            string badge = "<span class=\"badge bg-label-dark me-1\">Beklemede</span>";
+            if (IsDeneied)
+            {
+                badge = "<span class=\"badge bg-label-danger me-1\">İptal</span>";
+            }
+            else if (IsOrderApproved)
             {
                 badge = "<span class=\"badge bg-label-success me-1\">Onaylandı</span>";
             }

@@ -14,7 +14,7 @@
     <div class="card-header">
         <div class="d-flex justify-content-between">
             <h5>@ViewBag.Type<text>ler</text></h5>
-            <button id="newOrderButton" type="button" class="btn btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#newOrderCollapse">
+            <button id="newOrderButton" type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#newOrderCollapse">
                 Yeni @ViewBag.Type
             </button>
         </div>
@@ -74,12 +74,12 @@
                             <td>@item.OrderState.Name</td>
                             <td>
                                 @*@item.IsOfferApproved*@
-                                @Html.Raw(item.CreateHtmlBadge(item.IsOfferApproved))
+                                @Html.Raw(item.CreateHtmlBadgeForOffer())
                             </td>
                             <td>@item.OfferApprovedDateDateFormatted</td>
                             <td>
                                 @*@item.IsOrderApproved*@
-                                @Html.Raw(item.CreateHtmlBadge(item.IsOrderApproved))
+                                @Html.Raw(item.CreateHtmlBadgeForOrder())
                             </td>
                             <td>@item.OrderApprovedDateFormatted</td>
 

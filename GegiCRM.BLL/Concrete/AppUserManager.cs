@@ -1,4 +1,5 @@
 ﻿using GegiCRM.BLL.Abstract;
+using GegiCRM.BLL.Generic;
 using GegiCRM.DAL.Abstract;
 using GegiCRM.DAL.EntityFramework;
 using GegiCRM.Entities.Concrete;
@@ -78,14 +79,14 @@ namespace GegiCRM.BLL.Concrete
 
 
                 //} while (ListByFilter(x => x.UserName == userName).Any());
-            } while (ListByFilter(x => x.UserName == userName).Any());
+            } while (ListByFilter(x => x.UserName == userName, false).Any());
 
             return userName;
         }
 
-        public int GetUsersGivenOrderCountByGroupId(int groupId,int userId, DateTime beginDate, DateTime endDate)
+        public int GetUsersGivenOrderCountByGroupId(int groupId, int userId, DateTime beginDate, DateTime endDate)
         {
-            return _userDal.GetUsersGivenOrderCountByGroupId(groupId, userId,beginDate,endDate);
+            return _userDal.GetUsersGivenOrderCountByGroupId(groupId, userId, beginDate, endDate);
         }
     }
 }

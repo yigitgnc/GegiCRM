@@ -1,4 +1,5 @@
 ﻿using GegiCRM.BLL.Abstract;
+using GegiCRM.BLL.Generic;
 using GegiCRM.DAL.Abstract;
 using GegiCRM.DAL.EntityFramework;
 using GegiCRM.DAL.Repositories;

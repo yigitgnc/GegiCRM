@@ -11,8 +11,8 @@ namespace GegiCRM.DAL.Abstract
 {
     public interface IProductDal : IGenericDal<Product>
     {
-        public List<Product> GetProductsWithNavigations();
-        public List<Product> GetProductsWithNavigationsByFilter(Expression<Func<Product, bool>> filter);
-        public Product? GetProductByIdWithNavigations(int id);
+        public List<Product> GetProductsWithNavigations(bool includeDeletedData);
+        public List<Product> GetProductsWithNavigationsByFilter(Expression<Func<Product, bool>> filter, bool includeDeletedData);
+        public Product? GetProductByIdWithNavigations(int id, bool includeDeletedData);
     }
 }

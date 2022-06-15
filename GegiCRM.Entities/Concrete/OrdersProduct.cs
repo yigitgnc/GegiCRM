@@ -64,7 +64,7 @@ namespace GegiCRM.Entities.Concrete
             string badge = "<span class=\"badge bg-label-dark me-1\">Beklemede</span>";
             if (IsCancelled)
             {
-                badge = "<span class=\"badge bg-label-outline-danger me-1\">İptal</span>";
+                badge = "<span class=\"badge bg-label-danger me-1\">İptal</span>";
             }
             else if (IsDeneied)
             {

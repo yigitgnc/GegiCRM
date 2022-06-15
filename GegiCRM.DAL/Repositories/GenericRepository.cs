@@ -12,7 +12,7 @@ namespace GegiCRM.DAL.Repositories
     public class GenericRepository<T> : IGenericDal<T> where T : class
     {
 
-        virtual public T Insert(T t)
+        virtual public T Create(T t)
         {
             using var c = new Context();
             c.Add(t);
@@ -35,19 +35,19 @@ namespace GegiCRM.DAL.Repositories
             c.SaveChanges();
         }
 
-        virtual public T GetByID(int id)
+        virtual public T GetByID(int id, bool includeDeletedRecords)
         {
             using var c = new Context();
             return c.Set<T>().Find(id);
         }
 
-        virtual public List<T> GetListAll()
+        virtual public List<T> GetListAll(bool includeDeletedRecords)
         {
             using var c = new Context();
             return c.Set<T>().ToList();
         }
 
-        virtual public List<T> ListByFilter(Expression<Func<T, bool>> filter)
+        virtual public List<T> ListByFilter(Expression<Func<T, bool>> filter, bool includeDeletedRecords)
         {
             using var c = new Context();
             return c.Set<T>().Where(filter).ToList();

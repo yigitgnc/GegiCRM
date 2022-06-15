@@ -2,11 +2,12 @@
 @{
     Layout = null;
 }
+@model AppUser
 <div class="card col-12">
     <div class="card-body">
         <div class="row">
             <div col-12>
-                <button class="btn btn-outline-primary">Yeni Müşteri Kaydı</button>
+                <button class="btn btn-primary">Yeni Müşteri Kaydı</button>
             </div>
         </div>
 
@@ -31,7 +32,14 @@
                         <select name="rUser_Id" class="form-control selectpicker" id="select-RepresentetiveUser" data-live-search="true" aria-describedby="representetiveUserHelp" data-container="body">
                             @foreach (AppUser item in ViewBag.Users)
                             {
-                                <option value="@item.Id" data-tokens="@item">@item.NameSurname</option>
+                                if (item.Id == Model.Id)
+                                {
+                                    <option value="@item.Id" data-tokens="@item" selected="selected">@item.NameSurname</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id" data-tokens="@item">@item.NameSurname</option>
+                                }
                             }
                         </select>
 

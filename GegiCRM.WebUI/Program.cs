@@ -1,5 +1,6 @@
 using AutoMapper;
 using GegiCRM.BLL.Concrete;
+using GegiCRM.BLL.Generic;
 using GegiCRM.DAL.Abstract;
 using GegiCRM.DAL.Concrete;
 using GegiCRM.DAL.EntityFramework;

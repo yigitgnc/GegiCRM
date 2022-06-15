@@ -213,6 +213,23 @@
 
                                 @if (ViewBag.Type == "Teklif")
                                 {
+                                    <style>
+                                        .Teklif {
+                                            display: block !important;
+                                        }
+                                    </style>
+                                }
+                                else
+                                {  
+                                    <style>
+                                       .Siparis {
+                                           display: block !important;
+                                       }
+                                   </style>
+                                        
+                                }
+                                @*//teklif*@
+                                    <div class="Teklif d-none">
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-check form-check-inline">
@@ -260,65 +277,66 @@
                                         <label for="OfferNote" class="form-label text-muted">TEKLİF NOTU</label>
                                         <textarea class="form-control" asp-for="OfferNote" style="height: 160px"></textarea>
                                     </div>
-                                }
-                                else
-                                {
+                                    </div>
+                                
+                                @*//Sipariş*@
+                                    <div class="Siparis d-none">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-check form-check-inline">
+                                                    <label class="form-check-label cursor-pointer" for="IsOrderApproved">SİPARİŞ ONAY</label>
+                                                    @if (Model.IsOrderApproved)
+                                                    {
+                                                        <input class="form-check-input cursor-pointer" asp-for="IsOrderApproved" checked="checked">
+                                                    }
+                                                    else
+                                                    {
+                                                        <input class="form-check-input cursor-pointer" asp-for="IsOrderApproved">
+                                                    }
 
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-check form-check-inline">
-                                                <label class="form-check-label cursor-pointer" for="IsOrderApproved">SİPARİŞ ONAY</label>
-                                                @if (Model.IsOrderApproved)
-                                                {
-                                                    <input class="form-check-input cursor-pointer" asp-for="IsOrderApproved" checked="checked">
-                                                }
-                                                else
-                                                {
-                                                    <input class="form-check-input cursor-pointer" asp-for="IsOrderApproved">
-                                                }
+                                                </div>
+                                            </div>
 
+                                            <div class="col-6">
+                                                <div class="form-check form-check-inline">
+                                                    <label class="form-check-label cursor-pointer" for="IsDeneied">SİPARİŞ RED</label>
+                                                    @if (Model.IsDeneied)
+                                                    {
+                                                        <input class="form-check-input cursor-pointer" asp-for="IsDeneied" checked="checked">
+                                                    }
+                                                    else
+                                                    {
+                                                        <input class="form-check-input cursor-pointer" asp-for="IsDeneied">
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-6">
+                                                <input class="form-control" asp-for="OrderApprovedDate">
+                                                <label for="OrderApprovedDate" class="form-label text-muted">SİPARİŞ ONAY TARİHİ</label>
+
+                                            </div>
+
+                                            <div class="col-6">
+                                                <input class="form-control" asp-for="DeniedDate">
+                                                <label for="DeniedDate" class="form-label text-muted">SİPARİŞ RED TARİHİ</label>
                                             </div>
                                         </div>
 
-                                        <div class="col-6">
-                                            <div class="form-check form-check-inline">
-                                                <label class="form-check-label cursor-pointer" for="IsDeneied">SİPARİŞ RED</label>
-                                                @if (Model.IsDeneied)
-                                                {
-                                                    <input class="form-check-input cursor-pointer" asp-for="IsDeneied" checked="checked">
-                                                }
-                                                else
-                                                {
-                                                    <input class="form-check-input cursor-pointer" asp-for="IsDeneied">
-                                                }
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-6">
-                                            <input class="form-control" asp-for="OrderApprovedDate">
-                                            <label for="OrderApprovedDate" class="form-label text-muted">SİPARİŞ ONAY TARİHİ</label>
 
+                                        <div class="col-12">
+                                            <label for="OfferNote" class="form-label text-muted">TEKLİF NOTU</label>
+                                            <textarea class="form-control" asp-for="OfferNote" disabled="disabled"></textarea>
                                         </div>
 
-                                        <div class="col-6">
-                                            <input class="form-control" asp-for="DeniedDate">
-                                            <label for="DeniedDate" class="form-label text-muted">SİPARİŞ RED TARİHİ</label>
+
+                                        <div class="col-12">
+                                            <label for="OrderNote" class="form-label text-muted">SİPARİŞ NOTU</label>
+                                            <textarea class="form-control" asp-for="OrderNote"></textarea>
                                         </div>
                                     </div>
-
-
-                                    <div class="col-12">
-                                        <label for="OfferNote" class="form-label text-muted">TEKLİF NOTU</label>
-                                        <textarea class="form-control" asp-for="OfferNote" disabled="disabled"></textarea>
-                                    </div>
-
-
-                                    <div class="col-12">
-                                        <label for="OrderNote" class="form-label text-muted">SİPARİŞ NOTU</label>
-                                        <textarea class="form-control" asp-for="OrderNote"></textarea>
-                                    </div>
-                                }
+                                
 
                                 <div class="mt-3">
                                     <label for="select-DeliveryAddress" class="col-12 form-control-label">Teslimat Adresi Seç</label>
@@ -396,7 +414,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-12">
-                    <button type="button" class="btn btn-outline-primary" onclick="getAddOrdersProductPartial()">
+                    <button type="button" class="btn btn-primary" onclick="getAddOrdersProductPartial()">
                         <i class="bx bx-plus"></i>
                         @ViewBag.Type<text>e</text> Yeni Ürün Ekle
                     </button>
@@ -544,7 +562,7 @@
             $("#AddOrdersProductContent").hide();
 
             $.ajax({
-                "url": "/TeklifTakip/_AddOrdersProductPartial?id=@Model.Id&orderProductId="+orderProductId,
+                "url": "/TeklifTakip/_AddOrdersProductPartial?id=@Model.Id&orderProductId=" + orderProductId,
                 "method": "GET",
                 success: function(data) {
                     $("#AddOrdersProduct").html(data);
@@ -579,8 +597,8 @@
                     if (data.includes("OK")) {
                         $("#responseMessages").addClass("text-success").html("Ürün Kalemi Eklendi");
                         getOrdersProducts();
-                    }else if (data.includes("UP")) {
-                        
+                    } else if (data.includes("UP")) {
+
                         $("#responseMessages").addClass("text-info").html("Ürün Kalemi Güncellendi");
                         getOrdersProducts();
                     }

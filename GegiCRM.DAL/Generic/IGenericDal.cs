@@ -4,16 +4,17 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace GegiCRM.DAL.Abstract.Generic
 {
     public interface IGenericDal<T> where T : class
     {
-        T Insert(T t);
+        T Create(T t);
         void Delete(T t);
         T Update(T t);
-        List<T> GetListAll();
-        T? GetByID(int id);
-        List<T> ListByFilter(Expression<Func<T, bool>> filter);
+        List<T> GetListAll(bool includeDeletedRecords);
+        T? GetByID(int id,bool includeDeletedRecords);
+        List<T> ListByFilter(Expression<Func<T, bool>> filter, bool includeDeletedRecords);
     }
 }

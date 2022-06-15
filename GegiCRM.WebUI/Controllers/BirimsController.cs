@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GegiCRM.BLL.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +9,7 @@ using GegiCRM.DAL.Concrete;
 using GegiCRM.DAL.EntityFramework;
 using GegiCRM.Entities.Concrete;
 using Microsoft.AspNetCore.Identity;
+using GegiCRM.BLL.Generic;
 
 namespace GegiCRM.WebUI.Controllers
 {
