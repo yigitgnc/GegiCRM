@@ -298,13 +298,54 @@
             <input name="Adet" id="Adet" type="number" class="form-control" value="1" step="any" min="0">
         </div>
     </div>
+    
+    <div class="mb-3 col-12 col-md-4">
+        <h5 class="col-12 mb-2">
+            Para Birimi
+        </h5>
 
+        <select name="ReferansCurrencyId2" class="form-control selectpickerInModal" id="select-ReferansCurrencyId2" data-live-search="true" data-container="body">
+            @foreach (Currency item in Model.Currencies)
+            {
+                if (item.Id == Model.OrderProduct.ReferansCurrencyId)
+                {  
+                    <option value="@item.Id" data-tokens="@item.Code @item.Name @item.CurrentValue" selected="selected">
+                        [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
+                        @{
+                            var orderSpecial = Model.OrdersCurrencies.FirstOrDefault(x => x.CurrencyId == item.Id);
+                        }
+                        @if (orderSpecial != null)
+                        {
+                            <br />
+                            <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
+                        }
+                    </option>
+                    
+                }
+                else
+                {
+                    <option value="@item.Id" data-tokens="@item.Code @item.Name @item.CurrentValue">
+                        [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
+                        @{
+                            var orderSpecial = Model.OrdersCurrencies.FirstOrDefault(x => x.CurrencyId == item.Id);
+                        }
+                        @if (orderSpecial != null)
+                        {
+                            <br />
+                            <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
+                        }
+                    </option>  
+                }
 
-    <div class="mb-3 col-12 col-md-12 col-lg-4">
+            }
+        </select>
+    </div>
+
+    <div class="mb-3 col-12 col-md-12">
         <h5 class="col-12 mb-2 d-none d-lg-block">
             &nbsp;
         </h5>
-        <a href="javascript:void(0)" onclick="GetSegmentPrice()" class="w-100 btn btn-secondary">Referans Fiyatı Getir</a>
+        <a href="javascript:void(0)" onclick="GetSegmentPrice()" class="w-100 btn btn-secondary">Segment Fiyatı Getir</a>
     </div>
 
 </div>

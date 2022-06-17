@@ -6,20 +6,20 @@
     <table id="ordersProductsTable" class="table table-striped table-hover col-12 w-100">
         <thead>
             <tr>
-                <th>#</th>
+                <th>Seç</th>
                 <th>REFERANS KODU</th>
                 <th>EKLENME TARİHİ</th>
                 <th>ÜRÜN ADI</th>
                 <th>ADET</th>
                 <th>BİRİM FİYATI</th>
-                <th>DÖVİZ KURU</th>
+                <th>KESİN DÖVİZ KURU</th>
                 <th>BİRİMİ</th>
                 <th>KDV ORANI</th>
                 <th>ÜRÜN GRUBU</th>
                 <th>MARKA</th>
                 <th>REFERANS BİRİM FİYAT</th>
                 <th>REFERANS TEDARİKÇİ</th>
-                <th>REFERANS DÖVİZ KURU</th>
+                <th>REFERANS DÖVİZ BİRİMİ</th>
                 <th>DURUM</th>
                 <th>ABONELİK BAŞLANGIÇ</th>
                 <th>ABONELİK BİTİŞ</th>
@@ -30,44 +30,44 @@
             </tr>
         </thead>
         <tbody class="table-border-bottom-0">
-            @foreach (var item in Model)
-            {
-                <tr data-id="@item.Id" class="clickableTr">
-                    <td>@item.Id</td>
-                    <td>@item.ReferanceCode</td>
-                    <td>@item.CreatedDate</td>
-                    <td>@item.Product.ProductName</td>
-                    <td>@item.Adet</td>
-                    <td>@item.BirimFiyat</td>
-                    <td>@item.KesinCurrency?.Code</td>
-                    <td>@item.Birim.Name</td>
-                    <td>@item.Product.KdvOrani</td>
-                    <td>@item.Product.ProductGroup?.GroupName</td>
-                    <td>@item.Product.PorductBrand.Name</td>
-                    <td>@item.ReferansBirimFiyat</td>
-                    <td>@item.ReferansSupplier.SupplierName</td>
-                    <td>@item.ReferansCurrency?.Code</td>
-                    <td>@Html.Raw(item.CreateHtmlBadge(@item.IsApproved))</td>
-                    <td>@item.AbonelikBaslangicFormatted</td>
-                    <td>@item.AbonelikBitisFormatted</td>
-                    <td>@item.KesinSevkDurumu</td>
-                    <td>@item.KesinSupplier?.SupplierName</td>
-                    <td>@item.KesinFiyat</td>
+        @foreach (var item in Model)
+        {
+            <tr data-id="@item.Id" class="clickableTr">
+                <td class="blockNavigate"><input type="checkbox" class="form-check-input productCheckBox" name="selectedProducts" value="@item.Id"/></td>
+                <td>@item.ReferanceCode</td>
+                <td>@item.CreatedDate</td>
+                <td>@item.Product.ProductName</td>
+                <td>@item.Adet</td>
+                <td>@item.BirimFiyat</td>
+                <td>@item.KesinCurrency?.Code</td>
+                <td>@item.Birim.Name</td>
+                <td>@item.Product.KdvOrani</td>
+                <td>@item.Product.ProductGroup?.GroupName</td>
+                <td>@item.Product.PorductBrand.Name</td>
+                <td>@item.ReferansBirimFiyat</td>
+                <td>@item.ReferansSupplier.SupplierName</td>
+                <td>@item.ReferansCurrency?.Code</td>
+                <td>@Html.Raw(item.CreateHtmlBadge(@item.IsApproved))</td>
+                <td>@item.AbonelikBaslangicFormatted</td>
+                <td>@item.AbonelikBitisFormatted</td>
+                <td>@item.KesinSevkDurumu</td>
+                <td>@item.KesinSupplier?.SupplierName</td>
+                <td>@item.KesinFiyat</td>
+                @*<td>@item.product</td>*@
 
-                    <td>
-                        <div class="dropdown blockNavigate">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>Düzenle</a>
-                                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1 text-danger"></i>Sil</a>
-                            </div>
+                <td>
+                    <div class="dropdown blockNavigate">
+                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>Düzenle</a>
+                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1 text-danger"></i>Sil</a>
                         </div>
-                    </td>
-                </tr>
-            }
-
+                    </div>
+                </td>
+            </tr>
+        }
 
         </tbody>
         <tfoot class="table-border-bottom-0">
@@ -85,4 +85,27 @@
     $(".blockNavigate").on("click", function(e) {
         e.stopPropagation();
     });
+
+    
+
+        
+    var checkedProducts = [];
+
+    $(".productCheckBox").change(function() {
+        
+        console.log(this);
+        var val = this.value;
+        if(this.checked) {
+            console.log(this.value +" added");
+            checkedProducts.push(val);
+        } else {
+            console.log(val +" removed");
+            checkedProducts.splice($.inArray(val, checkedProducts), 1 );
+        }
+        
+        console.log(checkedProducts);
+    });
+
+
+
 </script>

@@ -137,6 +137,29 @@
     </div>
 </div>
 
+<div class="modal fade" id="orderProductMultiSelection" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">  </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col mb-3">
+                        <label class="text-danger">  </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+                    Onayla
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 @section Scripts{
@@ -216,16 +239,13 @@
         $(function() {
             var contextMenuItems = {
                 "newTab": { name: "Yeni Sekmede Aç", icon: "external-link" },
-                "cut": { name: "Cut", icon: "cut" },
-                "copy": { name: "Copy", icon: "copy" },
-                "paste": { name: "Paste", icon: "paste" },
-                "delete": { name: "Delete", icon: "delete" }
-            };
-
-            $(contextMenuItems).extend({
+                "cut": { name: "Tüm Kalemler ile Onayla", icon: "ok" },
+                "copy": { name: "Onaylı Kalemler İle Onayla", icon: "ok" },
+                "paste": { name: "İptal", icon: "cancel" },
+                "delete": { name: "Sil", icon: "delete" },
                 "sep1": "---------",
-                "quit": { name: "Quit", icon: function($element, key, item) { return 'context-menu-icon context-menu-icon-quit'; } }
-            });
+                "quit": { name: "Kapat", icon: function($element, key, item) { return 'context-menu-icon context-menu-icon-quit'; } }
+            };
             
 
             console.log(contextMenuItems);

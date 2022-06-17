@@ -320,5 +320,11 @@ namespace GegiCRM.WebUI.Controllers
             string data = "";
             return Content(data);
         }
+
+        public async Task<string> CalculateSegmentPrice()
+        {
+
+            return "";
+        }
     }
 }
