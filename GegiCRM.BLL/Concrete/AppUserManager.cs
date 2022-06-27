@@ -17,15 +17,13 @@ namespace GegiCRM.BLL.Concrete
     public class AppUserManager : GenericManager<AppUser>
     {
         private readonly IAppUserDal _userDal;
-        public readonly UserManager<AppUser> _userManager;
         public readonly SignInManager<AppUser> _signInManager;
         private GenericManager<OrdersProduct> _ordersProductManager;
-        public AppUserManager(UserManager<AppUser> userManager, IAppUserDal userDal, SignInManager<AppUser> signInManager) : base(userManager, userDal)
+        public AppUserManager(IAppUserDal userDal, SignInManager<AppUser> signInManager) : base(userDal)
         {
             _userDal = userDal;
-            _userManager = userManager;
             _signInManager = signInManager;
-            _ordersProductManager = new GenericManager<OrdersProduct>(userManager, new EfOrdersProductRepository());
+            _ordersProductManager = new GenericManager<OrdersProduct>(new EfOrdersProductRepository());
         }
         //todo: refactor these fucking public implementations these should be done in here not in controller using _appusermanager._signinmanager alike !
 

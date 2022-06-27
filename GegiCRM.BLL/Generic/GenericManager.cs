@@ -6,37 +6,37 @@ using System.Text;
 using System.Threading.Tasks;
 using GegiCRM.BLL.Abstract;
 using GegiCRM.DAL.Abstract.Generic;
+using GegiCRM.DAL.Concrete;
 using GegiCRM.DAL.Repositories;
 using GegiCRM.Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace GegiCRM.BLL.Generic
 {
     public class GenericManager<T> : IGenericManager<T> where T : class
     {
-        public async Task<AppUser?> GetCurrentUserAsync()
-        {
-            return await _userManager.GetUserAsync(_httpContextAccessor.HttpContext?.User);
-        }
+    
 
-        public readonly UserManager<AppUser> _userManager;
+        public static readonly IUserStore<AppUser> _store = new UserStore<AppUser, AppIdentityRole, Context, int>(new Context());
+        public readonly UserManager<AppUser> _userManager = new UserManager<AppUser>(_store, null, new PasswordHasher<AppUser>(), null, null, null, null, null, null);
+
         public IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<T> _logger;
         readonly IGenericDal<T> _genericDal;
-        //GenericRepository<T> _genericDal = new GenericRepository<T>();
-        public GenericManager(
-            UserManager<AppUser> userManager,
-            //IHttpContextAccessor httpContextAccessor,
-            //ILogger<T> logger,
-            IGenericDal<T> genericDal
-            )
+
+        public GenericManager(IGenericDal<T> genericDal)
         {
-            _userManager = userManager;
             _httpContextAccessor = new HttpContextAccessor();
             _logger = new Logger<T>(new LoggerFactory());
             _genericDal = genericDal;
+        }
+
+        public async Task<AppUser?> GetCurrentUserAsync()
+        {
+            return await _userManager.GetUserAsync(_httpContextAccessor.HttpContext?.User);
         }
 
         public T Create(T t)
@@ -64,7 +64,7 @@ namespace GegiCRM.BLL.Generic
         }
         public T? GetById(int id, bool includeDeletedRecords)
         {
-            return _genericDal.GetByID(id,includeDeletedRecords);
+            return _genericDal.GetByID(id, includeDeletedRecords);
         }
 
         public List<T> ListByFilter(Expression<Func<T, bool>> filter, bool includeDeletedRecords)

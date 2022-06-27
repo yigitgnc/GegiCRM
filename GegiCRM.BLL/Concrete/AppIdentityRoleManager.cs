@@ -17,7 +17,7 @@ namespace GegiCRM.BLL.Concrete
     {
         private readonly IAppIdentityRoleDal _appIdentityRoleDal;
 
-        public AppIdentityRoleManager(UserManager<AppUser> userManager, IAppIdentityRoleDal appIdentityRoleDal) : base(userManager, appIdentityRoleDal)
+        public AppIdentityRoleManager(IAppIdentityRoleDal appIdentityRoleDal) : base(appIdentityRoleDal)
         {
             _appIdentityRoleDal = appIdentityRoleDal;
         }
@@ -25,7 +25,8 @@ namespace GegiCRM.BLL.Concrete
         {
             return _appIdentityRoleDal.GetRoleByName(roleName);
         }
-        public AppIdentityRoleGroup? GetRoleGroupByRole(AppIdentityRole role) { 
+        public AppIdentityRoleGroup? GetRoleGroupByRole(AppIdentityRole role)
+        {
             return _appIdentityRoleDal.GetRoleGroupByRole(role);
         }
 

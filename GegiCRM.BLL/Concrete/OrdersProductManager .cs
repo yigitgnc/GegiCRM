@@ -18,9 +18,9 @@ namespace GegiCRM.BLL.Concrete
         private readonly AppUserManager _appUserManager;
         public readonly SignInManager<AppUser> _signInManager;
 
-        public OrdersProductManager(UserManager<AppUser> userManager, IOrdersProductDal dal, SignInManager<AppUser> signInManager) : base(userManager, dal)
+        public OrdersProductManager(IOrdersProductDal dal, SignInManager<AppUser> signInManager) : base(dal)
         {
-            _appUserManager = new AppUserManager(userManager,new EfAppUserRepository(),signInManager);
+            _appUserManager = new AppUserManager(new EfAppUserRepository(),signInManager);
             _dal = dal;
             _signInManager = signInManager;
         }

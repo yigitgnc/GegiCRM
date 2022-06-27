@@ -17,7 +17,7 @@ namespace GegiCRM.WebUI.ViewComponents.UserTopNav
         {
             _appUserManager = appUserManager;
             _mapper = mapper;
-            _roleManager =  new AppIdentityRoleManager(_appUserManager._userManager,new EfAppIdentityRoleRepository());
+            _roleManager =  new AppIdentityRoleManager(new EfAppIdentityRoleRepository());
         }
 
         public async Task<IViewComponentResult> InvokeAsync()

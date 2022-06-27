@@ -15,7 +15,7 @@ namespace GegiCRM.BLL.Concrete
     {
         private readonly IProductDal _productDal;
 
-        public ProductManager(UserManager<AppUser> userManager, IProductDal productDal) : base(userManager, productDal)
+        public ProductManager(IProductDal productDal) : base(productDal)
         {
             _productDal = productDal;
         }

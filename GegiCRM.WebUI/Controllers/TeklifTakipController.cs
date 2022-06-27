@@ -33,20 +33,19 @@ namespace GegiCRM.WebUI.Controllers
         readonly IMapper _mapper;
 
         private GenericManager<Currency> _currencyManager;
-        public TeklifTakipController(UserManager<AppUser> userManager, IMapper mapper, SignInManager<AppUser> signInManager)
+        public TeklifTakipController(IMapper mapper, SignInManager<AppUser> signInManager)
         {
-            _userManager = userManager;
-            _appUserManager = new AppUserManager(userManager, new EfAppUserRepository(), signInManager);
+            _appUserManager = new AppUserManager(new EfAppUserRepository(), signInManager);
             _mapper = mapper;
             _signInManager = signInManager;
-            _teklifTakipManager = new TeklifTakipManager(userManager, new EfOrderRepository()); ;
-            _customerManager = new GenericManager<Customer>(userManager, new EfCustomerRepository());
-            _orderCurrencyManager = new OrdersCurrencyManager(userManager, new EfOrdersCurrencyRepository());
-            _currencyManager = new GenericManager<Currency>(userManager, new EfCurrencieRepository());
-            _orderStateManager = new GenericManager<OrderState>(userManager, new GenericRepository<OrderState>());
-            _orderProductsManager = new OrdersProductManager(userManager, new EfOrdersProductRepository(), _signInManager);
-            _productGroupGenericManager = new GenericManager<ProductGroup>(userManager, new EfProductGroupRepository());
-            _productManager = new ProductManager(userManager, new EfProductRepository());
+            _teklifTakipManager = new TeklifTakipManager(new EfOrderRepository()); ;
+            _customerManager = new GenericManager<Customer>(new EfCustomerRepository());
+            _orderCurrencyManager = new OrdersCurrencyManager(new EfOrdersCurrencyRepository());
+            _currencyManager = new GenericManager<Currency>(new EfCurrencieRepository());
+            _orderStateManager = new GenericManager<OrderState>(new GenericRepository<OrderState>());
+            _orderProductsManager = new OrdersProductManager(new EfOrdersProductRepository(), _signInManager);
+            _productGroupGenericManager = new GenericManager<ProductGroup>(new EfProductGroupRepository());
+            _productManager = new ProductManager(new EfProductRepository());
         }
 
         [Route("SiparisTakip")]
@@ -86,7 +85,7 @@ namespace GegiCRM.WebUI.Controllers
 
         public async Task<string> GetSegmentPrice(decimal birimFiyat, string CurrencyId, string Adet)
         {
-            var manager = new GenericManager<SegmentOran>(_userManager, new EfSegmentOranRepository());
+            var manager = new GenericManager<SegmentOran>(new EfSegmentOranRepository());
             var orans = manager.GetAll(false);
             var currentOran = orans.FirstOrDefault(x => x.StartPrice >= birimFiyat && x.EndPrice <= birimFiyat);
             if (currentOran != null)
@@ -252,16 +251,16 @@ namespace GegiCRM.WebUI.Controllers
         public IActionResult _AddOrdersProductPartial(int id, int? orderProductId)
         {
             GenericManager<Supplier> supplierGenericManager =
-                new GenericManager<Supplier>(_userManager, new EfSupplierRepository());
+                new GenericManager<Supplier>(new EfSupplierRepository());
 
             GenericManager<Birim> birimGenericManager =
-                new GenericManager<Birim>(_userManager, new EfBirimRepository());
+                new GenericManager<Birim>(new EfBirimRepository());
 
             GenericManager<Brand> brandGenericManager =
-                new GenericManager<Brand>(_userManager, new EfBrandRepository());
+                new GenericManager<Brand>(new EfBrandRepository());
 
             GenericManager<Currency> currencyGenericManager =
-                new GenericManager<Currency>(_userManager, new EfCurrencieRepository());
+                new GenericManager<Currency>(new EfCurrencieRepository());
 
 
             AddOrdersProductViewModel vm = new AddOrdersProductViewModel();
@@ -304,7 +303,7 @@ namespace GegiCRM.WebUI.Controllers
                     product.PorductBrandId = Convert.ToInt32(ProductBrandId);
                     product.ProductGroupId = Convert.ToInt32(ProductGroupId);
                     GenericManager<Product> productGenericManager =
-                        new GenericManager<Product>(_userManager, new EfProductRepository());
+                        new GenericManager<Product>(new EfProductRepository());
                     product = productGenericManager.Create(product);
                     ordersProduct.ProductId = product.Id;
                 }

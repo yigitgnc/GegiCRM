@@ -25,7 +25,7 @@ namespace GegiCRM.WebUI.Controllers
             _logger = logger;
             _userManager = userManager;
             _signInManager = signInManager;
-            _appUserManager = new AppUserManager(userManager, new EfAppUserRepository(), signInManager);
+            _appUserManager = new AppUserManager(new EfAppUserRepository(), signInManager);
         }
         public IActionResult Index()
         {

@@ -16,13 +16,11 @@ namespace GegiCRM.WebUI.Controllers
     public class BirimsController : Controller
     {
         private readonly Context _context;
-        private readonly UserManager<AppUser> _userManager;
         private readonly GenericManager<Birim> _birimGenericManager;
-        public BirimsController(Context context, UserManager<AppUser> userManager)
+        public BirimsController(Context context)
         {
             _context = context;
-            _userManager = userManager;
-            _birimGenericManager = new GenericManager<Birim>(_userManager,new EfBirimRepository());
+            _birimGenericManager = new GenericManager<Birim>(new EfBirimRepository());
         }
 
         // GET: Birims

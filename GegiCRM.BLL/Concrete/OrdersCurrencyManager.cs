@@ -15,7 +15,7 @@ namespace GegiCRM.BLL.Concrete
     {
         readonly IOrdersCurrencyDal _ordersCurrencyDal;
 
-        public OrdersCurrencyManager(UserManager<AppUser> userManager, IOrdersCurrencyDal ordersCurrencyDal) : base(userManager, ordersCurrencyDal)
+        public OrdersCurrencyManager(IOrdersCurrencyDal ordersCurrencyDal) : base( ordersCurrencyDal)
         {
             _ordersCurrencyDal = ordersCurrencyDal;
         }

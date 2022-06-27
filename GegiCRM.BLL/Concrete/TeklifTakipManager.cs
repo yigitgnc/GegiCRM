@@ -20,7 +20,7 @@ namespace GegiCRM.BLL.Concrete
     {
         private readonly IOrderDal _orderDal;
 
-        public TeklifTakipManager(UserManager<AppUser> userManager, IOrderDal orderDal) : base(userManager, orderDal)
+        public TeklifTakipManager(IOrderDal orderDal) : base(orderDal)
         {
             _orderDal = orderDal;
         }
