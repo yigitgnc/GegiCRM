@@ -1,25 +1,271 @@
-﻿@{
+﻿@using GegiCRM.Entities.Concrete
+@{
     ViewData["Title"] = "Ana Sayfa";
 }
+@model List<CustomerActivityLog>
+<div class="row">
 
-<div class="d-flex justify-content-between">
-    <button id="newOrderButton" type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#newOrderCollapse" onclick="getNewOrderPage()">
-        Hızlı Teklif
-    </button>
-</div>
+    <div class="col-12 col-sm-12 col-lg-4 mt-1">
+        <div class="card">
+            <div class="card-body">
 
-<div class="collapse mt-3" id="newOrderCollapse">
-    <div class="col-12 d-flex justify-content-center">
-        <div id="waitNewOrder" class="spinner-border spinner-border-lg text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
+                <div class="row d-flex justify-content-center cursor-pointer" data-bs-toggle="modal" data-bs-target="#newOrderModal" onclick="getNewOrderPage()">
+                    <div class="col-12 d-flex justify-content-center">
+                        <button id="newOrderButton" type="button" class="btn btn-xl btn-icon btn-outline-primary">
+                            <span class="tf-icons bx bx-plus-circle"></span>
+                        </button>
+                    </div>
+
+                    <p class="col-12 text-center text-muted mb-0"> Hızlı </p>
+                    <h4 class="col-12 text-center mb-0 pb-0"> Yeni Teklif </h4>
+
+
+                </div>
+
+            </div>
         </div>
     </div>
-    <div id="newOrderContent" class="d-grid d-sm-flex p-3" style="min-height: 400px">
+
+    <div class="col-12 col-sm-6 col-lg-4 mt-1">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row d-flex justify-content-center">
+                    <div class="col-12 d-flex justify-content-center">
+                        <a href="/TeklifTakip" class="btn btn-xl btn-icon btn-outline-info">
+                            <span class="tf-icons bx bx-badge"></span>
+                        </a>
+                    </div>
+
+                    <p class="col-12 text-center text-muted mb-0">Bekleyen Teklif</p>
+
+                    <div id="waitToplamTeklif" class="spinner-border @*spinner-border-lg*@ text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+
+                    <h4 id="toplamTeklif" class="col-12 text-center text-info mb-0 pb-0"></h4>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-4 mt-1">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row d-flex justify-content-center">
+                    <div class="col-12 d-flex justify-content-center">
+                        <a href="/TeklifTakip" class="btn btn-xl btn-icon btn-outline-success">
+                            <span class="tf-icons bx bx-badge-check"></span>
+                        </a>
+                    </div>
+
+                    <p class="col-12 text-center text-muted mb-0">Onaylanan Teklif</p>
+
+                    <div id="waitToplamTeklifOnayli" class="spinner-border @*spinner-border-lg*@ text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+
+                    <h4 id="toplamTeklifOnayli" class="col-12 text-center text-success mb-0 pb-0"></h4>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="row mt-md-2 mt-lg-4">
+
+    <div class="col-12 col-sm-12 col-lg-4 mt-1">
+        <div class="card">
+            <div class="card-header bg-warning pb-1">
+                <h5 class="text-white card-title">Duyurular</h5>
+            </div>
+            <div class="card-body mt-3">
+
+                <div class="row d-flex justify-content-center">
+                    @*    <div id="waitDuyuru" class="spinner-border spinner-border-lg text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                    </div>*@
+
+                    <div id="Duyurular" style="max-height: 300px;overflow: auto">
+                        <div class="demo-inline-spacing mt-3">
+                            @for (int i = 1; i < 20; i++)
+                            {
+                                <div class="list-group">
+                                    <div class="list-group-item list-group-item-action flex-column align-items-start ">
+                                        <div class="d-flex justify-content-between w-100">
+                                            <h6>Duyuru @i</h6>
+                                            <small>@DateTime.Now.AddDays(-3).AddMinutes(i*99)</small>
+                                        </div>
+                                        <p class="mb-1">
+                                            Bu Bir Duyuru Denemesidir
+                                        </p>
+                                        <small>Kaydeden: Yiğit GENÇ</small>
+                                    </div>
+                                </div>
+
+                            }
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-4 mt-1">
+        <div class="card h-100">
+            <div class="card-header bg-info pb-1">
+                <h5 class="text-white card-title">Doviz Kurları</h5>
+            </div>
+
+            <div class="card-body mt-3">
+
+                <div class="row d-flex justify-content-center">
+
+                    <table class="table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Döviz</th>
+                                <th>Son Belirlenen</th>
+                                <th>Son Serbest Piyasa</th>
+                                <th>Son Alış Kuru</th>
+                                <th>Son Satış Kuru</th>
+                                <th>Son Düzelenme Tarihi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Currency item in ViewBag.Currencies)
+                            {
+                                <tr>
+                                    <td>@item.Name (@item.Code)</td>
+                                    <td>@item.CurrentValue</td>
+                                    <td>@item.SerbestPiyasaKuru</td>
+                                    <td>@item.AlisKuru</td>
+                                    <td>@item.SatisKuru</td>
+                                    <td>@item.ModifiedDate</td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-4 mt-1">
+        <div class="card h-100">
+            <div class="card-header bg-primary pb-1">
+                    <h5 class="text-white card-title">Son Görüşmelerim</h5>
+            </div>
+
+            <div class="card-body mt-3">
+                
+
+                <div class="row d-flex justify-content-center">
+                    @*    <div id="waitDuyuru" class="spinner-border spinner-border-lg text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                    </div>*@
+                    <div class="col-12 d-flex justify-content-center">
+                        <button class=" btn btn-primary">Yeni Görüşme Notu</button>
+                    </div>
+                    
+
+                    <div id="Activities" style="max-height: 300px; overflow: auto">
+                        <div class="demo-inline-spacing mt-3">
+                            @foreach (CustomerActivityLog item in Model)
+                            {
+                                <div class="list-group">
+                                    <div class="list-group-item list-group-item-action flex-column align-items-start ">
+                                        <div class="d-flex justify-content-between w-100">
+                                            <h6>@item.Customer.Name</h6>
+                                            <small>@item.CreatedDate</small>
+                                        </div>
+                                        <p class="mb-1">
+                                            @item.Note
+                                        </p>
+                                        <small>Son Düzenlenme @item.ModifiedById</small>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row mt-md-2 mt-lg-4">
+
+    <div class="col-12 mt-1">
+
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                Kart Oranlari
+            </div>
+            <div class="card-body mt-3">
+                <table style="width: 100%;"><tbody><tr><td style="width: 8.1828%;"><img src="http://localhost:8030/dosyalar/kartlar/1.png" class="fr-fic fr-dii"></td><td style="width: 7.7521%;"><img src="http://localhost:8030/dosyalar/kartlar/2.png" class="fr-fic fr-dii"></td><td style="width: 7.465%;"><img src="http://localhost:8030/dosyalar/kartlar/3.png" class="fr-fic fr-dii"></td><td style="width: 7.6086%;"><img src="http://localhost:8030/dosyalar/kartlar/4.png" class="fr-fic fr-dii"></td><td style="width: 7.7521%;"><img src="http://localhost:8030/dosyalar/kartlar/5.png" class="fr-fic fr-dii"></td><td style="width: 7.9999%;"><img src="http://localhost:8030/dosyalar/kartlar/6.png" class="fr-fic fr-dii"></td><td style="width: 7.4484%;"><img src="http://localhost:8030/dosyalar/kartlar/7.png" class="fr-fic fr-dii"></td><td style="width: 8.851%;"><img src="http://localhost:8030/dosyalar/kartlar/8.png" class="fr-fic fr-dii"></td><td style="width: 7.6086%;"><img src="http://localhost:8030/dosyalar/kartlar/9.png" class="fr-fic fr-dii"></td><td style="width: 7.6086%;"><img src="http://localhost:8030/dosyalar/kartlar/10.png" class="fr-fic fr-dii"></td><td style="width: 7.465%;"><img src="http://localhost:8030/dosyalar/kartlar/11.png" class="fr-fic fr-dii"></td><td style="width: 7.7521%;"><img src="http://localhost:8030/dosyalar/kartlar/12.png" class="fr-fic fr-dii"></td><td style="width: 7.6923%;"><img src="http://localhost:8030/dosyalar/kartlar/13.png" class="fr-fic fr-dii"></td></tr><tr><td style="width: 8.1828%;">Tek Çekim</td><td style="width: 7.7521%;">Tek Çekim</td><td style="width: 7.465%;">Tek Çekim<br></td><td style="width: 7.6086%;">Tek Çekim<br></td><td style="width: 7.7521%;">Tek Çekim<br></td><td style="width: 7.9999%;">Tek Çekim<br></td><td style="width: 7.4484%;">Tek Çekim<br></td><td style="width: 8.851%;">Tek Çekim<br></td><td style="width: 7.6086%;">Tek Çekim<br></td><td style="width: 7.6086%;">Tek Çekim<br></td><td style="width: 7.465%;">Tek Çekim<br></td><td style="width: 7.7521%;">Tek Çekim<br></td><td style="width: 7.6923%;">Tek Çekim</td></tr></tbody></table>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<!-- NewOrder Modal -->
+<div class="modal fade" id="newOrderModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newOrderModalTitle">Yeni Teklif</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 d-flex justify-content-center">
+                    <div id="waitNewOrder" class="spinner-border spinner-border-lg text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <div id="newOrderContent" class="d-grid d-sm-flex p-3" style="min-height: 400px">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Kapat
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
+
+
+
+
 <script>
-    
+
     function getNewOrderPage() {
         $("#waitNewOrder").show();
 
@@ -39,4 +285,25 @@
 
     };
 
+    function getToplamTeklif(waitEl, dataEl, type) {
+        $(waitEl).show();
+
+        $.ajax({
+            "url": "/Home/GetUsersTotalTeklifCount?type=" + type,
+            "method": "GET",
+            success: function(data) {
+                $(dataEl).html(data);
+            },
+            error: function(err) {
+                console.log(err);
+                alert("Bir Hata Oluştu !");
+            }
+        }).done(function() {
+            $(waitEl).hide();
+        });
+
+    };
+
+    getToplamTeklif($("#waitToplamTeklif"), $("#toplamTeklif"), 1);
+    getToplamTeklif($("#waitToplamTeklifOnayli"), $("#toplamTeklifOnayli"), 2);
 </script>

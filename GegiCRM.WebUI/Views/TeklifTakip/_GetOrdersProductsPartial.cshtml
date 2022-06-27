@@ -7,6 +7,7 @@
         <thead>
             <tr>
                 <th>Seç</th>
+                <th>İŞLEM</th>
                 <th>REFERANS KODU</th>
                 <th>EKLENME TARİHİ</th>
                 <th>ÜRÜN ADI</th>
@@ -26,48 +27,63 @@
                 <th>KESİN SEVK DURUMU</th>
                 <th>KESİN TEDARİKÇİ</th>
                 <th>KESİN FİYAT</th>
-                <th>İŞLEM</th>
             </tr>
         </thead>
         <tbody class="table-border-bottom-0">
-        @foreach (var item in Model)
-        {
-            <tr data-id="@item.Id" class="clickableTr">
-                <td class="blockNavigate"><input type="checkbox" class="form-check-input productCheckBox" name="selectedProducts" value="@item.Id"/></td>
-                <td>@item.ReferanceCode</td>
-                <td>@item.CreatedDate</td>
-                <td>@item.Product.ProductName</td>
-                <td>@item.Adet</td>
-                <td>@item.BirimFiyat</td>
-                <td>@item.KesinCurrency?.Code</td>
-                <td>@item.Birim.Name</td>
-                <td>@item.Product.KdvOrani</td>
-                <td>@item.Product.ProductGroup?.GroupName</td>
-                <td>@item.Product.PorductBrand.Name</td>
-                <td>@item.ReferansBirimFiyat</td>
-                <td>@item.ReferansSupplier.SupplierName</td>
-                <td>@item.ReferansCurrency?.Code</td>
-                <td>@Html.Raw(item.CreateHtmlBadge(@item.IsApproved))</td>
-                <td>@item.AbonelikBaslangicFormatted</td>
-                <td>@item.AbonelikBitisFormatted</td>
-                <td>@item.KesinSevkDurumu</td>
-                <td>@item.KesinSupplier?.SupplierName</td>
-                <td>@item.KesinFiyat</td>
-                @*<td>@item.product</td>*@
+            @foreach (var item in Model)
+            {
+                var bgClass = "";
+                if (item.IsCancelled)
+                {
+                    bgClass = "text-danger";
+                }else if (item.IsDeneied)
+                {
+                    bgClass = "bg-danger text-white";
+                }
+                else if (item.IsApproved)
+                {
+                    bgClass = "text-success";
 
-                <td>
-                    <div class="dropdown blockNavigate">
-                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                            <i class="bx bx-dots-vertical-rounded"></i>
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>Düzenle</a>
-                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1 text-danger"></i>Sil</a>
+                }
+
+                <tr data-id="@item.Id" class="clickableTr @bgClass">
+                    <td class=" @bgClass blockNavigate"><input type="checkbox" class="form-check-input productCheckBox" name="selectedProducts" value="@item.Id" style="width: 25px; height: 25px;" /></td>
+                    
+                    <td class="@bgClass">
+                        <div class="dropdown blockNavigate">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item clickableTr" href="javascript:void(0);" data-id="@item.Id"><i class="bx bx-edit-alt me-1"></i>Düzenle</a>
+                                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1 text-danger"></i>Sil</a>
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
-        }
+                    </td>
+
+                    <td class="@bgClass">@item.ReferanceCode</td>
+                    <td class="@bgClass">@item.CreatedDate</td>
+                    <td class="@bgClass">@item.Product.ProductName</td>
+                    <td class="@bgClass">@item.Adet</td>
+                    <td class="@bgClass">@item.BirimFiyat</td>
+                    <td class="@bgClass">@item.KesinCurrency?.Code</td>
+                    <td class="@bgClass">@item.Birim.Name</td>
+                    <td class="@bgClass">@item.Product.KdvOrani</td>
+                    <td class="@bgClass">@item.Product.ProductGroup?.GroupName</td>
+                    <td class="@bgClass">@item.Product.PorductBrand.Name</td>
+                    <td class="@bgClass">@item.ReferansBirimFiyat</td>
+                    <td class="@bgClass">@item.ReferansSupplier.SupplierName</td>
+                    <td class="@bgClass">@item.ReferansCurrency?.Code</td>
+                    <td class="@bgClass">@Html.Raw(item.CreateHtmlBadge(@item.IsApproved))</td>
+                    <td class="@bgClass">@item.AbonelikBaslangicFormatted</td>
+                    <td class="@bgClass">@item.AbonelikBitisFormatted</td>
+                    <td class="@bgClass">@item.KesinSevkDurumu</td>
+                    <td class="@bgClass">@item.KesinSupplier?.SupplierName</td>
+                    <td class="@bgClass">@item.KesinFiyat</td>
+                    @*<td>@item.product</td>*@
+
+                </tr>
+            }
 
         </tbody>
         <tfoot class="table-border-bottom-0">
@@ -75,7 +91,40 @@
     </table>
 </div>
 
+
+
+
+
 <script>
+
+    var checkedProducts = [];
+
+    $(".productCheckBox").change(function() {
+
+        console.log(this);
+
+        var val = this.value;
+        if (this.checked) {
+            console.log(this.value + " added");
+            checkedProducts.push(val);
+        } else {
+            console.log(val + " removed");
+            checkedProducts.splice($.inArray(val, checkedProducts), 1);
+        }
+
+        console.log(checkedProducts);
+
+        if (checkedProducts.length > 0) {
+            $("#multipleActionButton").removeAttr("disabled");
+        } else {
+            $("#multipleActionButton").attr("disabled", true);
+        }
+    });
+
+
+
+
+
     $(".clickableTr").on("click", function() {
         var id = $(this).attr("data-id");
         console.log(id);
@@ -85,27 +134,6 @@
     $(".blockNavigate").on("click", function(e) {
         e.stopPropagation();
     });
-
-    
-
-        
-    var checkedProducts = [];
-
-    $(".productCheckBox").change(function() {
-        
-        console.log(this);
-        var val = this.value;
-        if(this.checked) {
-            console.log(this.value +" added");
-            checkedProducts.push(val);
-        } else {
-            console.log(val +" removed");
-            checkedProducts.splice($.inArray(val, checkedProducts), 1 );
-        }
-        
-        console.log(checkedProducts);
-    });
-
 
 
 </script>

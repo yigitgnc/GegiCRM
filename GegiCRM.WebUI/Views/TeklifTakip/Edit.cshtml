@@ -15,10 +15,20 @@
         <div class="collapse navbar-collapse" id="navbarControl">
             <ul class="navbar-nav w-100 d-flex justify-content-sm-end">
                 <li class="nav-item m-1">
-                    <button class="w-100 btn btn btn-success" onclick="submitOrderForm()">
-                        <i class="bx bx-save"></i>
-                        Kaydet
-                    </button>
+                    <div class="d-block btn-group w-100">
+                        <button class="w-100 btn btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bx bx-save"></i>
+                            Kaydet
+                        </button>
+                        <ul class="dropdown-menu" style="">
+                            <li>
+                                <a class="dropdown-item" href="javascript:submitOrderForm(1)">Onaylı Kalemler ile Kaydet</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="javascript:submitOrderForm(2)">Tüm Kalemleri Onayla ve Kaydet</a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item m-1">
                     <div class="d-block btn-group w-100">
@@ -95,6 +105,7 @@
         </div>
         <div class="card-body">
             <form id="orderForm" method="post">
+                <input type="hidden" id="approveAll" name="approveAll" value="0" />
                 <div class="row d-flex justify-content-between">
                     <div class="col-12 col-md-6">
 
@@ -131,7 +142,7 @@
 
 
                                 <div class="mb-3">
-                                    <label for="select-Customer" class="col-sm-2 form-control-label">Müşteri</label>
+                                    <label for="select-Customer" class="col-12 form-control-label">Müşteri</label>
                                     <div class="col-12">
                                         <select asp-for="CustomerId" class="form-control selectpicker" id="select-Customer" data-live-search="true" aria-describedby="customerHelp" data-container="body">
                                             @foreach (Customer item in ViewBag.Customers)
@@ -152,7 +163,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="select-RepresentetiveUser" class="col-sm-2 form-control-label">Temsilci</label>
+                                    <label for="select-RepresentetiveUser" class="col-12 form-control-label">Temsilci</label>
                                     <div class="col-12">
                                         <select asp-for="RepresentetiveUserId" class="form-control selectpicker" id="select-RepresentetiveUser" data-live-search="true" aria-describedby="representetiveUserHelp" data-container="body">
                                             @foreach (AppUser item in ViewBag.Users)
@@ -220,16 +231,16 @@
                                     </style>
                                 }
                                 else
-                                {  
+                                {
                                     <style>
-                                       .Siparis {
-                                           display: block !important;
-                                       }
-                                   </style>
-                                        
+                                        .Siparis {
+                                            display: block !important;
+                                        }
+                                    </style>
+
                                 }
                                 @*//teklif*@
-                                    <div class="Teklif d-none">
+                                <div class="Teklif d-none">
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-check form-check-inline">
@@ -277,66 +288,66 @@
                                         <label for="OfferNote" class="form-label text-muted">TEKLİF NOTU</label>
                                         <textarea class="form-control" asp-for="OfferNote" style="height: 160px"></textarea>
                                     </div>
-                                    </div>
-                                
+                                </div>
+
                                 @*//Sipariş*@
-                                    <div class="Siparis d-none">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label cursor-pointer" for="IsOrderApproved">SİPARİŞ ONAY</label>
-                                                    @if (Model.IsOrderApproved)
-                                                    {
-                                                        <input class="form-check-input cursor-pointer" asp-for="IsOrderApproved" checked="checked">
-                                                    }
-                                                    else
-                                                    {
-                                                        <input class="form-check-input cursor-pointer" asp-for="IsOrderApproved">
-                                                    }
+                                <div class="Siparis d-none">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label cursor-pointer" for="IsOrderApproved">SİPARİŞ ONAY</label>
+                                                @if (Model.IsOrderApproved)
+                                                {
+                                                    <input class="form-check-input cursor-pointer" asp-for="IsOrderApproved" checked="checked">
+                                                }
+                                                else
+                                                {
+                                                    <input class="form-check-input cursor-pointer" asp-for="IsOrderApproved">
+                                                }
 
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6">
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label cursor-pointer" for="IsDeneied">SİPARİŞ RED</label>
-                                                    @if (Model.IsDeneied)
-                                                    {
-                                                        <input class="form-check-input cursor-pointer" asp-for="IsDeneied" checked="checked">
-                                                    }
-                                                    else
-                                                    {
-                                                        <input class="form-check-input cursor-pointer" asp-for="IsDeneied">
-                                                    }
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mt-2">
-                                            <div class="col-6">
-                                                <input class="form-control" asp-for="OrderApprovedDate">
-                                                <label for="OrderApprovedDate" class="form-label text-muted">SİPARİŞ ONAY TARİHİ</label>
-
-                                            </div>
-
-                                            <div class="col-6">
-                                                <input class="form-control" asp-for="DeniedDate">
-                                                <label for="DeniedDate" class="form-label text-muted">SİPARİŞ RED TARİHİ</label>
                                             </div>
                                         </div>
 
-
-                                        <div class="col-12">
-                                            <label for="OfferNote" class="form-label text-muted">TEKLİF NOTU</label>
-                                            <textarea class="form-control" asp-for="OfferNote" disabled="disabled"></textarea>
-                                        </div>
-
-
-                                        <div class="col-12">
-                                            <label for="OrderNote" class="form-label text-muted">SİPARİŞ NOTU</label>
-                                            <textarea class="form-control" asp-for="OrderNote"></textarea>
+                                        <div class="col-6">
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label cursor-pointer" for="IsDeneied">SİPARİŞ RED</label>
+                                                @if (Model.IsDeneied)
+                                                {
+                                                    <input class="form-check-input cursor-pointer" asp-for="IsDeneied" checked="checked">
+                                                }
+                                                else
+                                                {
+                                                    <input class="form-check-input cursor-pointer" asp-for="IsDeneied">
+                                                }
+                                            </div>
                                         </div>
                                     </div>
-                                
+                                    <div class="row mt-2">
+                                        <div class="col-6">
+                                            <input class="form-control" asp-for="OrderApprovedDate">
+                                            <label for="OrderApprovedDate" class="form-label text-muted">SİPARİŞ ONAY TARİHİ</label>
+
+                                        </div>
+
+                                        <div class="col-6">
+                                            <input class="form-control" asp-for="DeniedDate">
+                                            <label for="DeniedDate" class="form-label text-muted">SİPARİŞ RED TARİHİ</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-12">
+                                        <label for="OfferNote" class="form-label text-muted">TEKLİF NOTU</label>
+                                        <textarea class="form-control" asp-for="OfferNote" disabled="disabled"></textarea>
+                                    </div>
+
+
+                                    <div class="col-12">
+                                        <label for="OrderNote" class="form-label text-muted">SİPARİŞ NOTU</label>
+                                        <textarea class="form-control" asp-for="OrderNote"></textarea>
+                                    </div>
+                                </div>
+
 
                                 <div class="mt-3">
                                     <label for="select-DeliveryAddress" class="col-12 form-control-label">Teslimat Adresi Seç</label>
@@ -413,7 +424,33 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 d-flex justify-content-center justify-content-md-between">
+                    <div class="d-block btn-group">
+                        <button id="multipleActionButton" class="btn btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" disabled="disabled">
+                            <i class="bx bx-selection"></i>
+                            Çoklu İşlem
+                        </button>
+                        <ul class="dropdown-menu" style="">
+                            <li>
+                                <a class="dropdown-item btn-outline-success" href="javascript:UpdateMultipleActionModal('Onay')">Seçilenleri Onayla</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item btn-outline-danger" href="javascript:UpdateMultipleActionModal('Iptal')">Seçilenleri İptal Et</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item btn-outline-danger" href="javascript:UpdateMultipleActionModal('Red')">Seçilenleri Reddedildi Olarak İşaretle</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item btn-danger" href="javascript:UpdateMultipleActionModal('Sil')">Seçilenleri Sil</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item btn-warning" href="javascript:">Seçilenleri Taşı</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+
                     <button type="button" class="btn btn-primary" onclick="getAddOrdersProductPartial()">
                         <i class="bx bx-plus"></i>
                         @ViewBag.Type<text>e</text> Yeni Ürün Ekle
@@ -514,9 +551,100 @@
 </div>
 
 
+<div class="modal fade" id="confirmSaveModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@Model.Id Id'li @ViewBag.Type<text>i</text> Kaydetmek İstediğine Emin misin ?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col mb-3">
+                        <label>@Model.Id Id'li @ViewBag.Type İçinde <b class="text-danger" id="onayliProductCount"></b> Adet Onaylı Kalem Bulunuyor !</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    İptal
+                </button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="submitOrderForm()">
+                    Kaydet
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="modal fade" id="multipleActionModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Çoklu İşlem (<i class="multipleActionType"></i>)</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <label id="multipleAcitonResponse" class="text-info"></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label>Seçilem <b class="text-danger" id="selectedItemCount"></b> Adet Kalem İçin <i class="multipleActionType text-danger"></i> İşlemine Devam Edilsin Mi ?</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    İptal
+                </button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="DoMultipleAction()">
+                    Devam
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
 @section Scripts
     {
     <script>
+        var lastSelectedType;
+
+        function UpdateMultipleActionModal(type) {
+            lastSelectedType = type;
+            $(".multipleActionType").html(lastSelectedType);
+            $("#selectedItemCount").html(checkedProducts.length);
+            $("#multipleActionModal").modal("show");
+        }
+
+        function DoMultipleAction(type) {
+            if (type == undefined) {
+                type = lastSelectedType;
+            }
+            console.log(type);
+
+            $.ajax({
+                "url": "/TeklifTakip/DoMultipleAction",
+                "method": "POST",
+                data: {
+                    ids: checkedProducts, 
+                    type: type
+                },
+                success: function(data) {
+                    $("#multipleAcitonResponse").fadeIn(0).fadeOut(5000).html("İşlem Tamamlandı");
+                    getOrdersProducts();
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#multipleAcitonResponse").fadeIn(0).fadeOut(5000).html("Bir Hata Oluştu !");
+                }
+            });
+
+        }
 
         function getNewOrdersCurrencies() {
             $("#waitCurrency").show();
@@ -541,7 +669,7 @@
             $("#waitOrdersProducts").show();
 
             $.ajax({
-                "url": "/TeklifTakip/_GetOrdersProductsPartial/@Model.Id",
+                "url": "/TeklifTakip/_GetOrdersProductsPartial/@Model.Id?type=@ViewBag.Type",
                 "method": "GET",
                 success: function(data) {
                     $("#ordersProducts").html(data);
@@ -577,10 +705,41 @@
             });
         };
 
-        function submitOrderForm() {
-            $("#orderForm").submit();
+        function submitOrderForm(type) {
+            switch (type) {
+                case 1:
+                    getOnayliProductsCount();
+                    break;
+                case 2:
+                    $("#approveAll").val("1");
+                    $("#orderForm").submit();
+                    break;
+                default:
+                    $("#orderForm").submit();
+            }
+
+
         }
 
+        function getOnayliProductsCount() {
+            $.ajax({
+                type: "GET",
+                url: "/TeklifTakip/CheckForOnayliProducts/@Model.Id",
+                success: function(data) {
+                    console.log(data);
+                    if (data < 1) {
+                        $("#confirmSaveModal").modal("show");
+                        $("#onayliProductCount").html(data);
+                    } else {
+                        $("#orderForm").submit();
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                    alert("Bir Hata Oluştu !");
+                }
+            });
+        }
 
         $("#AddOrdersProductForm").submit(function(e) {
             $("#responseMessages").html("").removeClass("text-danger");
@@ -601,8 +760,7 @@
 
                         $("#responseMessages").addClass("text-info").html("Ürün Kalemi Güncellendi");
                         getOrdersProducts();
-                    }
-                    else {
+                    } else {
                         $("#responseMessages").addClass("text-danger").html(data);
                     }
                     console.log(data);
@@ -615,7 +773,8 @@
                 $("#responseMessages").fadeIn(300);
                 setTimeout(function() {
                     $("#responseMessages").fadeOut(500);
-                }, 5000);
+                },
+                    5000);
             });
         });
 

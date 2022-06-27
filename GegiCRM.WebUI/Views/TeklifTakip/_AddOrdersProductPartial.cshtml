@@ -4,7 +4,12 @@
 @using GegiCRM.Entities.Concrete
 @model AddOrdersProductViewModel;
 
-<input type="hidden" name="orderProductId" value="@Model.OrderProduct.Id"/>
+<input type="hidden" name="orderProductId" value="@Model.OrderProduct.Id" />
+<input type="hidden" name="CreatedDate" value="@Model.OrderProduct.CreatedDate" />
+<input type="hidden" name="ApprovedDate" value="@Model.OrderProduct.ApprovedDate" />
+<input type="hidden" name="CancelledDate" value="@Model.OrderProduct.CancelledDate" />
+<input type="hidden" name="DeniedDate" value="@Model.OrderProduct.DeniedDate" />
+<input type="hidden" name="AddedById" value="@Model.OrderProduct.AddedById" />
 
 <div class="row d-flex justify-content-start">
     <h5 class="col-12 mb-2">
@@ -15,13 +20,13 @@
             <label class="form-check-label cursor-pointer" for="IsApproved">ONAYLANDI</label>
             @if (Model.OrderProduct.IsApproved)
             {
-                <input name="IsApproved" class="form-check-input cursor-pointer" type="checkbox" id="IsApproved" value="false" checked="checked" />
-
+                <input type="checkbox" class="form-check-input cursor-pointer" data-val="true" id="IsApproved" name="IsApproved" value="true" checked="checked">
             }
             else
             {
-                <input name="IsApproved" class="form-check-input cursor-pointer" type="checkbox" id="IsApproved" value="false" />
+                <input type="checkbox" class="form-check-input cursor-pointer" data-val="true" id="IsApproved" name="IsApproved" value="true">
             }
+            <input name="IsApproved" type="hidden" value="false">
         </div>
     </div>
 
@@ -30,28 +35,29 @@
             <label class="form-check-label cursor-pointer" for="IsCancelled">İPTAL EDİLDİ</label>
             @if (Model.OrderProduct.IsCancelled)
             {
-                <input name="IsCancelled" class="form-check-input cursor-pointer" type="checkbox" id="IsCancelled" value="false" checked="checked"/>
-
+                <input type="checkbox" class="form-check-input cursor-pointer" data-val="true" id="IsCancelled" name="IsCancelled" value="true" checked="checked">
             }
             else
             {
-                <input name="IsCancelled" class="form-check-input cursor-pointer" type="checkbox" id="IsCancelled" value="false" /> 
+                <input type="checkbox" class="form-check-input cursor-pointer" data-val="true" id="IsCancelled" name="IsCancelled" value="true">
             }
+            <input name="IsCancelled" type="hidden" value="false">
         </div>
     </div>
 
     <div class="col-auto mt-2">
         <div class="form-check form-check-inline">
+            
             <label class="form-check-label cursor-pointer" for="IsDenied">REDDEDİLDİ</label>
             @if (Model.OrderProduct.IsDeneied)
             {
-                <input name="IsDeneied" class="form-check-input cursor-pointer" type="checkbox" id="IsDenied" value="true" checked="checked" />   
-
+                <input type="checkbox" class="form-check-input cursor-pointer" data-val="true" id="IsDeneied" name="IsDeneied" value="true" checked="checked">
             }
             else
             {
-                <input name="IsDeneied" class="form-check-input cursor-pointer" type="checkbox" id="IsDenied" value="false" />   
+                <input type="checkbox" class="form-check-input cursor-pointer" data-val="true" id="IsDeneied" name="IsDeneied" value="true">
             }
+            <input name="IsDeneied" type="hidden" value="false">
         </div>
     </div>
 </div>
@@ -104,14 +110,14 @@
                 {
                     <option value="@item.Id" data-tokens="@item.Name" selected="selected">
                         @item.Name
-                    </option> 
+                    </option>
                 }
                 else
                 {
                     <option value="@item.Id" data-tokens="@item.Name">
                         @item.Name
                     </option>
-                        
+
                 }
 
             }
@@ -131,14 +137,14 @@
                     <option value="@item.Id" data-tokens="@item.GroupName" selected="selected">
                         @item.GroupName
                     </option>
-                    
+
                 }
                 else
                 {
                     <option value="@item.Id" data-tokens="@item.GroupName">
                         @item.GroupName
                     </option>
-                        
+
                 }
 
             }
@@ -150,7 +156,7 @@
             Birimi
         </h5>
 
-        <select  name="BirimId" class="form-control selectpickerInModal" id="select-BirimId" data-live-search="true" data-container="body">
+        <select name="BirimId" class="form-control selectpickerInModal" id="select-BirimId" data-live-search="true" data-container="body">
             @foreach (Birim item in Model.Birims)
             {
                 if (item.Id == Model.OrderProduct.BirimId)
@@ -161,7 +167,7 @@
                 }
                 else
                 {
-                        
+
                     <option value="@item.Id" data-tokens="@item.Name">
                         @item.Name
                     </option>
@@ -196,7 +202,7 @@
         <h5 class="col-12 mb-2">
             Abonelik Bitiş Tarihi
         </h5>
-        <input  class="form-control" type="datetime-local" id="AbonelikBitis" name="AbonelikBitis" value="">
+        <input class="form-control" type="datetime-local" id="AbonelikBitis" name="AbonelikBitis" value="">
     </div>
 </div>
 
@@ -224,14 +230,14 @@
                     <option value="@item.Id" data-tokens="@item.SupplierName" selected="selected">
                         @item.SupplierName
                     </option>
-                    
+
                 }
                 else
                 {
                     <option value="@item.Id" data-tokens="@item.SupplierName">
                         @item.SupplierName
                     </option>
-                        
+
                 }
 
             }
@@ -247,19 +253,19 @@
             @foreach (Currency item in Model.Currencies)
             {
                 if (item.Id == Model.OrderProduct.ReferansCurrencyId)
-                {  
+                {
                     <option value="@item.Id" data-tokens="@item.Code @item.Name @item.CurrentValue" selected="selected">
-                       [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
-                       @{
-                           var orderSpecial = Model.OrdersCurrencies.FirstOrDefault(x => x.CurrencyId == item.Id);
-                       }
-                       @if (orderSpecial != null)
-                       {
-                           <br />
-                           <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
-                       }
-                   </option>
-                    
+                        [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
+                        @{
+                            var orderSpecial = Model.OrdersCurrencies.FirstOrDefault(x => x.CurrencyId == item.Id);
+                        }
+                        @if (orderSpecial != null)
+                        {
+                            <br />
+                            <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
+                        }
+                    </option>
+
                 }
                 else
                 {
@@ -273,7 +279,7 @@
                             <br />
                             <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
                         }
-                    </option>  
+                    </option>
                 }
 
             }
@@ -298,7 +304,7 @@
             <input name="Adet" id="Adet" type="number" class="form-control" value="1" step="any" min="0">
         </div>
     </div>
-    
+
     <div class="mb-3 col-12 col-md-4">
         <h5 class="col-12 mb-2">
             Para Birimi
@@ -308,7 +314,7 @@
             @foreach (Currency item in Model.Currencies)
             {
                 if (item.Id == Model.OrderProduct.ReferansCurrencyId)
-                {  
+                {
                     <option value="@item.Id" data-tokens="@item.Code @item.Name @item.CurrentValue" selected="selected">
                         [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
                         @{
@@ -320,7 +326,7 @@
                             <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
                         }
                     </option>
-                    
+
                 }
                 else
                 {
@@ -334,7 +340,7 @@
                             <br />
                             <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
                         }
-                    </option>  
+                    </option>
                 }
 
             }
@@ -344,6 +350,7 @@
     <div class="mb-3 col-12 col-md-12">
         <h5 class="col-12 mb-2 d-none d-lg-block">
             &nbsp;
+            Segment Fiyatı: <i id="segmentFiyat" class="text-info"></i>
         </h5>
         <a href="javascript:void(0)" onclick="GetSegmentPrice()" class="w-100 btn btn-secondary">Segment Fiyatı Getir</a>
     </div>
@@ -356,13 +363,23 @@
             Ürün Kalemi Notu
         </h5>
         <div class="input-group w-100">
-            <textarea name="Notes" class="form-control" style="height: 160px" id="Notes"></textarea>
+            <textarea name="Notes" class="form-control" style="height: 160px" id="Notes">@Model.OrderProduct.Notes</textarea>
         </div>
     </div>
 </div>
 
 
 <script>
+
+    //function GetSegmentPrice() {
+
+    //    $("#segmentFiyat").val();
+    //    var birimFiyat = $("#ReferansBirimFiyat").val();
+    //    var birimFiyat = $("#select2-select-ReferansCurrencyId-container").val();
+    //    var birimFiyat = $("#ReferansBirimFiyat").val();
+
+
+    //}
 
     function SetSelectedProduct(selectedEl) {
         var id = $(selectedEl).attr("data-id");

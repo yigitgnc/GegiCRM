@@ -84,6 +84,22 @@ namespace GegiCRM.WebUI.Controllers
             return RedirectToAction("Edit", new { createdOrder.Id });
         }
 
+        public async Task<string> GetSegmentPrice(decimal birimFiyat, string CurrencyId, string Adet)
+        {
+            var manager = new GenericManager<SegmentOran>(_userManager, new EfSegmentOranRepository());
+            var orans = manager.GetAll(false);
+            var currentOran = orans.FirstOrDefault(x => x.StartPrice >= birimFiyat && x.EndPrice <= birimFiyat);
+            if (currentOran != null)
+            {
+
+            }
+            else
+            {
+                return "";
+            }
+            return "OK";
+        }
+
         public IActionResult Edit(int id)
         {
             var order = _teklifTakipManager.GetByIdWithNavigations(id);
@@ -110,7 +126,7 @@ namespace GegiCRM.WebUI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Order order)
+        public IActionResult Edit(Order order, string approveAll)
         {
 
             if (order == null)
@@ -118,14 +134,29 @@ namespace GegiCRM.WebUI.Controllers
                 return BadRequest();
             }
 
+            if (approveAll == "1")
+            {
+                var ordersProducts = _orderProductsManager.GetListByAllNavigations(order.Id);
+                foreach (OrdersProduct item in ordersProducts)
+                {
+                    item.IsApproved = true;
+                    _orderProductsManager.Update(item);
+                }
+            }
+
             _teklifTakipManager.Update(order);
 
             return RedirectToAction("Edit", new { id = order.Id });
         }
 
-        public IActionResult _GetOrdersProductsPartial(int id)
+
+        public IActionResult _GetOrdersProductsPartial(int id,string type)
         {
             List<OrdersProduct> ordersProducts = _orderProductsManager.GetListByAllNavigations(id);
+            if (type != "Teklif")
+            {
+                ordersProducts = ordersProducts.Where(x => x.IsApproved || x.IsDeneied).ToList();
+            }
             return View(ordersProducts);
         }
 
@@ -254,6 +285,11 @@ namespace GegiCRM.WebUI.Controllers
             return View(vm);
         }
 
+        public async Task<int> CheckForOnayliProducts(int id)
+        {
+            return _orderProductsManager.GetListByAllNavigations(id).Count(x => x.IsApproved);
+        }
+
         public async Task<string> AddOrdersProduct(OrdersProduct ordersProduct, string orderProductId, string ProductName, string ProductBrandId, string ProductGroupId)
         {
             ordersProduct.Id = Convert.ToInt32(orderProductId);
@@ -306,6 +342,53 @@ namespace GegiCRM.WebUI.Controllers
 
             return errStringBuilder.ToString();
 
+        }
+
+
+        public async Task<string> DoMultipleAction(int[] ids, string type)
+        {
+            foreach (int id in ids)
+            {
+                try
+                {
+                    var op = _orderProductsManager.GetAll(false).FirstOrDefault(x=>x.Id == id);
+                    if (op != null)
+                    {
+                        switch (type)
+                        {
+                            case "Onay":
+                                op.IsDeneied = false;
+                                op.IsCancelled = false;
+                                op.IsApproved = true;
+                                break;
+                            case "Iptal":
+                                op.IsDeneied = false;
+                                op.IsApproved = false;
+                                op.IsCancelled = true;
+                                break;
+                            case "Red":
+                                op.IsApproved = false;
+                                op.IsCancelled = false;
+                                op.IsDeneied = true;
+                                break;
+                            case "Sil":
+                                _orderProductsManager.Delete(op);
+                                break;
+                        }
+
+                        _orderProductsManager.Update(op);
+
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+              
+            }
+
+            return "OK";
         }
 
         public async Task<IActionResult> Test()
