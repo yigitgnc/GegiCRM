@@ -33,7 +33,7 @@ namespace GegiCRM.Entities.Concrete
         public DateTime? CancelledDate { get; set; }
         public bool IsDeneied { get; set; }
         public DateTime? DeniedDate { get; set; }
-
+        public bool IsFrequentlyUsed { get; set; }
         public virtual Birim Birim { get; set; } = null!;
         public virtual Currency? KesinCurrency { get; set; }
         public virtual Supplier? KesinSupplier { get; set; }

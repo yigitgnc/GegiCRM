@@ -17,7 +17,6 @@ namespace GegiCRM.WebUI.Controllers
     [Authorize]
     public class TeklifTakipController : Controller
     {
-        readonly UserManager<AppUser> _userManager;
         readonly AppUserManager _appUserManager;
         //readonly GenericManager<AppUser> _userman;
         readonly TeklifTakipManager _teklifTakipManager;

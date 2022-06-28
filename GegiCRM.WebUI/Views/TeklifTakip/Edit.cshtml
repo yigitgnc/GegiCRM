@@ -114,6 +114,17 @@
 
                                 <div class="mb-3 row">
                                     <span class="col-md-12">
+                                        <div class="form-check form-check-inline">
+                                            @if (ViewBag.Type == "Teklif")
+                                            {
+
+                                                <label class="form-check-label cursor-pointer" for="IsFrequentlyUsed">Bu Teklifi Sık Verilenlere Ekle</label>
+                                                <input class="form-check-input cursor-pointer" asp-for="IsFrequentlyUsed">
+                                            }
+
+                                        </div>
+                                    </span>
+                                    <span class="col-md-12">
                                         ID:
                                         <input asp-for="Id" type="hidden" />
                                         <i class="text-muted" style="white-space: nowrap">@Model.Id</i>
@@ -631,7 +642,7 @@
                 "url": "/TeklifTakip/DoMultipleAction",
                 "method": "POST",
                 data: {
-                    ids: checkedProducts, 
+                    ids: checkedProducts,
                     type: type
                 },
                 success: function(data) {
