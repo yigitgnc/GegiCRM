@@ -47,7 +47,7 @@
 
     <div class="col-auto mt-2">
         <div class="form-check form-check-inline">
-            
+
             <label class="form-check-label cursor-pointer" for="IsDenied">REDDEDİLDİ</label>
             @if (Model.OrderProduct.IsDeneied)
             {
@@ -206,6 +206,7 @@
     </div>
 </div>
 
+
 <div class="row mt-3">
 
     <div class="mb-3 col-12 col-md-4">
@@ -356,6 +357,115 @@
     </div>
 
 </div>
+
+
+
+@if (ViewBag.Type != "Teklif")
+{
+    <div class="row mt-3">
+
+        <div class="mb-3 col-12 col-md-4">
+            <h5 class="col-12 mb-2">
+                Kesin Birim Fiyat
+            </h5>
+            <div class="input-group">
+                <input name="KesinBirimFiyat" id="KesinBirimFiyat" class="form-control currency" value="" step="any" min="0">
+            </div>
+        </div>
+
+        <div class="mb-3 col-12 col-md-4">
+            <h5 class="col-12 mb-2">
+                Kesin Tedarikçi
+            </h5>
+
+            <select name="KesinSupplierId" class="form-control selectpickerInModal" id="select-KesinSupplierId" data-live-search="true" data-container="body">
+                @foreach (Supplier item in Model.Suppliers)
+                {
+                    if (item.Id == Model.OrderProduct.KesinSupplierId)
+                    {
+                        <option value="@item.Id" data-tokens="@item.SupplierName" selected="selected">
+                            @item.SupplierName
+                        </option>
+
+                    }
+                    else
+                    {
+                        <option value="@item.Id" data-tokens="@item.SupplierName">
+                            @item.SupplierName
+                        </option>
+
+                    }
+
+                }
+            </select>
+        </div>
+
+        <div class="mb-3 col-12 col-md-4">
+            <h5 class="col-12 mb-2">
+                Kesin Para Birimi
+            </h5>
+
+            <select name="KesinCurrencyId" class="form-control selectpickerInModal" id="select-KesinCurrencyId" data-live-search="true" data-container="body">
+                @foreach (Currency item in Model.Currencies)
+                {
+                    if (item.Id == Model.OrderProduct.KesinCurrencyId)
+                    {
+                        <option value="@item.Id" data-tokens="@item.Code @item.Name @item.CurrentValue" selected="selected">
+                            [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
+                            @{
+                                var orderSpecial = Model.OrdersCurrencies.FirstOrDefault(x => x.CurrencyId == item.Id);
+                            }
+                            @if (orderSpecial != null)
+                            {
+                                <br />
+                                <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
+                            }
+                        </option>
+
+                    }
+                    else
+                    {
+                        <option value="@item.Id" data-tokens="@item.Code @item.Name @item.CurrentValue">
+                            [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
+                            @{
+                                var orderSpecial = Model.OrdersCurrencies.FirstOrDefault(x => x.CurrencyId == item.Id);
+                            }
+                            @if (orderSpecial != null)
+                            {
+                                <br />
+                                <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
+                            }
+                        </option>
+                    }
+
+                }
+            </select>
+        </div>
+
+
+        <div class="row mt-3">
+            <div class="mb-3 col-6">
+                <h5 class="col-6 mb-2">
+                    Kesin Sevk Durumu
+                </h5>
+                <div class="input-group w-100">
+                    <textarea name="KesinSevkDurumu" class="form-control" style="height: 160px" id="KesinSevkDurumu">@Model.OrderProduct.KesinSevkDurumu</textarea>
+                </div>
+                <div class="col-6 col-sm-6">
+                    <h5 class="col-12 mb-2">
+                        Kesin Sevk Tarihi
+                    </h5>
+                    <input class="form-control" type="datetime-local" id="KesinSevkTarihi" name="KesinSevkTarihi" value="">
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+}
+
+
 
 <div class="row mt-3">
     <div class="mb-3 col-12">

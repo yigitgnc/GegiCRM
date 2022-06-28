@@ -104,7 +104,8 @@ function InitCustomInputs() {
                 language: "tr"
             }
         );
-        
+
+
         $('input .currency').currencyInput();
 
         //$('.selectpicker').selectpicker();

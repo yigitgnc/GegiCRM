@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GegiCRM.DAL.Concrete;
 using GegiCRM.Entities.Concrete;
+using GegiCRM.BLL.Generic;
+using GegiCRM.DAL.Repositories;
 
 namespace GegiCRM.WebUI.Controllers
 {
@@ -90,11 +92,11 @@ namespace GegiCRM.WebUI.Controllers
                 ViewData["TypeId"] = new SelectList(_context.CustomerTypes, "Id", "Name", customer.TypeId);
                 return View(customer);
             }
-               
+
             //}
 
 
-         
+
         }
 
         // GET: Customers/Edit/5
@@ -201,14 +203,37 @@ namespace GegiCRM.WebUI.Controllers
             {
                 _context.Customers.Remove(customer);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CustomerExists(int id)
         {
-          return (_context.Customers?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Customers?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+
+        GenericManager<CustomerActivityLog> activityManager = new GenericManager<CustomerActivityLog>(new GenericRepository<CustomerActivityLog>());
+        public IActionResult _NewActivityLog()
+        {
+            CustomerActivityLog activityLog = new CustomerActivityLog();
+            ViewData["CustomerId"] = _context.Customers.ToList();
+            return View(activityLog);
+        }
+
+        [HttpPost]
+        public IActionResult _NewActivityLog(CustomerActivityLog activityLog)
+        {
+            try
+            {
+                activityManager.Create(activityLog);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            return RedirectToAction("Index","Home",null);
         }
     }
 }

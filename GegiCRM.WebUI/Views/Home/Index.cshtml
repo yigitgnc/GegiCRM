@@ -84,7 +84,7 @@
 <div class="row mt-md-2 mt-lg-4">
 
     <div class="col-12 col-sm-12 col-lg-4 mt-1">
-        <div class="card">
+        <div class="card h-100">
             <div class="card-header bg-warning pb-1">
                 <h5 class="text-white card-title">Duyurular</h5>
             </div>
@@ -132,35 +132,42 @@
             </div>
 
             <div class="card-body mt-3">
-
                 <div class="row d-flex justify-content-center">
+                    <div class="row d-flex justify-content-between">
+                        <button class="btn btn-primary col-12 col-md-5" data-bs-toggle="modal" data-bs-target="#investingModal"> investing.com <i class="bx bx-money"></i></button>
+                        <a class="btn btn-info col-12 col-md-5" href="https://www.tcmb.gov.tr/wps/wcm/connect/tr/tcmb+tr/main+page+site+area/bugun" target="_blank"> TCMB <i class="bx bxs-bank"></i></a>
+                    </div>
+                    <div id="Currencies" style="max-height: 300px;overflow: auto">
+                        <div class="demo-inline-spacing mt-3">
 
-                    <table class="table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Döviz</th>
-                                <th>Son Belirlenen</th>
-                                <th>Son Serbest Piyasa</th>
-                                <th>Son Alış Kuru</th>
-                                <th>Son Satış Kuru</th>
-                                <th>Son Düzelenme Tarihi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
                             @foreach (Currency item in ViewBag.Currencies)
                             {
-                                <tr>
-                                    <td>@item.Name (@item.Code)</td>
-                                    <td>@item.CurrentValue</td>
-                                    <td>@item.SerbestPiyasaKuru</td>
-                                    <td>@item.AlisKuru</td>
-                                    <td>@item.SatisKuru</td>
-                                    <td>@item.ModifiedDate</td>
-                                </tr>
-
+                                <div class="list-group">
+                                    <div class="list-group-item list-group-item-action flex-column align-items-start ">
+                                        <div class="d-flex justify-content-between w-100">
+                                            <h6>@item.Name (@item.Code)</h6>
+                                            <small>@item.ModifiedDate</small>
+                                        </div>
+                                        <p>
+                                            Gegi Kuru: @item.CurrentValue
+                                        </p>
+                                        <p>
+                                            Alış TCMB: @item.AlisKuru
+                                        </p>
+                                        <p>
+                                            Satış TCMB: @item.SatisKuru
+                                        </p>
+                                        <p>
+                                            Serbest Piyasa (investing): @item.SerbestPiyasaKuru
+                                        </p>
+                                        <small>Düzenleyen: Yiğit GENÇ</small>
+                                    </div>
+                                </div>
                             }
-                        </tbody>
-                    </table>
+
+                        </div>
+
+                    </div>
                 </div>
 
             </div>
@@ -170,20 +177,23 @@
     <div class="col-12 col-sm-6 col-lg-4 mt-1">
         <div class="card h-100">
             <div class="card-header bg-primary pb-1">
-                    <h5 class="text-white card-title">Son Görüşmelerim</h5>
+                <h5 class="text-white card-title">Son Görüşmelerim</h5>
             </div>
 
             <div class="card-body mt-3">
-                
+
 
                 <div class="row d-flex justify-content-center">
                     @*    <div id="waitDuyuru" class="spinner-border spinner-border-lg text-primary" role="status">
                     <span class="visually-hidden">Loading...</span>
                     </div>*@
                     <div class="col-12 d-flex justify-content-center">
-                        <button class=" btn btn-primary">Yeni Görüşme Notu</button>
+
+                        <button class=" btn btn-primary" data-bs-toggle="modal" data-bs-target="#newActivityLogModal" onclick="getNewActivityLog()">
+                            Yeni Görüşme Notu
+                        </button>
                     </div>
-                    
+
 
                     <div id="Activities" style="max-height: 300px; overflow: auto">
                         <div class="demo-inline-spacing mt-3">
@@ -259,6 +269,57 @@
         </div>
     </div>
 </div>
+<!-- NewOrder Modal -->
+<div class="modal fade" id="newActivityLogModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newActivityLogModalTitle">Yeni Görüme Notu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 d-flex justify-content-center">
+                    <div id="wait-NewActivityLog" class="spinner-border spinner-border-lg text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <div id="newActivityLogContent" class="d-grid d-sm-flex p-3" style="min-height: 400px">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Kapat
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="investingModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Investing.com</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="min-height:500px">
+                <iframe src="https://tr.widgets.investing.com/single-currency-crosses?theme=darkTheme&currency=9" width="100%" height="100%" frameborder="0" allowtransparency="true" marginwidth="0" marginheight="0" style=" min-height:600px">
+                </iframe>
+                <div class="poweredBy" style="font-family: Arial, Helvetica, sans-serif; display:none;">
+                    Araç Sağlayıcı:
+                    <a href="https://tr.investing.com?utm_source=WMT&amp;utm_medium=referral&amp;utm_campaign=SINGLE_CROSSES&amp;utm_content=Footer%20Link" target="_blank" rel="nofollow">Investing.com</a>
+                </div>
+
+                @*                <iframe src="https://tr.widgets.investing.com/single-currency-crosses?theme=darkTheme&currency=9" width="100%" height="100%" class="h-100" frameborder="0" allowtransparency="true" marginwidth="0" marginheight="0" style="min-height:600px"></iframe>*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Kapat
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -281,6 +342,24 @@
             }
         }).done(function() {
             $("#waitNewOrder").hide();
+        });
+
+    };
+    function getNewActivityLog() {
+        $("#wait-NewActivityLog").show();
+
+        $.ajax({
+            "url": "/Customers/_NewActivityLog",
+            "method": "GET",
+            success: function(data) {
+                $("#newActivityLogContent").html(data);
+            },
+            error: function(err) {
+                console.log(err);
+                alert("Bir Hata Oluştu !");
+            }
+        }).done(function() {
+            $("#wait-NewActivityLog").hide();
         });
 
     };

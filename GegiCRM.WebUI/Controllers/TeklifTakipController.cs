@@ -1,7 +1,7 @@
-﻿using System.Text;
-using AutoMapper;
+﻿using AutoMapper;
 using GegiCRM.BLL.Concrete;
 using GegiCRM.BLL.Generic;
+using GegiCRM.DAL.Concrete;
 using GegiCRM.DAL.EntityFramework;
 using GegiCRM.DAL.Repositories;
 using GegiCRM.Entities.Concrete;
@@ -9,8 +9,8 @@ using GegiCRM.WebUI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 namespace GegiCRM.WebUI.Controllers
 {
@@ -67,6 +67,12 @@ namespace GegiCRM.WebUI.Controllers
             return View(model);
         }
 
+        public IActionResult ST()
+        {
+            List<Order> model = _teklifTakipManager.GetListAllWithNavigationsByFilter(x => x.IsFrequentlyUsed);
+            return View("index",model);
+        }
+
         public async Task<IActionResult> _NewOrderContentPartial()
         {
             ViewBag.Customers = _customerManager.GetAll(false);
@@ -108,6 +114,8 @@ namespace GegiCRM.WebUI.Controllers
             ViewBag.Customers = _customerManager.GetAll(false);
             ViewBag.Users = _appUserManager.GetAll(false);
             ViewBag.OrderStates = _orderStateManager.GetAll(false);
+            var context = new Context();
+            ViewBag.OrdersToMove = context.Orders.Include(x => x.Customer).Include(x => x.AddedBy).Include(x => x.RepresentetiveUser).Where(x => x.IsDeleted == false).ToList(); ;
 
             string type = "Sipariş";
             //offer onaylanmadıysa ve nullsa bu bir tekliftir
@@ -148,7 +156,7 @@ namespace GegiCRM.WebUI.Controllers
         }
 
 
-        public IActionResult _GetOrdersProductsPartial(int id,string type)
+        public IActionResult _GetOrdersProductsPartial(int id, string type)
         {
             List<OrdersProduct> ordersProducts = _orderProductsManager.GetListByAllNavigations(id);
             if (type != "Teklif")
@@ -271,6 +279,15 @@ namespace GegiCRM.WebUI.Controllers
             vm.Currencies = currencyGenericManager.GetAll(false);
             vm.OrdersCurrencies = _orderCurrencyManager.GetOrdersCurrencies(id);
             vm.CurrentOrderId = id;
+            var order = _teklifTakipManager.GetById(id, false);           
+            string type = "Sipariş";
+            //offer onaylanmadıysa ve nullsa bu bir tekliftir
+            if (order.IsOfferApproved == false)
+            {
+                type = "Teklif";
+            }
+            ViewBag.Type = type;
+
             if (orderProductId != null)
             {
                 vm.OrderProduct = _orderProductsManager.GetListByAllNavigations(id).FirstOrDefault(x => x.Id == orderProductId.Value);
@@ -349,7 +366,7 @@ namespace GegiCRM.WebUI.Controllers
             {
                 try
                 {
-                    var op = _orderProductsManager.GetAll(false).FirstOrDefault(x=>x.Id == id);
+                    var op = _orderProductsManager.GetAll(false).FirstOrDefault(x => x.Id == id);
                     if (op != null)
                     {
                         switch (type)
@@ -383,7 +400,76 @@ namespace GegiCRM.WebUI.Controllers
                 {
                     Console.WriteLine(e);
                 }
-              
+
+            }
+
+            return "OK";
+        }
+        public async Task<string> MoveSelectedOrderProducts(int[] ids, string type, int destinationCustomerId)
+        {
+            foreach (int id in ids)
+            {
+                try
+                {
+                    var c = new Context();
+                    var op = c.OrdersProducts.FirstOrDefault(x => x.Id == id);
+                    if (op != null)
+                    {
+                        if (type == "cut")
+                        {
+                            op.OrderId = destinationCustomerId;
+                            _orderProductsManager.Update(op);
+                        }
+                        else
+                        {
+                            OrdersProduct newOp = new OrdersProduct();
+                            var copyCode = "";
+                            if (op.ReferanceCode.Split('-').Length > 1)
+                            {
+                                int copyNumber = Convert.ToInt32(op.ReferanceCode.Split('-')[1]);
+                                copyNumber++;
+                                copyCode = $"{op.ReferanceCode.Split('-')[0]}-{copyNumber}";
+                            }
+                            else
+                            {
+                                copyCode = $"{op.ReferanceCode.Split('-')[0]}-1";
+                            }
+                            //newOp = _mapper.Map(op, newOp);
+                            newOp.ProductId = op.ProductId; 
+                            newOp.OrderId = destinationCustomerId;
+                            newOp.KesinSevkDurumu = op.KesinSevkDurumu;
+                            newOp.Adet = op.Adet;                            
+                            newOp.AbonelikBaslangic = op.AbonelikBaslangic;
+                            newOp.AbonelikBitis = op.AbonelikBitis;
+                            newOp.ApprovedDate = op.ApprovedDate;
+                            newOp.BirimId = op.BirimId;
+                            newOp.DeniedDate = op.DeniedDate;
+                            newOp.KesinSupplierId = op.KesinSupplierId;
+                            newOp.IsApproved = op.IsApproved;
+                            newOp.IsCancelled = op.IsCancelled;
+                            newOp.IsDeleted = op.IsDeleted;
+                            newOp.IsDeneied = op.IsDeneied;
+                            newOp.Notes = op.Notes;
+                            newOp.ReferansBirimFiyat = op.ReferansBirimFiyat;
+                            newOp.BirimFiyat = op.BirimFiyat;
+                            newOp.ReferansCurrencyId = op.ReferansCurrencyId;
+                            newOp.ReferansSupplierId = op.ReferansSupplierId;
+                            newOp.ReferansCurrencyValue = op.ReferansCurrencyValue;
+                            newOp.ReferansCurrencyValue = op.ReferansCurrencyValue;
+
+                            newOp.ReferanceCode = copyCode;
+                            //newOp.OrderId = destinationCustomerId;
+                            _orderProductsManager.Create(newOp);
+                        }
+
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
             }
 
             return "OK";

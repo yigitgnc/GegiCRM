@@ -8,6 +8,7 @@ using GegiCRM.Entities.Concrete;
 using GegiCRM.WebUI.Mappings;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Quartz;
 //using Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,18 @@ builder.Services.AddScoped<IAppUserDal, EfAppUserRepository>();
 builder.Services.AddScoped<AppUserManager>();
 
 builder.Services.AddScoped(typeof(GenericManager<>));
+
+builder.Services.AddQuartz(q =>
+{
+    // base quartz scheduler, job and trigger configuration
+});
+
+// ASP.NET Core hosting
+builder.Services.AddQuartzServer(options =>
+{
+    // when shutting down we want jobs to complete gracefully
+    options.WaitForJobsToComplete = true;
+});
 
 
 //builder.Services.AddScoped(typeof(IGenericDal<>), typeof(GenericRepository<>));

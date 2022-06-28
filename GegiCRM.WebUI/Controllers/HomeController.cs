@@ -31,7 +31,7 @@ namespace GegiCRM.WebUI.Controllers
         {
             var user = _appUserManager.GetCurrentUserAsync().GetAwaiter().GetResult(); 
             ViewBag.Currencies = context.Currencies.ToList();
-            var activities = context.CustomerActivityLogs.Where(x => x.AddedById == user.Id).ToList();
+            var activities = context.CustomerActivityLogs.Where(x => x.AddedById == user.Id).OrderByDescending(x => x.CreatedDate).ToList();
             return View(activities);
         }
 

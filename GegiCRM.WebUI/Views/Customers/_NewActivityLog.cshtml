@@ -1,0 +1,36 @@
+﻿@using GegiCRM.Entities.Concrete
+@{
+    Layout = null;
+}
+@model GegiCRM.Entities.Concrete.CustomerActivityLog
+
+
+<form action="Customers/_NewActivityLog" method="post" class="col-12">
+    <div class="col-12 mb-1">
+        <label for="CreatedDate" class="form-label">Tarih</label>
+        <input class="form-control" type="datetime-local" id="CreatedDate" name="CreatedDate" required>
+    </div>
+
+    <div class="form-group  mb-1">
+        <label class="control-label">Müşteri Seç</label>
+        <select name="CustomerId" class="form-control selectpicker" id="select-selectCustomer" data-live-search="true" data-container="body">
+            @foreach (Customer item in ViewBag.CustomerId)
+            {
+
+                <option value="@item.Id" data-tokens="@item.Name">@item.Name</option>
+
+            }
+        </select>
+    </div>
+
+    <div class="col-12  mb-1">
+        <label for="Note" class="form-label">GÖRÜŞME NOTU</label>
+        <textarea class="form-control" style="height: 160px" id="Note" name="Note" required></textarea>
+    </div>
+
+    <div class="col-12 d-flex justify-content-center  mb-1">
+        <input type="submit" class="btn btn-primary col-6" value="Kaydet" />
+    </div>
+</form>
+
+

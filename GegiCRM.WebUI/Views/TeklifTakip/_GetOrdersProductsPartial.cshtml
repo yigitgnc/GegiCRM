@@ -36,7 +36,8 @@
                 if (item.IsCancelled)
                 {
                     bgClass = "text-danger";
-                }else if (item.IsDeneied)
+                }
+                else if (item.IsDeneied)
                 {
                     bgClass = "bg-danger text-white";
                 }
@@ -48,7 +49,7 @@
 
                 <tr data-id="@item.Id" class="clickableTr @bgClass">
                     <td class=" @bgClass blockNavigate"><input type="checkbox" class="form-check-input productCheckBox" name="selectedProducts" value="@item.Id" style="width: 25px; height: 25px;" /></td>
-                    
+
                     <td class="@bgClass">
                         <div class="dropdown blockNavigate">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -56,7 +57,7 @@
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item clickableTr" href="javascript:void(0);" data-id="@item.Id"><i class="bx bx-edit-alt me-1"></i>Düzenle</a>
-                                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1 text-danger"></i>Sil</a>
+                                <a class="dropdown-item deleteOrderProduct" href="javascript:void(0)" data-id="@item.Id"><i class="bx bx-trash me-1 text-danger"></i>Sil</a>
                             </div>
                         </div>
                     </td>
@@ -122,7 +123,14 @@
     });
 
 
-
+    $(".deleteOrderProduct").click(function() {
+        console.log(this);
+        var val = $(this).attr("data-id");
+        checkedProducts = [];
+        console.log(val + " gonnaDelete");
+        checkedProducts.push(val);
+        UpdateMultipleActionModal('Sil');
+    });
 
 
     $(".clickableTr").on("click", function() {

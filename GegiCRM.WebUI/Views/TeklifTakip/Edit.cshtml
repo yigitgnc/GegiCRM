@@ -215,7 +215,7 @@
                                     </div>
                                 </div>
 
-
+@*
                                 <div class="mb-3">
                                     <span>Sipraiş Kurları</span>
                                     <div id="waitCurrency" class="spinner-border spinner-border-sm text-secondary" role="status">
@@ -223,7 +223,7 @@
                                     </div>
                                     <div id="OrdersCurrencies">
                                     </div>
-                                </div>
+                                </div>*@
                             </div>
                         </div>
                     </div>
@@ -455,7 +455,7 @@
                                 <a class="dropdown-item btn-danger" href="javascript:UpdateMultipleActionModal('Sil')">Seçilenleri Sil</a>
                             </li>
                             <li>
-                                <a class="dropdown-item btn-warning" href="javascript:">Seçilenleri Taşı</a>
+                                <a class="dropdown-item btn-warning" href="javascript:MoveSelected()">Seçilenleri Taşı</a>
                             </li>
 
                         </ul>
@@ -591,7 +591,7 @@
 
 <div class="modal fade" id="multipleActionModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <form class="modal-content">
+        <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Çoklu İşlem (<i class="multipleActionType"></i>)</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -604,7 +604,7 @@
                 </div>
                 <div class="row">
                     <div class="col mb-3">
-                        <label>Seçilem <b class="text-danger" id="selectedItemCount"></b> Adet Kalem İçin <i class="multipleActionType text-danger"></i> İşlemine Devam Edilsin Mi ?</label>
+                        <label>Seçilen <b class="text-danger selectedItemCount"></b> Adet Kalem İçin <i class="multipleActionType text-danger"></i> İşlemine Devam Edilsin Mi ?</label>
                     </div>
                 </div>
             </div>
@@ -616,7 +616,76 @@
                     Devam
                 </button>
             </div>
-        </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="moveOrderProductModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Seçilenleri Taşı</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <label id="MoveResponse" class="text-info"></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label>Seçilen <b class="text-danger selectedItemCount"></b> Adet Kalem Taşınıyor</label>
+                        <div class="mb-3">
+                            <label for="select-OrderToMoveId" class="col-12 form-control-label">Taşınacak Sipariş</label>
+                            <div class="col-12">
+                                <select class="form-control selectpickerInModal" id="select-OrderToMoveId" data-live-search="true" data-container="body">
+                                    @foreach (Order item in ViewBag.OrdersToMove)
+                                    {
+                                        <option value="@item.Id" data-tokens="@item.Customer.Name @item.Id @item.AddedBy.NameSurname @item.RepresentetiveUser">
+                                            [@item.Id] Müşteri: @item.Customer.Name
+                                            <br>
+                                            Kaydeden: @item.AddedBy.NameSurname
+                                            <br>
+                                            Temsilci: @item.RepresentetiveUser.NameSurname
+                                        </option>
+
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="select-MoveType" class="col-12 form-control-label">Taşıma Tipi</label>
+                            <div class="col-12">
+                                <select class="form-control selectpickerInModal" id="select-MoveType" data-live-search="true" data-container="body">
+
+                                    <option value="copy" data-tokens="Kopyala">
+                                        [Kopyala] Referansın bir kopyasını seçilene ekler (ReferansNo-n+1)
+                                    </option>
+                                    <option value="cut" data-tokens="Kes">
+                                        [Kes] Referansı bu kayıttan ayırarak seçilen kayde aktarır (ReferansNo)
+                                    </option>
+
+
+                                </select>
+
+                                @*<div id="customerHelp" class="form-text">Teklif Verilecek Müşteriyi Seçin</div>*@
+                            </div>
+                        </div>
+
+                        <a class="btn btn-warning" href="javascript:SubmitMoveSelected()">Taşı</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    İptal
+                </button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="DoMultipleAction()">
+                    Devam
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -628,8 +697,31 @@
         function UpdateMultipleActionModal(type) {
             lastSelectedType = type;
             $(".multipleActionType").html(lastSelectedType);
-            $("#selectedItemCount").html(checkedProducts.length);
+            $(".selectedItemCount").html(checkedProducts.length);
             $("#multipleActionModal").modal("show");
+        }
+        function MoveSelected(type) {
+            $(".selectedItemCount").html(checkedProducts.length);
+            $("#moveOrderProductModal").modal("show");
+        }
+        function SubmitMoveSelected(type) {
+            $.ajax({
+                "url": "/TeklifTakip/MoveSelectedOrderProducts",
+                "method": "POST",
+                data: {
+                    ids: checkedProducts,
+                    type: $("#select-MoveType").val(),
+                    destinationCustomerId: $("#select-OrderToMoveId").val()  
+                },
+                success: function(data) {
+                    $("#MoveResponse").fadeIn(0).fadeOut(5000).html("İşlem Tamamlandı");
+                    getOrdersProducts();
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#MoveResponse").fadeIn(0).fadeOut(5000).html("Bir Hata Oluştu !");
+                }
+            });
         }
 
         function DoMultipleAction(type) {
@@ -789,7 +881,19 @@
             });
         });
 
+
+
+
         getNewOrdersCurrencies();
         getOrdersProducts();
+
+
+
+        $(".selectpickerInModal").select2({
+            tags: true,
+            dropdownParent: $("#moveOrderProductModal"),
+            language: "tr"
+        });
+
     </script>
 }
