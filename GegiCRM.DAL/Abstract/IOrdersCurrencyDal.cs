@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.DAL.Abstract
 {
-    public interface IOrdersCurrencyDal : IGenericDal<OrdersCurrency>
+    public interface IOrdersProductCurrencyDal : IGenericDal<OrdersProductCurrency>
     {
-        public List<OrdersCurrency> GetListOrdersCurrencies(int orderId);
+        public List<OrdersProductCurrency> GetListOrdersCurrencies(int orderId);
     }
 }

@@ -21,11 +21,12 @@ namespace GegiCRM.WebUI.Controllers
         //readonly GenericManager<AppUser> _userman;
         readonly TeklifTakipManager _teklifTakipManager;
         readonly GenericManager<Customer> _customerManager;
-        readonly OrdersCurrencyManager _orderCurrencyManager;
+        readonly OrdersProductCurrencyManager _orderCurrencyManager;
         readonly GenericManager<OrderState> _orderStateManager;
         readonly OrdersProductManager _orderProductsManager;
         readonly GenericManager<ProductGroup> _productGroupGenericManager;
         readonly ProductManager _productManager;
+        readonly Context _context = new Context();
 
         public readonly SignInManager<AppUser> _signInManager;
 
@@ -39,7 +40,7 @@ namespace GegiCRM.WebUI.Controllers
             _signInManager = signInManager;
             _teklifTakipManager = new TeklifTakipManager(new EfOrderRepository()); ;
             _customerManager = new GenericManager<Customer>(new EfCustomerRepository());
-            _orderCurrencyManager = new OrdersCurrencyManager(new EfOrdersCurrencyRepository());
+            _orderCurrencyManager = new OrdersProductCurrencyManager(new EfOrdersCurrencyRepository());
             _currencyManager = new GenericManager<Currency>(new EfCurrencieRepository());
             _orderStateManager = new GenericManager<OrderState>(new GenericRepository<OrderState>());
             _orderProductsManager = new OrdersProductManager(new EfOrdersProductRepository(), _signInManager);
@@ -70,7 +71,7 @@ namespace GegiCRM.WebUI.Controllers
         public IActionResult ST()
         {
             List<Order> model = _teklifTakipManager.GetListAllWithNavigationsByFilter(x => x.IsFrequentlyUsed);
-            return View("index",model);
+            return View("index", model);
         }
 
         public async Task<IActionResult> _NewOrderContentPartial()
@@ -80,7 +81,6 @@ namespace GegiCRM.WebUI.Controllers
             return View(await _appUserManager.GetCurrentUserAsync());
         }
 
-        [HttpPost]
         public IActionResult CreateNewOrder(string customer_Id, string rUser_Id)
         {
             var createdOrder = _teklifTakipManager.Create(customer_Id, rUser_Id);
@@ -88,18 +88,25 @@ namespace GegiCRM.WebUI.Controllers
             return RedirectToAction("Edit", new { createdOrder.Id });
         }
 
-        public async Task<string> GetSegmentPrice(decimal birimFiyat, string CurrencyId, string Adet)
+        public async Task<string> GetSegmentPrice(int customerId, decimal fiyat, string currencyId, int adet)
         {
-            var manager = new GenericManager<SegmentOran>(new EfSegmentOranRepository());
-            var orans = manager.GetAll(false);
-            var currentOran = orans.FirstOrDefault(x => x.StartPrice >= birimFiyat && x.EndPrice <= birimFiyat);
+            Context c = new Context();
+
+
+            var toplam_fiyat = fiyat * adet;
+
+            ICollection<SegmentOran> customersSegmentOrans = c.Customers.FirstOrDefault(x => x.Id == customerId).Segment.SegmentOrans;
+            var currentOran = customersSegmentOrans.Where(x => x.StartPrice <= toplam_fiyat && x.EndPrice >= toplam_fiyat).FirstOrDefault();
+
             if (currentOran != null)
             {
-
+                var fkomisyon = ((fiyat / 100) * currentOran.Oran);
+                var FiyatGetir = fiyat + fkomisyon;
+                return String.Format("{0:N}", FiyatGetir);
             }
             else
             {
-                return "";
+                return "Parametre Eksik";
             }
             return "OK";
         }
@@ -166,34 +173,34 @@ namespace GegiCRM.WebUI.Controllers
             return View(ordersProducts);
         }
 
-        public IActionResult _GetOrdersCurrenciesPartial(int id)
+        public IActionResult _GetOrdersProductCurrenciesPartial(int id)
         {
-            var ordersCurrencies = _orderCurrencyManager.GetOrdersCurrencies(id);
+            var ordersCurrencies = _orderCurrencyManager.GetOrdersProductCurrencies(id);
             return View(ordersCurrencies);
         }
 
-        public IActionResult _GetOrdersCurrenciesWithEditing(int id)
+        public IActionResult _GetOrdersProductCurrenciesWithEditing(int id)
         {
             var data = _currencyManager.GetAll(false);
             ViewBag.Currencies = data;
             return View(id);
         }
         [HttpPost]
-        public string AddCurrencyToOrder(string orderId, string currencyId, string currencyValue)
+        public string AddCurrencyToOrder(string orderProductId, string currencyId, string currencyValue)
         {
             var curId = Convert.ToInt32(currencyId);
-            var orId = Convert.ToInt32(orderId);
+            var orPId = Convert.ToInt32(orderProductId);
             var val = Convert.ToDecimal(currencyValue);
-            var orderC = _orderCurrencyManager.ListByFilter(x => x.CurrencyId == curId && x.OrderId == orId, false).FirstOrDefault();
+            var orderC = _orderCurrencyManager.ListByFilter(x => x.CurrencyId == curId && x.OrdersProductId == orPId, false).FirstOrDefault();
             try
             {
                 if (orderC == null)
                 {
 
                     decimal value = Convert.ToDecimal(currencyValue);
-                    OrdersCurrency currencyToAdd = new OrdersCurrency()
+                    OrdersProductCurrency currencyToAdd = new OrdersProductCurrency()
                     {
-                        OrderId = orId,
+                        OrdersProductId = orPId,
                         CurrencyId = curId,
                         Value = val,
                     };
@@ -217,7 +224,7 @@ namespace GegiCRM.WebUI.Controllers
         }
 
         [HttpPost]
-        public string DeleteOrdersCurrency(int id)
+        public string DeleteOrdersProductsCurrency(int id)
         {
 
             var orderC = _orderCurrencyManager.ListByFilter(x => x.Id == id, false).FirstOrDefault();
@@ -277,9 +284,8 @@ namespace GegiCRM.WebUI.Controllers
             vm.ProductGroups = _productGroupGenericManager.GetAll(false);
             vm.Products = _productManager.GetProductsWithNavigations(false);
             vm.Currencies = currencyGenericManager.GetAll(false);
-            vm.OrdersCurrencies = _orderCurrencyManager.GetOrdersCurrencies(id);
             vm.CurrentOrderId = id;
-            var order = _teklifTakipManager.GetById(id, false);           
+            var order = _teklifTakipManager.GetById(id, false);
             string type = "Sipariş";
             //offer onaylanmadıysa ve nullsa bu bir tekliftir
             if (order.IsOfferApproved == false)
@@ -326,7 +332,6 @@ namespace GegiCRM.WebUI.Controllers
                 else
                 {
                     errStringBuilder.AppendLine("Hata: Girilen Değerleri Kontrol Edin !  <br />");
-
                 }
             }
 
@@ -435,10 +440,10 @@ namespace GegiCRM.WebUI.Controllers
                                 copyCode = $"{op.ReferanceCode.Split('-')[0]}-1";
                             }
                             //newOp = _mapper.Map(op, newOp);
-                            newOp.ProductId = op.ProductId; 
+                            newOp.ProductId = op.ProductId;
                             newOp.OrderId = destinationCustomerId;
                             newOp.KesinSevkDurumu = op.KesinSevkDurumu;
-                            newOp.Adet = op.Adet;                            
+                            newOp.Adet = op.Adet;
                             newOp.AbonelikBaslangic = op.AbonelikBaslangic;
                             newOp.AbonelikBitis = op.AbonelikBitis;
                             newOp.ApprovedDate = op.ApprovedDate;
@@ -475,23 +480,34 @@ namespace GegiCRM.WebUI.Controllers
             return "OK";
         }
 
-        public async Task<IActionResult> Test()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">order id!</param>
+        /// <returns></returns>
+        public IActionResult Copy(int id, bool toplam)
         {
-            _teklifTakipManager.Create(new Order
+            ViewBag.Toplam = toplam;
+            Order? order = _context.Orders.Find(id);
+            if (order!= null)
             {
-                CustomerId = 1,
+                return View(order);
+            }
 
-            });
+            return NotFound();
 
-
-            string data = "";
-            return Content(data);
         }
 
-        public async Task<string> CalculateSegmentPrice()
+        public async Task<List<Order>> Test()
         {
+            var data = _teklifTakipManager.GetListWithIncludes(x => x.AddedBy).ToList();
+            return data;
+        }
 
-            return "";
+        public async Task<decimal> CalculateSegmentPrice()
+        {
+            decimal price = 0;
+            return price;
         }
     }
 }

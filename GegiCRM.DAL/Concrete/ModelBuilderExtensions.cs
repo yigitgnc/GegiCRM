@@ -98,12 +98,29 @@ namespace GegiCRM.DAL.Concrete
                 Description = "Test Sektör Açıklaması",
             };
 
-            CustomerType customerType = new CustomerType()
+            List<CustomerType> customerTypes = new List<CustomerType>()
             {
+                new CustomerType
+                {
                 Id = 1,
                 AddedById = 1,
-                Name = "Test Müşteri Tipi",
-                Description = "Bu Müşteri Tipi Tesat Amaçlı Eklenmiştir",
+                Name = "Standart",
+                Description = "Standart Müşteri Tipi",
+                },
+                new CustomerType
+                {
+                Id = 2,
+                AddedById = 1,
+                Name = "Potansiyel Bayi",
+                Description = "Potansiyel Bayi Müşteri Tipi",
+                },
+                new CustomerType
+                {
+                Id = 3,
+                AddedById = 1,
+                Name = "Potansiyel Son Kullanıcı",
+                Description = "Potansiyel Son Kullanıcı Müşteri Tipi",
+                },
             };
 
             List<Currency> currencies = new List<Currency>()
@@ -668,7 +685,7 @@ new SegmentOran{ AddedById = 1, SegmentId = 10, StartPrice = 1000000.00m, EndPri
                 IsActive = true,
                 SectorId = 1,
                 SegmentId = 1,
-                CustomerMainCompanyId = 1,
+                CustomerMainCompanyId = 1,                
             };
 
 
@@ -753,41 +770,26 @@ new SegmentOran{ AddedById = 1, SegmentId = 10, StartPrice = 1000000.00m, EndPri
                 new Supplier
                 {
                     Id=1,
-                    SupplierName = "Test Tedarikçisi",
+                    SupplierName = "Penta",
                     DealerCode = "123",
                     AddedById = 1,
-                    
-                    //Brands = new List<Brand>()
-                    //{
-                    //    new Brand
-                    //    {
-                    //        Suppliers
-                    //        Id=1,
-                    //        Name="Lenovo",
-                    //        Description="Dünyaın En Büyük Üreticisi",
-                    //        AddedBy=1,
-                    //    }
-                    //},
-                    //MarketPlaces = new List<MarketPlace>()
-                    //{
-                    //    new MarketPlace
-                    //    {
-                    //        Id= 1,
-                    //        MarketPlaceName ="Trendyol",
-                    //        MarketPlaceDescription = "Pazar Yeri Açıklaması",
-                    //        AddedById = 1,
-                    //    }
-                    //},
-                    //Products = new List<Product>()
-                    //{
-                    //    new Product
-                    //    {
-                    //        Id=1,
-                    //        ProductName ="Test Ürünü",
-                    //        AddedById = 1,
-                    //    }
-                    //}
+                },
+                new Supplier
+                {
+                    Id=2,
+                    SupplierName = "APC",
+                    DealerCode = "1234",
+                    AddedById = 1,
+                },
+                new Supplier
+                {
+                    Id=3,
+                    SupplierName = "12M",
+                    DealerCode = "1235",
+                    AddedById = 1,
                 }
+                
+                
             };
 
             List<Order> orders = new List<Order>()
@@ -805,7 +807,7 @@ new SegmentOran{ AddedById = 1, SegmentId = 10, StartPrice = 1000000.00m, EndPri
             modelBuilder.Entity<AppIdentityRoleGroup>().HasData(sysAuthorizationRoleGroup);
             modelBuilder.Entity<AppRolesOfUsers>().HasData(roleRelation);
             modelBuilder.Entity<Sector>().HasData(sector);
-            modelBuilder.Entity<CustomerType>().HasData(customerType);
+            modelBuilder.Entity<CustomerType>().HasData(customerTypes);
             modelBuilder.Entity<Segment>().HasData(segments);
             modelBuilder.Entity<SegmentOran>().HasData(segmentOrans);
             modelBuilder.Entity<Currency>().HasData(currencies);

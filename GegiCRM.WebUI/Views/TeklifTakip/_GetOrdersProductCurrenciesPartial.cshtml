@@ -2,12 +2,12 @@
 @{
     Layout = null;
 }
-@model List<OrdersCurrency>
+@model List<OrdersProductCurrency>
 
 <div class="mt-3">
     @if (!Model.Any())
     {
-        <span>Siparişe Ait Kur Bilgisi Mevcut Değil</span>
+        <span>Kaleme Ait Kur Bilgisi Mevcut Değil</span>
     }
     <ul class="list-group">
         @foreach (var item in Model)

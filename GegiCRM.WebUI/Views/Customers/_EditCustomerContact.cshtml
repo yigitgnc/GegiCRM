@@ -1,0 +1,80 @@
+﻿@using GegiCRM.Entities.Concrete
+@{
+    Layout = null;
+}
+@model CustomerContact
+
+
+<div class="modal-header">
+    <h5 class="modal-title">Müşteri Yetkilisi Düzenle (@Model.ContactName @Model.ContactSurname)</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+
+    <form id="editContactForm" action="/Customers/_EditCustomerContact" method="post" class="col-12">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="hidden" name="CustomerId" value="@Model.CustomerId" />
+        <input type="hidden" name="AddedById" value="@Model.AddedById" />
+        <input type="hidden" name="ModifiedById" value="@Model.ModifiedById" />
+
+
+        <div class="mb-3 col-12">
+            <label class="form-label">Yetili Adı</label>
+            <input type="text" class="form-control" asp-for="ContactName">
+        </div>
+
+        <div class="mb-3 col-12">
+            <label class="form-label">Yetili Soyadı</label>
+            <input type="text" class="form-control" asp-for="ContactSurname">
+        </div>
+
+        <div class="mb-3 col-12">
+            <label class="form-label">Yetili Ünvanı</label>
+            <input type="text" class="form-control" asp-for="ContactTitle">
+        </div>
+
+        <div class="mb-3 col-12">
+            <label class="form-label">Yetili Email</label>
+            <input type="text" class="form-control" asp-for="Tel">
+        </div>
+
+        <div class="mb-3 col-12">
+            <label class="form-label">Yetili GSM</label>
+            <input type="text" class="form-control" asp-for="Gsm">
+        </div>
+
+        <div class="mb-3 col-12">
+            <label class="form-label">Yetili Tel (-Dahili)</label>
+            <input type="email" class="form-control" asp-for="Email">
+        </div>
+
+        <div class="col-12 d-flex justify-content-center">
+            <input type="submit" class="btn btn-outline-primary" value="Düzenlemeyi Kaydet">
+        </div>
+    </form>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+        Kapat
+    </button>
+</div>
+<script>
+    $("#editContactForm").submit(function(e) {
+
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+
+        var form = $(this);
+        var actionUrl = form.attr('action');
+
+        $.ajax({
+            type: "POST",
+            url: actionUrl,
+            data: form.serialize(), // serializes the form's elements.
+            success: function(data) {
+                alert(data); // show response from the php script.
+            }
+        });
+
+    });
+</script>

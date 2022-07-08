@@ -9,7 +9,6 @@ namespace GegiCRM.Entities.Concrete
     {
         public Order()
         {
-            OrdersCurrencies = new HashSet<OrdersCurrency>();
             OrdersProducts = new HashSet<OrdersProduct>();
         }
 
@@ -36,7 +35,6 @@ namespace GegiCRM.Entities.Concrete
         public virtual AppUser RepresentetiveUser { get; set; } = null!;
         public virtual Customer Customer { get; set; } = null!;
         public virtual OrderState OrderState { get; set; } = null!;
-        public virtual ICollection<OrdersCurrency> OrdersCurrencies { get; set; }
         public virtual ICollection<OrdersProduct> OrdersProducts { get; set; }
 
 

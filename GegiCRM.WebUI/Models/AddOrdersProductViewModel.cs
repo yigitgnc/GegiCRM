@@ -12,7 +12,6 @@ namespace GegiCRM.WebUI.Models
         public IEnumerable<Brand> Brands { get; set; }
         public IEnumerable<Supplier> Suppliers { get; set; }
         public IEnumerable<Currency> Currencies { get; set; }
-        public IEnumerable<OrdersCurrency> OrdersCurrencies { get; set; }
         public OrdersProduct OrderProduct { get; set; }
 
     }

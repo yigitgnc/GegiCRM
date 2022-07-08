@@ -236,29 +236,29 @@
             e.stopPropagation();
         });
 
-        $(function() {
-            var contextMenuItems = {
-                "newTab": { name: "Yeni Sekmede Aç", icon: "external-link" },
-                "cut": { name: "Tüm Kalemler ile Onayla", icon: "ok" },
-                "copy": { name: "Onaylı Kalemler İle Onayla", icon: "ok" },
-                "paste": { name: "İptal", icon: "cancel" },
-                "delete": { name: "Sil", icon: "delete" },
-                "sep1": "---------",
-                "quit": { name: "Kapat", icon: function($element, key, item) { return 'context-menu-icon context-menu-icon-quit'; } }
-            };
+        //$(function() {
+        //    var contextMenuItems = {
+        //        "newTab": { name: "Yeni Sekmede Aç", icon: "external-link" },
+        //        "cut": { name: "Tüm Kalemler ile Onayla", icon: "ok" },
+        //        "copy": { name: "Onaylı Kalemler İle Onayla", icon: "ok" },
+        //        "paste": { name: "İptal", icon: "cancel" },
+        //        "delete": { name: "Sil", icon: "delete" },
+        //        "sep1": "---------",
+        //        "quit": { name: "Kapat", icon: function($element, key, item) { return 'context-menu-icon context-menu-icon-quit'; } }
+        //    };
             
 
-            console.log(contextMenuItems);
+        //    console.log(contextMenuItems);
 
-            $('.dataTable tbody').contextMenu({
-                selector: 'tr',
-                callback: function(key, options) {
-                    var m = "clicked: " + key + " on " + $(this);
-                    window.console && console.log(m);
-                },
-                items: contextMenuItems
-            });
-        });
+        //    $('.dataTable tbody').contextMenu({
+        //        selector: 'tr',
+        //        callback: function(key, options) {
+        //            var m = "clicked: " + key + " on " + $(this);
+        //            window.console && console.log(m);
+        //        },
+        //        items: contextMenuItems
+        //    });
+        //});
 
 
 

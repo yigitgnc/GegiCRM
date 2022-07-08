@@ -1,125 +1,579 @@
-﻿@model GegiCRM.Entities.Concrete.Customer
+﻿@using GegiCRM.Entities.Concrete
+@model GegiCRM.Entities.Concrete.Customer
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = $"'{Model.TicariUnvan}' Müşteri Düzenle";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h1>Edit</h1>
-
-<h4>Customer</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="TicariUnvan" class="control-label"></label>
-                <input asp-for="TicariUnvan" class="form-control" />
-                <span asp-validation-for="TicariUnvan" class="text-danger"></span>
+    <div class="badge "></div>
+</div>
+<nav class="navbar navbar-expand-sm navbar-light">
+    <div class="container-fluid m-0 p-0">
+        <i class="navbar-brand d-block d-sm-none"></i>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarControl" aria-controls="navbarControl" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarControl">
+            <ul class="navbar-nav w-100 d-flex justify-content-sm-end">
+                <li class="nav-item m-1">
+                    <a class="w-100 btn btn-primary" href="/TeklifTakip/CreateNewOrder?customer_Id=@Model.Id&rUser_Id=@Model.AddedById">
+                        Yeni Teklif Oluştur
+                    </a>
+                </li>
+                <li class="nav-item m-1">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#activityLogModal">
+                        Görüşme Notları
+                    </button>
+                </li>
+                <li class="nav-item m-1">
+                    <a class="w-100 btn btn-danger" href="/Customers/Delete/@Model.Id">
+                        <i class="bx bx-trash"></i>
+                        Sil
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="row">
+    <div class="col-xl">
+        <div class="card mb-4">
+            <form asp-action="Edit">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">@Model.TicariUnvan</h5>
+                    <small class="text-muted float-end">Müşteri Detayı</small>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="card-body  row">
+                    @*sol*@
+                    <div class="col-12 col-md-6">
+                        <input type="hidden" asp-for="CreatedDate" />
+                        <input type="hidden" asp-for="ModifiedDate" />
+                        <input type="hidden" asp-for="IsActive" />
+                        <input type="hidden" asp-for="IsDeleted" />
+                        <input type="hidden" asp-for="AddedById" />
+                        <div class="mb-3">
+                            <label class="form-label">Id</label>
+                            <input type="text" class="form-control" asp-for="Id" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Kayıt Tarihi : @Model.CreatedDate</label>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Kaydeden</label>
+                            <input type="text" class="form-control" asp-for="AddedBy.NameSurname" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Son Düzenlenme Tarihi: @Model.CreatedDate</label>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Son Düzenleyen</label>
+                            <input type="text" class="form-control" asp-for="ModifiedBy.Name" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="TypeId" class="control-label">Tür </label>
+                            <select asp-for="TypeId" class="form-control selectpicker" asp-items="ViewBag.TypeId"></select>
+                            <span asp-validation-for="TypeId" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Ticari Ünvan</label>
+                            <input type="text" class="form-control" asp-for="TicariUnvan">
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PreferredCurrencyId" class="control-label">Tercih Edilen Kur (Çalışma Şekli) </label>
+                            <select asp-for="PreferredCurrencyId" class="form-control selectpicker" asp-items="ViewBag.PreferredCurrencyId"></select>
+                            <select class="form-control selectpicker" name="TercihEdilenKur" id="TercihEdilenKur" data-live-search="true" data-container="body">
+
+                                @if (Model.TercihEdilenKur == 'S')
+                                {
+
+                                    <option value="S" data-tokens="Satış Kuru" selected="selected">
+                                        Satış Kuru
+
+                                    </option>
+                                }
+                                else
+                                {
+                                    <option value="S" data-tokens="Satış Kuru">Satış Kuru</option>
+                                }
+
+                                @if (Model.TercihEdilenKur == 'A')
+                                {
+
+                                    <option value="A" data-tokens="Alış Kuru" selected="selected">
+                                        ALIŞ Kuru
+                                    </option>
+                                }
+                                else
+                                {
+
+                                    <option value="A" data-tokens="Alış Kuru">ALIŞ Kuru</option>
+                                }
+
+                                @if (Model.TercihEdilenKur == 'P')
+                                {
+
+                                    <option value="P" data-tokens="Serbest Piyasa Kuru" selected="selected">
+                                        Serbest Piyasa Kuru
+                                    </option>
+                                }
+                                else
+                                {
+                                    <option value="P" data-tokens="Serbest Piyasa Kuru">Serbest Piyasa Kuru</option>
+                                }
+
+                            </select>
+                            <span asp-validation-for="PreferredCurrencyId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Müşteri Notu</label>
+                            <textarea asp-for="Notes" class="form-control" style="min-height: 160px;"></textarea>
+                        </div>
+
+                    </div>
+
+                    @*sağ*@
+                    <div class="col-12 col-md-6">
+
+                        <div class="form-group mb-3">
+                            <label asp-for="CustomerMainCompanyId" class="control-label">
+                                Çatı Firma
+                                (<a class="text-muted alert-info" href="/CustomerMainCompanies/Edit/@Model.CustomerMainCompanyId">@Model.CustomerMainCompany.Name</a>)
+                            </label>
+                            <select asp-for="CustomerMainCompanyId" class="form-control selectpicker" asp-items="ViewBag.CustomerMainCompanyId"></select>
+                            <span asp-validation-for="CustomerMainCompanyId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="SectorId" class="control-label">
+                                Sektör
+                                (<a class="text-muted alert-info" href="/Sectors/Edit/@Model.SectorId">@Model.Sector.Name</a>)
+                            </label>
+                            <select asp-for="SectorId" class="form-control selectpicker" asp-items="ViewBag.SectorId"></select>
+                            <span asp-validation-for="SectorId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="SegmentId" class="control-label">
+                                Segment
+                                (<a class="text-muted alert-info" href="/Segments/Edit/@Model.SectorId">@Model.Segment.Name</a>)
+                            </label>
+                            <select asp-for="SegmentId" class="form-control selectpicker" asp-items="ViewBag.SegmentId"></select>
+                            <span asp-validation-for="SegmentId" class="text-danger"></span>
+                        </div>
+                        @*rep*@
+                        <div class="mb-3">
+
+                            <div class="card mb-4">
+                                <h5 class="card-header d-flex justify-content-between text-center align-middle">
+                                    Temsilciler
+                                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseAddNewRepUser" role="button" aria-expanded="true" aria-controls="collapseAddNewRepUser">
+                                        Yeni Temsilci Ekle
+                                    </a>
+                                </h5>
+                                <div class="card-body ">
+
+                                    <div class="collapse mb-1" id="collapseAddNewRepUser" style="">
+                                        <div class="d-flex row justify-content-center p-3">
+                                            <span id="addNewRepUserResponse" class="alert alert-warning" style="display:none"></span>
+                                            <div class="mb-3 col-12">
+                                                <label class="form-label">Temsilci Ünvanı</label>
+                                                <input type="text" class="form-control" id="temsilciTitle" placeholder="Donanım, Yazılım, Teknik, vb...">
+                                            </div>
+                                            <div class="mb-3 col-12">
+                                                <label class="form-label">Temsilci</label>
+                                                <select class="form-control selectpicker" id="select-TemsilciId" data-live-search="true" data-container="body">
+                                                    @foreach (AppUser item in ViewBag.Users)
+                                                    {
+                                                        <option value="@item.Id" data-tokens="@item.NameSurname">@item.NameSurname</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="col-12 d-flex justify-content-center">
+                                                <a href="javascript:AddNewRepUser()" class="btn btn-outline-primary">Ekle / Düzenle</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div id="repUsersContent" class="list-group border" style="max-height:200px; overflow: auto;">
+
+                                        <marquee direction="right" scrollamount="13.4">
+                                            <div id="waitRepUsers" class="spinner-border spinner-border-sm text-secondary" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </marquee>
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        @*contact*@
+                        <div class="mb-3">
+
+                            <div class="card mb-4">
+                                <h5 class="card-header d-flex justify-content-between text-center align-middle">
+                                    Müşteri Yetkilileri
+                                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseAddNewContact" role="button" aria-expanded="true" aria-controls="collapseAddNewContact">
+                                        Yeni Yetkili Ekle
+                                    </a>
+                                </h5>
+                                <div class="card-body ">
+
+                                    <div class="collapse mb-1" id="collapseAddNewContact" style="">
+                                        <div class="d-flex row justify-content-center p-3">
+                                            <span id="addNewContactResponse" class="alert alert-warning" style="display:none;"></span>
+
+                                            <div class="mb-3 col-12">
+                                                <label class="form-label">Yetili Adı</label>
+                                                <input type="text" class="form-control" id="cName" placeholder="Yiğit">
+                                            </div>
+
+                                            <div class="mb-3 col-12">
+                                                <label class="form-label">Yetili Soyadı</label>
+                                                <input type="text" class="form-control" id="cSurname" placeholder="Gemç">
+                                            </div>
+
+                                            <div class="mb-3 col-12">
+                                                <label class="form-label">Yetili Ünvanı</label>
+                                                <input type="text" class="form-control" id="cTitle" placeholder="Muhasebe Yetkilisi, IT Yetilisi, Satın Alma Sorumlusu, vb...">
+                                            </div>
+
+                                            <div class="mb-3 col-12">
+                                                <label class="form-label">Yetili Email</label>
+                                                <input type="email" class="form-control" id="cEmail" placeholder="yigit.genc@Gegi.com.tr">
+                                            </div>
+
+                                            <div class="mb-3 col-12">
+                                                <label class="form-label">Yetili GSM</label>
+                                                <input type="text" class="form-control" id="cGsm" placeholder="+90 0538 263 000 08">
+                                            </div>
+
+                                            <div class="mb-3 col-12">
+                                                <label class="form-label">Yetili Tel (-Dahili)</label>
+                                                <input type="text" class="form-control" id="cTel" placeholder="(0216) 666 66 66 - 7">
+                                            </div>
+
+                                            <div class="col-12 d-flex justify-content-center">
+                                                <a href="javascript:AddNewCustomerContact()" class="btn btn-outline-primary">Ekle</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div id="customerContactsContent" class="list-group border" style="max-height:400px; overflow: auto;">
+
+                                        <marquee direction="right" scrollamount="13.4">
+                                            <div id="waitCustomerContactst" class="spinner-border spinner-border-sm text-secondary" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </marquee>
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="mb-3">
+                        <div>
+                            <input type="submit" value="Kaydet" class="btn btn-success" />
+                            <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div class="col-12">
+        <h6 class="text-muted">Adres Bilgileri</h6>
+        <div class="nav-align-top mb-4">
+            <ul class="nav nav-tabs nav-fill" role="tablist">
+                <li class="nav-item">
+                    <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-addresses" aria-controls="navs-addresses" aria-selected="true">
+                        <i class="tf-icons bx bx-home"></i> Teslimat Adresleri
+                        <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-info">@Model.CustomerAddresses.Count()</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-billingAddresses" aria-controls="navs-billingAddresses" aria-selected="false">
+                        <i class="tf-icons bx bx-user"></i> Fatura Adresleri
+                        <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-label-info">@Model.CustomerBillingAddresses.Count()</span>
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade active show" id="navs-addresses" role="tabpanel">
+                    <p>
+                        Teslimat Adresleri
+                    </p>
+                    <p class="mb-0">
+                        Tootsie roll fruitcake cookie. Dessert topping pie. Jujubes wafer carrot cake jelly. Bonbon
+                        jelly-o jelly-o ice cream jelly beans candy canes cake bonbon. Cookie jelly beans marshmallow
+                        jujubes sweet.
+                    </p>
+                </div>
+                <div class="tab-pane fade" id="navs-billingAddresses" role="tabpanel">
+                    <p>
+                        Fatura Adresleri
+                    </p>
+                    <p class="mb-0">
+                        Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah
+                        cotton candy liquorice caramels.
+                    </p>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Surname" class="control-label"></label>
-                <input asp-for="Surname" class="form-control" />
-                <span asp-validation-for="Surname" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SectorId" class="control-label"></label>
-                <select asp-for="SectorId" class="form-control" asp-items="ViewBag.SectorId"></select>
-                <span asp-validation-for="SectorId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CariKodu" class="control-label"></label>
-                <input asp-for="CariKodu" class="form-control" />
-                <span asp-validation-for="CariKodu" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SegmentId" class="control-label"></label>
-                <select asp-for="SegmentId" class="form-control" asp-items="ViewBag.SegmentId"></select>
-                <span asp-validation-for="SegmentId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IsActive" class="control-label"></label>
-                <input asp-for="IsActive" class="form-control" />
-                <span asp-validation-for="IsActive" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TypeId" class="control-label"></label>
-                <select asp-for="TypeId" class="form-control" asp-items="ViewBag.TypeId"></select>
-                <span asp-validation-for="TypeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tel" class="control-label"></label>
-                <input asp-for="Tel" class="form-control" />
-                <span asp-validation-for="Tel" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CurrencyId" class="control-label"></label>
-                <input asp-for="CurrencyId" class="form-control" />
-                <span asp-validation-for="CurrencyId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SideSuppliers" class="control-label"></label>
-                <input asp-for="SideSuppliers" class="form-control" />
-                <span asp-validation-for="SideSuppliers" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Notes" class="control-label"></label>
-                <input asp-for="Notes" class="form-control" />
-                <span asp-validation-for="Notes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PreferredCurrencyId" class="control-label"></label>
-                <select asp-for="PreferredCurrencyId" class="form-control" asp-items="ViewBag.PreferredCurrencyId"></select>
-                <span asp-validation-for="PreferredCurrencyId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerMainCompanyId" class="control-label"></label>
-                <select asp-for="CustomerMainCompanyId" class="form-control" asp-items="ViewBag.CustomerMainCompanyId"></select>
-                <span asp-validation-for="CustomerMainCompanyId" class="text-danger"></span>
-            </div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ModifiedDate" class="control-label"></label>
-                <input asp-for="ModifiedDate" class="form-control" />
-                <span asp-validation-for="ModifiedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AddedById" class="control-label"></label>
-                <select asp-for="AddedById" class="form-control" asp-items="ViewBag.AddedById"></select>
-                <span asp-validation-for="AddedById" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ModifiedById" class="control-label"></label>
-                <select asp-for="ModifiedById" class="form-control" asp-items="ViewBag.ModifiedById"></select>
-                <span asp-validation-for="ModifiedById" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+@*Modals*@
+@*ACTİVİTYLOG MODAL*@
+<div class="modal fade" id="activityLogModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <div class="col-12 d-flex justify-content-center">
+                    <button class=" btn btn-primary" data-bs-toggle="modal" data-bs-target="#newActivityLogModal" onclick="getNewActivityLog()">
+                        Yeni Görüşme Notu
+                    </button>
+                </div>
+
+                <div id="Activities" style="max-height: 300px; overflow: auto">
+                    <div class="demo-inline-spacing mt-3">
+                        <div class="list-group">
+                            @foreach (var item in Model.ActivityLogs.OrderByDescending(x => x.Id))
+                            {
+                                <div class="list-group-item list-group-item-action flex-column align-items-start ">
+                                    <div class="d-flex justify-content-between w-100">
+                                        <small>@item.AddedBy.NameSurname</small>
+                                    </div>
+                                    <p class="mb-1">
+                                        @item.Note
+                                    </p>
+                                    <small>Kaydeden @item.AddedBy.NameSurname</small>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Kapat
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+@*NEW ACTİVİTY LOG MODAL*@
+<div class="modal fade" id="newActivityLogModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newActivityLogModalTitle">Yeni Görüme Notu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 d-flex justify-content-center">
+                    <div id="wait-NewActivityLog" class="spinner-border spinner-border-lg text-primary" role="status" style="display: none;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <div id="newActivityLogContent" class="d-grid d-sm-flex p-3" style="min-height: 400px">
+
+                    <form action="/Customers/_NewActivityLog" method="post" class="col-12">
+                        <input type="hidden" name="CustomerId" value="@Model.Id" />
+
+                        <div class="col-12  mb-1">
+                            <label for="Note" class="form-label">GÖRÜŞME NOTU</label>
+                            <textarea class="form-control" style="height: 160px" id="Note" name="Note" required=""></textarea>
+                        </div>
+
+                        <div class="col-12 d-flex justify-content-center  mb-1">
+                            <input type="submit" class="btn btn-primary col-6" value="Kaydet">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Kapat
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+@*EDİT CONTACT MODAL*@
+<div class="modal fade" id="editContactModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" id="editContactModalContent">
+            <div class="col-12 d-flex justify-content-center">
+                <div id="wait-NewActivityLog" class="spinner-border spinner-border-lg text-primary" role="status" style="display: none;">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
+
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        GetRepUsers();
+        GetCustomerContacts()
+
+
+        function GetRepUsers() {
+            $.ajax({
+                "url": "/Customers/_GetRepresentetiveUsersOfCustomer/@Model.Id",
+                "method": "GET",
+                success: function(data) {
+                    $("#repUsersContent").html(data);
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#repUsersContent").html("Bir Hata Oluştu !");
+                }
+            });
+
+        };
+        function GetCustomerContacts() {
+            $.ajax({
+                "url": "/Customers/_GetCustomerContactsOfCustomer/@Model.Id",
+                "method": "GET",
+                "method": "GET",
+                success: function(data) {
+                    $("#customerContactsContent").html(data);
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#customerContactsContent").html("Bir Hata Oluştu !");
+                }
+            });
+
+        };
+
+        function AddNewRepUser() {
+            $.ajax({
+                "url": "/Customers/_AddCustomerRepresentetiveUser",
+                "method": "POST",
+                data: {
+                    customerId: $("#Id").val(),
+                    title: $("#temsilciTitle").val(),
+                    userId: $("#select-TemsilciId").val(),
+                },
+                success: function(data) {
+                    $("#addNewRepUserResponse").fadeIn(0).fadeOut(1500).html("İşlem Tamamlandı");
+                    GetRepUsers();
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#addNewRepUserResponse").fadeIn(0).fadeOut(1500).html("Bir Hata Oluştu !");
+                }
+            });
+        };
+        function AddNewCustomerContact() {
+            $.ajax({
+                "url": "/Customers/_AddCustomerContact",
+                "method": "POST",
+                data: {
+                    CustomerId: $("#Id").val(),
+                    ContactName: $("#cName").val(),
+                    ContactSurname: $("#cSurname").val(),
+                    ContactTitle: $("#cTitle").val(),
+                    Gsm: $("#cGsm").val(),
+                    Tel: $("#cTel").val(),
+                    Email: $("#cEmail").val()
+                },
+                success: function(data) {
+                    $("#addNewContactResponse").fadeIn(0).fadeOut(1500).html("İşlem Tamamlandı");
+                    GetCustomerContacts();
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#addNewContactResponse").fadeIn(0).fadeOut(1500).html("Bir Hata Oluştu !");
+                }
+            });
+        };
+
+        function DeleteRepUser(id) {
+            $.ajax({
+                "url": "/Customers/_DeleteRepUser",
+                "method": "POST",
+                data: {
+                    id: id
+                },
+                success: function(data) {
+                    $("#addNewRepUserResponse").fadeIn(0).fadeOut(1500).html("İşlem Tamamlandı");
+                    GetRepUsers();
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#addNewRepUserResponse").fadeIn(0).fadeOut(1500).html("Bir Hata Oluştu !");
+                }
+            });
+        };
+
+        function DeleteContact(id) {
+            $.ajax({
+                "url": "/Customers/_DeleteContact",
+                "method": "POST",
+                data: {
+                    id: id
+                },
+                success: function(data) {
+                    $("#addNewContactResponse").fadeIn(0).fadeOut(1500).html("İşlem Tamamlandı");
+                    GetCustomerContacts();
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#addNewContactResponse").fadeIn(0).fadeOut(1500).html("Bir Hata Oluştu !");
+                }
+            });
+        };
+
+        function EditContact(id) {
+            $('#editContactModal').modal('show');
+
+            $.ajax({
+                "url": "/Customers/_EditCustomerContact/" + id,
+                "method": "GET",
+                success: function(data) {
+                    $("#editContactModalContent").html(data);
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#editContactModalContent").html("Bir Hata Oluştu !");
+                }
+            });
+
+
+        };
+
+
+      
+    </script>
+
+    }

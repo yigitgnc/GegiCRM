@@ -1,0 +1,58 @@
+﻿@using GegiCRM.Entities.Concrete
+@{
+    Layout = null;
+}
+@model Order
+<div class="container mt-2">
+
+    <div id="canvas" class="canvas_div_pdf">
+        <div class="row">
+            <div class="col-sm-6" style="font-weight:bold">RMA ELEKTRONIK - SINAN ETHEM TEBER</div>
+            <div class="col-sm-6" align="right">25.10.2021 15:18:23</div>
+        </div>
+        <br />
+        <div>
+            <table class='table table-bordered table-sm'>
+                <thead style="background:#00B0F0; color:#FFFFFF">
+                    <tr>
+                        <th>REFERANS</th>
+                        <th>ADET</th>
+                        <th>BİRİMİ</th>
+                        <th>ÜRÜN ADI</th>
+                        <th nowrap>BİRİM FİYATI</th>
+                        <th>DÖVİZ</th>
+                        <th>KDV</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model.OrdersProducts)
+                    {
+                        <tr>
+                            <td align="left">@item.ReferanceCode</td>
+                            <td align="center">@item.Adet</td>
+                            <td align="center">@item.Birim.Name</td>
+                            <td align="left">@item.Product.ProductName</td>
+                            <td align="center">@item.BirimFiyat</td>
+                            <td align="center">@item.Currency.Name</td>
+                            <td align="center">+KDV</td>
+                        </tr>
+
+                    }
+                    @if (ViewBag.Toplam)
+                    {
+                        decimal? total = Model.OrdersProducts.Sum(x => x.Fiyat * x.Adet);
+                        decimal? kdv = total * 0.18m;
+                        decimal? artikdv = total + kdv;
+                        <tr>
+                            <td align="right" colspan="6">Toplam Sipariş Tutarınız <strong>(TL)</strong></td>
+                            <td align="right" style="font-weight:bold">@total</td>
+                            <td align="right" style="font-weight:bold">TL</td>
+                            <td align="right" style="font-weight:bold">+KDV (@artikdv)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

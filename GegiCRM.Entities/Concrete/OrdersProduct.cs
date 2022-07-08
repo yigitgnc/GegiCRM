@@ -7,16 +7,24 @@ namespace GegiCRM.Entities.Concrete
 {
     public partial class OrdersProduct : BaseEntity<int>
     {
+        public OrdersProduct()
+        {
+            OrdersProductCurrencies = new HashSet<OrdersProductCurrency>();
+        }
+
         public int OrderId { get; set; }
         public int ProductId { get; set; }
         public string? ReferanceCode { get; set; }
         public int? KesinCurrencyId { get; set; }
+        public int? CurrencyId { get; set; }
         public int? ReferansCurrencyId { get; set; }
         public decimal? KesinCurrencyValue { get; set; }
         public decimal? ReferansCurrencyValue { get; set; }
+        public decimal? CurrencyValue { get; set; }
         public decimal? Adet { get; set; }
         public decimal? KesinFiyat { get; set; }
         public decimal? BirimFiyat { get; set; }
+        public decimal? Fiyat { get; set; }
         public int BirimId { get; set; }
         public string? ReferansBirimFiyat { get; set; }
         public string? Notes { get; set; }
@@ -35,12 +43,15 @@ namespace GegiCRM.Entities.Concrete
         public DateTime? DeniedDate { get; set; }
         public bool IsFrequentlyUsed { get; set; }
         public virtual Birim Birim { get; set; } = null!;
+        public virtual Currency? Currency { get; set; }
         public virtual Currency? KesinCurrency { get; set; }
         public virtual Supplier? KesinSupplier { get; set; }
         public virtual Order Order { get; set; } = null!;
         public virtual Product Product { get; set; } = null!;
         public virtual Currency? ReferansCurrency { get; set; }
         public virtual Supplier ReferansSupplier { get; set; } = null!;
+
+        public virtual ICollection<OrdersProductCurrency> OrdersProductCurrencies { get; set; }
     }
 
     public partial class OrdersProduct

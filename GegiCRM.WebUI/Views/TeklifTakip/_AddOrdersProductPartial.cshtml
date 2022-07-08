@@ -257,14 +257,6 @@
                 {
                     <option value="@item.Id" data-tokens="@item.Code @item.Name @item.CurrentValue" selected="selected">
                         [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
-                        @{
-                            var orderSpecial = Model.OrdersCurrencies.FirstOrDefault(x => x.CurrencyId == item.Id);
-                        }
-                        @if (orderSpecial != null)
-                        {
-                            <br />
-                            <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
-                        }
                     </option>
 
                 }
@@ -272,14 +264,6 @@
                 {
                     <option value="@item.Id" data-tokens="@item.Code @item.Name @item.CurrentValue">
                         [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
-                        @{
-                            var orderSpecial = Model.OrdersCurrencies.FirstOrDefault(x => x.CurrencyId == item.Id);
-                        }
-                        @if (orderSpecial != null)
-                        {
-                            <br />
-                            <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
-                        }
                     </option>
                 }
 
@@ -289,7 +273,7 @@
 </div>
 
 <div class="row mt-3">
-    <div class="mb-3 col-12 col-md-6 col-lg-4">
+    <div class="mb-3 col-12 col-md-4">
         <h5 class="col-12 mb-2">
             Birim Fiyat
         </h5>
@@ -297,7 +281,7 @@
 
     </div>
 
-    <div class="mb-3 col-12 col-md-6 col-lg-4">
+    <div class="mb-3 col-12 col-md-4">
         <h5 class="col-12 mb-2">
             Adet
         </h5>
@@ -314,33 +298,17 @@
         <select name="ReferansCurrencyId2" class="form-control selectpickerInModal" id="select-ReferansCurrencyId2" data-live-search="true" data-container="body">
             @foreach (Currency item in Model.Currencies)
             {
-                if (item.Id == Model.OrderProduct.ReferansCurrencyId)
+                if (item.Id == Model.OrderProduct.KesinCurrencyId)
                 {
                     <option value="@item.Id" data-tokens="@item.Code @item.Name @item.CurrentValue" selected="selected">
                         [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
-                        @{
-                            var orderSpecial = Model.OrdersCurrencies.FirstOrDefault(x => x.CurrencyId == item.Id);
-                        }
-                        @if (orderSpecial != null)
-                        {
-                            <br />
-                            <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
-                        }
                     </option>
 
                 }
                 else
                 {
                     <option value="@item.Id" data-tokens="@item.Code @item.Name @item.CurrentValue">
-                        [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
-                        @{
-                            var orderSpecial = Model.OrdersCurrencies.FirstOrDefault(x => x.CurrencyId == item.Id);
-                        }
-                        @if (orderSpecial != null)
-                        {
-                            <br />
-                            <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
-                        }
+                        [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)                     
                     </option>
                 }
 
@@ -412,14 +380,6 @@
                     {
                         <option value="@item.Id" data-tokens="@item.Code @item.Name @item.CurrentValue" selected="selected">
                             [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
-                            @{
-                                var orderSpecial = Model.OrdersCurrencies.FirstOrDefault(x => x.CurrencyId == item.Id);
-                            }
-                            @if (orderSpecial != null)
-                            {
-                                <br />
-                                <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
-                            }
                         </option>
 
                     }
@@ -427,14 +387,6 @@
                     {
                         <option value="@item.Id" data-tokens="@item.Code @item.Name @item.CurrentValue">
                             [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
-                            @{
-                                var orderSpecial = Model.OrdersCurrencies.FirstOrDefault(x => x.CurrencyId == item.Id);
-                            }
-                            @if (orderSpecial != null)
-                            {
-                                <br />
-                                <i class="text-muted">Bu Teklif İçin Belirlenen: @orderSpecial.Value</i>
-                            }
                         </option>
                     }
 
@@ -481,15 +433,15 @@
 
 <script>
 
-    //function GetSegmentPrice() {
+    function GetSegmentPrice() {
 
-    //    $("#segmentFiyat").val();
-    //    var birimFiyat = $("#ReferansBirimFiyat").val();
-    //    var birimFiyat = $("#select2-select-ReferansCurrencyId-container").val();
-    //    var birimFiyat = $("#ReferansBirimFiyat").val();
+        $("#segmentFiyat").val();
+        var birimFiyat = $("#ReferansBirimFiyat").val();
+        var birimFiyat = $("#select2-select-ReferansCurrencyId-container").val();
+        var birimFiyat = $("#ReferansBirimFiyat").val();
 
 
-    //}
+    }
 
     function SetSelectedProduct(selectedEl) {
         var id = $(selectedEl).attr("data-id");

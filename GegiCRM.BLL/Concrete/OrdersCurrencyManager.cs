@@ -11,18 +11,18 @@ using Microsoft.AspNetCore.Identity;
 
 namespace GegiCRM.BLL.Concrete
 {
-    public class OrdersCurrencyManager: GenericManager<OrdersCurrency>
+    public class OrdersProductCurrencyManager: GenericManager<OrdersProductCurrency>
     {
-        readonly IOrdersCurrencyDal _ordersCurrencyDal;
+        readonly IOrdersProductCurrencyDal _ordersProductCurrencyDal;
 
-        public OrdersCurrencyManager(IOrdersCurrencyDal ordersCurrencyDal) : base( ordersCurrencyDal)
+        public OrdersProductCurrencyManager(IOrdersProductCurrencyDal ordersProductCurrencyDal) : base(ordersProductCurrencyDal)
         {
-            _ordersCurrencyDal = ordersCurrencyDal;
+            _ordersProductCurrencyDal = ordersProductCurrencyDal;
         }
 
-        public List<OrdersCurrency> GetOrdersCurrencies(int orderID)
+        public List<OrdersProductCurrency> GetOrdersProductCurrencies(int orderID)
         {
-            return _ordersCurrencyDal.GetListOrdersCurrencies(orderID);
+            return _ordersProductCurrencyDal.GetListOrdersCurrencies(orderID);
         }
     }
 }

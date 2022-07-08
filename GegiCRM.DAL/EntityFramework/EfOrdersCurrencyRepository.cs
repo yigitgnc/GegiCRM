@@ -11,12 +11,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GegiCRM.DAL.EntityFramework
 {
-    public class EfOrdersCurrencyRepository : GenericRepository<OrdersCurrency>, IOrdersCurrencyDal
+    public class EfOrdersCurrencyRepository : GenericRepository<OrdersProductCurrency>, IOrdersProductCurrencyDal
     {
-        public List<OrdersCurrency> GetListOrdersCurrencies(int orderId)
+        public List<OrdersProductCurrency> GetListOrdersCurrencies(int orderProductId)
         {
             using Context context = new Context();
-            return context.OrdersCurrencies.Where(x=>x.OrderId == orderId && x.IsDeleted==false).Include(x=>x.Currency).ToList();
+            return context.OrdersProductCurrencies.Where(x=>x.OrdersProductId == orderProductId && x.IsDeleted==false).Include(x=>x.Currency).ToList();
         }
     }
 }

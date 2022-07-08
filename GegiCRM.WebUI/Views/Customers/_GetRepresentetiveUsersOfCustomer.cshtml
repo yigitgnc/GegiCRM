@@ -1,0 +1,40 @@
+﻿@using GegiCRM.Entities.Concrete
+@model List<CustomerRepresentetiveUser>
+
+@{
+    Layout = null;
+}
+@if (!Model.Any())
+{
+    <div class="alert alert-warning text-center mb-0">
+        Henüz Temsilci Eklenmemiş
+    </div>
+}
+
+@foreach (var item in Model)
+{
+    <div class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex justify-content-between w-100">
+            <h6 class="mb-0">@item.Title</h6>
+            <a class="btn btn-sm btn-danger" href="javascript:void(0)" onclick="DeleteRepUser(@item.Id)">
+                <i class="bx bx-trash"></i>
+                @*Sil*@
+            </a>
+        </div>
+        <p class="mb-0">
+            <a href="/Users/Details/@item.Id">
+                @item.User.NameSurname
+            </a>
+        </p>
+        <div class="d-flex justify-content-between w-100">
+            <small>Kaydeden: @item.AddedBy.NameSurname</small>
+            <small>@item.CreatedDate</small>
+        </div>
+        <div class="d-flex justify-content-between w-100">
+            <small>Son Düzenleyen: @item.ModifiedBy.NameSurname</small>
+            <small>@item.ModifiedDate</small>
+        </div>
+    </div>
+}
+
+

@@ -34,7 +34,7 @@ namespace GegiCRM.BLL.Generic
             _genericDal = genericDal;
         }
 
-        public async Task<AppUser?> GetCurrentUserAsync()
+        public async Task<AppUser> GetCurrentUserAsync()
         {
             return await _userManager.GetUserAsync(_httpContextAccessor.HttpContext?.User);
         }
@@ -72,16 +72,26 @@ namespace GegiCRM.BLL.Generic
             return _genericDal.ListByFilter(filter, includeDeletedRecords);
         }
 
+        public IEnumerable<T> GetListWithIncludes(params Expression<Func<T, object>>[] includes)
+        {
+            return _genericDal.Include(includes);
+        }
+        public IEnumerable<T> GetListWithIncludes(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includes)
+        {
+            return _genericDal.Include(filter,includes);
+        }
+
         private T SetLastModifiedBy(T tEntity)
         {
 
-            //var LastModProp = tEntity.GetType().GetProperty("ModifiedDate");
-            //if (LastModProp != null)
-            //{
-            //    tEntity.GetType()
-            //        .GetProperty("ModifiedDate")
-            //        .SetValue(tEntity, DateTime.Now);
-            //}
+            var LastModProp = tEntity.GetType().GetProperty("ModifiedDate");
+            if (LastModProp != null)
+            {
+                tEntity.GetType()
+                    .GetProperty("ModifiedDate")
+                    .SetValue(tEntity, DateTime.Now);
+            }
+
 
             return SetAuditingProperty(tEntity, "ModifiedById");
 
@@ -90,13 +100,13 @@ namespace GegiCRM.BLL.Generic
         {
 
 
-            //var LastModProp = tEntity.GetType().GetProperty("CreatedDate");
-            //if (LastModProp != null)
-            //{
-            //    tEntity.GetType()
-            //        .GetProperty("CreatedDate")
-            //        .SetValue(tEntity, DateTime.Now);
-            //}
+            var LastModProp = tEntity.GetType().GetProperty("CreatedDate");
+            if (LastModProp != null)
+            {
+                tEntity.GetType()
+                    .GetProperty("CreatedDate")
+                    .SetValue(tEntity, DateTime.Now);
+            }
 
             return SetAuditingProperty(tEntity, "AddedById");
         }

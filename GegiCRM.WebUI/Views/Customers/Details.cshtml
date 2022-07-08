@@ -1,133 +1,187 @@
 ﻿@model GegiCRM.Entities.Concrete.Customer
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = $"{Model.TicariUnvan} Müşteri Detayı";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<nav class="navbar navbar-expand-sm navbar-light">
+    <div class="container-fluid m-0 p-0">
+        <i class="navbar-brand d-block d-sm-none"></i>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarControl" aria-controls="navbarControl" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarControl">
+            <ul class="navbar-nav w-100 d-flex justify-content-sm-end">
+                <li class="nav-item m-1">
+                    <a class="w-100 btn btn-primary" href="/TeklifTakip/CreateNewOrder?customer_Id=@Model.Id&rUser_Id=@Model.AddedById">
+                        Yeni Teklif Oluştur
+                    </a>
+                </li>
+                <li class="nav-item m-1">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#activityLogModal">
+                        Görüşme Notları
+                    </button>
+                </li>
+                <li class="nav-item m-1">
+                    <a class="w-100 btn btn-danger" href="/Customers/Delete/@Model.Id">
+                        <i class="bx bx-trash"></i>
+                        Sil
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="row">
+    <div class="col-xl">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Müşteri Detayı</h5>
+                <small class="text-muted float-end">@Model.TicariUnvan</small>
+            </div>
+            <div class="card-body">
 
-<h1>Details</h1>
+                <div class="mb-3">
+                    <label class="form-label" for="basic-default-fullname">Id</label>
+                    <input type="text" class="form-control" value="@Model.Id" disabled>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="basic-default-fullname">Kayıt Tarihi</label>
+                    <input type="text" class="form-control" value="@Model.CreatedDate" disabled>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="basic-default-fullname">Kaydeden</label>
+                    <input type="text" class="form-control" value="@Model.AddedBy.NameSurname" disabled>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="basic-default-fullname">Son Düzenlenme Tarihi</label>
+                    <input type="text" class="form-control" value="@Model.ModifiedDate" disabled>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="basic-default-fullname">Son Düzenleyen</label>
+                    <input type="text" class="form-control" value="@Model.ModifiedBy?.NameSurname" disabled>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="basic-default-fullname">Tür</label>
+                    <input type="text" class="form-control" value="@Model.Type.Name" disabled>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="basic-default-fullname">Ticari Ünvan</label>
+                    <input type="text" class="form-control" value="@Model.TicariUnvan" disabled>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="basic-default-fullname">Cari Kodu</label>
+                    <input type="text" class="form-control" value="@Model.CariKodu" disabled>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="basic-default-fullname">Temsilciler</label>
 
-<div>
-    <h4>Customer</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TicariUnvan)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TicariUnvan)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Surname)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Surname)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CariKodu)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CariKodu)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tel)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tel)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CurrencyId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CurrencyId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SideSuppliers)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SideSuppliers)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Notes)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Notes)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PreferredCurrency)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PreferredCurrency.Code)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustomerMainCompany)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustomerMainCompany.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Sector)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Sector.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Segment)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Segment.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Type.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ModifiedDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ModifiedDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AddedBy)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AddedBy.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ModifiedBy)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ModifiedBy.Name)
-        </dd>
-    </dl>
+                    @foreach (var item in Model.CustomerRepresentetiveUsers)
+                    {
+                        <p>@item.Title: @item.User.NameSurname</p>
+                    }
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label" for="basic-default-fullname">Sektör</label>
+                    <input type="text" class="form-control" value="@Model.Sector?.Name" disabled>
+                </div>
+
+
+                <div class="mb-3">
+
+
+                    <div>
+                        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Düzenle</a>
+                        <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+<div class="mt-3">
+
+    <!-- Modal -->
+    <div class="modal fade" id="activityLogModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <div class="col-12 d-flex justify-content-center">
+                        <button class=" btn btn-primary" data-bs-toggle="modal" data-bs-target="#newActivityLogModal" onclick="getNewActivityLog()">
+                            Yeni Görüşme Notu
+                        </button>
+                    </div>
+
+                    <div id="Activities" style="max-height: 300px; overflow: auto">
+                        <div class="demo-inline-spacing mt-3">
+                            <div class="list-group">
+                                @foreach (var item in Model.ActivityLogs)
+                                {
+                                    <div class="list-group-item list-group-item-action flex-column align-items-start ">
+                                        <div class="d-flex justify-content-between w-100">
+                                            <small>@item.AddedBy</small>
+                                        </div>
+                                        <p class="mb-1">
+                                            @item.Note
+                                        </p>
+                                        <small>Son Düzenlenme @item.AddedBy.NameSurname</small>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Kapat
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="newActivityLogModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newActivityLogModalTitle">Yeni Görüme Notu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 d-flex justify-content-center">
+                    <div id="wait-NewActivityLog" class="spinner-border spinner-border-lg text-primary" role="status" style="display: none;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <div id="newActivityLogContent" class="d-grid d-sm-flex p-3" style="min-height: 400px">
+
+                    <form action="Customers/_NewActivityLog" method="post" class="col-12">    
+                        
+                        <input type="hidden" name="CustomerId" value="@Model.Id" />
+
+                        <div class="col-12  mb-1">
+                            <label for="Note" class="form-label">GÖRÜŞME NOTU</label>
+                            <textarea class="form-control" style="height: 160px" id="Note" name="Note" required=""></textarea>
+                        </div>
+
+                        <div class="col-12 d-flex justify-content-center  mb-1">
+                            <input type="submit" class="btn btn-primary col-6" value="Kaydet">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Kapat
+                </button>
+            </div>
+        </div>
+    </div>
 </div>

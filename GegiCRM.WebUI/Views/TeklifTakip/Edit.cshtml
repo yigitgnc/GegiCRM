@@ -38,10 +38,10 @@
                         </button>
                         <ul class="dropdown-menu" style="">
                             <li>
-                                <a class="dropdown-item" href="#">Kopyala (Toplamsız)</a>
+                                <a class="dropdown-item" href="javascript:getToplam(false)">Kopyala (Toplamsız)</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Kopyala (Toplamlı)</a>
+                                <a class="dropdown-item" href="javascript:getToplam(true)">Kopyala (Toplamlı)</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="/teklif-sablonu.asp?id=126&amp;tId=13517&amp;menu=siparis" target="_blank">Adobe Teklif</a>
@@ -215,14 +215,14 @@
                                     </div>
                                 </div>
 
-@*
+                                @*
                                 <div class="mb-3">
-                                    <span>Sipraiş Kurları</span>
-                                    <div id="waitCurrency" class="spinner-border spinner-border-sm text-secondary" role="status">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </div>
-                                    <div id="OrdersCurrencies">
-                                    </div>
+                                <span>Sipraiş Kurları</span>
+                                <div id="waitCurrency" class="spinner-border spinner-border-sm text-secondary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <div id="OrdersCurrencies">
+                                </div>
                                 </div>*@
                             </div>
                         </div>
@@ -692,6 +692,10 @@
 @section Scripts
     {
     <script>
+
+        getNewOrdersCurrencies();
+        getOrdersProducts();
+
         var lastSelectedType;
 
         function UpdateMultipleActionModal(type) {
@@ -700,10 +704,12 @@
             $(".selectedItemCount").html(checkedProducts.length);
             $("#multipleActionModal").modal("show");
         }
+
         function MoveSelected(type) {
             $(".selectedItemCount").html(checkedProducts.length);
             $("#moveOrderProductModal").modal("show");
         }
+
         function SubmitMoveSelected(type) {
             $.ajax({
                 "url": "/TeklifTakip/MoveSelectedOrderProducts",
@@ -711,7 +717,7 @@
                 data: {
                     ids: checkedProducts,
                     type: $("#select-MoveType").val(),
-                    destinationCustomerId: $("#select-OrderToMoveId").val()  
+                    destinationCustomerId: $("#select-OrderToMoveId").val()
                 },
                 success: function(data) {
                     $("#MoveResponse").fadeIn(0).fadeOut(5000).html("İşlem Tamamlandı");
@@ -883,17 +889,27 @@
 
 
 
-
-        getNewOrdersCurrencies();
-        getOrdersProducts();
-
-
-
         $(".selectpickerInModal").select2({
             tags: true,
             dropdownParent: $("#moveOrderProductModal"),
             language: "tr"
         });
 
+
+
+        function getCopy(toplamli) {
+            $.ajax({
+                type: "GET",
+                url: "/TeklifTakip/Copy/@Model.Id?toplam=" + toplamli,
+                success: function(data) {
+
+                },
+                error: function(data) {
+                    console.log(data);
+                    alert("Bir Hata Oluştu !");
+                }
+            });
+        }
+                        
     </script>
 }
