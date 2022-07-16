@@ -76,6 +76,17 @@
                             <select asp-for="TypeId" class="form-control selectpicker" asp-items="ViewBag.TypeId"></select>
                             <span asp-validation-for="TypeId" class="text-danger"></span>
                         </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Müşteri Adı</label>
+                            <input type="text" class="form-control" asp-for="Name">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Müşteri Soyadı</label>
+                            <input type="text" class="form-control" asp-for="Surname">
+                        </div>
+
                         <div class="mb-3">
                             <label class="form-label">Ticari Ünvan</label>
                             <input type="text" class="form-control" asp-for="TicariUnvan">
@@ -173,10 +184,11 @@
                                     </a>
                                 </h5>
                                 <div class="card-body ">
-
+                                    <div class="row">
+                                        <span id="addNewRepUserResponse" class="text-center col-12 alert alert-warning" style="display:none;">Response</span>
+                                    </div>
                                     <div class="collapse mb-1" id="collapseAddNewRepUser" style="">
                                         <div class="d-flex row justify-content-center p-3">
-                                            <span id="addNewRepUserResponse" class="alert alert-warning" style="display:none"></span>
                                             <div class="mb-3 col-12">
                                                 <label class="form-label">Temsilci Ünvanı</label>
                                                 <input type="text" class="form-control" id="temsilciTitle" placeholder="Donanım, Yazılım, Teknik, vb...">
@@ -224,11 +236,12 @@
                                         Yeni Yetkili Ekle
                                     </a>
                                 </h5>
-                                <div class="card-body ">
-
+                                <div class="card-body">
+                                    <div class="row">
+                                        <span id="addNewContactResponse" class="text-center col-12 alert alert-warning" style="display:none;">Response</span>
+                                    </div>
                                     <div class="collapse mb-1" id="collapseAddNewContact" style="">
                                         <div class="d-flex row justify-content-center p-3">
-                                            <span id="addNewContactResponse" class="alert alert-warning" style="display:none;"></span>
 
                                             <div class="mb-3 col-12">
                                                 <label class="form-label">Yetili Adı</label>
@@ -316,27 +329,138 @@
                     </button>
                 </li>
             </ul>
+            <div class="alert alert-warning text-center" id="addressResponse" style="display:none"></div>
             <div class="tab-content">
+                @*address*@
                 <div class="tab-pane fade active show" id="navs-addresses" role="tabpanel">
-                    <p>
-                        Teslimat Adresleri
-                    </p>
-                    <p class="mb-0">
-                        Tootsie roll fruitcake cookie. Dessert topping pie. Jujubes wafer carrot cake jelly. Bonbon
-                        jelly-o jelly-o ice cream jelly beans candy canes cake bonbon. Cookie jelly beans marshmallow
-                        jujubes sweet.
+                    <div class="row d-flex justify-content-between ">
+                        <div class="col-12 col-sm-6 d-flex justify-content-center justify-content-sm-start">
+                            <p>
+                                Teslimat Adresleri
+                            </p>
+                        </div>
+                        <div class="col-12 col-sm-6 d-flex justify-content-center justify-content-sm-end">
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseAddNewAddress" role="button" aria-expanded="true" aria-controls="collapseAddNewAddress">
+                                Yeni Adres Ekle
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <p class="mb-0 d-flex justify-content-center">
+                        <div class="collapse row" id="collapseAddNewAddress">
+
+
+                            <div class="mb-3 col-12">
+                                <label class="form-label">Adres Adı</label>
+                                <input type="text" class="form-control" id="AddressName">
+                            </div>
+
+                            <div class="mb-3 col-12 col-md-6">
+                                <label class="form-label">İl</label>
+                                <input type="text" class="form-control" id="Il">
+                            </div>
+
+                            <div class="mb-3 col-12 col-md-6">
+                                <label class="form-label">İlçe</label>
+                                <input type="text" class="form-control" id="Ilce">
+                            </div>
+
+                            <div class="mb-3 col-12">
+                                <label class="form-label">Adres</label>
+                                <textarea type="text" class="form-control" id="Address"></textarea>
+                            </div>
+
+                            <div class="col-12 d-flex justify-content-center mb-2">
+                                <a data-bs-toggle="collapse" href="#collapseAddNewAddress" role="button" aria-expanded="true" aria-controls="collapseAddNewAddress" class="btn btn-outline-primary" onclick="AddAddress()">Adresi Kaydet</a>
+                            </div>
+                            <hr />
+                        </div>
+
+                        <div class="col-12 d-flex justify-content-center">
+                            <div id="waitAddresses" class="spinner-border spinner-border-lg text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+
+
+                        <div id="addresses" style="max-height: 300px; overflow: auto">
+                        </div>
+
                     </p>
                 </div>
+                @*billing*@
                 <div class="tab-pane fade" id="navs-billingAddresses" role="tabpanel">
-                    <p>
-                        Fatura Adresleri
-                    </p>
-                    <p class="mb-0">
-                        Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah
-                        cotton candy liquorice caramels.
+                    <div class="row d-flex justify-content-between ">
+                        <div class="col-12 col-sm-6 d-flex justify-content-center justify-content-sm-start">
+                            <p>
+                                Fatura Adresleri
+                            </p>
+                        </div>
+                        <div class="col-12 col-sm-6 d-flex justify-content-center justify-content-sm-end">
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseAddNewBillingAddress" role="button" aria-expanded="true" aria-controls="collapseAddNewBillingAddress">
+                                Yeni Fatura Adresi Ekle
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <p class="mb-0 d-flex justify-content-center">
+
+                        <div class="collapse row" id="collapseAddNewBillingAddress">
+
+                            <div class="mb-3 col-12">
+                                <label class="form-label">Fatura Adresi Adı</label>
+                                <input type="text" class="form-control" id="BillingAddressName">
+                            </div>
+
+                            <div class="mb-3 col-12 col-md-6">
+                                <label class="form-label">Vergi No</label>
+                                <input type="text" class="form-control" id="VergiNo">
+                            </div>
+
+                            <div class="mb-3 col-12 col-md-6">
+                                <label class="form-label">Vergi Dairesi</label>
+                                <input type="text" class="form-control" id="VergiDairesi">
+                            </div>
+
+                            <div class="mb-3 col-12">
+                                <label class="form-label">Fatura Adresi</label>
+                                <textarea type="text" class="form-control" id="BillingAddress"></textarea>
+                            </div>
+
+                            <div class="col-12 d-flex justify-content-center mb-2">
+                                <a data-bs-toggle="collapse" href="#collapseAddNewBillingAddress" role="button" aria-expanded="true" aria-controls="collapseAddNewBillingAddress" class="btn btn-outline-primary" onclick="AddBillingAddress()">Fatura Adresini Kaydet</a>
+                            </div>
+                            <hr />
+
+                        </div>
+
+
+                        <div class="col-12 d-flex justify-content-center">
+                            <div id="waitBillingAddresses" class="spinner-border spinner-border-lg text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+
+                        <div id="billingAddresses" style="max-height: 300px; overflow: auto">
+                        </div>
+
                     </p>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+
+<h6 class="text-muted">Müşterinin Siparişleri</h6>
+
+
+<div id="CustomersOrders" class="row">
+    <div class="col-12 d-flex justify-content-center">
+        <div id="waitOrders" class="spinner-border spinner-border-lg text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
         </div>
     </div>
 </div>
@@ -421,18 +545,88 @@
         </div>
     </div>
 </div>
+
 @*EDİT CONTACT MODAL*@
 <div class="modal fade" id="editContactModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" id="editContactModalContent">
-            <div class="col-12 d-flex justify-content-center">
-                <div id="wait-NewActivityLog" class="spinner-border spinner-border-lg text-primary" role="status" style="display: none;">
-                    <span class="visually-hidden">Loading...</span>
+
+            <div class="modal-header">
+                <h5 class="modal-title">Yükleniyor...</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="col-12 d-flex justify-content-center">
+                    <div id="wait-NewActivityLog" class="spinner-border spinner-border-lg text-primary" role="status" style="display: none;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
                 </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Kapat
+                </button>
             </div>
         </div>
     </div>
 </div>
+
+@*EDİT ADDRESS MODAL*@
+<div class="modal fade" id="editAddressModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" id="editAddressModalContent">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Yükleniyor...</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="col-12 d-flex justify-content-center">
+                    <div id="wait-NewActivityLog" class="spinner-border spinner-border-lg text-primary" role="status" style="display: none;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Kapat
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*EDİT BİLLİNG ADDRESS MODAL*@
+<div class="modal fade" id="editBillingAddressModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" id="editBillingAddressModalContent">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Yükleniyor...</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="col-12 d-flex justify-content-center">
+                    <div id="wait-NewActivityLog" class="spinner-border spinner-border-lg text-primary" role="status" style="display: none;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Kapat
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
@@ -441,9 +635,204 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <script>
-        GetRepUsers();
-        GetCustomerContacts()
 
+        GetRepUsers();
+        GetCustomerContacts();
+        GetCustomerAddresses();
+        GetCustomerBillingAddresses();
+        GetCustomersOrders();
+
+        //Orders
+
+        function GetCustomersOrders() {
+
+            $("#waitOrders").show();
+            $.ajax({
+                "url": "/Customers/_GetCustomersOrders/@Model.Id",
+                "method": "GET",
+                success: function(data) {
+                    $("#CustomersOrders").html(data);
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#CustomersOrders").html("Bir Hata Oluştu !");
+                }
+            }).done(function() {
+                $("#waitOrders").hide();
+            });
+        }
+
+        //addresss
+
+        function GetCustomerAddresses() {
+
+            $("#waitAddresses").show();
+            $.ajax({
+                "url": "/Customers/_GetCustomerAddresses/@Model.Id",
+                "method": "GET",
+                success: function(data) {
+                    $("#addresses").html(data);
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#addresses").html("Bir Hata Oluştu !");
+                }
+            }).done(function() {
+                $("#waitAddresses").hide();
+            });
+        }
+
+        function AddAddress() {
+
+            $.ajax({
+                "url": "/Customers/_AddNewCustomerAddress",
+                "method": "POST",
+                data: {
+                    CustomerId: $("#Id").val(),
+                    AddressName: $("#AddressName").val(),
+                    Il: $("#Il").val(),
+                    Ilce: $("#Ilce").val(),
+                    Address: $("#Address").val()
+                },
+                success: function(data) {
+                    GetCustomerAddresses()
+                    $("#addressResponse").fadeIn(0).fadeOut(1500).html("Adres Eklendi");
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#addressResponse").fadeIn(0).fadeOut(1500).html("Bir Hata Oluştu !");
+                }
+            });
+        }
+
+        function DeleteAddress(id) {
+            $.ajax({
+                "url": "/Customers/_DeleteCustomerAddress/" + id,
+                "method": "POST",
+                success: function(data) {
+                    GetCustomerAddresses()
+                    $("#addressResponse").fadeIn(0).fadeOut(1500).html("Adres Silindi");
+                },
+                error: function(err) {
+
+                    $("#addressResponse").fadeIn(0).fadeOut(1500).html("Bir Hata Oluştu !");
+                }
+            });
+        };
+
+        function EditAddress(id) {
+            $('#editAddressModal').modal('show');
+
+            $.ajax({
+                "url": "/Customers/_EditCustomerAddress/" + id,
+                "method": "GET",
+                success: function(data) {
+                    $("#editAddressModalContent").html(data);
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#editAddressModalContent").html("Bir Hata Oluştu !");
+                }
+            });
+        };
+
+        //billing address
+
+        function GetCustomerBillingAddresses() {
+
+            $("#waitBillingAddresses").show();
+            $.ajax({
+                "url": "/Customers/_GetCustomerBillingAddresses/@Model.Id",
+                "method": "GET",
+                success: function(data) {
+                    $("#billingAddresses").html(data);
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#billingAddresses").html("Bir Hata Oluştu !");
+                }
+            }).done(function() {
+                $("#waitBillingAddresses").hide();
+            });
+        }
+
+
+        function DeleteBillingAddress(id) {
+            $.ajax({
+                "url": "/Customers/_DeleteCustomerBillingAddress/" + id,
+                "method": "POST",
+                success: function(data) {
+                    GetCustomerBillingAddresses()
+                    $("#addressResponse").fadeIn(0).fadeOut(1500).html("Fatura Adresi Silindi");
+                },
+                error: function(err) {
+
+                    $("#addressResponse").fadeIn(0).fadeOut(1500).html("Bir Hata Oluştu !");
+                }
+            });
+        };
+
+        function AddBillingAddress() {
+
+            $.ajax({
+                "url": "/Customers/_AddNewCustomerBillingAddress",
+                "method": "POST",
+                data: {
+                    CustomerId: $("#Id").val(),
+                    AddressName: $("#BillingAddressName").val(),
+                    VergiNo: $("#VergiNo").val(),
+                    VergiDairesi: $("#VergiDairesi").val(),
+                    BillingAddress: $("#BillingAddress").val()
+                },
+                success: function(data) {
+                    GetCustomerBillingAddresses()
+                    $("#addressResponse").fadeIn(0).fadeOut(1500).html("Adres Eklendi");
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#addressResponse").fadeIn(0).fadeOut(1500).html("Bir Hata Oluştu !");
+                }
+            });
+        }
+
+
+        function GetCustomerAddresses() {
+
+            $("#waitAddresses").show();
+            $.ajax({
+                "url": "/Customers/_GetCustomerAddresses/@Model.Id",
+                "method": "GET",
+                success: function(data) {
+                    $("#addresses").html(data);
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#addresses").html("Bir Hata Oluştu !");
+                }
+            }).done(function() {
+                $("#waitAddresses").hide();
+            });
+        }
+
+
+
+        function EditBillingAddress(id) {
+            $('#editBillingAddressModal').modal('show');
+
+            $.ajax({
+                "url": "/Customers/_EditCustomerBillingAddress/" + id,
+                "method": "GET",
+                success: function(data) {
+                    $("#editBillingAddressModalContent").html(data);
+                },
+                error: function(err) {
+                    console.log(err);
+                    $("#editBillingAddressModalContent").html("Bir Hata Oluştu !");
+                }
+            });
+        };
+
+        //represenetetiveusers
 
         function GetRepUsers() {
             $.ajax({
@@ -462,7 +851,6 @@
         function GetCustomerContacts() {
             $.ajax({
                 "url": "/Customers/_GetCustomerContactsOfCustomer/@Model.Id",
-                "method": "GET",
                 "method": "GET",
                 success: function(data) {
                     $("#customerContactsContent").html(data);
@@ -494,6 +882,7 @@
                 }
             });
         };
+
         function AddNewCustomerContact() {
             $.ajax({
                 "url": "/Customers/_AddCustomerContact",
@@ -573,7 +962,7 @@
         };
 
 
-      
+
     </script>
 
     }

@@ -1,0 +1,75 @@
+﻿@using GegiCRM.Entities.Concrete
+@{
+    Layout = null;
+}
+@model IEnumerable<Order>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive text-nowrap pt-2 pb-4 w-100" style="overflow-x:hidden">
+            <table id="Orders" class="table table-striped table-hover col-12 w-100">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>TEKLİF TUTARI</th>
+                        <th>ETKİLEŞİM</th>
+                        <th>KAYIT TARİHİ</th>
+                        <th>DURUMU</th>
+                        <th>TEKLİF ONAY</th>
+                        <th>TEKLİF ONAY TARİHİ</th>
+                        <th>SİPARİŞ ONAY</th>
+                        <th>SİPARİŞ ONAY TARİHİ</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (Order item in Model)
+                    {
+                        <tr data-id="@item.Id" class="clickableTrOrders">
+                            <td>@item.Id</td>
+                            <td>@String.Format("{0:N}", item.OrdersProducts.Sum(x=>x.Adet*x.BirimFiyat))</td>
+                            <td>
+                                <ul class="list-unstyled users-list m-0 avatar-group">
+                                    <li>
+                                        <img data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="rounded-circle avatar avatar-xs pull-up" title="Kaydeden: @item.AddedBy.NameSurname" src="/assets/img/avatars/1.png" alt="Kaydeden: @item.AddedBy.NameSurname" />
+
+                                        Kaydeden: @item.AddedBy.NameSurname
+                                    </li>
+                                    <li>
+                                        <img data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="rounded-circle avatar avatar-xs pull-up" title="Temsilci: @item.AddedBy.NameSurname" src="/assets/img/avatars/1.png" alt="Temsilci: @item.RepresentetiveUser.NameSurname" />
+
+                                        Temsilci: @item.RepresentetiveUser.NameSurname
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>@item.CreatedDate</td>
+                            <td>@item.OrderState.Name</td>
+                            <td>
+                                @*@item.IsOfferApproved*@
+                                @Html.Raw(item.CreateHtmlBadgeForOffer())
+                            </td>
+                            <td>@item.OfferApprovedDateDateFormatted</td>
+                            <td>
+                                @*@item.IsOrderApproved*@
+                                @Html.Raw(item.CreateHtmlBadgeForOrder())
+                            </td>
+                            <td>@item.OrderApprovedDateFormatted</td>
+                        </tr>
+                    }
+
+
+                </tbody>
+                <tfoot class="table-border-bottom-0">
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(".clickableTrOrders").on("click", function() {
+        var id = $(this).attr("data-id");
+        console.log(id);
+        window.location.href = "/TeklifTakip/Edit/" + id;
+    });
+</script>

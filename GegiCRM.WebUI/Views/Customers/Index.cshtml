@@ -61,7 +61,7 @@
                                 @{
                                     var alog = item.ActivityLogs.OrderByDescending(x => x.Id).FirstOrDefault();
                                 }
-                                @if (lastAdress != null)
+                                @if (alog != null)
                                 {
                                    <text>[@alog.CreatedDate] @alog.AddedBy.NameSurname </text>
                                 }

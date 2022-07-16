@@ -14,10 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Customers\_GetCustomersOrders.cshtml" />
     <Content Remove="Views\TeklifTakip\Copy.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Customers\_GetCustomersOrders.cshtml" />
     <None Include="Views\TeklifTakip\Copy.cshtml" />
     <None Include="wwwroot\sneat-1.0.0\.browserslistrc" />
     <None Include="wwwroot\sneat-1.0.0\.eslintignore" />
@@ -196,7 +198,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Customers\_GetCustomersOrders.cshtml" />
     <_ContentIncludedByDefault Remove="Views\TeklifTakip\Copy.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Customers\_GetCustomersOrders.cshtml" />
   </ItemGroup>
 
 </Project>

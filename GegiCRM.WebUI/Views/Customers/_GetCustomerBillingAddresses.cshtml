@@ -1,0 +1,49 @@
+﻿@using GegiCRM.Entities.Concrete
+@{
+    Layout = null;
+}
+@model List<CustomerBillingAddress>
+
+<div class="demo-inline-spacing mt-3">
+    <div class="list-group">
+        @if (!Model.Any())
+        {
+             <div class="list-group-item list-group-item-action flex-column align-items-start ">               
+                <p class="mb-2">
+                   Henüz Fatura Adresi Eklenmemiş
+                </p>
+            </div>
+        }
+
+        @foreach (var item in Model)
+        {
+
+            <div class="list-group-item list-group-item-action flex-column align-items-start ">
+                <div class="d-flex justify-content-between w-100 mb-1">
+                    <h6>Adres Adı: @item.AddressName</h6>
+                    <div>
+                        <div class="btn-group" role="group" aria-label="Düzenlemeler">
+
+                            <label class="btn btn-sm btn-outline-danger bx bx-trash" onclick="DeleteBillingAddress(@item.Id)"></label>
+                            <label class="btn btn-sm btn-outline-warning bx bx-edit" onclick="EditBillingAddress(@item.Id)"></label>
+                        </div>
+                    </div>
+                </div>
+                <p class="mb-1">
+                    Vergi No: @item.VergiNo
+                </p>
+                <p class="mb-1">
+                    Vergi Dairesi: @item.VergiDairesi
+                </p>
+                <p class="mb-2">
+                    Fatura Addres: @item.BillingAddress
+                </p>
+
+                <div class="row d-flex justify-content-between">
+                    <small>Kaydeden @item.AddedBy.NameSurname (@item.CreatedDate)</small>
+                    <small>Son Düzenleyen @item.ModifiedBy.NameSurname (@item.ModifiedDate)</small>
+                </div>
+            </div>
+        }
+    </div>
+</div>

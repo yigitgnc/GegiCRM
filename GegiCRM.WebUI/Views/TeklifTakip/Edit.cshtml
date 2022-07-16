@@ -155,16 +155,16 @@
                                 <div class="mb-3">
                                     <label for="select-Customer" class="col-12 form-control-label">Müşteri</label>
                                     <div class="col-12">
-                                        <select asp-for="CustomerId" class="form-control selectpicker" id="select-Customer" data-live-search="true" aria-describedby="customerHelp" data-container="body">
+                                        <select asp-for="CustomerId" class="form-control selectpicker" id="select-Customer" data-live-search="true"  data-container="body">
                                             @foreach (Customer item in ViewBag.Customers)
                                             {
                                                 if (item.Id == Model.CustomerId)
                                                 {
-                                                    <option value="@item.Id" data-tokens="@item.Name" selected="selected" class="bg-primary">@item.Name</option>
+                                                    <option value="@item.Id" data-tokens="@item.Name @item.Surname @item.TicariUnvan" selected="selected" class="bg-primary">@item.TicariUnvan (@item.Name @item.Surname)</option>
                                                 }
                                                 else
                                                 {
-                                                    <option value="@item.Id" data-tokens="@item.Name">@item.Name</option>
+                                                    <option value="@item.Id" data-tokens="@item.Name @item.Surname @item.TicariUnvan">@item.TicariUnvan (@item.Name @item.Surname)</option>
                                                 }
                                             }
                                         </select>
@@ -364,7 +364,7 @@
                                     <label for="select-DeliveryAddress" class="col-12 form-control-label">Teslimat Adresi Seç</label>
                                     <div class="col-12">
                                         <select asp-for="SelectedCustomerAddressId" class="form-control selectpicker" id="select-DeliveryAddress" data-live-search="true" aria-describedby="select-DeliveryAddressHelp" data-container="body">
-                                            @foreach (CustomerAddress item in Model.Customer.CustomerAddresses)
+                                            @foreach (CustomerAddress item in Model.Customer.CustomerAddresses.Where(x=>x.IsDeleted == false))
                                             {
                                                 if (item.Id == Model.SelectedCustomerAddressId)
                                                 {
@@ -393,7 +393,7 @@
                                     <label for="select-BillingAddress" class="col-12 form-control-label">Fatura Adresi Seç</label>
                                     <div class="col-12">
                                         <select asp-for="SelectedCustomerBillingAddressId" class="form-control selectpicker" id="select-BillingAddress" data-live-search="true" aria-describedby="select-BillingAddressHelp" data-container="body">
-                                            @foreach (CustomerBillingAddress item in Model.Customer.CustomerBillingAddresses)
+                                            @foreach (CustomerBillingAddress item in Model.Customer.CustomerBillingAddresses.Where(x=>x.IsDeleted == false))
                                             {
                                                 if (item.Id == Model.SelectedCustomerBillingAddressId)
                                                 {
@@ -693,7 +693,7 @@
     {
     <script>
 
-        getNewOrdersCurrencies();
+        //getNewOrdersCurrencies();
         getOrdersProducts();
 
         var lastSelectedType;

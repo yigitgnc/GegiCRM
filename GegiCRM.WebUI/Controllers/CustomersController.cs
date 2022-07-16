@@ -20,6 +20,8 @@ namespace GegiCRM.WebUI.Controllers
         private readonly GenericManager<Customer> _genericmanager = new GenericManager<Customer>(new EfCustomerRepository());
         private readonly GenericManager<CustomerRepresentetiveUser> _repUserManager = new GenericManager<CustomerRepresentetiveUser>(new EfCustomerRepresentetiveUserRepository());
         private readonly GenericManager<CustomerContact> _contactManager = new GenericManager<CustomerContact>(new EfCustomerContactRepository());
+        private readonly GenericManager<CustomerAddress> _addressManager = new GenericManager<CustomerAddress>(new EfCustomerAddressRepository());
+        private readonly GenericManager<CustomerBillingAddress> _billingAddressManager = new GenericManager<CustomerBillingAddress>(new EfCustomerBillingAddressRepository());
 
 
         public CustomersController(Context context)
@@ -55,7 +57,7 @@ namespace GegiCRM.WebUI.Controllers
             {
                 return NotFound();
             }
-
+            return RedirectToAction(nameof(Edit), new { id = customer.Id });
             return View(customer);
         }
 
@@ -284,7 +286,7 @@ namespace GegiCRM.WebUI.Controllers
 
         public async Task<IActionResult> _GetRepresentetiveUsersOfCustomer(int id)
         {
-        
+
             var data = _repUserManager.ListByFilter(x => x.CustomerId == id && x.IsDeleted == false, false).OrderByDescending(x => x.Id).ToList();
             return View(data);
         }
@@ -332,20 +334,6 @@ namespace GegiCRM.WebUI.Controllers
             }
         }
 
-        [HttpPost]
-        public async Task<string> _AddCustomerContact(CustomerContact contact)
-        {
-            try
-            {
-               var addedContact =  _contactManager.Create(contact);
-                return "OK";
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
-        }
-
         public async Task<IActionResult> _EditCustomerContact(int id)
         {
             var contact = await _context.CustomerContacts.FirstOrDefaultAsync(x => x.Id == id);
@@ -367,8 +355,8 @@ namespace GegiCRM.WebUI.Controllers
         }
 
         public async Task<IActionResult> _GetCustomerContactsOfCustomer(int id)
-        {        
-            var data = _contactManager.ListByFilter(x => x.CustomerId == id && x.IsDeleted == false, false).OrderByDescending(x=>x.Id).ToList();
+        {
+            var data = _contactManager.ListByFilter(x => x.CustomerId == id && x.IsDeleted == false, false).OrderByDescending(x => x.Id).ToList();
             return View(data);
         }
 
@@ -392,6 +380,186 @@ namespace GegiCRM.WebUI.Controllers
             catch (Exception ex)
             {
                 return ex.Message;
+            }
+        }
+
+
+        [HttpPost]
+        public async Task<string> _AddCustomerContact(CustomerContact contact)
+        {
+            try
+            {
+                var addedContact = _contactManager.Create(contact);
+                return "OK";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+
+
+        public async Task<IActionResult> _GetCustomerAddresses(int id)
+        {
+
+            var data = _addressManager.ListByFilter(x => x.CustomerId == id && x.IsDeleted == false, false).OrderByDescending(x => x.Id).ToList();
+            return View(data);
+
+        }
+
+
+        [HttpPost]
+        public async Task<string> _AddNewCustomerAddress(int customerId, string addressName, string il, string ilce, string address)
+        {
+            try
+            {
+                CustomerAddress newAddress = new CustomerAddress
+                {
+                    CustomerId = customerId,
+                    AddressName = addressName,
+                    Il = il,
+                    Ilce = ilce,
+                    Address = address
+                };
+                _addressManager.Create(newAddress);
+
+                return "OK";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+
+        public async Task<IActionResult> _EditCustomerAddress(int id)
+        {
+            var data = await _context.CustomerAddresses.FirstOrDefaultAsync(x => x.Id == id);
+            return View(data);
+        }
+
+        [HttpPost]
+        public async Task<string> _EditCustomerAddress(CustomerAddress customerAddress)
+        {
+            try
+            {
+                _addressManager.Update(customerAddress);
+                return "OK";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public async Task<string> _DeleteCustomerAddress(int id)
+        {
+            try
+            {
+                var currentAddress = _addressManager.GetById(id, false);
+                if (currentAddress == null)
+                {
+                    return "Not Found";
+                }
+                else
+                {
+                    _addressManager.Delete(currentAddress);
+                }
+
+                return "OK";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public async Task<IActionResult> _GetCustomerBillingAddresses(int id)
+        {
+
+            var data = _billingAddressManager.ListByFilter(x => x.CustomerId == id && x.IsDeleted == false, false).OrderByDescending(x => x.Id).ToList();
+            return View(data);
+
+        }
+
+
+        [HttpPost]
+        public async Task<string> _AddNewCustomerBillingAddress(int customerId, string addressName, string vergiNo, string vergiDairesi, string billingAddress)
+        {
+            try
+            {
+                CustomerBillingAddress newAddress = new CustomerBillingAddress
+                {
+                    CustomerId = customerId,
+                    AddressName = addressName,
+                    VergiDairesi = vergiDairesi,
+                    VergiNo = vergiNo,
+                    BillingAddress = billingAddress
+                };
+                _billingAddressManager.Create(newAddress);
+
+                return "OK";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+
+        public async Task<IActionResult> _EditCustomerBillingAddress(int id)
+        {
+            var data = await _context.CustomerBillingAddresses.FirstOrDefaultAsync(x => x.Id == id);
+            return View(data);
+        }
+
+        [HttpPost]
+        public async Task<string> _EditCustomerBillingAddress(CustomerBillingAddress customerBillingAddress)
+        {
+            try
+            {
+                _billingAddressManager.Update(customerBillingAddress);
+                return "OK";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public async Task<string> _DeleteCustomerBillingAddress(int id)
+        {
+            try
+            {
+                var currentAddress = _billingAddressManager.GetById(id, false);
+                if (currentAddress == null)
+                {
+                    return "Not Found";
+                }
+                else
+                {
+                    _billingAddressManager.Delete(currentAddress);
+                }
+
+                return "OK";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public async Task<IActionResult> _GetCustomersOrders(int? id)
+        {
+            if (id != null)
+            {
+                var data = await _context.Orders.Where(x => x.CustomerId == id && x.IsDeleted == false).ToListAsync();
+                return View(data);
+            }
+            else
+            {
+                return BadRequest();
             }
         }
     }
