@@ -5,10 +5,13 @@ using GegiCRM.DAL.Abstract;
 using GegiCRM.DAL.Concrete;
 using GegiCRM.DAL.EntityFramework;
 using GegiCRM.Entities.Concrete;
+using GegiCRM.WebUI.Hubs;
 using GegiCRM.WebUI.Mappings;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Quartz;
+
 //using Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +20,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSession();
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
-builder.Services.AddDbContext<Context>();
+builder.Services.AddDbContext<CrmDbContext>();
 
 builder.Services.AddScoped<IAppUserDal, EfAppUserRepository>();
 builder.Services.AddScoped<AppUserManager>();
@@ -42,7 +45,7 @@ builder.Services.AddQuartzServer(options =>
 //builder.Services.AddScoped<AppIdentityRoleManager>();
 //builder.Services.AddScoped<GenericManager<Customer>>();
 
-using (var context = new Context())
+using (var context = new CrmDbContext())
 {
     context.Database.Migrate();
 }
@@ -58,7 +61,7 @@ IMapper mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
 //////aha
-builder.Services.AddIdentity<AppUser, AppIdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<Context>();
+builder.Services.AddIdentity<AppUser, AppIdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<CrmDbContext>();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -71,6 +74,10 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 builder.Services.AddRazorPages();
+builder.Services.AddSignalR(options =>
+{
+    options.EnableDetailedErrors = true;
+});
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -90,7 +97,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     // User settings.
     //options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
     options.User.RequireUniqueEmail = true;
-    
+
 });
 
 
@@ -111,6 +118,16 @@ else
 
 app.UseStatusCodePagesWithReExecute("/Error/", "?statusCode={0}");
 app.UseHttpsRedirection();
+
+StaticFileOptions staticFileOptions = new StaticFileOptions();
+FileExtensionContentTypeProvider typeProvider = new FileExtensionContentTypeProvider();
+if (!typeProvider.Mappings.ContainsKey(".woff2"))
+{
+    typeProvider.Mappings.Add(".woff2", "application/font-woff2");
+}
+staticFileOptions.ContentTypeProvider = typeProvider;
+app.UseStaticFiles(staticFileOptions);
+
 app.UseStaticFiles();
 
 
@@ -130,6 +147,8 @@ app.UseEndpoints(endpoints =>
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapHub<UserHub>("/UserHub");
 
 app.Run();
 

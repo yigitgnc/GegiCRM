@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GegiCRM.DAL.Migrations
 {
-    [DbContext(typeof(Context))]
+    [DbContext(typeof(CrmDbContext))]
     [Migration("20220630085854_ordersProductCurrencies_moved_from_orderCurrencies")]
     partial class ordersProductCurrencies_moved_from_orderCurrencies
     {

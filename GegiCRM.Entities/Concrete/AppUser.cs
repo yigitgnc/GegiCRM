@@ -126,6 +126,7 @@ namespace GegiCRM.Entities.Concrete
             WarrantyTrackingModifiedBy = new HashSet<WarrantyTracking>();
             WorkStandartAddedBy = new HashSet<WorkStandart>();
             WorkStandartModifiedBy = new HashSet<WorkStandart>();
+            UserActivityLogs = new HashSet<UserDailyActivityLog>();
         }
 
 
@@ -138,6 +139,7 @@ namespace GegiCRM.Entities.Concrete
         public int AddedById { get; set; }
         public int? ModifiedById { get; set; }
         public bool IsDeleted { get; set; }
+        public bool IsOnline { get; set; }
         public string? ProfilePictureUrl { get; set; }
 
         #region virtuals
@@ -272,6 +274,7 @@ namespace GegiCRM.Entities.Concrete
         public virtual ICollection<WarrantyTracking> WarrantyTrackingModifiedBy { get; set; }
         public virtual ICollection<WorkStandart> WorkStandartAddedBy { get; set; }
         public virtual ICollection<WorkStandart> WorkStandartModifiedBy { get; set; }
+        public virtual ICollection<UserDailyActivityLog> UserActivityLogs { get; set; }
         public virtual AppUser AddedBy { get; set; }
         public virtual AppUser? ModifiedBy { get; set; }
 
@@ -280,14 +283,14 @@ namespace GegiCRM.Entities.Concrete
         {
             get
             {
-                return $"{Name} {Surname.ToUpper()}";
+                return $"{Name.ToUpper()} {Surname.ToUpper()}";
             }
         }
         #endregion
 
         public override string ToString()
         {
-            return $"({Name} {Surname} <{Email}>)";
+            return $"({NameSurname} <{Email}>)";
         }
     }
 }

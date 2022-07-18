@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GegiCRM.DAL.Migrations
 {
-    [DbContext(typeof(Context))]
+    [DbContext(typeof(CrmDbContext))]
     [Migration("20220701065249_seed")]
     partial class seed
     {

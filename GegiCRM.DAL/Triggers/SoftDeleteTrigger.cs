@@ -12,8 +12,8 @@ namespace GegiCRM.DAL.Triggers
 {
     public class SoftDeleteTrigger : IBeforeSaveTrigger<IBaseEntity<int>>
     {
-        readonly Context _dbContext;
-        public SoftDeleteTrigger(Context dbContext)
+        readonly CrmDbContext _dbContext;
+        public SoftDeleteTrigger(CrmDbContext dbContext)
         {
             _dbContext = dbContext;
         }

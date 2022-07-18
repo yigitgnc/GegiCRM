@@ -16,7 +16,7 @@ namespace GegiCRM.DAL.EntityFramework
     {
         public List<Product> GetProductsWithNavigations(bool includeDeletedRecords)
         {
-            using var context = new Context();
+            using var context = new CrmDbContext();
             var data = context.Products
                 .Include(x => x.Suppliers)
                 .Include(x => x.ProductGroup)
@@ -34,7 +34,7 @@ namespace GegiCRM.DAL.EntityFramework
 
         public List<Product> GetProductsWithNavigationsByFilter(Expression<Func<Product, bool>> filter, bool includeDeletedRecords)
         {
-            using var context = new Context();
+            using var context = new CrmDbContext();
             var data = context.Products
                 .Where(filter)
                 .Include(x => x.Suppliers)
@@ -54,7 +54,7 @@ namespace GegiCRM.DAL.EntityFramework
 
         public Product? GetProductByIdWithNavigations(int id, bool includeDeletedRecords)
         {
-            using var context = new Context();
+            using var context = new CrmDbContext();
             var data = context.Products
                 .Where(x => x.Id == id)
                 .Include(x => x.Suppliers)

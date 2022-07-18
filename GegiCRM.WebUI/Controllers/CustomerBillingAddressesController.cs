@@ -7,14 +7,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GegiCRM.DAL.Concrete;
 using GegiCRM.Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
+using GegiCRM.WebUI.Utils.CustomActionFilters;
 
 namespace GegiCRM.WebUI.Controllers
 {
+    [Authorize]
+    [ActivityLogger]
     public class CustomerBillingAddressesController : Controller
     {
-        private readonly Context _context;
+        private readonly CrmDbContext _context;
 
-        public CustomerBillingAddressesController(Context context)
+        public CustomerBillingAddressesController(CrmDbContext context)
         {
             _context = context;
         }

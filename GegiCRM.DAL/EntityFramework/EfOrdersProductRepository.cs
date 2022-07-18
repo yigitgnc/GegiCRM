@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GegiCRM.DAL.Concrete;
 using Microsoft.EntityFrameworkCore;
-using Context = GegiCRM.DAL.Concrete.Context;
+using CrmDbContext = GegiCRM.DAL.Concrete.CrmDbContext;
 
 namespace GegiCRM.DAL.EntityFramework
 {
@@ -16,7 +16,7 @@ namespace GegiCRM.DAL.EntityFramework
     {
         public List<OrdersProduct> GetListByAllNavigations(int orderId)
         {
-            using Context context = new Context();
+            using CrmDbContext context = new CrmDbContext();
             return context.OrdersProducts
                 .Where(x=> x.OrderId == orderId && !x.IsDeleted)
                 .Include(x=>x.KesinSupplier)

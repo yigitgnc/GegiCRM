@@ -190,10 +190,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Utils\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <UpToDateCheckInput Remove="Views\TeklifTakip\Copy.cshtml" />
   </ItemGroup>
 

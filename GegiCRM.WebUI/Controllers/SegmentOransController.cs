@@ -7,14 +7,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GegiCRM.DAL.Concrete;
 using GegiCRM.Entities.Concrete;
+using GegiCRM.WebUI.Utils.CustomActionFilters;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GegiCRM.WebUI.Controllers
 {
+    [Authorize]
+    [ActivityLogger]
     public class SegmentOransController : Controller
     {
-        private readonly Context _context;
+        private readonly CrmDbContext _context;
 
-        public SegmentOransController(Context context)
+        public SegmentOransController(CrmDbContext context)
         {
             _context = context;
         }

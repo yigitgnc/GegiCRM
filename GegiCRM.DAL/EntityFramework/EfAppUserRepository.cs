@@ -16,7 +16,7 @@ namespace GegiCRM.DAL.EntityFramework
     {
         public AppUser? GetUserByEmail(string email)
         {
-            using var c = new Context();
+            using var c = new CrmDbContext();
             return c.Users.FirstOrDefault(x => x.Email == email);
         }
 
@@ -27,7 +27,7 @@ namespace GegiCRM.DAL.EntityFramework
 
         public List<AppUser> GetUsersWithAddedOrders()
         {
-            using (Context c = new Context())
+            using (CrmDbContext c = new CrmDbContext())
             {
                 return c.Users.Include(x => x.OrderAddedBy).ToList();
             }
@@ -42,7 +42,7 @@ namespace GegiCRM.DAL.EntityFramework
 
         public int GetUsersGivenOrderCountByGroupId(int groupId, int userID, DateTime beginDate, DateTime endDate)
         {
-            using Context context = new Context();
+            using CrmDbContext context = new CrmDbContext();
             return context.OrdersProducts.Include(x => x.Product).Where(x=>x.CreatedDate>=beginDate && x.CreatedDate<=endDate).Count(x => x.Product.ProductGroupId == groupId && x.AddedById == userID);
         }
     }

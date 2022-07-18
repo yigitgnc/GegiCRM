@@ -7,14 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GegiCRM.DAL.Concrete;
 using GegiCRM.Entities.Concrete;
+using GegiCRM.WebUI.Utils.CustomActionFilters;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GegiCRM.WebUI.Controllers
 {
+
+    [Authorize]
+    [ActivityLogger]
     public class ProductGroupsController : Controller
     {
-        private readonly Context _context;
+        private readonly CrmDbContext _context;
 
-        public ProductGroupsController(Context context)
+        public ProductGroupsController(CrmDbContext context)
         {
             _context = context;
         }

@@ -93,6 +93,7 @@ $(document).on("ajaxSuccess", function () {
 
 $(document).ready(function () {
     InitCustomInputs();
+    SetDefaultAvatarImage();
 });
 
 //currency input
@@ -131,4 +132,56 @@ function InitCustomInputs() {
         });
     };
 })(jQuery);
+
+function SetDefaultAvatarImage() {
+    var avatars = $(".profilePicture");
+
+    for (var i = 0; i < avatars.length; i++) {
+
+        var image = $(avatars[i]).attr("src");
+        if (!IsImageOk(image)) {
+            //console.log("error var");
+            $(avatars[i]).attr("src", "/assets/img/avatars/default.webp");
+        }
+
+    }
+
+
+
+}
+
+
+function IsImageOk(img) {
+    // During the onload event, IE correctly identifies any images that
+    // weren’t downloaded as not complete. Others should too. Gecko-based
+    // browsers act like NS4 in that they report this incorrectly.
+    if (!img.complete) {
+        return false;
+    }
+
+    // However, they do have two very useful properties: naturalWidth and
+    // naturalHeight. These give the true size of the image. If it failed
+    // to load, either of these should be zero.
+    if (img.naturalWidth === 0) {
+        return false;
+    }
+
+    // No other way of checking: assume it’s ok.
+    return true;
+}
+
+
+function GotMessage(blinkCount, className) {
+
+    var total = blinkCount * 2;
+    var current = 1;
+    var interval = setInterval(() => {
+        if (total <= current) {
+            clearInterval(interval);
+        }
+        current++;
+        $("#chatOffCanvasBtn").toggleClass(className);
+    }, 200);
+
+}
 

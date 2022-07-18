@@ -10,14 +10,18 @@ using GegiCRM.DAL.EntityFramework;
 using GegiCRM.Entities.Concrete;
 using Microsoft.AspNetCore.Identity;
 using GegiCRM.BLL.Generic;
+using Microsoft.AspNetCore.Authorization;
+using GegiCRM.WebUI.Utils.CustomActionFilters;
 
 namespace GegiCRM.WebUI.Controllers
 {
+    [Authorize]
+    [ActivityLogger]
     public class BirimsController : Controller
     {
-        private readonly Context _context;
+        private readonly CrmDbContext _context;
         private readonly GenericManager<Birim> _birimGenericManager;
-        public BirimsController(Context context)
+        public BirimsController(CrmDbContext context)
         {
             _context = context;
             _birimGenericManager = new GenericManager<Birim>(new EfBirimRepository());

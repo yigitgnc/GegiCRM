@@ -20,7 +20,7 @@ namespace GegiCRM.BLL.Generic
     {
     
 
-        public static readonly IUserStore<AppUser> _store = new UserStore<AppUser, AppIdentityRole, Context, int>(new Context());
+        public static readonly IUserStore<AppUser> _store = new UserStore<AppUser, AppIdentityRole, CrmDbContext, int>(new CrmDbContext());
         public readonly UserManager<AppUser> _userManager = new UserManager<AppUser>(_store, null, new PasswordHasher<AppUser>(), null, null, null, null, null, null);
 
         public IHttpContextAccessor _httpContextAccessor;

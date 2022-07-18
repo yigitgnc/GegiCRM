@@ -11,12 +11,15 @@ using GegiCRM.BLL.Generic;
 using GegiCRM.DAL.Repositories;
 using GegiCRM.DAL.EntityFramework;
 using Microsoft.AspNetCore.Authorization;
+using GegiCRM.WebUI.Utils.CustomActionFilters;
 
 namespace GegiCRM.WebUI.Controllers
 {
+    [Authorize]
+    [ActivityLogger]
     public class CustomersController : Controller
     {
-        private readonly Context _context;
+        private readonly CrmDbContext _context;
         private readonly GenericManager<Customer> _genericmanager = new GenericManager<Customer>(new EfCustomerRepository());
         private readonly GenericManager<CustomerRepresentetiveUser> _repUserManager = new GenericManager<CustomerRepresentetiveUser>(new EfCustomerRepresentetiveUserRepository());
         private readonly GenericManager<CustomerContact> _contactManager = new GenericManager<CustomerContact>(new EfCustomerContactRepository());
@@ -24,7 +27,7 @@ namespace GegiCRM.WebUI.Controllers
         private readonly GenericManager<CustomerBillingAddress> _billingAddressManager = new GenericManager<CustomerBillingAddress>(new EfCustomerBillingAddressRepository());
 
 
-        public CustomersController(Context context)
+        public CustomersController(CrmDbContext context)
         {
             _context = context;
         }

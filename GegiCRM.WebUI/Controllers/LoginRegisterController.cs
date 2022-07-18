@@ -13,14 +13,16 @@ namespace GegiCRM.WebUI.Controllers
     {
 
         public readonly ILogger<HomeController> _logger;
-        //private readonly SignInManager<AppUser> _signInManager;
-        //private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
         public readonly AppUserManager _appUserManager;
 
-        public LoginRegisterController(AppUserManager appUserManager, ILogger<HomeController> logger)
+        public LoginRegisterController(AppUserManager appUserManager, ILogger<HomeController> logger, SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
         {
             _appUserManager = appUserManager;
             _logger = logger;
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         //public LoginRegisterController(SignInManager<AppUser> signInManager, ILogger<HomeController> logger, UserManager<AppUser> userManager)
@@ -46,10 +48,10 @@ namespace GegiCRM.WebUI.Controllers
             if (ModelState.IsValid)
             {
 
-                var user = await _appUserManager._userManager.FindByEmailAsync(vm.Email);
+                var user = await _userManager.FindByEmailAsync(vm.Email);
                 if (user != null)
                 {
-                    var result = await _appUserManager._signInManager.PasswordSignInAsync(user, vm.Password, vm.RememberMe, lockoutOnFailure: true);
+                    var result = await _signInManager.PasswordSignInAsync(user, vm.Password, vm.RememberMe, lockoutOnFailure: true);
 
                     if (result.Succeeded)
                     {
@@ -111,7 +113,7 @@ namespace GegiCRM.WebUI.Controllers
                     Surname = vm.Surname,
                     PhoneNumber = vm.PhoneNumber,
                     AddedById = 1,
-
+                    ProfilePictureUrl = "/assets/img/avatars/default.webp",
                 };
 
                 user.UserName = _appUserManager.GenerateUserName(user.Name, user.Surname);
@@ -140,8 +142,8 @@ namespace GegiCRM.WebUI.Controllers
         public async Task<IActionResult> Logout()
         {
             //this is where the logout operations gonna go
-            AppUser user = await _appUserManager._userManager.GetUserAsync(User);
-            await _appUserManager._signInManager.SignOutAsync();
+            AppUser user = await _userManager.GetUserAsync(User);
+            await _signInManager.SignOutAsync();
             _logger.LogWarning($"[{user}] account logged out.");
             return RedirectToAction("Login");
         }

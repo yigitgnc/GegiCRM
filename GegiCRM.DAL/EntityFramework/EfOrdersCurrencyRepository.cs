@@ -15,7 +15,7 @@ namespace GegiCRM.DAL.EntityFramework
     {
         public List<OrdersProductCurrency> GetListOrdersCurrencies(int orderProductId)
         {
-            using Context context = new Context();
+            using CrmDbContext context = new CrmDbContext();
             return context.OrdersProductCurrencies.Where(x=>x.OrdersProductId == orderProductId && x.IsDeleted==false).Include(x=>x.Currency).ToList();
         }
     }

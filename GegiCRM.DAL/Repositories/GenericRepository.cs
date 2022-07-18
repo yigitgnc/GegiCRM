@@ -16,7 +16,7 @@ namespace GegiCRM.DAL.Repositories
 
         virtual public T Create(T t)
         {
-            using var c = new Context();
+            using var c = new CrmDbContext();
             c.Add(t);
             c.SaveChanges();
             return t;
@@ -24,7 +24,7 @@ namespace GegiCRM.DAL.Repositories
 
         virtual public T Update(T t)
         {
-            using var c = new Context();
+            using var c = new CrmDbContext();
             c.Update(t);
             c.SaveChanges();
             return t;
@@ -32,26 +32,26 @@ namespace GegiCRM.DAL.Repositories
 
         virtual public void Delete(T t)
         {
-            using var c = new Context();
+            using var c = new CrmDbContext();
             c.Remove(t);
             c.SaveChanges();
         }
 
         virtual public T GetByID(int id, bool includeDeletedRecords)
         {
-            var c = new Context();
+            var c = new CrmDbContext();
             return c.Set<T>().Find(id);
         }
 
         virtual public List<T> GetListAll(bool includeDeletedRecords)
         {
-            var c = new Context();
+            var c = new CrmDbContext();
             return c.Set<T>().ToList();
         }
 
         virtual public List<T> ListByFilter(Expression<Func<T, bool>> filter, bool includeDeletedRecords)
         {
-            var c = new Context();
+            var c = new CrmDbContext();
             return c.Set<T>().Where(filter).ToList();
         }
 
@@ -62,7 +62,7 @@ namespace GegiCRM.DAL.Repositories
         /// <returns></returns>
         public IEnumerable<T> Include(params Expression<Func<T, object>>[] includes)
         {
-            Context c = new Context();
+            CrmDbContext c = new CrmDbContext();
             var dbSet = c.Set<T>();
 
             IEnumerable<T> query = null;
@@ -76,7 +76,7 @@ namespace GegiCRM.DAL.Repositories
 
         public IEnumerable<T> Include(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includes)
         {
-            Context c = new Context();
+            CrmDbContext c = new CrmDbContext();
             var dbSet = c.Set<T>();
 
             IEnumerable<T> query = null;

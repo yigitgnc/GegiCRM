@@ -14,12 +14,12 @@ namespace GegiCRM.DAL.EntityFramework
     {
         public AppIdentityRole? GetRoleByName(string roleName)
         {
-            using var c = new Context();
+            using var c = new CrmDbContext();
             return c.Set<AppIdentityRole>().FirstOrDefault(x => x.Name == roleName);
         }
         public AppIdentityRoleGroup? GetRoleGroupByRole(AppIdentityRole role)
         {
-            using var c = new Context();
+            using var c = new CrmDbContext();
             return c.Set<AppIdentityRoleGroup>().Where(x => x.Id == role.Id).FirstOrDefault();
         }
     }

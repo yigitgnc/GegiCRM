@@ -6,6 +6,7 @@ using GegiCRM.DAL.EntityFramework;
 using GegiCRM.DAL.Repositories;
 using GegiCRM.Entities.Concrete;
 using GegiCRM.WebUI.Models;
+using GegiCRM.WebUI.Utils.CustomActionFilters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +15,9 @@ using System.Text;
 
 namespace GegiCRM.WebUI.Controllers
 {
+
     [Authorize]
+    [ActivityLogger]
     public class TeklifTakipController : Controller
     {
         readonly AppUserManager _appUserManager;
@@ -26,7 +29,7 @@ namespace GegiCRM.WebUI.Controllers
         readonly OrdersProductManager _orderProductsManager;
         readonly GenericManager<ProductGroup> _productGroupGenericManager;
         readonly ProductManager _productManager;
-        readonly Context _context = new Context();
+        readonly CrmDbContext _context = new CrmDbContext();
 
         public readonly SignInManager<AppUser> _signInManager;
 
@@ -90,7 +93,7 @@ namespace GegiCRM.WebUI.Controllers
 
         public async Task<string> GetSegmentPrice(int customerId, decimal fiyat, string currencyId, int adet)
         {
-            Context c = new Context();
+            CrmDbContext c = new CrmDbContext();
 
 
             var toplam_fiyat = fiyat * adet;
@@ -121,7 +124,7 @@ namespace GegiCRM.WebUI.Controllers
             ViewBag.Customers = _customerManager.GetAll(false);
             ViewBag.Users = _appUserManager.GetAll(false);
             ViewBag.OrderStates = _orderStateManager.GetAll(false);
-            var context = new Context();
+            var context = new CrmDbContext();
             ViewBag.OrdersToMove = context.Orders.Include(x => x.Customer).Include(x => x.AddedBy).Include(x => x.RepresentetiveUser).Where(x => x.IsDeleted == false).ToList(); ;
 
             string type = "Sipariş";
@@ -416,7 +419,7 @@ namespace GegiCRM.WebUI.Controllers
             {
                 try
                 {
-                    var c = new Context();
+                    var c = new CrmDbContext();
                     var op = c.OrdersProducts.FirstOrDefault(x => x.Id == id);
                     if (op != null)
                     {

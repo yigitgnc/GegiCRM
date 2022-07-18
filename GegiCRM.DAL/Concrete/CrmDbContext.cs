@@ -7,18 +7,20 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace GegiCRM.DAL.Concrete
 {
-    public partial class Context : IdentityDbContext<AppUser, AppIdentityRole, int>
+    public partial class CrmDbContext : IdentityDbContext<AppUser, AppIdentityRole, int>
     {
-        public Context()
+        public CrmDbContext()
         {
         }
 
-        public Context(DbContextOptions<Context> options)
+        public CrmDbContext(DbContextOptions<CrmDbContext> options)
             : base(options)
         {
         }
 
         #region DBSets
+        public virtual DbSet<UserActivityLog> UserActivityLogs { get; set; } = null!;
+        public virtual DbSet<UserDailyActivityLog> UserDailyActivityLogs { get; set; } = null!;
         public virtual DbSet<AppRolesOfUsers> AppRolesOfUsers { get; set; } = null!;
         public virtual DbSet<Announcement> Announcements { get; set; } = null!;
         public virtual DbSet<AppIdentityRole> AppIdentityRoles { get; set; } = null!;

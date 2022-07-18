@@ -13,9 +13,8 @@
 
     <div class="form-group  mb-1">
         <label class="control-label">Müşteri Seç</label>
-        <select name="CustomerId" class="form-control selectpicker" id="select-selectCustomer" data-live-search="true" data-container="body">
-            @foreach (Customer item in ViewBag.CustomerId)
-            {
+        <select name="CustomerId" class="form-control selectpickerInModal" id="select-selectCustomer" data-live-search="true" data-container="body">
+            @foreach (Customer item in ViewBag.CustomerId)            {
 
                 <option value="@item.Id" data-tokens="@item.Name">@item.Name</option>
 
@@ -33,3 +32,11 @@
     </div>
 </form>
 
+                
+<script>    
+    $(".selectpickerInModal").select2({
+        tags: true,
+        dropdownParent: $("#newActivityLogModal"),
+        language: "tr"
+    });
+</script>

@@ -7,13 +7,15 @@ using System.Diagnostics;
 using GegiCRM.BLL.Concrete;
 using GegiCRM.DAL.Concrete;
 using GegiCRM.DAL.EntityFramework;
+using GegiCRM.WebUI.Utils.CustomActionFilters;
 
 namespace GegiCRM.WebUI.Controllers
 {
     [Authorize]
+    [ActivityLogger]
     public class HomeController : Controller
     {
-        Context context = new Context();
+        CrmDbContext context = new CrmDbContext();
         private readonly AppUserManager _appUserManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly UserManager<AppUser> _userManager;
@@ -30,7 +32,7 @@ namespace GegiCRM.WebUI.Controllers
         public IActionResult Index()
         {
             var user = _appUserManager.GetCurrentUserAsync().GetAwaiter().GetResult(); 
-            ViewBag.Currencies = context.Currencies.ToList();
+            ViewBag.Currencies = context.Currencies.Where(x=>x.Code != "TRY").ToList();
             var activities = context.CustomerActivityLogs.Where(x => x.AddedById == user.Id).OrderByDescending(x => x.CreatedDate).ToList();
             return View(activities);
         }
