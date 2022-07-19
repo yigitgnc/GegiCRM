@@ -19,6 +19,7 @@ namespace GegiCRM.DAL.Concrete
         }
 
         #region DBSets
+        public virtual DbSet<UserMessage> UserMessages { get; set; } = null!;
         public virtual DbSet<UserActivityLog> UserActivityLogs { get; set; } = null!;
         public virtual DbSet<UserDailyActivityLog> UserDailyActivityLogs { get; set; } = null!;
         public virtual DbSet<AppRolesOfUsers> AppRolesOfUsers { get; set; } = null!;
@@ -2248,6 +2249,18 @@ namespace GegiCRM.DAL.Concrete
                 entity.Property(e => e.Surname).HasMaxLength(50);
 
                 entity.Property(e => e.UserCompanyId).HasColumnName("UserCompanyID");
+
+                entity.HasMany(d => d.UsersSendedMessages)
+                .WithOne(p => p.SenderUser)
+                .HasForeignKey(d => d.SenderUserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Users_SendedMessages");
+
+                entity.HasMany(d => d.UsersRecievedMessages)
+                .WithOne(p => p.RecieverUser)
+                .HasForeignKey(d => d.RecieverUserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Users_RecievedMessages");
 
                 entity.HasOne(d => d.AddedBy)
                     .WithMany(p => p.InverseAddedBy)

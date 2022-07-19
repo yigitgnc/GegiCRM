@@ -1,47 +1,45 @@
-﻿@using GegiCRM.Entities.Concrete
+﻿@    using GegiCRM.Entities.Concrete
+@    using GegiCRM.WebUI.ViewComponents.GetUserMessages
 @{
     Layout = null;
 
 }
-@model IEnumerable<AppUser>
+@model IEnumerable<UserMessagesViewModel>
 
 <small class="text-light fw-semibold mx-auto px-2">Kullanıcılar</small>
 <div class="mt-1">
     <ul class="list-group list-group-flush" id="allUsers">
-        @foreach (AppUser item in Model)
+        @foreach (UserMessagesViewModel item in Model)
         {
-            string lastSeen = "Online";
-            string lastPage = "Hareket Bekleniyor...";
-            string onlineClass = "avatar-online";
-            var activityLog = @item.UserActivityLogs.LastOrDefault();
+            string? sendDate = item.LastMessage?.SendDate.ToString();
+            string? messageText = "Mesaj Yok";
+            string color = "black";
+            if (item.LastMessage != null)
             {
-                if (activityLog != null)
+                sendDate = item.LastMessage.SendDate.ToString();
+                messageText = item.LastMessage.Message;
+                if (item.LastMessage.SenderUserId != ViewBag.UserId && item.LastMessage.ReadDate == null)
                 {
-                    lastPage = activityLog.LastVisitedPageTitle;
-                    if (activityLog.LastLoginDate <= activityLog.LastLogoutDate)
-                    {
-                        lastSeen = activityLog.LastLogoutDate.ToString();
-                        onlineClass = "avatar-offline";
-                    }
+                    color = "Blue";
                 }
             }
 
             <li class="list-group-item list-group-item-action cursor-pointer">
                 <div class="row" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="col-2">
-                        <div class="avatar @onlineClass" id="userAvatar_@item.Id">
-                            <img src="@item.ProfilePictureUrl" alt="" class="w-px-40 h-auto rounded-circle avatar profilePicture">
+                        <div class="avatar">
+                            <img src="@item.User.ProfilePictureUrl" alt="" class="w-px-40 h-auto rounded-circle avatar profilePicture">
                         </div>
                     </div>
 
                     <div class="col-10">
                         <div class="row d-flex justify-content-between">
-                            <p class="col-auto mb-0"> @item.NameSurname <small class="text-muted">@item.NormalizedUserName (#@item.Id)</small></p>
-                            <small class="col-auto float-end" id="userLastSeen_@item.Id">@lastSeen</small>
+                            <p class="col-auto mb-0"> @item.User.NameSurname <small class="text-muted">@item.User.NormalizedUserName (#@item.User.Id)</small></p>
+                            <small class="col-auto float-end" id="userSendDate_@item.User.Id">@sendDate</small>
                         </div>
                         <div class="row">
                             <p class="mb-0">
-                                Son İşlem: <i id="userWhere_@item.Id">@lastPage</i>
+                                <i id="userLastMessage_@item.User.Id" style="color:@color">@messageText</i>
                             </p>
                         </div>
                     </div>
@@ -51,11 +49,11 @@
                 <ul class="dropdown-menu dropdown-menu-start">
                     <li>
                         <div class="divider">
-                            <div class="divider-text">@item.ToString()</div>
+                            <div class="divider-text">@item.User.ToString()</div>
                         </div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="/Users/ShowProfile/@item.Id">
+                        <a class="dropdown-item" href="/Users/ShowProfile/@item.User.Id">
                             <i class="bx bx-user me-2"></i>
                             <span class="align-middle">Profili Görüntüle</span>
                         </a>

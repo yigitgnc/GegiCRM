@@ -9,6 +9,9 @@ using GegiCRM.DAL.Concrete;
 using GegiCRM.Entities.Concrete;
 using GegiCRM.WebUI.Utils.CustomActionFilters;
 using Microsoft.AspNetCore.Authorization;
+using GegiCRM.BLL.Generic;
+using GegiCRM.DAL.Repositories;
+using GegiCRM.WebUI.Models;
 
 namespace GegiCRM.WebUI.Controllers
 {
@@ -17,7 +20,7 @@ namespace GegiCRM.WebUI.Controllers
     public class AppUsersController : Controller
     {
         private readonly CrmDbContext _context;
-
+        private readonly GenericManager<UserMessage> _mesageManager = new GenericManager<UserMessage>(new GenericRepository<UserMessage>());
         public AppUsersController(CrmDbContext context)
         {
             _context = context;
@@ -188,5 +191,25 @@ namespace GegiCRM.WebUI.Controllers
         {
           return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        public async Task<IActionResult> _GetUserMessages()
+        {
+            AppUser user = await _mesageManager.GetCurrentUserAsync();
+            CrmDbContext dbContext = new CrmDbContext();
+            List<UserMessagesViewModel> data = new List<UserMessagesViewModel>();
+
+            foreach (var item in dbContext.Users.Where(x => x.Id != user.Id).ToList())
+            {
+                UserMessagesViewModel newVm = new UserMessagesViewModel()
+                {
+                    User = item,
+                    LastMessage = dbContext.UserMessages.Where(x => x.SenderUserId == item.Id || x.RecieverUserId == item.Id).OrderByDescending(x => x.SendDate).FirstOrDefault(),
+                };
+                data.Add(newVm);
+            }
+
+            return View(data.OrderByDescending(x => x.LastMessage?.SendDate));
+        }
+
     }
 }

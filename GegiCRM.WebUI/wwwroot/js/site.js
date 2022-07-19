@@ -171,17 +171,4 @@ function IsImageOk(img) {
 }
 
 
-function GotMessage(blinkCount, className) {
-
-    var total = blinkCount * 2;
-    var current = 1;
-    var interval = setInterval(() => {
-        if (total <= current) {
-            clearInterval(interval);
-        }
-        current++;
-        $("#chatOffCanvasBtn").toggleClass(className);
-    }, 200);
-
-}
 

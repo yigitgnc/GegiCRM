@@ -14,10 +14,19 @@ namespace GegiCRM.WebUI.Hubs
 
         private readonly GenericManager<UserDailyActivityLog> _genericUserActivityLogManager = new GenericManager<UserDailyActivityLog>(new GenericRepository<UserDailyActivityLog>());
         private readonly GenericManager<AppUser> _appUserManager = new GenericManager<AppUser>(new EfAppUserRepository());
+        private readonly GenericManager<UserMessage> _userMessageManager = new GenericManager<UserMessage>(new GenericRepository<UserMessage>());
         public override async Task<Task> OnConnectedAsync()
         {
-            await Clients.Caller.SendAsync("UpdateUserCount", _connectedUsers.Count - 1);
+
             AppUser user = await _genericUserActivityLogManager.GetCurrentUserAsync();
+
+            var connectionId = Context.ConnectionId;
+            if (user.SignalrConnectionId == null || user.SignalrConnectionId != connectionId)
+            {
+                user.SignalrConnectionId = connectionId;
+                _appUserManager.Update(user);
+            }
+
 
             //bu gün için aktivite kaydı varmı bakalım
             var lastActivty = _genericUserActivityLogManager.ListByFilter(x => x.CreatedDate.Date == DateTime.Now.Date && x.AppUserId == user.Id, false).FirstOrDefault();
@@ -43,7 +52,7 @@ namespace GegiCRM.WebUI.Hubs
                 _connectedUsers.Add(user);
                 user.IsOnline = true;
                 _appUserManager.Update(user);
-                await Clients.Others.SendAsync("UserConnected", user.Id);
+                await Clients.Others.SendAsync("UserConnected", user.Id, Context.ConnectionId);
                 await Clients.All.SendAsync("UpdateUserCount", _connectedUsers.Count - 1);
             }
 
@@ -102,6 +111,28 @@ namespace GegiCRM.WebUI.Hubs
             lastActivty.LastVisitedPageTitle = title;
             _genericUserActivityLogManager.Update(lastActivty);
             await Clients.Others.SendAsync("WhereIsUser", user.Id, title);
+
+        }
+
+        public async Task SendMessage(int reciverId, string message)
+        {
+            AppUser? reciver = _appUserManager.GetById(reciverId, false);
+
+            if (reciver != null && !string.IsNullOrWhiteSpace(message))
+            {
+                AppUser user = await _genericUserActivityLogManager.GetCurrentUserAsync();
+
+                UserMessage newMessage = new UserMessage()
+                {
+                    SenderUserId = user.Id,
+                    RecieverUserId = reciver.Id,
+                    Message = message,
+                    SendDate = DateTime.Now,
+                };
+                _userMessageManager.Create(newMessage);
+                await Clients.User(reciver.SignalrConnectionId).SendAsync("GotNewMessage", user.Id, message);
+
+            }
 
         }
     }

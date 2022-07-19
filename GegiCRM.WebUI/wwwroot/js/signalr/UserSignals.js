@@ -1,4 +1,5 @@
 ﻿var userConnectedSound = document.getElementById("userConnectedSound");
+var gotMessageSound = document.getElementById("gotMessageSound");
 
 const connection = new signalR.HubConnectionBuilder()
     .withUrl("/UserHub")
@@ -35,13 +36,13 @@ connection.on("UserDisconnected", function (userId, lastSeen) {
     SortUsers();
 });
 
-connection.on("UserConnected", function (userId, userCount) {
-    console.log(userId + " Connected");
+connection.on("UserConnected", function (userId, connectionId) {
+    console.log("anan");
+    console.log(userId + " Connected, ConnectionId => " + connectionId);
     $("#userLastSeen_" + userId).html("Online");
     $("#userAvatar_" + userId).addClass("avatar-online").removeClass("avatar-offline");
 
-    GotMessage(1, "newOnline")
-    userConnectedSound.play();
+    Notify(1, 1);
     SortUsers();
 });
 
@@ -54,8 +55,42 @@ connection.on("WhereIsUser", function (userId, title) {
     $("#userWhere_" + userId).html(title);
 });
 
+connection.on("GotNewMessage", function (senderId, message) {
+    console.log("GotNewMessage From User => " + senderId + " Message => " + message);
+    Notify(2, 2);
+});
 
 
+//type 1 = online
+//type 2 = message
+function Notify(blinkCount, type) {
+
+    var total = blinkCount * 2;
+    var current = 1;
+
+    var interval = setInterval(() => {
+
+        if (total <= current) {
+            clearInterval(interval);
+        }
+
+        current++;
+        switch (type) {
+            case 1:
+                userConnectedSound.play();
+                $("#chatOffCanvasBtn").toggleClass("newOnline");
+                break;
+            case 2:
+                gotMessageSound.play();
+                $("#chatOffCanvasBtn").toggleClass("gotMessage");
+                break;
+            default:
+                break;
+        }
+
+    }, 200);
+
+}
 
 
 function SortUsers() {
@@ -80,4 +115,8 @@ function SortUsers() {
         parent.appendChild(toSort[i]);
     }
 
+}
+
+function GetUserMessages() {
+    //navsMessages
 }

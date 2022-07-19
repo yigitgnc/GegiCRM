@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GegiCRM.Entities.Concrete
 {
-    public class AppUserMessage
+    public class UserMessage
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -16,11 +16,11 @@ namespace GegiCRM.Entities.Concrete
         public DateTime SendDate { get; set; }
         public DateTime? ReadDate { get; set; }
         public int SenderUserId { get; set; }
-        public int RecieverUserId { get; set; }
+        public int? RecieverUserId { get; set; }
         public string? Message { get; set; }
 
         public virtual AppUser SenderUser { get; set; }
-        public virtual AppUser RecieverUser { get; set; }
+        public virtual AppUser? RecieverUser { get; set; }
 
     }
 }

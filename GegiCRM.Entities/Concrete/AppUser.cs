@@ -127,6 +127,8 @@ namespace GegiCRM.Entities.Concrete
             WorkStandartAddedBy = new HashSet<WorkStandart>();
             WorkStandartModifiedBy = new HashSet<WorkStandart>();
             UserActivityLogs = new HashSet<UserDailyActivityLog>();
+            UsersSendedMessages = new HashSet<UserMessage>();
+            UsersRecievedMessages = new HashSet<UserMessage>();
         }
 
 
@@ -141,6 +143,7 @@ namespace GegiCRM.Entities.Concrete
         public bool IsDeleted { get; set; }
         public bool IsOnline { get; set; }
         public string? ProfilePictureUrl { get; set; }
+        public string? SignalrConnectionId { get; set; }
 
         #region virtuals
         public virtual UserCompany UserCompany { get; set; } = null!;
@@ -275,6 +278,8 @@ namespace GegiCRM.Entities.Concrete
         public virtual ICollection<WorkStandart> WorkStandartAddedBy { get; set; }
         public virtual ICollection<WorkStandart> WorkStandartModifiedBy { get; set; }
         public virtual ICollection<UserDailyActivityLog> UserActivityLogs { get; set; }
+        public virtual ICollection<UserMessage> UsersSendedMessages { get; set; }
+        public virtual ICollection<UserMessage> UsersRecievedMessages { get; set; }
         public virtual AppUser AddedBy { get; set; }
         public virtual AppUser? ModifiedBy { get; set; }
 
