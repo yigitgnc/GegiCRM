@@ -71,11 +71,6 @@ namespace GegiCRM.WebUI.Controllers
             return View(model);
         }
 
-        public IActionResult ST()
-        {
-            List<Order> model = _teklifTakipManager.GetListAllWithNavigationsByFilter(x => x.IsFrequentlyUsed);
-            return View("index", model);
-        }
 
         public async Task<IActionResult> _NewOrderContentPartial()
         {
@@ -91,7 +86,7 @@ namespace GegiCRM.WebUI.Controllers
             return RedirectToAction("Edit", new { createdOrder.Id });
         }
 
-        public async Task<string> GetSegmentPrice(int customerId, decimal fiyat, string currencyId, int adet)
+        public async Task<string> _GetSegmentPrice(int customerId, decimal fiyat, int currencyId, int adet)
         {
             CrmDbContext c = new CrmDbContext();
 
@@ -99,7 +94,7 @@ namespace GegiCRM.WebUI.Controllers
             var toplam_fiyat = fiyat * adet;
 
             ICollection<SegmentOran> customersSegmentOrans = c.Customers.FirstOrDefault(x => x.Id == customerId).Segment.SegmentOrans;
-            var currentOran = customersSegmentOrans.Where(x => x.StartPrice <= toplam_fiyat && x.EndPrice >= toplam_fiyat).FirstOrDefault();
+            var currentOran = customersSegmentOrans.Where(x => x.StartPrice <= toplam_fiyat && x.EndPrice >= toplam_fiyat && x.CurrencyID == currencyId).FirstOrDefault();
 
             if (currentOran != null)
             {
@@ -109,7 +104,7 @@ namespace GegiCRM.WebUI.Controllers
             }
             else
             {
-                return "Parametre Eksik";
+                return "Parametre Eksik veya Hatalı !";
             }
             return "OK";
         }
@@ -340,7 +335,8 @@ namespace GegiCRM.WebUI.Controllers
 
             try
             {
-
+                //aha bura
+                //todo: buraya bak
                 var currentUser = await _orderProductsManager.GetCurrentUserAsync();
                 var productGroupId = _productManager.GetById(ordersProduct.ProductId, false)!.ProductGroupId;
                 if (productGroupId != null)
@@ -352,6 +348,8 @@ namespace GegiCRM.WebUI.Controllers
                 if (ordersProduct.Id > 0)
                 {
                     _orderProductsManager.Update(ordersProduct);
+                    //_context.OrdersProducts.Update(ordersProduct).State = EntityState.Modified;
+                    //_context.SaveChanges();
                     return "UP";
                 }
                 _orderProductsManager.Create(ordersProduct);
@@ -426,7 +424,9 @@ namespace GegiCRM.WebUI.Controllers
                         if (type == "cut")
                         {
                             op.OrderId = destinationCustomerId;
-                            _orderProductsManager.Update(op);
+                            c.OrdersProducts.Update(op).State = EntityState.Modified;
+                            c.SaveChanges();
+                            //_orderProductsManager.Update(op);
                         }
                         else
                         {
@@ -492,7 +492,7 @@ namespace GegiCRM.WebUI.Controllers
         {
             ViewBag.Toplam = toplam;
             Order? order = _context.Orders.Find(id);
-            if (order!= null)
+            if (order != null)
             {
                 return View(order);
             }
@@ -501,11 +501,104 @@ namespace GegiCRM.WebUI.Controllers
 
         }
 
-        public async Task<List<Order>> Test()
+        public async Task<IActionResult> _CopyTeklif(int id, bool toplamli)
         {
-            var data = _teklifTakipManager.GetListWithIncludes(x => x.AddedBy).ToList();
-            return data;
+            List<OrdersProduct>? data = _context.OrdersProducts.Where(x => x.OrderId == id).ToList();
+            ViewBag.Toplamli = toplamli;
+            ViewBag.TicariUnvan = _teklifTakipManager.GetById(id, false).Customer.TicariUnvan;
+            return View(data);
         }
+
+        
+        public async Task<IActionResult> AdobeTeklif(int id)
+        {
+            List<OrdersProduct>? data = _context.OrdersProducts.Where(x => x.OrderId == id).ToList();
+            ViewBag.Musteri = _teklifTakipManager.GetById(id, false).Customer;
+            ViewBag.Kullanici = await _teklifTakipManager.GetCurrentUserAsync();
+            return View(data);
+        }
+        
+        public async Task<IActionResult> ComodoTeklif(int id)
+        {
+            List<OrdersProduct>? data = _context.OrdersProducts.Where(x => x.OrderId == id).ToList();
+            ViewBag.Musteri = _teklifTakipManager.GetById(id, false).Customer;
+            ViewBag.Kullanici = await _teklifTakipManager.GetCurrentUserAsync();
+            return View(data);
+        }
+
+        public async Task<IActionResult> DonanimTeklif(int id)
+        {
+            List<OrdersProduct>? data = _context.OrdersProducts.Where(x => x.OrderId == id).ToList();
+            ViewBag.Musteri = _teklifTakipManager.GetById(id, false).Customer;
+            ViewBag.Kullanici = await _teklifTakipManager.GetCurrentUserAsync();
+            return View(data);
+        }
+
+        public async Task<IActionResult> IskontaliTeklif(int id)
+        {
+            List<OrdersProduct>? data = _context.OrdersProducts.Where(x => x.OrderId == id).ToList();
+            ViewBag.Musteri = _teklifTakipManager.GetById(id, false).Customer;
+            ViewBag.Kullanici = await _teklifTakipManager.GetCurrentUserAsync();
+            return View(data);
+        }
+
+        public async Task<IActionResult> KiralamaTeklif(int id)
+        {
+            List<OrdersProduct>? data = _context.OrdersProducts.Where(x => x.OrderId == id).ToList();
+            ViewBag.Musteri = _teklifTakipManager.GetById(id, false).Customer;
+            ViewBag.Kullanici = await _teklifTakipManager.GetCurrentUserAsync();
+            return View(data);
+        }
+
+        public async Task<IActionResult> ProformaFatura(int id)
+        {
+            List<OrdersProduct>? data = _context.OrdersProducts.Where(x => x.OrderId == id).ToList();
+            ViewBag.Musteri = _teklifTakipManager.GetById(id, false).Customer;
+            ViewBag.Kullanici = await _teklifTakipManager.GetCurrentUserAsync();
+            return View(data);
+        }
+
+        public async Task<IActionResult> QnapTeklif(int id)
+        {
+            List<OrdersProduct>? data = _context.OrdersProducts.Where(x => x.OrderId == id).ToList();
+            ViewBag.Musteri = _teklifTakipManager.GetById(id, false).Customer;
+            ViewBag.Kullanici = await _teklifTakipManager.GetCurrentUserAsync();
+            return View(data);
+        }
+
+        public async Task<IActionResult> SophosTeklif(int id)
+        {
+            List<OrdersProduct>? data = _context.OrdersProducts.Where(x => x.OrderId == id).ToList();
+            ViewBag.Musteri = _teklifTakipManager.GetById(id, false).Customer;
+            ViewBag.Kullanici = await _teklifTakipManager.GetCurrentUserAsync();
+            return View(data);
+        }
+
+        public async Task<IActionResult> TecnoPcTeklif(int id)
+        {
+            List<OrdersProduct>? data = _context.OrdersProducts.Where(x => x.OrderId == id).ToList();
+            ViewBag.Musteri = _teklifTakipManager.GetById(id, false).Customer;
+            ViewBag.Kullanici = await _teklifTakipManager.GetCurrentUserAsync();
+            return View(data);
+        }
+
+        public async Task<IActionResult> TekSayfaDonanimTeklif(int id)
+        {
+            List<OrdersProduct>? data = _context.OrdersProducts.Where(x => x.OrderId == id).ToList();
+            ViewBag.Musteri = _teklifTakipManager.GetById(id, false).Customer;
+            ViewBag.Kullanici = await _teklifTakipManager.GetCurrentUserAsync();
+            return View(data);
+        }
+
+        public async Task<IActionResult> UpsBakimTeklif(int id)
+        {
+            List<OrdersProduct>? data = _context.OrdersProducts.Where(x => x.OrderId == id).ToList();
+            ViewBag.Musteri = _teklifTakipManager.GetById(id, false).Customer;
+            ViewBag.Kullanici = await _teklifTakipManager.GetCurrentUserAsync();
+            return View(data);
+        }
+
+
 
         public async Task<decimal> CalculateSegmentPrice()
         {

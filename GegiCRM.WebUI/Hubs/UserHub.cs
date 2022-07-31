@@ -17,44 +17,53 @@ namespace GegiCRM.WebUI.Hubs
         private readonly GenericManager<UserMessage> _userMessageManager = new GenericManager<UserMessage>(new GenericRepository<UserMessage>());
         public override async Task<Task> OnConnectedAsync()
         {
-
-            AppUser user = await _genericUserActivityLogManager.GetCurrentUserAsync();
-
-            var connectionId = Context.ConnectionId;
-            if (user.SignalrConnectionId == null || user.SignalrConnectionId != connectionId)
+            try
             {
-                user.SignalrConnectionId = connectionId;
-                _appUserManager.Update(user);
-            }
+                AppUser user = await _genericUserActivityLogManager.GetCurrentUserAsync();
 
-
-            //bu gün için aktivite kaydı varmı bakalım
-            var lastActivty = _genericUserActivityLogManager.ListByFilter(x => x.CreatedDate.Date == DateTime.Now.Date && x.AppUserId == user.Id, false).FirstOrDefault();
-            if (lastActivty == null)
-            {
-                UserDailyActivityLog newActivtyLog = new UserDailyActivityLog()
+                var connectionId = Context.ConnectionId;
+                if (user.SignalrConnectionId == null || user.SignalrConnectionId != connectionId)
                 {
-                    AppUserId = user.Id,
-                    CreatedDate = DateTime.Now,
-                    LastLoginDate = DateTime.Now,
-                };
+                    user.SignalrConnectionId = connectionId;
+                    _appUserManager.Update(user);
+                }
 
-                _genericUserActivityLogManager.Create(newActivtyLog);
+
+                //bu gün için aktivite kaydı varmı bakalım
+                var lastActivty = _genericUserActivityLogManager.ListByFilter(x => x.CreatedDate.Date == DateTime.Now.Date && x.AppUserId == user.Id, false).FirstOrDefault();
+                if (lastActivty == null)
+                {
+                    UserDailyActivityLog newActivtyLog = new UserDailyActivityLog()
+                    {
+                        AppUserId = user.Id,
+                        CreatedDate = DateTime.Now,
+                        LastLoginDate = DateTime.Now,
+                    };
+
+                    _genericUserActivityLogManager.Create(newActivtyLog);
+                }
+                else
+                {
+                    lastActivty.LastLoginDate = DateTime.Now;
+                    _genericUserActivityLogManager.Update(lastActivty);
+                }
+
+                if (!_connectedUsers.Any(x => x.Id == user.Id))
+                {
+                    _connectedUsers.Add(user);
+                    user.IsOnline = true;
+                    _appUserManager.Update(user);
+                    await Clients.Others.SendAsync("UserConnected", user.Id, Context.ConnectionId);
+                    await Clients.All.SendAsync("UpdateUserCount", _connectedUsers.Count - 1);
+                }
+
             }
-            else
+            catch (Exception)
             {
-                lastActivty.LastLoginDate = DateTime.Now;
-                _genericUserActivityLogManager.Update(lastActivty);
+
+                throw;
             }
 
-            if (!_connectedUsers.Any(x => x.Id == user.Id))
-            {
-                _connectedUsers.Add(user);
-                user.IsOnline = true;
-                _appUserManager.Update(user);
-                await Clients.Others.SendAsync("UserConnected", user.Id, Context.ConnectionId);
-                await Clients.All.SendAsync("UpdateUserCount", _connectedUsers.Count - 1);
-            }
 
             return base.OnConnectedAsync();
         }
@@ -85,7 +94,7 @@ namespace GegiCRM.WebUI.Hubs
             }
 
             //3.5 sn bekle eğer 3.5 saniyede user geri huba girmemişse sil bu agayı;
-            await Task.Delay(2500);
+            await Task.Delay(3500);
             lastActivty = _genericUserActivityLogManager.ListByFilter(x => x.CreatedDate.Date == DateTime.Now.Date && x.AppUserId == user.Id, false).FirstOrDefault();
             if (lastActivty.LastLoginDate < lastActivty.LastLogoutDate)
             {
@@ -130,7 +139,7 @@ namespace GegiCRM.WebUI.Hubs
                     SendDate = DateTime.Now,
                 };
                 _userMessageManager.Create(newMessage);
-                await Clients.User(reciver.SignalrConnectionId).SendAsync("GotNewMessage", user.Id, message);
+                await Clients.Client(reciver.SignalrConnectionId).SendAsync("GotNewMessage", user.Id, message);
 
             }
 

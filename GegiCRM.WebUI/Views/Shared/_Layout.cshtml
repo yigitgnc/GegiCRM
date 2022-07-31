@@ -155,7 +155,7 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="TeklifTakip/ST" class="menu-link" alt="SVT">
+                        <a href="/SVT" class="menu-link" alt="SVT">
                             <span class="badge bg-label-primary">SVT</span>
                             <div data-i18n="">Sık Verilen Teklifler</div>
                         </a>
@@ -537,7 +537,41 @@
                 </div>
             </div>
         </div>
+
+        @*CHAT MODAL*@
+        <div class="modal fade" id="chatModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" id="chatModalContent">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i id="currentMessageUserName">currentMessageUserName</i></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="demo-inline-spacing mt-3">
+                            <div class="list-group" style="max-height:400px; overflow-y:auto; overflow-x:hidden" id="messagesContainer">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <form class="row w-100 m-0" onsubmit="javascript: return SendMessage()">
+                            <div class="form-floating col-10 mx-0 px-0">
+                                <input type="text" class="form-control" id="MessageInput" placeholder="Mesajınız..." required>
+                                <label for="floatingInput">Mesaj Yaz</label>
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-success col-2">
+                                <i class="bx bx-send"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
 
     @*chat end*@
 

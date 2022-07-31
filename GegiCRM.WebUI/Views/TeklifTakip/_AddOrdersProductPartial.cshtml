@@ -195,14 +195,28 @@
         <h5 class="col-12 mb-2">
             Abonelik Başlangıç Tarihi
         </h5>
-        <input class="form-control" type="datetime-local" id="AbonelikBaslangic" name="AbonelikBaslangic" value="">
+        @{
+            string abonelikBaslangic = "";
+            if (Model.OrderProduct.AbonelikBaslangic != null)
+            {
+                abonelikBaslangic = Model.OrderProduct.AbonelikBaslangic.Value.ToString("yyyy-MM-ddTHH:mm");
+            }
+        }
+        <input class="form-control" type="datetime-local" id="AbonelikBaslangic" name="AbonelikBaslangic" value="@abonelikBaslangic">
     </div>
 
     <div class="col-12 col-sm-6">
         <h5 class="col-12 mb-2">
             Abonelik Bitiş Tarihi
         </h5>
-        <input class="form-control" type="datetime-local" id="AbonelikBitis" name="AbonelikBitis" value="">
+        @{
+            string abonelikBitis = "";
+            if (Model.OrderProduct.AbonelikBitis != null)
+            {
+                abonelikBitis = Model.OrderProduct.AbonelikBitis.Value.ToString("yyyy-MM-ddTHH:mm");
+            }
+        }
+        <input class="form-control" type="datetime-local" id="AbonelikBitis" name="AbonelikBitis" value="@abonelikBitis">
     </div>
 </div>
 
@@ -214,7 +228,7 @@
             Referans Birim Fiyat
         </h5>
         <div class="input-group">
-            <input name="ReferansBirimFiyat" id="ReferansBirimFiyat" class="form-control currency" value="" step="any" min="0">
+            <input name="ReferansBirimFiyat" id="ReferansBirimFiyat" class="form-control currency referansFiyatHesap" style="border: #03c3ec 1px solid;" value="@Model.OrderProduct.ReferansBirimFiyat" step="any" min="0">
         </div>
     </div>
 
@@ -277,7 +291,7 @@
         <h5 class="col-12 mb-2">
             Birim Fiyat
         </h5>
-        <input name="BirimFiyat" id="BirimFiyat" type="number" class="form-control currency" value="" step="any" min="0">
+        <input name="BirimFiyat" id="BirimFiyat" type="number" class="form-control currency" value="@Model.OrderProduct.BirimFiyat" step="any" min="0">
 
     </div>
 
@@ -286,7 +300,7 @@
             Adet
         </h5>
         <div class="input-group">
-            <input name="Adet" id="Adet" type="number" class="form-control" value="1" step="any" min="0">
+            <input name="Adet" id="Adet" type="number" class="form-control referansFiyatHesap" style="border: #03c3ec 1px solid;" value="@Model.OrderProduct.Adet" step="any" min="0">
         </div>
     </div>
 
@@ -295,10 +309,10 @@
             Para Birimi
         </h5>
 
-        <select name="ReferansCurrencyId2" class="form-control selectpickerInModal" id="select-ReferansCurrencyId2" data-live-search="true" data-container="body">
+        <select name="CurrencyId" class="form-control selectpickerInModal referansFiyatHesap" id="select-CurrencyId" style="border: #03c3ec 1px solid;" data-live-search="true" data-container="body">
             @foreach (Currency item in Model.Currencies)
             {
-                if (item.Id == Model.OrderProduct.KesinCurrencyId)
+                if (item.Id == Model.OrderProduct.CurrencyId)
                 {
                     <option value="@item.Id" data-tokens="@item.Code @item.Name @item.CurrentValue" selected="selected">
                         [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
@@ -308,7 +322,7 @@
                 else
                 {
                     <option value="@item.Id" data-tokens="@item.Code @item.Name @item.CurrentValue">
-                        [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)                     
+                        [@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)
                     </option>
                 }
 
@@ -321,7 +335,7 @@
             &nbsp;
             Segment Fiyatı: <i id="segmentFiyat" class="text-info"></i>
         </h5>
-        <a href="javascript:void(0)" onclick="GetSegmentPrice()" class="w-100 btn btn-secondary">Segment Fiyatı Getir</a>
+        @*<a href="javascript:void(0)" onclick="GetSegmentPrice()" class="w-100 btn btn-secondary">Segment Fiyatı Getir</a>*@
     </div>
 
 </div>
@@ -330,14 +344,14 @@
 
 @if (ViewBag.Type != "Teklif")
 {
-    <div class="row mt-3">
+    <div class="row mt-5 mb-5">
 
         <div class="mb-3 col-12 col-md-4">
             <h5 class="col-12 mb-2">
-                Kesin Birim Fiyat
+                Kesin Fiyat
             </h5>
             <div class="input-group">
-                <input name="KesinBirimFiyat" id="KesinBirimFiyat" class="form-control currency" value="" step="any" min="0">
+                <input name="KesinFiyat" id="KesinFiyat" class="form-control currency" value="@Model.OrderProduct.KesinFiyat" step="any" min="0">
             </div>
         </div>
 
@@ -396,18 +410,25 @@
 
 
         <div class="row mt-3">
-            <div class="mb-3 col-6">
-                <h5 class="col-6 mb-2">
+            <div class="mb-3 col-12">
+                <h5 class="col-12 mb-2">
                     Kesin Sevk Durumu
                 </h5>
-                <div class="input-group w-100">
-                    <textarea name="KesinSevkDurumu" class="form-control" style="height: 160px" id="KesinSevkDurumu">@Model.OrderProduct.KesinSevkDurumu</textarea>
+                <div class="input-group w-100 mb-3">
+                    <textarea name="KesinSevkDurumu" class="form-control" style="height: 60px" id="KesinSevkDurumu">@Model.OrderProduct.KesinSevkDurumu</textarea>
                 </div>
-                <div class="col-6 col-sm-6">
+                <div class="col-12">
                     <h5 class="col-12 mb-2">
                         Kesin Sevk Tarihi
                     </h5>
-                    <input class="form-control" type="datetime-local" id="KesinSevkTarihi" name="KesinSevkTarihi" value="">
+                    @{
+                        string kesinSevkTarihi = "";
+                        if (Model.OrderProduct.KesinSevkTarihi != null)
+                        {
+                            kesinSevkTarihi = Model.OrderProduct.KesinSevkTarihi.Value.ToString("yyyy-MM-ddTHH:mm");
+                        }
+                    }
+                    <input class="form-control" type="datetime-local" id="KesinSevkTarihi" name="KesinSevkTarihi" value="@kesinSevkTarihi">
                 </div>
             </div>
         </div>
@@ -432,14 +453,57 @@
 
 
 <script>
+    //$('.referansFiyatHesap').on('select2:selecting', function(e) {
+    //   GetSegmentPrice()
+    //});
+    $('.referansFiyatHesap').bind('keyup mouseup change', function() {
+        GetSegmentPrice()
+    });
 
+    $(document).ready(function() {
+        GetSegmentPrice();
+    });
+
+    var lastSegmentPriceValues = "";
     function GetSegmentPrice() {
 
         $("#segmentFiyat").val();
         var birimFiyat = $("#ReferansBirimFiyat").val();
-        var birimFiyat = $("#select2-select-ReferansCurrencyId-container").val();
-        var birimFiyat = $("#ReferansBirimFiyat").val();
+        var currencyId = $("#select-CurrencyId").select2("val");
+        var adet = $("#Adet").val();
+        var customerId = $("#select-Customer").select2("val");
 
+        console.log("refCurrencyId ==>" + currencyId);
+        console.log("birimFiyat ==>" + birimFiyat);
+        console.log("adet ==>" + adet);
+        console.log("customerId ==>" + customerId);
+
+        var currentValues = "" + currencyId + birimFiyat + adet + currencyId;
+
+        if (!$.isNumeric(birimFiyat) || !$.isNumeric(adet)) {
+            $("#segmentFiyat").html("Parametre Eksik veya Hatalı !");
+        } else {
+            if (lastSegmentPriceValues != currentValues) {
+                $.ajax({
+                    "url": "/TeklifTakip/_GetSegmentPrice",
+                    "method": "POST",
+                    data: {
+                        customerId: customerId,
+                        fiyat: birimFiyat,
+                        adet: adet,
+                        currencyId: currencyId,
+                    },
+                    success: function(data) {
+                        console.log("Segment Fiyat => " + data);
+                        $("#segmentFiyat").html(data);
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+                lastSegmentPriceValues = currentValues;
+            }
+        }
 
     }
 
@@ -450,9 +514,10 @@
         var brandId = $(selectedEl).attr("data-brandId");
         var name = $(selectedEl).attr("data-name");
 
-        console.log(kdv);
-        console.log(groupId);
-        console.log(brandId);
+        console.log("kdv :=> " + kdv);
+        console.log("groupId :=> " + groupId);
+        console.log("brandId :=> " + brandId);
+        console.log("productID :=> " + id);
 
 
 

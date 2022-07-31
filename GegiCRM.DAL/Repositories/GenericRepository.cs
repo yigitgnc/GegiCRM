@@ -25,7 +25,7 @@ namespace GegiCRM.DAL.Repositories
         virtual public T Update(T t)
         {
             using var c = new CrmDbContext();
-            c.Update(t);
+            c.Set<T>().Update(t).State = EntityState.Modified;
             c.SaveChanges();
             return t;
         }

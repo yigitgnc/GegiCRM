@@ -1,12 +1,11 @@
-﻿@    using GegiCRM.Entities.Concrete
-@    using GegiCRM.WebUI.ViewComponents.GetUserMessages
+﻿@using GegiCRM.Entities.Concrete
 @{
     Layout = null;
 
 }
 @model IEnumerable<UserMessagesViewModel>
 
-<small class="text-light fw-semibold mx-auto px-2">Kullanıcılar</small>
+<small class="text-light fw-semibold mx-auto px-2">Mesajlar</small>
 <div class="mt-1">
     <ul class="list-group list-group-flush" id="allUsers">
         @foreach (UserMessagesViewModel item in Model)
@@ -25,10 +24,10 @@
             }
 
             <li class="list-group-item list-group-item-action cursor-pointer">
-                <div class="row" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="row" onclick="OpenMessageModal(@item.User.Id,'@item.ToString()');">
                     <div class="col-2">
                         <div class="avatar">
-                            <img src="@item.User.ProfilePictureUrl" alt="" class="w-px-40 h-auto rounded-circle avatar profilePicture">
+                            <img src="@item.User.ProfilePictureUrl" alt="@item.User Profil Fotoğrafı" class="w-px-40 h-auto rounded-circle avatar profilePicture">
                         </div>
                     </div>
 
@@ -44,29 +43,12 @@
                         </div>
                     </div>
                 </div>
-
-
-                <ul class="dropdown-menu dropdown-menu-start">
-                    <li>
-                        <div class="divider">
-                            <div class="divider-text">@item.User.ToString()</div>
-                        </div>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="/Users/ShowProfile/@item.User.Id">
-                            <i class="bx bx-user me-2"></i>
-                            <span class="align-middle">Profili Görüntüle</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="javascript:SendNewMessage();">
-                            <i class="bx bx-message-add me-2"></i>
-                            <span class="align-middle">Mesaj Gönder</span>
-                        </a>
-                    </li>
-                </ul>
             </li>
         }
-    </ul>
 
+    </ul>
 </div>
+
+<script>
+    $("#unreadMessageCount").html(@ViewBag.TotalMessageCount);
+</script>

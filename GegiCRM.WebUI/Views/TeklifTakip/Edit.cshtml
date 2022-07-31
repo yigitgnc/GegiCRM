@@ -38,43 +38,43 @@
                         </button>
                         <ul class="dropdown-menu" style="">
                             <li>
-                                <a class="dropdown-item" href="javascript:getToplam(false)">Kopyala (Toplamsız)</a>
+                                <a class="dropdown-item" href="javascript:getCopy(false)">Kopyala (Toplamsız)</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="javascript:getToplam(true)">Kopyala (Toplamlı)</a>
+                                <a class="dropdown-item" href="javascript:getCopy(true)">Kopyala (Toplamlı)</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/teklif-sablonu.asp?id=126&amp;tId=13517&amp;menu=siparis" target="_blank">Adobe Teklif</a>
+                                <a class="dropdown-item" href="/TeklifTakip/AdobeTeklif/@Model.Id" target="_blank">Adobe Teklif</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/teklif-sablonu.asp?id=128&amp;tId=13517&amp;menu=siparis" target="_blank">Comodo Teklif</a>
+                                <a class="dropdown-item" href="/TeklifTakip/ComodoTeklif/@Model.Id" target="_blank">Comodo Teklif</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/teklif-sablonu.asp?id=124&amp;tId=13517&amp;menu=siparis" target="_blank">Donanım Teklif</a>
+                                <a class="dropdown-item" href="/TeklifTakip/DonanimTeklif/@Model.Id" target="_blank">Donanım Teklif</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/teklif-sablonu.asp?id=125&amp;tId=13517&amp;menu=siparis" target="_blank">İskontolu Teklif (Kullanımda Değil)</a>
+                                <a class="dropdown-item" href="/TeklifTakip/IskontaliTeklif/@Model.Id" target="_blank">İskontolu Teklif (Kullanımda Değil)</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/teklif-sablonu.asp?id=130&amp;tId=13517&amp;menu=siparis" target="_blank">Kiralama</a>
+                                <a class="dropdown-item" href="/TeklifTakip/KiralamaTeklif/@Model.Id" target="_blank">Kiralama</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/teklif-sablonu.asp?id=129&amp;tId=13517&amp;menu=siparis" target="_blank">Proforma Fatura</a>
+                                <a class="dropdown-item" href="/TeklifTakip/ProformaFatura/@Model.Id" target="_blank">Proforma Fatura</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/teklif-sablonu.asp?id=3097&amp;tId=13517&amp;menu=siparis" target="_blank">Qnap Teklif Şablonu</a>
+                                <a class="dropdown-item" href="/TeklifTakip/QnapTeklif/@Model.Id" target="_blank">Qnap Teklif Şablonu</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/teklif-sablonu.asp?id=127&amp;tId=13517&amp;menu=siparis" target="_blank">Sophos Teklif</a>
+                                <a class="dropdown-item" href="/TeklifTakip/SophosTeklif/@Model.Id" target="_blank">Sophos Teklif</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/teklif-sablonu.asp?id=2972&amp;tId=13517&amp;menu=siparis" target="_blank">TechnoPC Teklif</a>
+                                <a class="dropdown-item" href="/TeklifTakip/TecnoPcTeklif/@Model.Id" target="_blank">TechnoPC Teklif</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/teklif-sablonu.asp?id=132&amp;tId=13517&amp;menu=siparis" target="_blank">Tek Sayfa Donanım Teklif</a>
+                                <a class="dropdown-item" href="/TeklifTakip/TekSayfaDonanimTeklif/@Model.Id" target="_blank">Tek Sayfa Donanım Teklif</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/teklif-sablonu.asp?id=131&amp;tId=13517&amp;menu=siparis" target="_blank">UPS Bakım</a>
+                                <a class="dropdown-item" href="/TeklifTakip/UpsBakimTeklif/@Model.Id" target="_blank">UPS Bakım</a>
                             </li>
                         </ul>
                     </div>
@@ -155,7 +155,7 @@
                                 <div class="mb-3">
                                     <label for="select-Customer" class="col-12 form-control-label">Müşteri</label>
                                     <div class="col-12">
-                                        <select asp-for="CustomerId" class="form-control selectpicker" id="select-Customer" data-live-search="true"  data-container="body">
+                                        <select asp-for="CustomerId" class="form-control selectpicker referansFiyatHesap" id="select-Customer" data-live-search="true" data-container="body">
                                             @foreach (Customer item in ViewBag.Customers)
                                             {
                                                 if (item.Id == Model.CustomerId)
@@ -364,7 +364,7 @@
                                     <label for="select-DeliveryAddress" class="col-12 form-control-label">Teslimat Adresi Seç</label>
                                     <div class="col-12">
                                         <select asp-for="SelectedCustomerAddressId" class="form-control selectpicker" id="select-DeliveryAddress" data-live-search="true" aria-describedby="select-DeliveryAddressHelp" data-container="body">
-                                            @foreach (CustomerAddress item in Model.Customer.CustomerAddresses.Where(x=>x.IsDeleted == false))
+                                            @foreach (CustomerAddress item in Model.Customer.CustomerAddresses.Where(x => x.IsDeleted == false))
                                             {
                                                 if (item.Id == Model.SelectedCustomerAddressId)
                                                 {
@@ -393,7 +393,7 @@
                                     <label for="select-BillingAddress" class="col-12 form-control-label">Fatura Adresi Seç</label>
                                     <div class="col-12">
                                         <select asp-for="SelectedCustomerBillingAddressId" class="form-control selectpicker" id="select-BillingAddress" data-live-search="true" aria-describedby="select-BillingAddressHelp" data-container="body">
-                                            @foreach (CustomerBillingAddress item in Model.Customer.CustomerBillingAddresses.Where(x=>x.IsDeleted == false))
+                                            @foreach (CustomerBillingAddress item in Model.Customer.CustomerBillingAddresses.Where(x => x.IsDeleted == false))
                                             {
                                                 if (item.Id == Model.SelectedCustomerBillingAddressId)
                                                 {
@@ -630,7 +630,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-12">
-                        <label id="MoveResponse" class="text-info"></label>
+                        <label id="MoveResponse" class="text-info text-center"></label>
                     </div>
                 </div>
                 <div class="row">
@@ -657,7 +657,7 @@
                         <div class="mb-3">
                             <label for="select-MoveType" class="col-12 form-control-label">Taşıma Tipi</label>
                             <div class="col-12">
-                                <select class="form-control selectpickerInModal" id="select-MoveType" data-live-search="true" data-container="body">
+                                <select class="form-control" id="select-MoveType" data-live-search="true" data-container="body">
 
                                     <option value="copy" data-tokens="Kopyala">
                                         [Kopyala] Referansın bir kopyasını seçilene ekler (ReferansNo-n+1)
@@ -673,7 +673,7 @@
                             </div>
                         </div>
 
-                        <a class="btn btn-warning" href="javascript:SubmitMoveSelected()">Taşı</a>
+
                     </div>
                 </div>
             </div>
@@ -681,13 +681,32 @@
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     İptal
                 </button>
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="DoMultipleAction()">
-                    Devam
+                <a class="btn btn-warning" href="javascript:SubmitMoveSelected()">Taşı</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="copyModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe id="copyIframe" src="" class="w-100" style="height:400px; width:600px;">
+                </iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Kapat
                 </button>
             </div>
         </div>
     </div>
 </div>
+
+
 
 @section Scripts
     {
@@ -707,6 +726,13 @@
 
         function MoveSelected(type) {
             $(".selectedItemCount").html(checkedProducts.length);
+
+            $(".selectpickerInModal").select2({
+                tags: true,
+                dropdownParent: $("#moveOrderProductModal"),
+                language: "tr"
+            });
+
             $("#moveOrderProductModal").modal("show");
         }
 
@@ -720,7 +746,11 @@
                     destinationCustomerId: $("#select-OrderToMoveId").val()
                 },
                 success: function(data) {
-                    $("#MoveResponse").fadeIn(0).fadeOut(5000).html("İşlem Tamamlandı");
+                    if (data == "OK") {
+                        $("#MoveResponse").fadeIn(0).fadeOut(5000).html("İşlem Tamamlandı");
+                    } else {
+                        $("#MoveResponse").fadeIn(0).fadeOut(5000).html("Bir Hata Oluştu !");
+                    }
                     getOrdersProducts();
                 },
                 error: function(err) {
@@ -889,27 +919,15 @@
 
 
 
-        $(".selectpickerInModal").select2({
-            tags: true,
-            dropdownParent: $("#moveOrderProductModal"),
-            language: "tr"
-        });
-
 
 
         function getCopy(toplamli) {
-            $.ajax({
-                type: "GET",
-                url: "/TeklifTakip/Copy/@Model.Id?toplam=" + toplamli,
-                success: function(data) {
+            $("#copyModal").modal("show");
+            var iframe = document.getElementById("copyIframe");
+            iframe.src = "/TeklifTakip/_CopyTeklif/@Model.Id?toplamli=" + toplamli;
 
-                },
-                error: function(data) {
-                    console.log(data);
-                    alert("Bir Hata Oluştu !");
-                }
-            });
         }
-                        
+
+
     </script>
 }

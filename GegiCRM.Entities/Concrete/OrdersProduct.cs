@@ -26,7 +26,7 @@ namespace GegiCRM.Entities.Concrete
         public decimal? BirimFiyat { get; set; }
         public decimal? Fiyat { get; set; }
         public int BirimId { get; set; }
-        public string? ReferansBirimFiyat { get; set; }
+        public decimal? ReferansBirimFiyat { get; set; }
         public string? Notes { get; set; }
         public int? KesinSupplierId { get; set; }
         public int ReferansSupplierId { get; set; }

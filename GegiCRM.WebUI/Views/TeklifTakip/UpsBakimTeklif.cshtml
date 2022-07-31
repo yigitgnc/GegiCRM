@@ -1,0 +1,292 @@
+﻿@using GegiCRM.Entities.Concrete
+@{
+    Layout = null;
+    Customer? musteri = ViewBag.Musteri;
+    AppUser? user = ViewBag.Kullanici;
+}
+
+@model List<OrdersProduct>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <title>Teklif Önizleme</title>
+    <style>
+        #canvas {
+            padding: 30px;
+            width: 21cm;
+            margin: auto
+        }
+
+        @@media print {
+            #canvas {
+                padding: 0px;
+                margin: 0px;
+            }
+
+            .dm {
+                display: none
+            }
+
+            body {
+                padding: 0px;
+                margim: 0px
+            }
+            /*.yenisayfa { page-break-before: always; } /* page-break-after works, as well */
+            .footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%
+            }
+
+            */
+        }
+
+        table {
+            max-width: 100% !important;
+            width: 100%
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-2">
+        <div align="center" class="dm">
+            <!-- <a href="javascript:generatePDF();" class="btn btn-secondary btn-lg">Pdf olarak indir</a> -->
+            <a onclick="window.print();" href="javascript:;" class="btn btn-secondary btn-lg">Pdf / Yazdır</a>
+            <a href="/Customers/Details/@musteri.Id" class="btn btn-secondary btn-lg">Müşteriye Git</a>
+        </div>
+        <div id="canvas" class="canvas_div_pdf">
+            <div>
+                <br>
+            </div>
+            <div style="text-align: left;">
+                <span style="font-weight: bold;">
+                    <span style="font-size: 18pt;">Teklif Formu</span>
+                </span>
+            </div>
+            <div>
+                <br>
+            </div>
+            <div>
+                <table align="" style="border-collapse: collapse; width: 100%; border: none;" width="">
+                    <tbody>
+                        <tr>
+                            <td style="border: none;">Sayın <br>@musteri.TicariUnvan <br>Yetkilisi Dikkatine </td>
+                            <td style="text-align: right; border: none;">
+                                <img src="/dosyalar/logo.png" alt="" align="" width="200" border="0" class="fr-fic fr-dii">
+                                <br>@DateTime.Now.ToShortDateString() <br>İstanbul
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="text-align: justify;">
+                    <br>Aşağıda size ups bakımı ile ilgili teklifimizi sunuyorum. Size sunulan teklifimizle ilgili olarak sorularınızı cevaplamaya her zaman hazır olduğumuzu bildirir, bizi tercih etmiş olduğunuz i&ccedil;in teşekk&uuml;r eder, &ccedil;alışmalarınızda başarılar dileriz.
+                </div>
+                <div style="text-align: justify;">
+                    <br>
+                </div>
+                <div style="text-align: justify;">Saygılarımızla</div>
+                <div style="text-align: center;">
+                    <br>
+                    <table align="" style="width: 100%; border: none; border-collapse: collapse;" width="">
+                        <tbody>
+                            <tr>
+                                <td style="border: none;">
+                                    <br>
+                                </td>
+                                <td style="border: none;">
+                                    <br>
+                                </td>
+                                <td style="border: none; text-align: left;">
+                                    <div style="text-align: right;">
+                                        <span style="font-size: 14px;">@user.NameSurname</span>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <span style="font-size: 14px;"></span>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <span style="text-align: center; font-size: 14px;">850 226 4344</span>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <span style="font-size: 14px;">@user.Email</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <br>
+            </div>
+            <div>&nbsp;</div>
+            <div style="text-align: center;">
+                    <table class='table   dt table-sm  table-striped table-hover'>
+                        <thead style="background:#60CAE4; color:white">
+                            <tr>
+                                <th>REFERANS</th>
+                                <th>ADET</th>
+                                <th>BİRİMİ</th>
+                                <th>ÜRÜN ADI</th>
+                                <th>BİRİM FİYATI</th>
+                                <th>DÖVİZ</th>
+                                <th>TOPLAM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (OrdersProduct item in Model)
+                            {
+                                <tr>
+                                    <td align="left">@item.ReferanceCode</td>
+                                    <td align="center">@item.Adet</td>
+                                    <td align="center">@item.Birim.Name</td>
+                                    <td align="left">@item.Product.ProductName</td>
+                                    <td align="center">@string.Format("{0:N}",item.BirimFiyat)</td>
+                                    <td align="center">@item.Currency?.Code</td>
+                                    <td align="center">@string.Format("{0:N}", item.BirimFiyat * item.Adet)</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td align="right" colspan="6">
+                                    Toplam Sipariş Tutarınız <span style="color:#60CAE4">@Model.FirstOrDefault()?.Currency?.Code</span>
+                                </td>
+                                <td align="center" style="font-weight:bold">@string.Format("{0:N}", Model.Sum(x=>x.BirimFiyat * x.Adet))</td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+            <div class="yenisayfa">&nbsp;</div>
+            <div style="text-align: center;">
+                <br>
+            </div>
+            <div style="text-align: center;">
+                <table align="center" style="width: 100%; color: rgb(255, 255, 255); border-collapse: collapse; border: none; background-color: #60CAE4;" width="">
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center; border: none; letter-spacing: 0px; word-spacing: 0px; padding: 5px;">
+                                <span style=" text-align: center;">Fiyatlandırma ve Satış Koşulları</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="text-align: left;">
+                    <div>
+                        <div style="text-align: justify;">1-) 6 ayda bir olmak &uuml;zere yılda 2 kez bakım yapılacaktır</div>
+                        <div style="text-align: justify;">2-) Arıza durumunda servis &uuml;creti alınmayacaktır ve servis &ouml;nceliği verilecektir.</div>
+                        <div style="text-align: justify;">3-) Yedek par&ccedil;a ve ak&uuml;lerde %15 bakım iskontosu uygulanacaktır.</div>
+                        <div style="text-align: justify;">4-) Mekanik ve elektriksel bağlantıların kontrol&uuml; yapılacaktır.</div>
+                        <div style="text-align: justify;">5-) Elektronik kartların kontrol&uuml; yapılacaktır.</div>
+                        <div style="text-align: justify;">6-) Fonksiyonel testler yapılacaktır. (Rectifier, Inverter &ccedil;ıkışı, statik ve manuel By-Pass kumanda sistemi ile Direkt Ge&ccedil;iş)</div>
+                        <div style="text-align: justify;">7-) Ak&uuml;lerin fiziksel kontrol&uuml; ve y&uuml;klenerek &ouml;l&ccedil;&uuml;lmesi yapılacaktır. (M&uuml;mk&uuml;nse beslemenin kesilerek ak&uuml; testinin yapılması)</div>
+                        <div style="text-align: justify;">8-) UPS &ccedil;ıkışının ve UPS &uuml;zerindeki y&uuml;k dağılımının incelenmesi yapılacaktır.</div>
+                        <div style="text-align: justify;">9-) Arızaların tespiti ve arızalı par&ccedil;a veya komponentlerin yenisi ile değiştirilmesi ger&ccedil;ekleştirilecektir.</div>
+                        <div style="text-align: justify;">10-) Varsa Uzak İzleme ve Denetim aksesuarlarının kontrol&uuml; sağlanacaktır.</div>
+                        <div style="text-align: justify;">11-) Cihazın genel temizliği yapılacaktır.</div>
+                    </div>
+                    <div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <table align="center" style="width: 100%; color: rgb(255, 255, 255); border-collapse: collapse; border: none; background-color: #60CAE4;" width="">
+                <tbody>
+                    <tr>
+                        <td style="text-align: center; border: none; padding: 5px;">Gizlilik ve Kişisel Verilerin Korunması</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="text-align: justify;">1- Gegi tarafından kurumunuza iletilen; yazılı, elektronik formatta, s&ouml;zl&uuml; her t&uuml;rl&uuml; bilgi, &uuml;r&uuml;n, &ccedil;&ouml;z&uuml;m, teknik &ccedil;izim, tasarım, konfig&uuml;rasyon, vb. &quot;Gizli Bilgi&quot; olarak kabul edilir. Gizli bilgiler s&uuml;resiz olarak; yazılı izinsiz olarak kullanılamaz, &ccedil;oğaltılamaz, 3. kişilere verilemez. Aksine davranışın zarar ve ziyanı karşılaması esastır.</div>
+            <div style="text-align: justify;">2- Kişisel Verileriniz, İşbu Teklif Formu&#39;nun doldurulması ile birlikte 6698 sayılı Kanun md. 5/2-c h&uuml;km&uuml;nde yer alan &quot;bir s&ouml;zleşmenin kurulması veya ifasıyla doğrudan doğruya ilgili olması kaydıyla, s&ouml;leşmenin taraflarına ait kişisel verilerin işlenmesinin gerekli olması&quot; hukuki nedenine dayanılarak işlenecektir. Detaylı bilgiye https://www.gegi.com.tr/Kisisel-Veri-Aydinlatma-Metni-i48 adresinden ulaşabilirsiniz.</div>
+            <div>
+                <table align="" style="width: 100%; border: none; border-collapse: collapse;" width="">
+                    <tbody>
+                        <tr>
+                            <td style="border: none; width: 200px; letter-spacing: 0px; word-spacing: 0px;">ADI SOYADI : <br>&Uuml;NVANI : <br>TARİH : </td>
+                            <td style="text-align: center; border: none;">TEKLİF KABUL EDİLMİŞTİR.</td>
+                            <td style="text-align: center; width: 200px; height: 150px; letter-spacing: 0px; word-spacing: 0px; vertical-align: top; border: 1px solid #60CAE4;">KAŞE / İMZA</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="text-align: center;">
+                    <br>Gegi Bilgi Teknolojileri A.Ş.
+                </div>
+                <div style="text-align: center;">&Ccedil;amlık Mah. Muhsin Yazıcıoğlu Cad. Uğur Sok. Uysal Plaza No: 4 Kat : 3 &Ccedil;ekmek&ouml;y / İSTANBUL</div>
+                <div style="text-align: center;">Telefon : 0850 226 43 44 Faks : 0216 430 89 23</div>
+                <div style="text-align: center;">Sarıgazi V.D. 390 100 8392 Tic. Sicil No : 713271</div>
+                <div style="text-align: center;">Mersis No : 0-3901-0083-9200001 info@gegi.com.tr</div>
+            </div>
+            <div>
+                <br>
+                <table align="center" style="width: 100%; color: rgb(255, 255, 255); border-collapse: collapse; border: none; background-color: #60CAE4;" width="">
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center; border: none; padding: 5px;">www.gegi.com.tr</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;"></p>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+    <script>
+        function generatePDF() {
+            // Choose the element that our invoice is rendered in.
+            const element = document.getElementById("canvas");
+            var opt = {
+                margin: 0,
+                filename: 'Gegi - Teklifiniz.pdf',
+                image: {
+                    type: 'jpg',
+                    quality: 1
+                },
+                html2canvas: {
+                    scale: 1.2
+                },
+                jsPDF: {
+                    unit: 'in',
+                    format: 'A4',
+                    orientation: 'portrait'
+                }
+            };
+            html2pdf().set(opt).from(element).save();
+            // Choose the element and save the PDF for our user.
+            // html2pdf()
+            //   .from(element)
+            //   .save("163119 - Siparisiniz.pdf");
+        }
+    </script>
+    <script>
+        function indir() {
+            var header = function(data) {
+                doc.setFontSize(18);
+                doc.setTextColor(40);
+                doc.setFontStyle('normal');
+                //doc.addImage(headerImgData, 'JPEG', data.settings.margin.left, 20, 50, 50);
+                doc.text("Testing Report", data.settings.margin.left, 50);
+            };
+            var options = {
+                pagesplit: true
+            };
+            var pdf = new jsPDF('p', 'pt', 'a4');
+            pdf.addHTML($(".canvas_div_pdf"), 0, 0, options, function() {
+                pdf.save('pageContent.pdf');
+            });
+        }
+              //  indir();
+    </script>
+    <script>
+        // window.print();
+    </script>
+</body>
+</html>

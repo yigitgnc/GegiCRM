@@ -54,8 +54,8 @@
                     {
                         <tr data-id="@item.Id" class="clickableTr">
                             <td>@item.Id</td>
-                            <td>@item.Customer.CustomerMainCompany.Name</td>
-                            <td>@item.Customer.Name</td>
+                            <td>@item.Customer.CustomerMainCompany.Name </td>
+                            <td>@item.Customer.TicariUnvan</td>
                             <td>@String.Format("{0:N}", item.OrdersProducts.Sum(x=>x.Adet*x.BirimFiyat))</td>
                             <td>
                                 <ul class="list-unstyled users-list m-0 avatar-group">

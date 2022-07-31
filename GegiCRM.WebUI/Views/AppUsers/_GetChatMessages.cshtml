@@ -1,0 +1,48 @@
+﻿@using GegiCRM.Entities.Concrete
+@{
+    Layout = null;
+    AppUser reciever = ViewBag.Reciever;
+    AppUser user = ViewBag.User;
+}
+@model List<UserMessage>
+
+@foreach (UserMessage item in Model)
+{
+    if (item.RecieverUserId == reciever.Id)
+    {
+      <div href="javascript:void(0);" class="list-group-item list-group-item-action flex-column align-items-end bg-lightest">
+            <div class="d-flex justify-content-between w-100">
+                <small>@item.SendDate</small>
+                <h6 class="mb-0">Ben</h6>
+            </div>
+            <p class="m-1 text-end text-break">
+                @item.Message
+            </p>
+            <div class="d-flex justify-content-between w-100">
+
+                @if (item.ReadDate != null)
+                {
+                    <small class="text-muted">@item.ReadDate</small>
+                    <small class="float-end"><i class="bx bx-check text-success"></i></small>
+                }
+            </div>
+        </div>
+
+    }
+    else
+    {  <div href="javascript:void(0);" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex justify-content-between w-100">
+                <h6 class="mb-0">@reciever.NameSurname</h6>
+                <small>@item.SendDate</small>
+            </div>
+            <p class="m-1 text-primary text-break">
+                @item.Message
+            </p>
+        </div>
+        
+    }
+}
+
+<script>
+    $("#currentMessageUserName").html("@reciever");
+</script>

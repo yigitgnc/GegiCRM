@@ -1285,7 +1285,7 @@ namespace GegiCRM.DAL.Concrete
 
             modelBuilder.Entity<OrdersProduct>(entity =>
             {
-                entity.HasKey(e => new { e.Id, e.OrderId, e.ProductId });
+                entity.HasKey(e => new { e.Id });
 
                 entity.Property(e => e.OrderId).HasColumnName("OrderID");
 
@@ -1316,7 +1316,7 @@ namespace GegiCRM.DAL.Concrete
                 entity.Property(e => e.ModifiedDate)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
-                
+
 
                 entity.Property(e => e.ReferanceCode).HasMaxLength(50);
 
@@ -2525,6 +2525,6 @@ namespace GegiCRM.DAL.Concrete
             modelBuilder.Seed();
             modelBuilder.EnableAutoHistory();
         }
-                
+
     }
 }

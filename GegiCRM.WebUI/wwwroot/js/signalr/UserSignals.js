@@ -25,7 +25,7 @@ connection.onclose(async () => {
 
 // Start the connection.
 start();
-
+GetUserMessages();
 
 
 
@@ -37,7 +37,6 @@ connection.on("UserDisconnected", function (userId, lastSeen) {
 });
 
 connection.on("UserConnected", function (userId, connectionId) {
-    console.log("anan");
     console.log(userId + " Connected, ConnectionId => " + connectionId);
     $("#userLastSeen_" + userId).html("Online");
     $("#userAvatar_" + userId).addClass("avatar-online").removeClass("avatar-offline");
@@ -55,9 +54,18 @@ connection.on("WhereIsUser", function (userId, title) {
     $("#userWhere_" + userId).html(title);
 });
 
-connection.on("GotNewMessage", function (senderId, message) {
+connection.on("GotNewMessage", function (senderId, message) {-
     console.log("GotNewMessage From User => " + senderId + " Message => " + message);
+    GetUserMessages();
     Notify(2, 2);
+
+    console.log(_currentMsgUserId);
+
+    if (senderId == _currentMsgUserId) {
+        GetMessagesByRecieverId();
+    } else {
+        console.log("Bana Mesaj Geldi Ama İlgili Pencerem Kapalı :(");
+    }
 });
 
 
@@ -95,7 +103,7 @@ function Notify(blinkCount, type) {
 
 function SortUsers() {
     var toSort = document.getElementById('allUsers').children;
-    console.log(toSort);
+    //console.log(toSort);
     toSort = Array.prototype.slice.call(toSort, 0);
 
 
@@ -118,5 +126,61 @@ function SortUsers() {
 }
 
 function GetUserMessages() {
-    //navsMessages
+    $.ajax({
+        "url": "/AppUsers/_GetUserMessages",
+        "method": "GET",
+        success: function (data) {
+            $("#navsMessages").html(data);
+            //$("#MoveResponse").fadeIn(0).fadeOut(5000).html("İşlem Tamamlandı");
+            //getOrdersProducts();
+        },
+        error: function (err) {
+            console.log(err);
+            $("#navsMessages").html("Bir Hata Oluştu !");
+        }
+    });
+}
+var _currentMsgUserId = -1;
+
+function OpenMessageModal(id,userName) {
+    $("#chatModal").modal('show');
+    $("#currentMessageUserName").html(userName);
+
+    _currentMsgUserId = id;
+    GetMessagesByRecieverId();
+}
+
+function GetMessagesByRecieverId() {
+    $.ajax({
+        "url": "/AppUsers/_GetChatMessages/" + _currentMsgUserId,
+        "method": "GET",
+        success: function (data) {
+            $("#messagesContainer").html(data);
+            setTimeout(function () {
+                $("#messagesContainer").animate({ scrollTop: 9999999 }, 100);
+            }, 200);
+
+
+            //$("#MoveResponse").fadeIn(0).fadeOut(5000).html("İşlem Tamamlandı");
+            //getOrdersProducts();
+        },
+        error: function (err) {
+            console.log(err);
+            $("#messagesContainer").html("Bir Hata Oluştu !");
+        }
+    });
+}
+
+function SendMessage() {
+
+    connection.invoke("SendMessage", _currentMsgUserId, $('#MessageInput').val());
+    $('#MessageInput').val("");
+    GetMessagesByRecieverId();
+    GetUserMessages();
+    return false;
+}
+
+
+function AddIncomingMessage() {
+
 }

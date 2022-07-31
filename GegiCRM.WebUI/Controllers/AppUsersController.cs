@@ -198,18 +198,40 @@ namespace GegiCRM.WebUI.Controllers
             CrmDbContext dbContext = new CrmDbContext();
             List<UserMessagesViewModel> data = new List<UserMessagesViewModel>();
 
+            ViewBag.UserId = user.Id;
+            ViewBag.TotalMessageCount = dbContext.UserMessages.Where(x => x.RecieverUserId == user.Id && x.ReadDate == null).Count();
+
             foreach (var item in dbContext.Users.Where(x => x.Id != user.Id).ToList())
             {
                 UserMessagesViewModel newVm = new UserMessagesViewModel()
                 {
                     User = item,
-                    LastMessage = dbContext.UserMessages.Where(x => x.SenderUserId == item.Id || x.RecieverUserId == item.Id).OrderByDescending(x => x.SendDate).FirstOrDefault(),
+                    LastMessage = dbContext.UserMessages.Where(x => (x.SenderUserId == user.Id && x.RecieverUserId == item.Id) || (x.SenderUserId == item.Id && x.RecieverUserId == user.Id)).OrderByDescending(x=>x.SendDate).FirstOrDefault(),
                 };
                 data.Add(newVm);
             }
 
             return View(data.OrderByDescending(x => x.LastMessage?.SendDate));
         }
+
+        public async Task<IActionResult> _GetChatMessages(int id)
+        {
+            AppUser user = await _mesageManager.GetCurrentUserAsync();
+            AppUser reciever = _context.Users.FirstOrDefault(x => x.Id == id);
+            ViewBag.User = user;
+            ViewBag.Reciever = reciever;
+            var data = _context.UserMessages.Where(x=> (x.SenderUserId == user.Id && x.RecieverUserId == reciever.Id) || (x.SenderUserId == reciever.Id && x.RecieverUserId == user.Id)).ToList();
+
+            foreach (UserMessage? item in data.Where(x=>x.ReadDate == null && x.SenderUserId != user.Id))
+            {
+                item.ReadDate = DateTime.Now;
+                _mesageManager.Update(item);
+            }
+
+
+            return View(data);
+        }
+
 
     }
 }
