@@ -76,6 +76,9 @@
                             <li>
                                 <a class="dropdown-item" href="/TeklifTakip/UpsBakimTeklif/@Model.Id" target="_blank">UPS Bakım</a>
                             </li>
+                            <li>
+                                <a class="dropdown-item" href="/TeklifTakip/UpsBakimTeklif/@Model.Id" target="_blank">UPS Bakım</a>
+                            </li>
                         </ul>
                     </div>
                 </li>
@@ -650,7 +653,7 @@
 </div>
 
 <div class="modal fade" id="moveOrderProductModal" data-bs-backdrop="static" tabindex="-1" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Seçilenleri Taşı</h5>
@@ -668,7 +671,7 @@
                         <div class="mb-3">
                             <label for="select-OrderToMoveId" class="col-12 form-control-label">Taşınacak Sipariş</label>
                             <div class="col-12">
-                                <select class="form-control select2" id="select-OrderToMoveId" data-live-search="true" data-container="body">
+                                <select class="form-control selectize" id="select-OrderToMoveId" data-live-search="true" data-container="body">
                                     @foreach (Order item in ViewBag.OrdersToMove)
                                     {
                                         <option value="@item.Id" data-tokens="@item.Customer.Name @item.Id @item.AddedBy.NameSurname @item.RepresentetiveUser">
@@ -754,13 +757,7 @@
         }
 
         function MoveSelected(type) {
-            $(".selectedItemCount").html(checkedProducts.length);
-
-            $(".selectpickerInModal").select2({
-                tags: true,
-                dropdownParent: $("#moveOrderProductModal"),
-                language: "tr"
-            });
+            $(".selectedItemCount").html(checkedProducts.length);           
 
             $("#moveOrderProductModal").modal("show");
         }

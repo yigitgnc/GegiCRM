@@ -358,7 +358,7 @@ namespace GegiCRM.WebUI.Controllers
             }
         }
 
-        public async Task<IActionResult> _SetDefaultContact(int id,int customerId)
+        public async Task<IActionResult> _SetDefaultContact(int id, int customerId)
         {
             try
             {
@@ -366,7 +366,7 @@ namespace GegiCRM.WebUI.Controllers
                 if (customer == null)
                 {
                     return NotFound();
-                }                
+                }
                 customer.DefaultCustomerContactId = id;
                 _genericmanager.Update(customer);
                 return StatusCode(200);
@@ -376,7 +376,7 @@ namespace GegiCRM.WebUI.Controllers
             {
                 return StatusCode(500);
             }
-            
+
         }
         public async Task<IActionResult> _GetCustomerContactsOfCustomer(int id)
         {
@@ -435,7 +435,7 @@ namespace GegiCRM.WebUI.Controllers
 
 
         [HttpPost]
-        public async Task<string> _AddNewCustomerAddress(int customerId, string addressName, string il, string ilce, string address,string teslimAlacakAdSoyad,string sonKullaniciBilgisi)
+        public async Task<string> _AddNewCustomerAddress(int customerId, string addressName, string il, string ilce, string address, string teslimAlacakAdSoyad, string sonKullaniciBilgisi, string teslimTelefon)
         {
             try
             {
@@ -447,6 +447,7 @@ namespace GegiCRM.WebUI.Controllers
                     Ilce = ilce,
                     Address = address,
                     TeslimAlacakAdSoyad = teslimAlacakAdSoyad,
+                    TeslimTelefon = teslimTelefon,
                     SonKullaniciBilgisi = sonKullaniciBilgisi,
                 };
                 _addressManager.Create(newAddress);
