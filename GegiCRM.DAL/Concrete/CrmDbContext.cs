@@ -19,6 +19,7 @@ namespace GegiCRM.DAL.Concrete
         }
 
         #region DBSets
+        public virtual DbSet<KesinSevkiyatDurumu> KesinSevkiyatDurumus { get; set; } = null!;
         public virtual DbSet<UserMessage> UserMessages { get; set; } = null!;
         public virtual DbSet<UserActivityLog> UserActivityLogs { get; set; } = null!;
         public virtual DbSet<UserDailyActivityLog> UserDailyActivityLogs { get; set; } = null!;
@@ -57,7 +58,7 @@ namespace GegiCRM.DAL.Concrete
         public virtual DbSet<MarketPlace> MarketPlaces { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
         public virtual DbSet<OrderState> OrderStates { get; set; } = null!;
-        public virtual DbSet<OrdersProductCurrency> OrdersProductCurrencies { get; set; } = null!;
+        public virtual DbSet<OrdersCurrency> OrdersCurrencies { get; set; } = null!;
         public virtual DbSet<OrdersProduct> OrdersProducts { get; set; } = null!;
         public virtual DbSet<PaymentType> PaymentTypes { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
@@ -1260,27 +1261,27 @@ namespace GegiCRM.DAL.Concrete
                     .HasConstraintName("FK_OrderStates_Users1");
             });
 
-            modelBuilder.Entity<OrdersProductCurrency>(entity =>
+            modelBuilder.Entity<OrdersCurrency>(entity =>
             {
-                entity.HasKey(e => new { e.Id, e.OrdersProductId, e.CurrencyId });
+                entity.HasKey(e => new { e.Id, e.OrderId, e.CurrencyId });
 
-                entity.Property(e => e.OrdersProductId).HasColumnName("OrdersProductId");
+                entity.Property(e => e.OrderId).HasColumnName("OrdersProductId");
 
                 entity.Property(e => e.CurrencyId).HasColumnName("CurrencyID");
 
                 entity.Property(e => e.Value).HasColumnType("decimal(18, 2)");
 
                 entity.HasOne(d => d.Currency)
-                    .WithMany(p => p.OrdersProductCurrencies)
+                    .WithMany(p => p.OrdersCurrencies)
                     .HasForeignKey(d => d.CurrencyId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_OrdersProductCurrencies_Currencies");
+                    .HasConstraintName("FK_OrdersCurrencies_Currencies");
 
                 //entity.HasOne(d => d.OrdersProduct)
-                //    .WithMany(p => p.OrdersProductCurrencies)
+                //    .WithMany(p => p.OrdersCurrencies)
                 //    .HasForeignKey(d => d.OrdersProductId)
                 //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK_OrdersProductCurrencies_Orders");
+                //    .HasConstraintName("FK_OrdersCurrencies_Orders");
             });
 
             modelBuilder.Entity<OrdersProduct>(entity =>

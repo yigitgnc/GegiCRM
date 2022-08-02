@@ -69,11 +69,11 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Son Düzenleyen</label>
-                            <input type="text" class="form-control" asp-for="ModifiedBy.Name" disabled>
+                            <input type="text" class="form-control" asp-for="ModifiedBy.NameSurname" disabled>
                         </div>
                         <div class="mb-3">
                             <label asp-for="TypeId" class="control-label">Tür </label>
-                            <select asp-for="TypeId" class="form-control selectpicker" asp-items="ViewBag.TypeId"></select>
+                            <select asp-for="TypeId" class="form-control select2" asp-items="ViewBag.TypeId"></select>
                             <span asp-validation-for="TypeId" class="text-danger"></span>
                         </div>
 
@@ -94,8 +94,8 @@
 
                         <div class="mb-3">
                             <label asp-for="PreferredCurrencyId" class="control-label">Tercih Edilen Kur (Çalışma Şekli) </label>
-                            <select asp-for="PreferredCurrencyId" class="form-control selectpicker" asp-items="ViewBag.PreferredCurrencyId"></select>
-                            <select class="form-control selectpicker" name="TercihEdilenKur" id="TercihEdilenKur" data-live-search="true" data-container="body">
+                            <select asp-for="PreferredCurrencyId" class="form-control select2" asp-items="ViewBag.PreferredCurrencyId"></select>
+                            <select class="form-control select2" name="TercihEdilenKur" id="TercihEdilenKur" data-live-search="true" data-container="body">
 
                                 @if (Model.TercihEdilenKur == 'S')
                                 {
@@ -154,7 +154,7 @@
                                 Çatı Firma
                                 (<a class="text-muted alert-info" href="/CustomerMainCompanies/Edit/@Model.CustomerMainCompanyId">@Model.CustomerMainCompany.Name</a>)
                             </label>
-                            <select asp-for="CustomerMainCompanyId" class="form-control selectpicker" asp-items="ViewBag.CustomerMainCompanyId"></select>
+                            <select asp-for="CustomerMainCompanyId" class="form-control select2" asp-items="ViewBag.CustomerMainCompanyId"></select>
                             <span asp-validation-for="CustomerMainCompanyId" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-3">
@@ -162,7 +162,7 @@
                                 Sektör
                                 (<a class="text-muted alert-info" href="/Sectors/Edit/@Model.SectorId">@Model.Sector.Name</a>)
                             </label>
-                            <select asp-for="SectorId" class="form-control selectpicker" asp-items="ViewBag.SectorId"></select>
+                            <select asp-for="SectorId" class="form-control select2" asp-items="ViewBag.SectorId"></select>
                             <span asp-validation-for="SectorId" class="text-danger"></span>
                         </div>
                         <div class="form-group mb-3">
@@ -170,7 +170,7 @@
                                 Segment
                                 (<a class="text-muted alert-info" href="/Segments/Edit/@Model.SectorId">@Model.Segment.Name</a>)
                             </label>
-                            <select asp-for="SegmentId" class="form-control selectpicker" asp-items="ViewBag.SegmentId"></select>
+                            <select asp-for="SegmentId" class="form-control select2" asp-items="ViewBag.SegmentId"></select>
                             <span asp-validation-for="SegmentId" class="text-danger"></span>
                         </div>
                         @*rep*@
@@ -195,7 +195,7 @@
                                             </div>
                                             <div class="mb-3 col-12">
                                                 <label class="form-label">Temsilci</label>
-                                                <select class="form-control selectpicker" id="select-TemsilciId" data-live-search="true" data-container="body">
+                                                <select class="form-control select2" id="select-TemsilciId" data-live-search="true" data-container="body">
                                                     @foreach (AppUser item in ViewBag.Users)
                                                     {
                                                         <option value="@item.Id" data-tokens="@item.NameSurname">@item.NameSurname</option>
@@ -250,7 +250,7 @@
 
                                             <div class="mb-3 col-12">
                                                 <label class="form-label">Yetili Soyadı</label>
-                                                <input type="text" class="form-control" id="cSurname" placeholder="Gemç">
+                                                <input type="text" class="form-control" id="cSurname" placeholder="Genç">
                                             </div>
 
                                             <div class="mb-3 col-12">
@@ -955,6 +955,22 @@
                 error: function(err) {
                     console.log(err);
                     $("#editContactModalContent").html("Bir Hata Oluştu !");
+                }
+            });
+
+
+        };
+        function SetDefaultContact(id) {
+
+            $.ajax({
+                "url": "/Customers/_SetDefaultContact/" + id + "?customerId=" + @Model.Id,
+                "method": "GET",
+                success: function(data) {
+                    GetCustomerContacts();
+                },
+                error: function(err) {
+                    console.log(err);
+                    alert("Bir Hata Oluştu !");
                 }
             });
 

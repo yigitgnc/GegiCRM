@@ -37,7 +37,7 @@
                 {
                     bgClass = "text-danger";
                 }
-                else if (item.IsDeneied)
+                else if (item.IsDenied)
                 {
                     bgClass = "bg-danger text-white";
                 }
@@ -78,7 +78,7 @@
                     <td class="@bgClass">@Html.Raw(item.CreateHtmlBadge(@item.IsApproved))</td>
                     <td class="@bgClass">@item.AbonelikBaslangicFormatted</td>
                     <td class="@bgClass">@item.AbonelikBitisFormatted</td>
-                    <td class="@bgClass">@item.KesinSevkDurumu</td>
+                    <td class="@bgClass">@item.KesinSevkDurumu?.Name</td>
                     <td class="@bgClass">@item.KesinSupplier?.SupplierName</td>
                     <td class="@bgClass">@item.KesinFiyat</td>
                     @*<td>@item.product</td>*@

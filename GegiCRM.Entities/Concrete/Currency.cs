@@ -13,7 +13,7 @@ namespace GegiCRM.Entities.Concrete
             Deposits = new HashSet<Deposit>();
             DiscountCupons = new HashSet<DiscountCupon>();
             MaintenanceBills = new HashSet<MaintenanceBill>();
-            OrdersProductCurrencies = new HashSet<OrdersProductCurrency>();
+            OrdersCurrencies = new HashSet<OrdersCurrency>();
             OrdersProductKesinCurrencies = new HashSet<OrdersProduct>();
             OrdersProductReferansCurrencies = new HashSet<OrdersProduct>();
             SupplierDetails = new HashSet<SupplierDetail>();
@@ -32,7 +32,7 @@ namespace GegiCRM.Entities.Concrete
         public virtual ICollection<Deposit> Deposits { get; set; }
         public virtual ICollection<DiscountCupon> DiscountCupons { get; set; }
         public virtual ICollection<MaintenanceBill> MaintenanceBills { get; set; }
-        public virtual ICollection<OrdersProductCurrency> OrdersProductCurrencies { get; set; }
+        public virtual ICollection<OrdersCurrency> OrdersCurrencies { get; set; }
         public virtual ICollection<OrdersProduct> OrdersProductKesinCurrencies { get; set; }
         public virtual ICollection<OrdersProduct> OrdersProductReferansCurrencies { get; set; }
         public virtual ICollection<SupplierDetail> SupplierDetails { get; set; }

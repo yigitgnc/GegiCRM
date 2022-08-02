@@ -30,6 +30,7 @@ namespace GegiCRM.DAL.EntityFramework
                 .Include(x=>x.Product)
                 .Include(x=>x.Product.ProductGroup)
                 .Include(x=>x.Product.PorductBrand)
+                .Include(x=>x.KesinSevkDurumu)
                 .ToList();
         }
     }

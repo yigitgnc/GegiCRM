@@ -99,17 +99,40 @@ $(document).ready(function () {
 //currency input
 
 function InitCustomInputs() {
+
+    $('input .currency').currencyInput();
+
+
     $(function () {
-        $('.selectpicker').select2(
+        $('.select2').select2(
             {
                 language: "tr"
             }
         );
 
+        //init selectize if its not initilized before
+        $(".selectize").each(function () {
+            try {
+                if (this[0] != undefined && this[0].selectize == undefined) {
 
-        $('input .currency').currencyInput();
+                    $(this).selectize({
+                        create: false,
+                        sortField: "text",
+                        placeholder: "Seçiniz...",
+                        allowEmptyOption: false,
+                    });
+                }
+
+            } catch (e) {
+                console.log(this);
+                console.log(e);
+            }
+        });
 
         //$('.selectpicker').selectpicker();
+
+
+
     });
 }
 

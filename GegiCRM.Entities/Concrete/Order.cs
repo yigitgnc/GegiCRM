@@ -22,13 +22,17 @@ namespace GegiCRM.Entities.Concrete
         public DateTime? OrderApprovedDate { get; set; }
         public bool IsCancelled { get; set; }
         public DateTime? CancelledDate { get; set; }
-        public bool IsDeneied { get; set; }
+        public bool IsDenied { get; set; }
         public DateTime? DeniedDate { get; set; }
         public int? SelectedCustomerAddressId { get; set; }
         public int? SelectedCustomerBillingAddressId { get; set; }
         public int RepresentetiveUserId { get; set; }
         public string? OfferNote { get; set; }
         public string? OrderNote { get; set; }
+        public string? OrderNumber { get; set; }
+        public string? BayiMusteriAdi { get; set; }
+        public bool SendBill { get; set; } = true;
+
 
         public virtual CustomerAddress SelectedCustomerAddress { get; set; }
         public virtual CustomerBillingAddress SelectedCustomerBillingAddress { get; set; }
@@ -72,7 +76,7 @@ namespace GegiCRM.Entities.Concrete
         public string CreateHtmlBadgeForOrder()
         {
             string badge = "<span class=\"badge bg-label-dark me-1\">Beklemede</span>";
-            if (IsDeneied)
+            if (IsDenied)
             {
                 badge = "<span class=\"badge bg-label-danger me-1\">İptal</span>";
             }

@@ -10,20 +10,20 @@ namespace GegiCRM.DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_OrdersProductCurrencies_OrdersProducts_OrdersProductId1_OrdersProductOrderId_OrdersProductProductId",
-                table: "OrdersProductCurrencies");
+                name: "FK_OrdersCurrencies_OrdersProducts_OrdersProductId1_OrdersProductOrderId_OrdersProductProductId",
+                table: "OrdersCurrencies");
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_OrdersProducts",
                 table: "OrdersProducts");
 
             migrationBuilder.DropIndex(
-                name: "IX_OrdersProductCurrencies_OrdersProductId1_OrdersProductOrderId_OrdersProductProductId",
-                table: "OrdersProductCurrencies");
+                name: "IX_OrdersCurrencies_OrdersProductId1_OrdersProductOrderId_OrdersProductProductId",
+                table: "OrdersCurrencies");
 
             migrationBuilder.DropColumn(
                 name: "OrdersProductOrderId",
-                table: "OrdersProductCurrencies");
+                table: "OrdersCurrencies");
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_OrdersProducts",
@@ -143,13 +143,13 @@ namespace GegiCRM.DAL.Migrations
                 value: new DateTime(2022, 7, 25, 14, 44, 14, 199, DateTimeKind.Local).AddTicks(5391));
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrdersProductCurrencies_OrdersProductId1_OrdersProductProductId",
-                table: "OrdersProductCurrencies",
+                name: "IX_OrdersCurrencies_OrdersProductId1_OrdersProductProductId",
+                table: "OrdersCurrencies",
                 columns: new[] { "OrdersProductId1", "OrdersProductProductId" });
 
             migrationBuilder.AddForeignKey(
-                name: "FK_OrdersProductCurrencies_OrdersProducts_OrdersProductId1_OrdersProductProductId",
-                table: "OrdersProductCurrencies",
+                name: "FK_OrdersCurrencies_OrdersProducts_OrdersProductId1_OrdersProductProductId",
+                table: "OrdersCurrencies",
                 columns: new[] { "OrdersProductId1", "OrdersProductProductId" },
                 principalTable: "OrdersProducts",
                 principalColumns: new[] { "Id", "ProductID" },
@@ -159,20 +159,20 @@ namespace GegiCRM.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_OrdersProductCurrencies_OrdersProducts_OrdersProductId1_OrdersProductProductId",
-                table: "OrdersProductCurrencies");
+                name: "FK_OrdersCurrencies_OrdersProducts_OrdersProductId1_OrdersProductProductId",
+                table: "OrdersCurrencies");
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_OrdersProducts",
                 table: "OrdersProducts");
 
             migrationBuilder.DropIndex(
-                name: "IX_OrdersProductCurrencies_OrdersProductId1_OrdersProductProductId",
-                table: "OrdersProductCurrencies");
+                name: "IX_OrdersCurrencies_OrdersProductId1_OrdersProductProductId",
+                table: "OrdersCurrencies");
 
             migrationBuilder.AddColumn<int>(
                 name: "OrdersProductOrderId",
-                table: "OrdersProductCurrencies",
+                table: "OrdersCurrencies",
                 type: "int",
                 nullable: false,
                 defaultValue: 0);
@@ -295,13 +295,13 @@ namespace GegiCRM.DAL.Migrations
                 value: new DateTime(2022, 7, 19, 15, 15, 31, 736, DateTimeKind.Local).AddTicks(1065));
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrdersProductCurrencies_OrdersProductId1_OrdersProductOrderId_OrdersProductProductId",
-                table: "OrdersProductCurrencies",
+                name: "IX_OrdersCurrencies_OrdersProductId1_OrdersProductOrderId_OrdersProductProductId",
+                table: "OrdersCurrencies",
                 columns: new[] { "OrdersProductId1", "OrdersProductOrderId", "OrdersProductProductId" });
 
             migrationBuilder.AddForeignKey(
-                name: "FK_OrdersProductCurrencies_OrdersProducts_OrdersProductId1_OrdersProductOrderId_OrdersProductProductId",
-                table: "OrdersProductCurrencies",
+                name: "FK_OrdersCurrencies_OrdersProducts_OrdersProductId1_OrdersProductOrderId_OrdersProductProductId",
+                table: "OrdersCurrencies",
                 columns: new[] { "OrdersProductId1", "OrdersProductOrderId", "OrdersProductProductId" },
                 principalTable: "OrdersProducts",
                 principalColumns: new[] { "Id", "OrderID", "ProductID" },

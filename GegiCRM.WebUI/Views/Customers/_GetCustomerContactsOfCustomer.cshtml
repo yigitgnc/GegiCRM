@@ -4,49 +4,65 @@
 @{
     Layout = null;
 }
-@if (!Model.Any())
+@if (Model.Any())
+{
+    @foreach (var item in Model)
+    {
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex justify-content-between w-100 align-content-center text-center mb-2">
+                <h6 class="mb-0">@item.ContactTitle</h6>
+                <div>
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+
+                        <label class="btn btn-sm btn-outline-danger bx bx-trash" onclick="DeleteContact(@item.Id)"></label>
+                        <label class="btn btn-sm btn-outline-warning bx bx-edit" onclick="EditContact(@item.Id)"></label>
+                        @if (ViewBag.DefaultUserId != item.Id)
+                        {
+                            <label class="btn btn-sm btn-outline-success bx bx-check" onclick="SetDefaultContact(@item.Id)">Varsayılan Ayarla</label>
+                        }
+                        else
+                        {
+
+                            <i class="badge text-success bx bx-check-double">Varsayılan</i>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <p class="mb-0">
+                <ul class="list-unstyled mt-2">
+                    <li>
+                        ADI SOYADI: @item.ContactName @item.ContactSurname
+                    </li>
+                    <li>
+                        EMAIL: @item.Email
+                    </li>
+                    <li>
+                        TEL: @item.Tel
+                    </li>
+                    <li>
+                        GSM: @item.Gsm
+                    </li>
+                </ul>
+
+            </p>
+            <div class="d-flex justify-content-between w-100">
+                <small>Kaydeden: @item.AddedBy.NameSurname</small>
+                <small>@item.CreatedDate</small>
+            </div>
+            <div class="d-flex justify-content-between w-100">
+                <small>Son Düzenleyen: @item.ModifiedBy.NameSurname</small>
+                <small>@item.ModifiedDate</small>
+            </div>
+        </div>
+    }
+
+
+}
+else
 {
     <div class="alert alert-warning text-center mb-0">
         Henüz Yetkili Bilgisi Eklenmemiş
     </div>
 }
-@foreach (var item in Model)
-{
-    <div class="list-group-item list-group-item-action flex-column align-items-start">
-        <div class="d-flex justify-content-between w-100 align-content-center text-center mb-2">
-            <h6 class="mb-0">@item.ContactTitle</h6>
-            <div>
-                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 
-                    <label class="btn btn-sm btn-outline-danger bx bx-trash" onclick="DeleteContact(@item.Id)"></label>
-                    <label class="btn btn-sm btn-outline-warning bx bx-edit" onclick="EditContact(@item.Id)"></label>
-                </div>
-            </div>
-        </div>
-        <p class="mb-0">
-            <ul class="list-unstyled mt-2">
-                <li>
-                    ADI SOYADI: @item.ContactName @item.ContactSurname
-                </li>
-                <li>
-                    EMAIL: @item.Email
-                </li>
-                <li>
-                    TEL: @item.Tel
-                </li>
-                <li>
-                    GSM: @item.Gsm
-                </li>
-            </ul>
-
-        </p>
-        <div class="d-flex justify-content-between w-100">
-            <small>Kaydeden: @item.AddedBy.NameSurname</small>
-            <small>@item.CreatedDate</small>
-        </div>
-        <div class="d-flex justify-content-between w-100">
-            <small>Son Düzenleyen: @item.ModifiedBy.NameSurname</small>
-            <small>@item.ModifiedDate</small>
-        </div>
-    </div>
-}

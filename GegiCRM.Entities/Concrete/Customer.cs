@@ -40,6 +40,9 @@ namespace GegiCRM.Entities.Concrete
         public string? SideSuppliers { get; set; }
         public string? Notes { get; set; }
 
+
+        public int? DefaultCustomerContactId { get; set; }
+        public virtual CustomerContact? DefaultCustomerContact { get; set; } = null!;
         public int? PreferredCurrencyId { get; set; }
         public virtual Currency? PreferredCurrency { get; set; } = null!;
         public int CustomerMainCompanyId { get; set; }

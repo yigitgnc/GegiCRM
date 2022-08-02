@@ -49,15 +49,15 @@
         <div class="form-check form-check-inline">
 
             <label class="form-check-label cursor-pointer" for="IsDenied">REDDEDİLDİ</label>
-            @if (Model.OrderProduct.IsDeneied)
+            @if (Model.OrderProduct.IsDenied)
             {
-                <input type="checkbox" class="form-check-input cursor-pointer" data-val="true" id="IsDeneied" name="IsDeneied" value="true" checked="checked">
+                <input type="checkbox" class="form-check-input cursor-pointer" data-val="true" id="IsDenied" name="IsDenied" value="true" checked="checked">
             }
             else
             {
-                <input type="checkbox" class="form-check-input cursor-pointer" data-val="true" id="IsDeneied" name="IsDeneied" value="true">
+                <input type="checkbox" class="form-check-input cursor-pointer" data-val="true" id="IsDenied" name="IsDenied" value="true">
             }
-            <input name="IsDeneied" type="hidden" value="false">
+            <input name="IsDenied" type="hidden" value="false">
         </div>
     </div>
 </div>
@@ -103,7 +103,7 @@
             Marka
         </h5>
 
-        <select name="ProductBrandId" id="ProductBrandId" class="form-control selectpickerInModal" data-live-search="true" data-container="body">
+        <select name="ProductBrandId" id="ProductBrandId" class="form-control  selectize" data-live-search="true" data-container="body">
             @foreach (Brand item in Model.Brands)
             {
                 if (item.Id == Model.OrderProduct.Product?.PorductBrandId)
@@ -129,7 +129,7 @@
             Ürün Grubu
         </h5>
 
-        <select name="ProductGroupId" id="ProductGroupId" class="form-control selectpickerInModal" id="select-ProductGroupId" data-live-search="true" data-container="body">
+        <select name="ProductGroupId" id="ProductGroupId" class="form-control  selectize" id="select-ProductGroupId" data-live-search="true" data-container="body">
             @foreach (ProductGroup item in Model.ProductGroups)
             {
                 if (item.Id == Model.OrderProduct.Product?.ProductGroupId)
@@ -156,7 +156,7 @@
             Birimi
         </h5>
 
-        <select name="BirimId" class="form-control selectpickerInModal" id="select-BirimId" data-live-search="true" data-container="body">
+        <select name="BirimId" class="form-control  selectize" id="select-BirimId" data-live-search="true" data-container="body">
             @foreach (Birim item in Model.Birims)
             {
                 if (item.Id == Model.OrderProduct.BirimId)
@@ -237,7 +237,7 @@
             Referans Tedarikçi
         </h5>
 
-        <select name="ReferansSupplierId" class="form-control selectpickerInModal" id="select-ReferansSupplierId" data-live-search="true" data-container="body">
+        <select name="ReferansSupplierId" class="form-control  selectize" id="select-ReferansSupplierId" data-live-search="true" data-container="body">
             @foreach (Supplier item in Model.Suppliers)
             {
                 if (item.Id == Model.OrderProduct.ReferansSupplierId)
@@ -264,7 +264,7 @@
             Referans Para Birimi
         </h5>
 
-        <select name="ReferansCurrencyId" class="form-control selectpickerInModal" id="select-ReferansCurrencyId" data-live-search="true" data-container="body">
+        <select name="ReferansCurrencyId" class="form-control selectize" id="select-ReferansCurrencyId" data-live-search="true" data-container="body">
             @foreach (Currency item in Model.Currencies)
             {
                 if (item.Id == Model.OrderProduct.ReferansCurrencyId)
@@ -309,7 +309,7 @@
             Para Birimi
         </h5>
 
-        <select name="CurrencyId" class="form-control selectpickerInModal referansFiyatHesap" id="select-CurrencyId" style="border: #03c3ec 1px solid;" data-live-search="true" data-container="body">
+        <select name="CurrencyId" class="form-control  selectize referansFiyatHesap" id="select-CurrencyId" style="border: #03c3ec 1px solid;" data-live-search="true" data-container="body">
             @foreach (Currency item in Model.Currencies)
             {
                 if (item.Id == Model.OrderProduct.CurrencyId)
@@ -360,7 +360,7 @@
                 Kesin Tedarikçi
             </h5>
 
-            <select name="KesinSupplierId" class="form-control selectpickerInModal" id="select-KesinSupplierId" data-live-search="true" data-container="body">
+            <select name="KesinSupplierId" class="form-control  selectize" id="select-KesinSupplierId" data-live-search="true" data-container="body">
                 @foreach (Supplier item in Model.Suppliers)
                 {
                     if (item.Id == Model.OrderProduct.KesinSupplierId)
@@ -387,7 +387,7 @@
                 Kesin Para Birimi
             </h5>
 
-            <select name="KesinCurrencyId" class="form-control selectpickerInModal" id="select-KesinCurrencyId" data-live-search="true" data-container="body">
+            <select name="KesinCurrencyId" class="form-control  selectize" id="select-KesinCurrencyId" data-live-search="true" data-container="body">
                 @foreach (Currency item in Model.Currencies)
                 {
                     if (item.Id == Model.OrderProduct.KesinCurrencyId)
@@ -414,8 +414,25 @@
                 <h5 class="col-12 mb-2">
                     Kesin Sevk Durumu
                 </h5>
-                <div class="input-group w-100 mb-3">
-                    <textarea name="KesinSevkDurumu" class="form-control" style="height: 60px" id="KesinSevkDurumu">@Model.OrderProduct.KesinSevkDurumu</textarea>
+                <div class="input-group w-100 mb-5">
+                    <select name="KesinSevkDurumuId" class="form-control  selectize" id="KesinSevkDurumuId" data-live-search="true" data-container="body">
+                        @foreach (KesinSevkiyatDurumu item in Model.KesinSevkiyatDurums)
+                        {
+                            if (item.Id == Model.OrderProduct.KesinSevkDurumuId)
+                            {
+                                <option value="@item.Id" data-tokens="@item.Name @item.Description" selected="selected">
+                                    @item.Name
+                                </option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id" data-tokens="@item.Name @item.Description">
+                                    @item.Name
+                                </option>
+                            }
+
+                        }
+                    </select>
                 </div>
                 <div class="col-12">
                     <h5 class="col-12 mb-2">
@@ -453,7 +470,7 @@
 
 
 <script>
-    //$('.referansFiyatHesap').on('select2:selecting', function(e) {
+    //$('.referansFiyatHesap').on(' select2:selecting', function(e) {
     //   GetSegmentPrice()
     //});
     $('.referansFiyatHesap').bind('keyup mouseup change', function() {
@@ -469,11 +486,12 @@
 
         $("#segmentFiyat").val();
         var birimFiyat = $("#ReferansBirimFiyat").val();
-        var currencyId = $("#select-CurrencyId").select2("val");
+        var currencyId = $("#select-CurrencyId").val();
         var adet = $("#Adet").val();
-        var customerId = $("#select-Customer").select2("val");
+        var customerId = $("#select-Customer").val();
 
         console.log("refCurrencyId ==>" + currencyId);
+        console.log(currencyId);
         console.log("birimFiyat ==>" + birimFiyat);
         console.log("adet ==>" + adet);
         console.log("customerId ==>" + customerId);
@@ -586,9 +604,4 @@
         $("#productSearchResults .list-group").html(arrayToStr);
     }
 
-    $(".selectpickerInModal").select2({
-        tags: true,
-        dropdownParent: $("#newProductModal"),
-        language: "tr"
-    });
 </script>

@@ -34,7 +34,7 @@ namespace GegiCRM.DAL.EntityFramework
         {
             var context = new CrmDbContext();
             var order = context.Orders
-                .Where(x => x.Id == id /*&& !x.IsDeneied*/)
+                .Where(x => x.Id == id /*&& !x.IsDenied*/)
                 .Include(x => x.Customer)
                 //.Include(x => x.Customer.CustomerMainCompany)
                 .Include(x => x.Customer.CustomerRepresentetiveUsers)

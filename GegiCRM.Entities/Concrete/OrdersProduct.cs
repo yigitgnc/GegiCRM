@@ -9,7 +9,7 @@ namespace GegiCRM.Entities.Concrete
     {
         public OrdersProduct()
         {
-            OrdersProductCurrencies = new HashSet<OrdersProductCurrency>();
+            OrdersCurrencies = new HashSet<OrdersCurrency>();
         }
 
         public int OrderId { get; set; }
@@ -32,16 +32,18 @@ namespace GegiCRM.Entities.Concrete
         public int ReferansSupplierId { get; set; }
         public DateTime? AbonelikBaslangic { get; set; }
         public DateTime? AbonelikBitis { get; set; }
-        public string? KesinSevkDurumu { get; set; }
         public DateTime? KesinSevkTarihi { get; set; }
 
         public bool IsApproved { get; set; }
         public DateTime? ApprovedDate { get; set; }
         public bool IsCancelled { get; set; }
         public DateTime? CancelledDate { get; set; }
-        public bool IsDeneied { get; set; }
+        public bool IsDenied { get; set; }
         public DateTime? DeniedDate { get; set; }
         public bool IsFrequentlyUsed { get; set; }
+        public int? KesinSevkDurumuId{ get; set; }
+
+        public virtual KesinSevkiyatDurumu? KesinSevkDurumu { get; set; } = null!;
         public virtual Birim Birim { get; set; } = null!;
         public virtual Currency? Currency { get; set; }
         public virtual Currency? KesinCurrency { get; set; }
@@ -51,7 +53,7 @@ namespace GegiCRM.Entities.Concrete
         public virtual Currency? ReferansCurrency { get; set; }
         public virtual Supplier ReferansSupplier { get; set; } = null!;
 
-        public virtual ICollection<OrdersProductCurrency> OrdersProductCurrencies { get; set; }
+        public virtual ICollection<OrdersCurrency> OrdersCurrencies { get; set; }
     }
 
     public partial class OrdersProduct
@@ -77,7 +79,7 @@ namespace GegiCRM.Entities.Concrete
             {
                 badge = "<span class=\"badge bg-label-danger me-1\">İptal</span>";
             }
-            else if (IsDeneied)
+            else if (IsDenied)
             {
                 badge = "<span class=\"badge bg-label-danger me-1\">Red</span>";
             }

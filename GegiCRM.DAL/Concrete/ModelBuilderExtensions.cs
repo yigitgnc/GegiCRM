@@ -685,7 +685,7 @@ new SegmentOran{ AddedById = 1, SegmentId = 10, StartPrice = 1000000.00m, EndPri
                 IsActive = true,
                 SectorId = 1,
                 SegmentId = 1,
-                CustomerMainCompanyId = 1,                
+                CustomerMainCompanyId = 1,
             };
 
 
@@ -788,8 +788,48 @@ new SegmentOran{ AddedById = 1, SegmentId = 10, StartPrice = 1000000.00m, EndPri
                     DealerCode = "1235",
                     AddedById = 1,
                 }
-                
-                
+
+
+            };
+
+            List<KesinSevkiyatDurumu>? SevkiyatDurumlari = new List<KesinSevkiyatDurumu>()
+            {
+                new KesinSevkiyatDurumu()
+                {
+                    Id = 1,
+                    AddedById = 1,
+                    Name = "Sevkiyat",                    
+                },
+                new KesinSevkiyatDurumu()
+                {
+                    Id = 2,
+                    AddedById = 1,
+                    Name = "Kargo",                    
+                },
+                new KesinSevkiyatDurumu()
+                {
+                    Id = 3,
+                    AddedById = 1,
+                    Name = "Email",                    
+                },
+                new KesinSevkiyatDurumu()
+                {
+                    Id = 4,
+                    AddedById = 1,
+                    Name = "Depo",                    
+                },
+                new KesinSevkiyatDurumu()
+                {
+                    Id = 5,
+                    AddedById = 1,
+                    Name = "Depo Teslim",                    
+                },
+                new KesinSevkiyatDurumu()
+                {
+                    Id = 6,
+                    AddedById = 1,
+                    Name = "Depo Teslim",                    
+                },
             };
 
             List<Order> orders = new List<Order>()
@@ -815,6 +855,7 @@ new SegmentOran{ AddedById = 1, SegmentId = 10, StartPrice = 1000000.00m, EndPri
             modelBuilder.Entity<Customer>().HasData(customer);
             modelBuilder.Entity<OrderState>().HasData(orderStates);
             modelBuilder.Entity<Supplier>().HasData(suppliers);
+            modelBuilder.Entity<KesinSevkiyatDurumu>().HasData(SevkiyatDurumlari);
 
 
         }

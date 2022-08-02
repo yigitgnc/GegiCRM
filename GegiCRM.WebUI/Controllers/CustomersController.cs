@@ -291,6 +291,7 @@ namespace GegiCRM.WebUI.Controllers
         {
 
             var data = _repUserManager.ListByFilter(x => x.CustomerId == id && x.IsDeleted == false, false).OrderByDescending(x => x.Id).ToList();
+
             return View(data);
         }
 
@@ -357,9 +358,30 @@ namespace GegiCRM.WebUI.Controllers
             }
         }
 
+        public async Task<IActionResult> _SetDefaultContact(int id,int customerId)
+        {
+            try
+            {
+                Customer? customer = _genericmanager.GetById(customerId, false);
+                if (customer == null)
+                {
+                    return NotFound();
+                }                
+                customer.DefaultCustomerContactId = id;
+                _genericmanager.Update(customer);
+                return StatusCode(200);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500);
+            }
+            
+        }
         public async Task<IActionResult> _GetCustomerContactsOfCustomer(int id)
         {
             var data = _contactManager.ListByFilter(x => x.CustomerId == id && x.IsDeleted == false, false).OrderByDescending(x => x.Id).ToList();
+            ViewBag.DefaultUserId = _genericmanager.GetById(id, false)?.DefaultCustomerContactId;
             return View(data);
         }
 
@@ -413,7 +435,7 @@ namespace GegiCRM.WebUI.Controllers
 
 
         [HttpPost]
-        public async Task<string> _AddNewCustomerAddress(int customerId, string addressName, string il, string ilce, string address)
+        public async Task<string> _AddNewCustomerAddress(int customerId, string addressName, string il, string ilce, string address,string teslimAlacakAdSoyad,string sonKullaniciBilgisi)
         {
             try
             {
@@ -423,7 +445,9 @@ namespace GegiCRM.WebUI.Controllers
                     AddressName = addressName,
                     Il = il,
                     Ilce = ilce,
-                    Address = address
+                    Address = address,
+                    TeslimAlacakAdSoyad = teslimAlacakAdSoyad,
+                    SonKullaniciBilgisi = sonKullaniciBilgisi,
                 };
                 _addressManager.Create(newAddress);
 

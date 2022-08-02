@@ -24,7 +24,7 @@ namespace GegiCRM.WebUI.Controllers
         //readonly GenericManager<AppUser> _userman;
         readonly TeklifTakipManager _teklifTakipManager;
         readonly GenericManager<Customer> _customerManager;
-        readonly OrdersProductCurrencyManager _orderCurrencyManager;
+        readonly OrdersCurrencyManager _orderCurrencyManager;
         readonly GenericManager<OrderState> _orderStateManager;
         readonly OrdersProductManager _orderProductsManager;
         readonly GenericManager<ProductGroup> _productGroupGenericManager;
@@ -43,7 +43,7 @@ namespace GegiCRM.WebUI.Controllers
             _signInManager = signInManager;
             _teklifTakipManager = new TeklifTakipManager(new EfOrderRepository()); ;
             _customerManager = new GenericManager<Customer>(new EfCustomerRepository());
-            _orderCurrencyManager = new OrdersProductCurrencyManager(new EfOrdersCurrencyRepository());
+            _orderCurrencyManager = new OrdersCurrencyManager(new EfOrdersCurrencyRepository());
             _currencyManager = new GenericManager<Currency>(new EfCurrencieRepository());
             _orderStateManager = new GenericManager<OrderState>(new GenericRepository<OrderState>());
             _orderProductsManager = new OrdersProductManager(new EfOrdersProductRepository(), _signInManager);
@@ -166,39 +166,39 @@ namespace GegiCRM.WebUI.Controllers
             List<OrdersProduct> ordersProducts = _orderProductsManager.GetListByAllNavigations(id);
             if (type != "Teklif")
             {
-                ordersProducts = ordersProducts.Where(x => x.IsApproved || x.IsDeneied).ToList();
+                ordersProducts = ordersProducts.Where(x => x.IsApproved || x.IsCancelled).ToList();
             }
             return View(ordersProducts);
         }
 
-        public IActionResult _GetOrdersProductCurrenciesPartial(int id)
+        public IActionResult _GetOrdersCurrenciesPartial(int id)
         {
-            var ordersCurrencies = _orderCurrencyManager.GetOrdersProductCurrencies(id);
+            var ordersCurrencies = _orderCurrencyManager.GetOrdersCurrencies(id);
             return View(ordersCurrencies);
         }
 
-        public IActionResult _GetOrdersProductCurrenciesWithEditing(int id)
+        public IActionResult _GetOrdersCurrenciesWithEditing(int id)
         {
             var data = _currencyManager.GetAll(false);
             ViewBag.Currencies = data;
             return View(id);
         }
         [HttpPost]
-        public string AddCurrencyToOrder(string orderProductId, string currencyId, string currencyValue)
+        public string AddCurrencyToOrder(string orderId, string currencyId, string currencyValue)
         {
             var curId = Convert.ToInt32(currencyId);
-            var orPId = Convert.ToInt32(orderProductId);
+            var orId = Convert.ToInt32(orderId);
             var val = Convert.ToDecimal(currencyValue);
-            var orderC = _orderCurrencyManager.ListByFilter(x => x.CurrencyId == curId && x.OrdersProductId == orPId, false).FirstOrDefault();
+            var orderC = _orderCurrencyManager.ListByFilter(x => x.CurrencyId == curId && x.OrderId == orId, false).FirstOrDefault();
             try
             {
                 if (orderC == null)
                 {
 
                     decimal value = Convert.ToDecimal(currencyValue);
-                    OrdersProductCurrency currencyToAdd = new OrdersProductCurrency()
+                    OrdersCurrency currencyToAdd = new OrdersCurrency()
                     {
-                        OrdersProductId = orPId,
+                        OrderId = orId,
                         CurrencyId = curId,
                         Value = val,
                     };
@@ -222,7 +222,7 @@ namespace GegiCRM.WebUI.Controllers
         }
 
         [HttpPost]
-        public string DeleteOrdersProductsCurrency(int id)
+        public string DeleteOrdersCurrency(int id)
         {
 
             var orderC = _orderCurrencyManager.ListByFilter(x => x.Id == id, false).FirstOrDefault();
@@ -274,8 +274,11 @@ namespace GegiCRM.WebUI.Controllers
             GenericManager<Currency> currencyGenericManager =
                 new GenericManager<Currency>(new EfCurrencieRepository());
 
+            GenericManager<KesinSevkiyatDurumu> kesinSevkiyatDurumManager = new GenericManager<KesinSevkiyatDurumu>(new GenericRepository<KesinSevkiyatDurumu>());
+
 
             AddOrdersProductViewModel vm = new AddOrdersProductViewModel();
+
             vm.Suppliers = supplierGenericManager.GetAll(false);
             vm.Birims = birimGenericManager.GetAll(false);
             vm.Brands = brandGenericManager.GetAll(false);
@@ -283,6 +286,7 @@ namespace GegiCRM.WebUI.Controllers
             vm.Products = _productManager.GetProductsWithNavigations(false);
             vm.Currencies = currencyGenericManager.GetAll(false);
             vm.CurrentOrderId = id;
+            vm.KesinSevkiyatDurums = kesinSevkiyatDurumManager.GetAll(false);
             var order = _teklifTakipManager.GetById(id, false);
             string type = "Sipariş";
             //offer onaylanmadıysa ve nullsa bu bir tekliftir
@@ -378,19 +382,19 @@ namespace GegiCRM.WebUI.Controllers
                         switch (type)
                         {
                             case "Onay":
-                                op.IsDeneied = false;
+                                op.IsDenied = false;
                                 op.IsCancelled = false;
                                 op.IsApproved = true;
                                 break;
                             case "Iptal":
-                                op.IsDeneied = false;
+                                op.IsDenied = false;
                                 op.IsApproved = false;
                                 op.IsCancelled = true;
                                 break;
                             case "Red":
                                 op.IsApproved = false;
                                 op.IsCancelled = false;
-                                op.IsDeneied = true;
+                                op.IsDenied = true;
                                 break;
                             case "Sil":
                                 _orderProductsManager.Delete(op);
@@ -456,7 +460,7 @@ namespace GegiCRM.WebUI.Controllers
                             newOp.IsApproved = op.IsApproved;
                             newOp.IsCancelled = op.IsCancelled;
                             newOp.IsDeleted = op.IsDeleted;
-                            newOp.IsDeneied = op.IsDeneied;
+                            newOp.IsDenied = op.IsDenied;
                             newOp.Notes = op.Notes;
                             newOp.ReferansBirimFiyat = op.ReferansBirimFiyat;
                             newOp.BirimFiyat = op.BirimFiyat;

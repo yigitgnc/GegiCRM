@@ -4,6 +4,7 @@ using GegiCRM.DAL.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GegiCRM.DAL.Migrations
 {
     [DbContext(typeof(CrmDbContext))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220801143939_ordersCurrenciesBack")]
+    partial class ordersCurrenciesBack
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,12 +135,12 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 1,
                             AddedById = 1,
-                            ConcurrencyStamp = "019fb17f-1d2a-4745-b34b-ffd531fb9e4e",
-                            CreatedDate = new DateTime(2022, 8, 2, 17, 32, 6, 10, DateTimeKind.Local).AddTicks(1421),
+                            ConcurrencyStamp = "ad936585-2936-46d6-8f81-b3e8a358689a",
+                            CreatedDate = new DateTime(2022, 8, 1, 17, 39, 36, 805, DateTimeKind.Local).AddTicks(3178),
                             Description = "Sistem Admini Full Yetki",
                             IsDeleted = false,
                             ModifiedById = 1,
-                            ModifiedDate = new DateTime(2022, 8, 2, 17, 32, 6, 10, DateTimeKind.Local).AddTicks(1422),
+                            ModifiedDate = new DateTime(2022, 8, 1, 17, 39, 36, 805, DateTimeKind.Local).AddTicks(3179),
                             Name = "SysAdmin",
                             NormalizedName = "Sistem Admini",
                             RoleGroupId = 1
@@ -328,21 +330,21 @@ namespace GegiCRM.DAL.Migrations
                             Id = 1,
                             AccessFailedCount = 0,
                             AddedById = 1,
-                            ConcurrencyStamp = "f92ce62a-ddf5-4596-b680-7ff335b5fc66",
-                            CreatedDate = new DateTime(2022, 8, 2, 17, 32, 6, 9, DateTimeKind.Local).AddTicks(1252),
+                            ConcurrencyStamp = "127fd4b5-91cd-4adb-b374-7eecbfb66b48",
+                            CreatedDate = new DateTime(2022, 8, 1, 17, 39, 36, 804, DateTimeKind.Local).AddTicks(3032),
                             Email = "yigit.genc@gegi.com.tr",
                             EmailConfirmed = true,
                             IsDeleted = false,
                             IsOnline = false,
                             LockoutEnabled = false,
-                            ModifiedDate = new DateTime(2022, 8, 2, 17, 32, 6, 9, DateTimeKind.Local).AddTicks(1268),
+                            ModifiedDate = new DateTime(2022, 8, 1, 17, 39, 36, 804, DateTimeKind.Local).AddTicks(3056),
                             Name = "Yiğit",
                             NormalizedEmail = "YIGIT.GENC@GEGI.COM.TR",
                             NormalizedUserName = "YG",
-                            PasswordHash = "AQAAAAEAACcQAAAAELhENRiiYKfXR/wSVpCv7e0pnSkC1zheyf75L6btn2i1ah9D4wvHJ/SJ48V0PhmI7A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPGkjOjHquQTfLe3VW7MqXaHGnAjRGTMXxRiJhYVbFC5+NIEtTHrM9rYC/h1PZAS2Q==",
                             PhoneNumber = "+905382630008",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3f10e283-aee6-46eb-bc22-9cc18c7515f9",
+                            SecurityStamp = "92a574ff-0d03-424d-ad0f-259c2cf1628e",
                             Surname = "Genç",
                             TwoFactorEnabled = false,
                             UserCompanyId = 1,
@@ -688,7 +690,7 @@ namespace GegiCRM.DAL.Migrations
                             Id = 1,
                             AddedById = 1,
                             Code = "TRY",
-                            CreatedDate = new DateTime(2022, 8, 2, 17, 32, 6, 10, DateTimeKind.Local).AddTicks(1505),
+                            CreatedDate = new DateTime(2022, 8, 1, 17, 39, 36, 805, DateTimeKind.Local).AddTicks(3322),
                             CurrentValue = 1m,
                             IsDeleted = false,
                             Name = "Türk Lirası"
@@ -698,7 +700,7 @@ namespace GegiCRM.DAL.Migrations
                             Id = 2,
                             AddedById = 1,
                             Code = "USD",
-                            CreatedDate = new DateTime(2022, 8, 2, 17, 32, 6, 10, DateTimeKind.Local).AddTicks(1542),
+                            CreatedDate = new DateTime(2022, 8, 1, 17, 39, 36, 805, DateTimeKind.Local).AddTicks(3345),
                             CurrentValue = 16m,
                             IsDeleted = false,
                             Name = "Amerikan Doları"
@@ -708,7 +710,7 @@ namespace GegiCRM.DAL.Migrations
                             Id = 3,
                             AddedById = 1,
                             Code = "EUR",
-                            CreatedDate = new DateTime(2022, 8, 2, 17, 32, 6, 10, DateTimeKind.Local).AddTicks(1546),
+                            CreatedDate = new DateTime(2022, 8, 1, 17, 39, 36, 805, DateTimeKind.Local).AddTicks(3349),
                             CurrentValue = 17m,
                             IsDeleted = false,
                             Name = "EURO"
@@ -942,9 +944,6 @@ namespace GegiCRM.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TeslimAlacakAdSoyad")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TeslimTelefon")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -2135,7 +2134,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsDenied")
+                    b.Property<bool>("IsDeneied")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsFrequentlyUsed")
@@ -2317,7 +2316,7 @@ namespace GegiCRM.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsDenied")
+                    b.Property<bool>("IsDeneied")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsFrequentlyUsed")
@@ -3075,7 +3074,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 1,
                             AddedById = 1,
-                            CreatedDate = new DateTime(2022, 8, 2, 17, 32, 6, 10, DateTimeKind.Local).AddTicks(1616),
+                            CreatedDate = new DateTime(2022, 8, 1, 17, 39, 36, 805, DateTimeKind.Local).AddTicks(3455),
                             Description = "Segment 1 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 1"
@@ -3084,7 +3083,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 2,
                             AddedById = 1,
-                            CreatedDate = new DateTime(2022, 8, 2, 17, 32, 6, 10, DateTimeKind.Local).AddTicks(1627),
+                            CreatedDate = new DateTime(2022, 8, 1, 17, 39, 36, 805, DateTimeKind.Local).AddTicks(3468),
                             Description = "Segment 2 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 2"
@@ -3093,7 +3092,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 3,
                             AddedById = 1,
-                            CreatedDate = new DateTime(2022, 8, 2, 17, 32, 6, 10, DateTimeKind.Local).AddTicks(1644),
+                            CreatedDate = new DateTime(2022, 8, 1, 17, 39, 36, 805, DateTimeKind.Local).AddTicks(3500),
                             Description = "Segment 3 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 3"
@@ -3102,7 +3101,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 4,
                             AddedById = 1,
-                            CreatedDate = new DateTime(2022, 8, 2, 17, 32, 6, 10, DateTimeKind.Local).AddTicks(1646),
+                            CreatedDate = new DateTime(2022, 8, 1, 17, 39, 36, 805, DateTimeKind.Local).AddTicks(3502),
                             Description = "Segment 4 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 4"
@@ -3111,7 +3110,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 5,
                             AddedById = 1,
-                            CreatedDate = new DateTime(2022, 8, 2, 17, 32, 6, 10, DateTimeKind.Local).AddTicks(1656),
+                            CreatedDate = new DateTime(2022, 8, 1, 17, 39, 36, 805, DateTimeKind.Local).AddTicks(3503),
                             Description = "Segment 5 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 5"
@@ -3120,7 +3119,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 6,
                             AddedById = 1,
-                            CreatedDate = new DateTime(2022, 8, 2, 17, 32, 6, 10, DateTimeKind.Local).AddTicks(1659),
+                            CreatedDate = new DateTime(2022, 8, 1, 17, 39, 36, 805, DateTimeKind.Local).AddTicks(3516),
                             Description = "Segment 6 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 6"
@@ -3129,7 +3128,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 7,
                             AddedById = 1,
-                            CreatedDate = new DateTime(2022, 8, 2, 17, 32, 6, 10, DateTimeKind.Local).AddTicks(1660),
+                            CreatedDate = new DateTime(2022, 8, 1, 17, 39, 36, 805, DateTimeKind.Local).AddTicks(3518),
                             Description = "Segment 7 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 7"
@@ -3138,7 +3137,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 8,
                             AddedById = 1,
-                            CreatedDate = new DateTime(2022, 8, 2, 17, 32, 6, 10, DateTimeKind.Local).AddTicks(1662),
+                            CreatedDate = new DateTime(2022, 8, 1, 17, 39, 36, 805, DateTimeKind.Local).AddTicks(3520),
                             Description = "Segment 8 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 8"
@@ -3147,7 +3146,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 9,
                             AddedById = 1,
-                            CreatedDate = new DateTime(2022, 8, 2, 17, 32, 6, 10, DateTimeKind.Local).AddTicks(1664),
+                            CreatedDate = new DateTime(2022, 8, 1, 17, 39, 36, 805, DateTimeKind.Local).AddTicks(3521),
                             Description = "Segment 9 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 9"
@@ -3156,7 +3155,7 @@ namespace GegiCRM.DAL.Migrations
                         {
                             Id = 10,
                             AddedById = 1,
-                            CreatedDate = new DateTime(2022, 8, 2, 17, 32, 6, 10, DateTimeKind.Local).AddTicks(1666),
+                            CreatedDate = new DateTime(2022, 8, 1, 17, 39, 36, 805, DateTimeKind.Local).AddTicks(3524),
                             Description = "Segment 10 Açıklaması",
                             IsDeleted = false,
                             Name = "Segment 10"
@@ -10400,10 +10399,10 @@ namespace GegiCRM.DAL.Migrations
                             RoleId = 1,
                             AddedById = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EndDate = new DateTime(2032, 8, 2, 17, 32, 6, 10, DateTimeKind.Local).AddTicks(1431),
+                            EndDate = new DateTime(2032, 8, 1, 17, 39, 36, 805, DateTimeKind.Local).AddTicks(3190),
                             Id = 0,
                             IsDeleted = false,
-                            StartDate = new DateTime(2022, 8, 2, 17, 32, 6, 10, DateTimeKind.Local).AddTicks(1430)
+                            StartDate = new DateTime(2022, 8, 1, 17, 39, 36, 805, DateTimeKind.Local).AddTicks(3189)
                         });
                 });
 

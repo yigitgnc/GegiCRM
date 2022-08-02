@@ -28,7 +28,7 @@
                 <div class="mb-3 col-12">
                     <label class="form-label col-12" for="currencyId">Eklenecek Kur :</label>
 
-                    <select id="currencyId" name="currencyId" class="form-control selectpicker" data-live-search="true" aria-describedby="representetiveUserHelp" data-container="body">
+                    <select id="currencyId" name="currencyId" class="form-control select2" data-live-search="true" aria-describedby="representetiveUserHelp" data-container="body">
                         @foreach (Currency item in ViewBag.Currencies)
                         {
                             <option value="@item.Id" data-val="@item.CurrentValue">[@item.Code] @item.Name (Son Belirlenen: @item.CurrentValue)</option>

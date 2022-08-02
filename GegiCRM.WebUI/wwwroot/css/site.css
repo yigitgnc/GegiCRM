@@ -196,3 +196,9 @@ html {
 .newOnline {
     box-shadow: 0 8px 40px 15px #7679ff;
 }
+
+
+/*selectpicker (for modal)*/
+.bs-container{
+    z-index:9999;
+}

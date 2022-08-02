@@ -16,7 +16,7 @@
                 <div class="mb-3 mt-5">
                     <label for="select-Customer" class=" form-control-label">Müşteri</label>
                     <div class="col-12">
-                        <select name="customer_Id" class="form-control selectpicker" id="select-Customer" data-live-search="true" aria-describedby="customerHelpd" data-container="body">
+                        <select name="customer_Id" class="form-control select2" id="select-Customer" data-live-search="true" aria-describedby="customerHelpd" data-container="body">
                             @foreach (Customer item in ViewBag.Customers)
                             {
                                 <option value="@item.Id" data-tokens="@item.Name">@item.Name</option>
@@ -29,7 +29,7 @@
                 <div class="mb-5">
                     <label for="select-RepresentetiveUser" class=" form-control-label">Temsilci</label>
                     <div class="col-12">
-                        <select name="rUser_Id" class="form-control selectpicker" id="select-RepresentetiveUser" data-live-search="true" aria-describedby="representetiveUserHelp" data-container="body">
+                        <select name="rUser_Id" class="form-control select2" id="select-RepresentetiveUser" data-live-search="true" aria-describedby="representetiveUserHelp" data-container="body">
                             @foreach (AppUser item in ViewBag.Users)
                             {
                                 if (item.Id == Model.Id)
